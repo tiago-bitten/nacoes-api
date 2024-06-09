@@ -1,0 +1,15 @@
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\bin\Debug\net7.0\SistemaNacoes.Application.deps.json
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\bin\Debug\net7.0\SistemaNacoes.Application.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\bin\Debug\net7.0\SistemaNacoes.Application.pdb
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\bin\Debug\net7.0\SistemaNacoes.Domain.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\bin\Debug\net7.0\SistemaNacoes.Domain.pdb
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.csproj.AssemblyReference.cache
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.AssemblyInfoInputs.cache
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.AssemblyInfo.cs
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.csproj.CoreCompileInputs.cache
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.csproj.CopyComplete
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\refint\SistemaNacoes.Application.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.pdb
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\ref\SistemaNacoes.Application.dll

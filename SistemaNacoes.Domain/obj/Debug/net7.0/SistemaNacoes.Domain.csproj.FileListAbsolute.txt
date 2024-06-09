@@ -1,0 +1,11 @@
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.deps.json
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.pdb
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.AssemblyInfoInputs.cache
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.AssemblyInfo.cs
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.csproj.CoreCompileInputs.cache
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\obj\Debug\net7.0\refint\SistemaNacoes.Domain.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.pdb
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\obj\Debug\net7.0\ref\SistemaNacoes.Domain.dll

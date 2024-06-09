@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "SistemaNacoes.Infrastructure.Persistence/1.0.0": {
+        "dependencies": {
+          "SistemaNacoes.Application": "1.0.0",
+          "SistemaNacoes.Domain": "1.0.0"
+        },
+        "runtime": {
+          "SistemaNacoes.Infrastructure.Persistence.dll": {}
+        }
+      },
+      "SistemaNacoes.Application/1.0.0": {
+        "dependencies": {
+          "SistemaNacoes.Domain": "1.0.0"
+        },
+        "runtime": {
+          "SistemaNacoes.Application.dll": {}
+        }
+      },
+      "SistemaNacoes.Domain/1.0.0": {
+        "runtime": {
+          "SistemaNacoes.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SistemaNacoes.Infrastructure.Persistence/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SistemaNacoes.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SistemaNacoes.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
