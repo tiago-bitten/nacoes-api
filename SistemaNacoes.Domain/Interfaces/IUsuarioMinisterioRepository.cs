@@ -1,6 +1,7 @@
-﻿namespace SistemaNacoes.Domain.Interfaces
+﻿using SistemaNacoes.Domain.Entidades;
+namespace SistemaNacoes.Domain.Interfaces
 {
-    pbulic interface IUsuarioMinisterioRepository
+    public interface IUsuarioMinisterioRepository : IBaseRepository<UsuarioMinisterio>
     {
     }
 }
