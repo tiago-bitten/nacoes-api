@@ -13,7 +13,9 @@ namespace SistemaNacoes.Infrastructure.Persistence.Mapeamentos
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Id)
-                .HasColumnName("id");
+                .HasColumnType("INT")
+                .HasColumnName("id")
+                .IsRequired();
 
             builder.Property(e => e.AccessKey)
                 .HasColumnType("UUID")

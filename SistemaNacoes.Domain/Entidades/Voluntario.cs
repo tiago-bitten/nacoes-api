@@ -13,6 +13,6 @@
         public ICollection<VoluntarioMinisterio> VoluntariosMinisterios { get; set; }
         public ICollection<Agendamento> Agendamentos { get; set; }
         public ICollection<DataIndisponivel> DatasIndisponiveis { get; set; }
-        public ICollection<EscalaVoluntario> EscalasVoluntarios { get; set; }
+        public ICollection<EscalaItem> EscalaItens { get; set; }
     }
 }

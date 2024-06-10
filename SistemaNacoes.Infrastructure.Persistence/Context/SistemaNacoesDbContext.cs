@@ -10,7 +10,6 @@ namespace SistemaNacoes.Infrastructure.Persistence.Data
             : base(options)
         {
         }
-
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Voluntario> Voluntarios { get; set; }
         public DbSet<Ministerio> Ministerios { get; set; }
@@ -22,7 +21,6 @@ namespace SistemaNacoes.Infrastructure.Persistence.Data
         public DbSet<Grupo> Grupos { get; set; }
         public DbSet<Escala> Escalas { get; set; }
         public DbSet<EscalaItem> EscalaItens { get; set; }
-        public DbSet<EscalaVoluntario> EscalasVoluntarios { get; set; }
         public DbSet<DataIndisponivel> DatasIndisponiveis { get; set; }
         public DbSet<Historico> Historicos { get; set; }
 
@@ -39,7 +37,6 @@ namespace SistemaNacoes.Infrastructure.Persistence.Data
             modelBuilder.ApplyConfiguration(new GrupoMap());
             modelBuilder.ApplyConfiguration(new EscalaMap());
             modelBuilder.ApplyConfiguration(new EscalaItemMap());
-            modelBuilder.ApplyConfiguration(new EscalaVoluntarioMap());
             modelBuilder.ApplyConfiguration(new DataIndisponivelMap());
             modelBuilder.ApplyConfiguration(new HistoricoMap());
         }

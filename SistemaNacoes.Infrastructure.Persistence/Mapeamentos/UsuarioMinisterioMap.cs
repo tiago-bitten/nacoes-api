@@ -13,10 +13,14 @@ namespace SistemaNacoes.Infrastructure.Persistence.Mapeamentos
             builder.HasKey(e => new { e.UsuarioId, e.MinisterioId });
 
             builder.Property(e => e.UsuarioId)
-                .HasColumnName("usuario_id");
+                .HasColumnType("INT")
+                .HasColumnName("usuario_id")
+                .IsRequired();
 
             builder.Property(e => e.MinisterioId)
-                .HasColumnName("ministerio_id");
+                .HasColumnType("INT")
+                .HasColumnName("ministerio_id")
+                .IsRequired();
 
             builder.Property(e => e.Ativo)
                 .HasColumnType("BOOLEAN")

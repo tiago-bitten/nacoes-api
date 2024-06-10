@@ -10,7 +10,6 @@ namespace SistemaNacoes.Infrastructure.Persistence.Data
         {
             var optionsBuilder = new DbContextOptionsBuilder<SistemaNacoesDbContext>();
 
-            // Use your connection string here
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")

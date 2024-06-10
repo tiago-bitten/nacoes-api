@@ -10,6 +10,5 @@
 
         public Ministerio Ministerio { get; set; }
         public ICollection<EscalaItem> EscalaItens { get; set; }
-        public ICollection<EscalaVoluntario> EscalasVoluntarios { get; set; }
     }
 }

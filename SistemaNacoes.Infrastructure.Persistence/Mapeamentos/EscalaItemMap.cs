@@ -10,30 +10,42 @@ namespace SistemaNacoes.Infrastructure.Persistence.Mapeamentos
         {
             builder.ToTable("escala_itens");
 
-            builder.HasKey(e => new { e.EscalaId, e.AtividadeId });
+            builder.HasKey(ei => new { ei.EscalaId, ei.AtividadeId, ei.VoluntarioId });
 
-            builder.Property(e => e.EscalaId)
+            builder.Property(ei => ei.EscalaId)
                 .HasColumnType("INT")
                 .HasColumnName("escala_id")
                 .IsRequired();
 
-            builder.Property(e => e.AtividadeId)
+            builder.Property(ei => ei.AtividadeId)
                 .HasColumnType("INT")
                 .HasColumnName("atividade_id")
                 .IsRequired();
 
-            builder.Property(e => e.QuantidadeVoluntarios)
+            builder.Property(ei => ei.VoluntarioId)
+                .HasColumnType("INT")
+                .HasColumnName("voluntario_id")
+                .IsRequired();
+
+            builder.Property(ei => ei.QuantidadeVoluntarios)
                 .HasColumnType("INT")
                 .HasColumnName("quantidade_voluntarios")
                 .IsRequired();
 
-            builder.HasOne(e => e.Escala)
+            builder.HasOne(ei => ei.Escala)
                 .WithMany(e => e.EscalaItens)
-                .HasForeignKey(e => e.EscalaId);
+                .HasForeignKey(ei => ei.EscalaId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(e => e.Atividade)
+            builder.HasOne(ei => ei.Atividade)
                 .WithMany(a => a.EscalaItens)
-                .HasForeignKey(e => e.AtividadeId);
+                .HasForeignKey(ei => ei.AtividadeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(ei => ei.Voluntario)
+                .WithMany(v => v.EscalaItens)
+                .HasForeignKey(ei => ei.VoluntarioId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

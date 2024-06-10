@@ -13,7 +13,9 @@ namespace SistemaNacoes.Infrastructure.Persistence.Mapeamentos
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Id)
-                .HasColumnName("id");
+                .HasColumnType("INT")
+                .HasColumnName("id")
+                .IsRequired();
 
             builder.Property(e => e.QuantidadeVoluntarios)
                 .HasColumnType("INT")
@@ -31,17 +33,22 @@ namespace SistemaNacoes.Infrastructure.Persistence.Mapeamentos
                 .IsRequired();
 
             builder.Property(e => e.Usada)
-                .HasColumnType("BOOLEAN")
-                .HasColumnName("usada")
-                .IsRequired();
+                .HasColumnName("usada");
 
             builder.HasOne(e => e.Agenda)
-                .WithMany(a => a.Escalas)
-                .HasForeignKey(e => e.AgendaId);
+                .WithMany()
+                .HasForeignKey(e => e.AgendaId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.Ministerio)
-                .WithMany(m => m.Escalas)
-                .HasForeignKey(e => e.MinisterioId);
+                .WithMany()
+                .HasForeignKey(e => e.MinisterioId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(e => e.EscalaItens)
+                .WithOne(ei => ei.Escala)
+                .HasForeignKey(ei => ei.EscalaId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

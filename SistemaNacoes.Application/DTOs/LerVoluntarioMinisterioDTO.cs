@@ -1,6 +1,6 @@
 ﻿namespace SistemaNacoes.Application.DTOs
 {
-    internal class LerVoluntarioMinisterioDTO
+    public class LerVoluntarioMinisterioDTO
     {
         public LerVoluntarioDTO Voluntario { get; set; }
         public LerMinisterioDTO Ministerio { get; set; }
