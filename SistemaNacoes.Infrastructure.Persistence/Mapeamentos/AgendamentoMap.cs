@@ -10,8 +10,10 @@ namespace SistemaNacoes.Infrastructure.Persistence.Mapeamentos
         {
             builder.ToTable("agendamentos");
 
-            builder.HasKey(e => e.Id)
-                .HasName("id");
+            builder.HasKey(e => e.Id);
+
+            builder.Property(e => e.Id)
+                .HasColumnName("id");
 
             builder.Property(e => e.VoluntarioId)
                 .HasColumnType("INT")

@@ -39,3 +39,13 @@ C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\obj\
 C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\obj\Debug\net7.0\SistemaNacoes.WebAPI.pdb
 C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\obj\Debug\net7.0\SistemaNacoes.WebAPI.genruntimeconfig.cache
 C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\obj\Debug\net7.0\ref\SistemaNacoes.WebAPI.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\Npgsql.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\Humanizer.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\System.CodeDom.dll
