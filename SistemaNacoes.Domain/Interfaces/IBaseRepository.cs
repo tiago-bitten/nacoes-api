@@ -1,10 +1,11 @@
 ﻿namespace SistemaNacoes.Domain.Interfaces
 {
-    public interface IBaseRepository
+    public interface IBaseRepository<T>
     {
-        void Add<T>(T entity) where T : class;
-        void Update<T>(T entity) where T : class;
-        void Delete<T>(T entity) where T : class;
-        void SaveChanges();
+        Task<T> CreateAsync(T entity);
+        Task<T> UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
+        Task<T> GetByIdAsync(int id);
+        Task<IEnumerable<T>> GetAllAsync();
     }
 }
