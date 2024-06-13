@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Pt0EIEtLQFDxka8ndGvz6xwwptdbmKDvQlvxx1N6Kxv2JEWpp6bPs+eQ09M1WyUEzjfClhj+Vo8bECQAgKmFdw==",
+  "dgSpecHash": "49wNthsuxRu/KXsVHLicavF2pzzZ6Ea5Q6wT8xvDt0JRr9pdz8dCBzR6abnpK3Nshekj73h+ISNDZsJGZvgXBg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tiago\\Documents\\CSHARP\\projetos\\SistemaNacoes.Infrastructure.Services\\SistemaNacoes.Infrastructure.Services.csproj",
+  "projectFilePath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infrastructure.Services\\SistemaNacoes.Infrastructure.Services.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

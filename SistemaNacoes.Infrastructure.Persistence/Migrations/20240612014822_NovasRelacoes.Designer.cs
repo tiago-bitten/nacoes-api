@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SistemaNacoes.Infrastructure.Persistence.Data;
@@ -11,9 +12,11 @@ using SistemaNacoes.Infrastructure.Persistence.Data;
 namespace SistemaNacoes.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SistemaNacoesDbContext))]
-    partial class SistemaNacoesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240612014822_NovasRelacoes")]
+    partial class NovasRelacoes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
