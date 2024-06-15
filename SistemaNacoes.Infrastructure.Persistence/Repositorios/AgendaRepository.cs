@@ -2,11 +2,6 @@
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Infrastructure.Persistence.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaNacoes.Infrastructure.Persistence.Repositorios
 {
@@ -19,10 +14,12 @@ namespace SistemaNacoes.Infrastructure.Persistence.Repositorios
             _context = context;
         }
 
-        public async Task<int> CreateAsync(Agenda entity)
+        public async Task<Agenda> CreateAsync(Agenda entity)
         {
             await _context.Agendas.AddAsync(entity);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+
+            return entity;
         }
 
         public async Task DeleteAsync(Agenda entity)

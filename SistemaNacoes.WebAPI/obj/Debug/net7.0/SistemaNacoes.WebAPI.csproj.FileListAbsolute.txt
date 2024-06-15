@@ -101,3 +101,5 @@ C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.WebAPI\obj\Debug\net7.0\s
 C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.WebAPI\obj\Debug\net7.0\SistemaNacoes.WebAPI.csproj.CopyComplete
 C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.WebAPI\obj\Debug\net7.0\SistemaNacoes.WebAPI.genruntimeconfig.cache
 C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.WebAPI\obj\Debug\net7.0\ref\SistemaNacoes.WebAPI.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.WebAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\SistemaNacoes.Domain\SistemaNacoes.Domain.csproj" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\" />
+    <ProjectReference Include="..\SistemaNacoes.Domain\SistemaNacoes.Domain.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

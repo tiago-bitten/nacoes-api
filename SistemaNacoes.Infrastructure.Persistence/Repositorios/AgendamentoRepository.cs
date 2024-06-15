@@ -14,10 +14,12 @@ namespace SistemaNacoes.Infrastructure.Persistence.Repositorios
         {
             _context = context;
         }
-        public async Task<int> CreateAsync(Agendamento entity)
+        public async Task<Agendamento> CreateAsync(Agendamento entity)
         {
             await _context.Agendamentos.AddAsync(entity);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+
+            return entity;
         }
 
         public async Task DeleteAsync(Agendamento entity)
@@ -26,7 +28,7 @@ namespace SistemaNacoes.Infrastructure.Persistence.Repositorios
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Agendamento>> GetAllAsync()
+        public async Task<IEnumerable<Agendamento?>> GetAllAsync()
         {
             return await _context.Agendamentos.ToListAsync();
         }

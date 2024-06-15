@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "BSsF4JvVr4NpCWI+dqC40gxoEJ+6EveQJ4lMLKUsmnl/me7X4j+5Ij7g/yx5GpXaA6DDoWwb8fjGvaextFerkQ==",
+  "dgSpecHash": "8dSbuRWpoegOaNLobGxkFU2Nmhf+fTIjrGChx6AM6MCVEhnPPcUv+jyHaILXqnnMqlZAZ9LShOnxLY2jf7CMRw==",
   "success": true,
   "projectFilePath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infrastructure.Persistence\\SistemaNacoes.Infrastructure.Persistence.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\teste\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\teste\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\teste\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.0\\microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.0\\microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.0\\microsoft.entityframeworkcore.analyzers.7.0.0.nupkg.sha512",
