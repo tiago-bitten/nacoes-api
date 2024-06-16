@@ -19,14 +19,14 @@ namespace SistemaNacoes.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CriarUsuarioDTO dto)
+        public async Task<IActionResult> Criar([FromBody] CriarUsuarioDTO dto)
         {
             var usuario = await _criarUsuario.ExecuteAsync(dto);
-            return CreatedAtAction(nameof(Get), new { id = usuario.Id }, usuario);
+            return CreatedAtAction(nameof(BuscarPorId), new { id = usuario.Id }, usuario);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> BuscarPorId(int id)
         {
             var usuario = await _buscarUsuarioPorId.ExecuteAsync(id);
             return Ok(usuario);
