@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaNacoes.Application.DTOs;
 using SistemaNacoes.Application.UseCases.Usuarios;
 
@@ -8,27 +9,39 @@ namespace SistemaNacoes.WebAPI.Controllers
     [Route("api/[controller]")]
     public class UsuariosController : ControllerBase
     {
+        private readonly LoginUsuario _loginUsuario;
         private readonly CriarUsuario _criarUsuario;
-        private readonly BuscarUsuarioPorId _buscarUsuarioPorId;
+        private readonly ObterUsuarioPorId _obterUsuarioPorId;
 
-        public UsuariosController(CriarUsuario criarUsuario,
-            BuscarUsuarioPorId buscarUsuarioPorId)
+        public UsuariosController(LoginUsuario loginUsuario, 
+            CriarUsuario criarUsuario,
+            ObterUsuarioPorId obterUsuarioPorId)
         {
+            _loginUsuario = loginUsuario;
             _criarUsuario = criarUsuario;
-            _buscarUsuarioPorId = buscarUsuarioPorId;
+            _obterUsuarioPorId = obterUsuarioPorId;
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
+        public async Task<IActionResult> Criar([FromBody] LoginDTO dto)
+        {
+            var token = await _loginUsuario.ExecuteAsync(dto);
+            return Ok(token);
+        }
+
+        [HttpPost("Criar")]
+        [Authorize]
         public async Task<IActionResult> Criar([FromBody] CriarUsuarioDTO dto)
         {
-            var usuario = await _criarUsuario.ExecuteAsync(dto);
-            return CreatedAtAction(nameof(BuscarPorId), new { id = usuario.Id }, usuario);
+            var usuarioDTO = await _criarUsuario.ExecuteAsync(dto);
+            return CreatedAtAction(nameof(ObterPorId), new { id = usuarioDTO.Id }, usuarioDTO);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> BuscarPorId(int id)
+        [Authorize]
+        public async Task<IActionResult> ObterPorId(int id)
         {
-            var usuario = await _buscarUsuarioPorId.ExecuteAsync(id);
+            var usuario = await _obterUsuarioPorId.ExecuteAsync(id);
             return Ok(usuario);
         }
     }

@@ -27,6 +27,9 @@ namespace SistemaNacoes.Application.UseCases.Usuarios
 
             var usuario = _mapper.Map<Usuario>(dto);
 
+            var senhaCriptografada = BCrypt.Net.BCrypt.HashPassword(dto.Senha);
+            usuario.Senha = senhaCriptografada;
+
             var usuarioCriado = await _usuarioRepository.CreateAsync(usuario);
 
             return _mapper.Map<LerUsuarioDTO>(usuarioCriado);

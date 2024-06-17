@@ -49,5 +49,23 @@ namespace SistemaNacoes.Infrastructure.Persistence.Repositorios
         {
             return await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
         }
+
+        public async Task<Usuario?> AutenticarAsync(string email, string senha)
+        {
+            var usuario = await _context.Usuarios.SingleOrDefaultAsync(x => x.Email == email);
+
+            await Console.Out.WriteLineAsync($"Buscar usuário por email: {usuario?.Email}");
+
+            if (usuario == null || !VerificarSenha(senha, usuario.Senha))
+                return null;
+
+            return usuario;
+        }
+
+        public bool VerificarSenha(string senha, string senhaHash)
+        {
+            Console.WriteLine($"Verificando senha: {BCrypt.Net.BCrypt.Verify(senha, senhaHash)}");
+            return BCrypt.Net.BCrypt.Verify(senha, senhaHash);
+        }
     }
 }
