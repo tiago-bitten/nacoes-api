@@ -2,9 +2,10 @@
 {
     public class Atividade : EntidadeBase
     {
-        public Atividade(string nome, Ministerio ministerio)
+        public Atividade(string nome, int maximoVoluntarios, Ministerio ministerio)
         {
             Nome = nome;
+            MaximoVoluntarios = maximoVoluntarios;
             Ministerio = ministerio;
         }
         

@@ -53,5 +53,25 @@ public class VoluntarioConfig : IEntityTypeConfiguration<Voluntario>
             .WithMany(x => x.Voluntarios)
             .HasForeignKey(x => x.GrupoId)
             .OnDelete(DeleteBehavior.SetNull);
+        
+        builder.HasMany(x => x.VoluntariosMinisterios)
+            .WithOne(x => x.Voluntario)
+            .HasForeignKey(x => x.VoluntarioId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        builder.HasMany(x => x.Agendamentos)
+            .WithOne(x => x.Voluntario)
+            .HasForeignKey(x => x.VoluntarioId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        builder.HasMany(x => x.DatasIndisponiveis)
+            .WithOne(x => x.Voluntario)
+            .HasForeignKey(x => x.VoluntarioId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        builder.HasMany(x => x.EscalaItens)
+            .WithOne(x => x.Voluntario)
+            .HasForeignKey(x => x.VoluntarioId)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }
