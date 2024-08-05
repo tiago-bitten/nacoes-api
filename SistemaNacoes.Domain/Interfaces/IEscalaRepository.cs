@@ -2,7 +2,7 @@
 
 namespace SistemaNacoes.Domain.Interfaces
 {
-    public interface IEscalaRepository : IBaseRepository<Escala>
+    public interface IEscalaRepository : IRepositoryBase<Escala>
     {
     }
 }

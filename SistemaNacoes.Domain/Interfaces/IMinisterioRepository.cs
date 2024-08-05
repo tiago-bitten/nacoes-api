@@ -2,7 +2,7 @@
 
 namespace SistemaNacoes.Domain.Interfaces
 {
-    public interface IMinisterioRepository : IBaseRepository<Ministerio>
+    public interface IMinisterioRepository : IRepositoryBase<Ministerio>
     {
     }
 }

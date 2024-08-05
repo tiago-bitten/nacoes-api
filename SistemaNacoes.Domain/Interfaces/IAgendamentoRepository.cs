@@ -2,7 +2,7 @@
 
 namespace SistemaNacoes.Domain.Interfaces
 {
-    public interface IAgendamentoRepository : IBaseRepository<Agendamento>
+    public interface IAgendamentoRepository : IRepositoryBase<Agendamento>
     {
     }
 }

@@ -2,14 +2,14 @@
 
 namespace SistemaNacoes.Domain.Interfaces
 {
-    public interface IBaseRepository<T>
+    public interface IRepositoryBase<T>
     {
-        Task CreateAsync(T entity);
+        Task AddAsync(T entity);
         void Update(T entity);
         void Delete(T entity);
-        Task SoftDeleteAsync(T entity);
+        void SoftDeleteAsync(T entity);
         Task<T> GetByIdAsync(int id);
-        IQueryable<T> GetAllAsync();
+        IQueryable<T> GetAll();
         Task<T> FindAsync(Expression<Func<T, bool>> predicate);
         IQueryable<T> FindAll(Expression<Func<T, bool>> predicate);
     }

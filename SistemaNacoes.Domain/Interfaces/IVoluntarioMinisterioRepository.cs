@@ -1,7 +1,7 @@
 ﻿using SistemaNacoes.Domain.Entidades;
 namespace SistemaNacoes.Domain.Interfaces
 {
-    public interface IVoluntarioMinisterioRepository : IBaseRepository<VoluntarioMinisterio>
+    public interface IVoluntarioMinisterioRepository : IRepositoryBase<VoluntarioMinisterio>
     {
     }
 }

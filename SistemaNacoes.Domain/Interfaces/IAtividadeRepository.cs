@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SistemaNacoes.Domain.Interfaces
 {
-    public interface IAtividadeRepository : IBaseRepository<Atividade>
+    public interface IAtividadeRepository : IRepositoryBase<Atividade>
     {
     }
 }
