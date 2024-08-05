@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaNacoes.Domain", "Sis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaNacoes.Application", "SistemaNacoes.Application\SistemaNacoes.Application.csproj", "{161E4CB0-740B-46D8-B2B8-45B4C64EA621}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaNacoes.Infra", "SistemaNacoes.Infra\SistemaNacoes.Infra.csproj", "{E4DFEFA6-8A1C-479C-A403-9839724B17E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{161E4CB0-740B-46D8-B2B8-45B4C64EA621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{161E4CB0-740B-46D8-B2B8-45B4C64EA621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{161E4CB0-740B-46D8-B2B8-45B4C64EA621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DFEFA6-8A1C-479C-A403-9839724B17E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DFEFA6-8A1C-479C-A403-9839724B17E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DFEFA6-8A1C-479C-A403-9839724B17E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DFEFA6-8A1C-479C-A403-9839724B17E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
