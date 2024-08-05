@@ -1,14 +1,19 @@
 ﻿namespace SistemaNacoes.Domain.Entidades
 {
-    public class Atividade
+    public class Atividade : EntidadeBase
     {
-        public int Id { get; set; }
+        public Atividade(string nome, Ministerio ministerio)
+        {
+            Nome = nome;
+            Ministerio = ministerio;
+        }
+        
         public string Nome { get; set; }
         public int MaximoVoluntarios { get; set; }
-        public bool? Ativo { get; set; }
-        public int? MinisterioId { get; set; }
+        public int MinisterioId { get; set; }
+        public bool Removido { get; set; } = false;
 
         public Ministerio Ministerio { get; set; }
-        public ICollection<EscalaItem> EscalaItens { get; set; }
+        public List<EscalaItem> EscalaItens { get; set; } = new();
     }
 }

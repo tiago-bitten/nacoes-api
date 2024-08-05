@@ -5,11 +5,9 @@ using SistemaNacoes.Application.Interfaces;
 using SistemaNacoes.Application.Services;
 using SistemaNacoes.Application.UseCases.Usuarios;
 using SistemaNacoes.Domain.Interfaces;
-using SistemaNacoes.Infrastructure.Persistence.Data;
 using SistemaNacoes.Infrastructure.Persistence.Repositorios;
-using SistemaNacoes.WebAPI.Mapeamentos;
-using SistemaNacoes.WebAPI.Middlewares;
 using System.Text;
+using SistemaNacoes.Infrastructure.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,9 +59,6 @@ builder.Services.AddScoped<CriarUsuario>();
 builder.Services.AddScoped<LoginUsuario>();
 builder.Services.AddScoped<ObterUsuarioPorId>();
 
-// Mappers
-builder.Services.AddAutoMapper(typeof(UsuarioProfile));
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -76,8 +71,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-// app.UseUserSessionMiddleware();
 
 app.MapControllers();
 

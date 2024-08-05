@@ -1,17 +1,24 @@
 ﻿namespace SistemaNacoes.Domain.Entidades
 {
-    public class Ministerio
+    public class Ministerio : EntidadeBase
     {
-        public int Id { get; set; }
+        public Ministerio(string nome, string descricao, string cor)
+        {
+            Nome = nome;
+            Descricao = descricao;
+            Cor = cor;
+        }
+        
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public string Cor { get; set; }
+        public bool Removido { get; set; } = false;
 
-        public ICollection<Atividade> Atividades { get; set; }
-        public ICollection<VoluntarioMinisterio> VoluntariosMinisterios { get; set; }
-        public ICollection<UsuarioMinisterio> UsuariosMinisterios { get; set; }
-        public ICollection<Agendamento> Agendamentos { get; set; }
-        public ICollection<Escala> Escalas { get; set; }
-        public ICollection<Grupo> Grupos { get; set; }
+        public List<Atividade> Atividades { get; set; } = new();
+        public List<VoluntarioMinisterio> VoluntariosMinisterios { get; set; } = new();
+        public List<UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
+        public List<Agendamento> Agendamentos { get; set; } = new();
+        public List<Escala> Escalas { get; set; } = new();
+        public List<Grupo> Grupos { get; set; } = new();
     }
 }
