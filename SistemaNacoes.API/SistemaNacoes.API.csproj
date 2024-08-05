@@ -15,4 +15,8 @@
       <Folder Include="Controllers\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SistemaNacoes.Infra\SistemaNacoes.Infra.csproj" />
+    </ItemGroup>
+
 </Project>
