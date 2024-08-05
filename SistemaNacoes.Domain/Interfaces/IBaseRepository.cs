@@ -1,11 +1,16 @@
-﻿namespace SistemaNacoes.Domain.Interfaces
+﻿using System.Linq.Expressions;
+
+namespace SistemaNacoes.Domain.Interfaces
 {
     public interface IBaseRepository<T>
     {
-        Task<T> CreateAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
-        Task<T?> GetByIdAsync(int id);
-        Task<IEnumerable<T?>> GetAllAsync();
+        Task CreateAsync(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+        Task SoftDeleteAsync(T entity);
+        Task<T> GetByIdAsync(int id);
+        IQueryable<T> GetAllAsync();
+        Task<T> FindAsync(Expression<Func<T, bool>> predicate);
+        IQueryable<T> FindAll(Expression<Func<T, bool>> predicate);
     }
 }
