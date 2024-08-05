@@ -4,11 +4,11 @@ using SistemaNacoes.Domain.Entidades;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
+public class VoluntarioConfig : IEntityTypeConfiguration<Voluntario>
 {
-    public void Configure(EntityTypeBuilder<Usuario> builder)
+    public void Configure(EntityTypeBuilder<Voluntario> builder)
     {
-        builder.ToTable("usuarios");
+        builder.ToTable("voluntarios");
 
         builder.HasKey(x => x.Id);
 
@@ -18,18 +18,24 @@ public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
             .ValueGeneratedOnAdd();
 
         builder.Property(x => x.Nome)
-            .HasColumnName("VARCHAR(150)")
+            .HasColumnType("VARCHAR(150)")
             .HasColumnName("nome")
             .IsRequired();
 
         builder.Property(x => x.Email)
-            .HasColumnType("VARHCHAR(150)")
+            .HasColumnType("VARCHAR(150)")
             .HasColumnName("email")
             .IsRequired();
 
-        builder.Property(x => x.Senha)
-            .HasColumnType("VARCHAR(900)")
-            .HasColumnName("senha_hash")
+        builder.Property(x => x.Cpf)
+            .HasColumnType("VARCHAR(150)")
+            .HasColumnName("cpf")
+            .IsRequired();
+
+        builder.Property(x => x.ChaveAcesso)
+            .HasColumnType("UUID")
+            .HasColumnName("chave_acesso")
+            .ValueGeneratedOnAdd()
             .IsRequired();
 
         builder.Property(x => x.Removido)
@@ -38,9 +44,14 @@ public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
             .HasDefaultValue(false)
             .IsRequired();
 
-        builder.HasMany(x => x.UsuariosMinisterios)
-            .WithOne(x => x.Usuario)
-            .HasForeignKey(x => x.UsuarioId)
+        builder.Property(x => x.GrupoId)
+            .HasColumnType("INT")
+            .HasColumnName("grupo_id")
+            .IsRequired();
+
+        builder.HasOne(x => x.Grupo)
+            .WithMany(x => x.Voluntarios)
+            .HasForeignKey(x => x.GrupoId)
             .OnDelete(DeleteBehavior.SetNull);
     }
 }

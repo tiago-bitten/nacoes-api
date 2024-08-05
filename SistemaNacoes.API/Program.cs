@@ -1,3 +1,4 @@
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Infra.Repositorios;
 
@@ -11,6 +12,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
+builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
+builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
+builder.Services.AddScoped<IDataIndisponivelRepository, DataIndisponivelRepository>();
+builder.Services.AddScoped<IEscalaItemRepository, EscalaItemRepository>();
+builder.Services.AddScoped<IEscalaRepository, EscalaRepository>();
+builder.Services.AddScoped<IGrupoRepository, GrupoRepository>();
+builder.Services.AddScoped<IMinisterioRepository, MinisterioRepository>();
+builder.Services.AddScoped<IUsuarioMinisterioRepository, UsuarioMinisterioRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IVoluntarioRepository, VoluntarioRepository>();
+builder.Services.AddScoped<IVoluntarioMinisterioRepository, VoluntarioMinisterioRepository>();
 
 var app = builder.Build();
 
