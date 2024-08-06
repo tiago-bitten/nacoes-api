@@ -1,5 +1,7 @@
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces;
+using SistemaNacoes.Domain.Interfaces.Repositorios;
+using SistemaNacoes.Infra.Data;
 using SistemaNacoes.Infra.Repositorios;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,7 @@ builder.Services.AddScoped<IUsuarioMinisterioRepository, UsuarioMinisterioReposi
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IVoluntarioRepository, VoluntarioRepository>();
 builder.Services.AddScoped<IVoluntarioMinisterioRepository, VoluntarioMinisterioRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
