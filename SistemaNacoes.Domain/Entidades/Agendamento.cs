@@ -1,6 +1,6 @@
 ﻿namespace SistemaNacoes.Domain.Entidades
 {
-    public class Agendamento
+    public class Agendamento : EntidadeBase
     {
         public Agendamento(Voluntario voluntario, Ministerio ministerio, Agenda agenda)
         {
