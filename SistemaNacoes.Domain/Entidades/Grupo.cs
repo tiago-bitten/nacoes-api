@@ -2,6 +2,7 @@
 {
     public class Grupo : EntidadeBase
     {
+        public Grupo() {}
         public Grupo(string nome)
         {
             Nome = nome;

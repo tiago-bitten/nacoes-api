@@ -1,4 +1,5 @@
-﻿using SistemaNacoes.Domain.Entidades;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Infra.Contexts;
 
@@ -9,5 +10,13 @@ public class VoluntarioMinisterioRepository : RepositoryBase<VoluntarioMinisteri
     public VoluntarioMinisterioRepository(NacoesDbContext context)
         : base(context)
     {
+    }
+
+    public override IQueryable<VoluntarioMinisterio> GetAll()
+    {
+        return _dbSet
+            .Include(x => x.Voluntario)
+            .Include(x => x.Ministerio)
+            .Where(x => x.Ativo);
     }
 }

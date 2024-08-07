@@ -2,6 +2,7 @@
 {
     public class Atividade : EntidadeBase
     {
+        public Atividade() {}
         public Atividade(string nome, int maximoVoluntarios, Ministerio ministerio)
         {
             Nome = nome;

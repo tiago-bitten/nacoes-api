@@ -2,6 +2,7 @@
 {
     public class Agenda : EntidadeBase
     {
+        public Agenda() {}
         public Agenda(string titulo, string descricao, DateTime dataInicio, DateTime dataFinal)
         {
             Titulo = titulo;

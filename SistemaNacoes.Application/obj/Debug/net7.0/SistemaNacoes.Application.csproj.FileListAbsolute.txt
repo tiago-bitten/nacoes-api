@@ -8,7 +8,6 @@ C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application
 C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.AssemblyInfoInputs.cache
 C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.AssemblyInfo.cs
 C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.csproj.CoreCompileInputs.cache
-C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.csproj.CopyComplete
 C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.dll
 C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\refint\SistemaNacoes.Application.dll
 C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.pdb
@@ -29,3 +28,5 @@ C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.Application\obj\Debug\net
 C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.sourcelink.json
 C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.csproj.CopyComplete
 C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.Application\obj\Debug\net7.0\ref\SistemaNacoes.Application.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaNacoes.Application.sourcelink.json
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Application\obj\Debug\net7.0\SistemaN.01DCC65C.Up2Date

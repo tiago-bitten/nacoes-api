@@ -1,6 +1,13 @@
-using SistemaNacoes.Domain.Entidades;
+using Microsoft.EntityFrameworkCore;
+using SistemaNacoes.Application.Profiles;
+using SistemaNacoes.Application.Services;
+using SistemaNacoes.Application.UseCases.Ministerios;
+using SistemaNacoes.Application.UseCases.VoluntarioMinisterios;
+using SistemaNacoes.Application.UseCases.Voluntarios;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
+using SistemaNacoes.Domain.Interfaces.Services;
+using SistemaNacoes.Infra.Contexts;
 using SistemaNacoes.Infra.Data;
 using SistemaNacoes.Infra.Repositorios;
 
@@ -12,6 +19,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<NacoesDbContext>(opt =>
+{
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
 builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
@@ -26,6 +38,18 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IVoluntarioRepository, VoluntarioRepository>();
 builder.Services.AddScoped<IVoluntarioMinisterioRepository, VoluntarioMinisterioRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+builder.Services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
+
+builder.Services.AddScoped<CreateVoluntario>();
+builder.Services.AddScoped<CreateMinisterio>();
+builder.Services.AddScoped<GetAllVoluntarios>();
+builder.Services.AddScoped<GetAllVoluntarioMinisterios>();
+builder.Services.AddScoped<VinculateVoluntarioMinisterio>();
+
+builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
+builder.Services.AddAutoMapper(typeof(MinisterioProfile));
+builder.Services.AddAutoMapper(typeof(VoluntarioMinisterioProfile));
 
 var app = builder.Build();
 

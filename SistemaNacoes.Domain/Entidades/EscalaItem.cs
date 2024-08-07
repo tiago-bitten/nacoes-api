@@ -2,6 +2,7 @@
 {
     public class EscalaItem
     {
+        public EscalaItem() {}
         public EscalaItem(Escala escala, Atividade atividade, Voluntario voluntario)
         {
             Escala = escala;

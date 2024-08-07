@@ -21,3 +21,4 @@ C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.Domain\bin\Debug\net7.0\S
 C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.dll
 C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.pdb
 C:\Users\tiago\Documents\CSHARP\projetos\SistemaNacoes.Domain\obj\Debug\net7.0\ref\SistemaNacoes.Domain.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.sourcelink.json

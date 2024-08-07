@@ -23,7 +23,7 @@ public class GrupoConfig : IEntityTypeConfiguration<Grupo>
             .IsRequired();
 
         builder.Property(x => x.MinisterioPreferencialId)
-            .HasColumnType("VARCHAR(150)")
+            .HasColumnType("INT")
             .HasColumnName("ministerio_preferencial_id")
             .IsRequired();
 

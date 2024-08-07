@@ -2,6 +2,7 @@
 {
     public class UsuarioMinisterio
     {
+        public UsuarioMinisterio() {}
         public UsuarioMinisterio(Usuario usuario, Ministerio ministerio)
         {
             Usuario = usuario;

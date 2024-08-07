@@ -2,6 +2,7 @@
 {
     public class Ministerio : EntidadeBase
     {
+        public Ministerio() {}
         public Ministerio(string nome, string descricao, string cor)
         {
             Nome = nome;

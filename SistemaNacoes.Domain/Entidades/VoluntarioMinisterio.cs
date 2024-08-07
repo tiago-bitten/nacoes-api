@@ -2,6 +2,7 @@
 {
     public class VoluntarioMinisterio
     {
+        public VoluntarioMinisterio() {}
         public VoluntarioMinisterio(Voluntario voluntario, Ministerio ministerio)
         {
             Voluntario = voluntario;

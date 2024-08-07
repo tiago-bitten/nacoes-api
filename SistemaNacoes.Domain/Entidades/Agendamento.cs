@@ -2,6 +2,10 @@
 {
     public class Agendamento : EntidadeBase
     {
+        public Agendamento()
+        {
+        }
+        
         public Agendamento(Voluntario voluntario, Ministerio ministerio, Agenda agenda)
         {
             Voluntario = voluntario;

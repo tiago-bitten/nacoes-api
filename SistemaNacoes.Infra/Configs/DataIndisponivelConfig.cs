@@ -18,12 +18,12 @@ public class DataIndisponivelConfig : IEntityTypeConfiguration<DataIndisponivel>
             .ValueGeneratedOnAdd();
         
         builder.Property(x => x.DataInicio)
-            .HasColumnType("DATETIME")
+            .HasColumnType("TIMESTAMP")
             .HasColumnName("data_inicio")
             .IsRequired();
         
         builder.Property(x => x.DataFinal)
-            .HasColumnType("DATETIME")
+            .HasColumnType("TIMESTAMP")
             .HasColumnName("data_final")
             .IsRequired();
 

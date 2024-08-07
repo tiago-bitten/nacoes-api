@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using SistemaNacoes.Application.Dtos.Voluntarios;
+using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 
@@ -19,7 +20,7 @@ public class CreateVoluntario
         _mapper = mapper;
     }
 
-    public async Task<GetVoluntarioDto> ExecuteAsync(CreateVoluntarioDto dto)
+    public async Task<RespostaBase<GetVoluntarioDto>> ExecuteAsync(CreateVoluntarioDto dto)
     {
         if (!string.IsNullOrEmpty(dto.Cpf))
         {
@@ -33,6 +34,15 @@ public class CreateVoluntario
         await _uow.Voluntarios.AddAsync(voluntario);
         await _uow.CommitAsync();
         
-        return _mapper.Map<GetVoluntarioDto>(voluntario);
+        var voluntarioDto = _mapper.Map<GetVoluntarioDto>(voluntario);
+
+        var respostaBase = new RespostaBase<GetVoluntarioDto>
+        {
+            Sucesso = true,
+            Mensagem = "Voluntário cadastrado com sucesso",
+            Conteudo = voluntarioDto
+        };
+
+        return respostaBase;
     }
 }

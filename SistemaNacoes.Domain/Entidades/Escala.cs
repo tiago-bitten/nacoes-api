@@ -2,6 +2,7 @@
 {
     public class Escala : EntidadeBase
     {
+        public Escala() {}
         public Escala(int quantidadeVoluntarios, Agenda agenda, Ministerio ministerio)
         {
             QuantidadeVoluntarios = quantidadeVoluntarios;

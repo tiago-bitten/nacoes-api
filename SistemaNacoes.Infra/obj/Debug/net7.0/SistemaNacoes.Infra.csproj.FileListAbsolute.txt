@@ -1,0 +1,16 @@
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\bin\Debug\net7.0\SistemaNacoes.Infra.deps.json
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\bin\Debug\net7.0\SistemaNacoes.Infra.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\bin\Debug\net7.0\SistemaNacoes.Infra.pdb
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\bin\Debug\net7.0\SistemaNacoes.Domain.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\bin\Debug\net7.0\SistemaNacoes.Domain.pdb
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.csproj.AssemblyReference.cache
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.AssemblyInfoInputs.cache
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.AssemblyInfo.cs
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.csproj.CoreCompileInputs.cache
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.sourcelink.json
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaN.6AA384BA.Up2Date
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\refint\SistemaNacoes.Infra.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.pdb
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\obj\Debug\net7.0\ref\SistemaNacoes.Infra.dll

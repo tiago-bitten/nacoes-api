@@ -23,7 +23,7 @@ public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
             .IsRequired();
 
         builder.Property(x => x.Email)
-            .HasColumnType("VARHCHAR(150)")
+            .HasColumnType("VARCHAR(150)")
             .HasColumnName("email")
             .IsRequired();
 

@@ -2,6 +2,7 @@
 {
     public class DataIndisponivel : EntidadeBase
     {
+        public DataIndisponivel() {}
         public DataIndisponivel(Voluntario voluntario, DateTime dataInicio, DateTime dataFinal)
         {
             Voluntario = voluntario;

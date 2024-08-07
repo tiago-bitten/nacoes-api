@@ -2,6 +2,7 @@
 {
     public class Usuario : EntidadeBase
     {
+        public Usuario() {}
         public Usuario(string nome, string email, string senha)
         {
             Nome = nome;

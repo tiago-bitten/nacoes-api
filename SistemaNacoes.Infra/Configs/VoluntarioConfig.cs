@@ -29,14 +29,17 @@ public class VoluntarioConfig : IEntityTypeConfiguration<Voluntario>
 
         builder.Property(x => x.Cpf)
             .HasColumnType("VARCHAR(150)")
-            .HasColumnName("cpf")
-            .IsRequired();
+            .HasColumnName("cpf");
 
         builder.Property(x => x.ChaveAcesso)
             .HasColumnType("UUID")
             .HasColumnName("chave_acesso")
             .ValueGeneratedOnAdd()
             .IsRequired();
+
+        builder.Property(x => x.DataNascimento)
+            .HasColumnType("DATE")
+            .HasColumnName("data_nascimento");
 
         builder.Property(x => x.Removido)
             .HasColumnType("BOOLEAN")
@@ -46,8 +49,7 @@ public class VoluntarioConfig : IEntityTypeConfiguration<Voluntario>
 
         builder.Property(x => x.GrupoId)
             .HasColumnType("INT")
-            .HasColumnName("grupo_id")
-            .IsRequired();
+            .HasColumnName("grupo_id");
 
         builder.HasOne(x => x.Grupo)
             .WithMany(x => x.Voluntarios)

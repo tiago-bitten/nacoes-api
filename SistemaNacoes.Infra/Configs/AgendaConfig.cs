@@ -27,12 +27,12 @@ public class AgendaConfig : IEntityTypeConfiguration<Agenda>
             .HasColumnName("descricao");
         
         builder.Property(x => x.DataInicio)
-            .HasColumnType("DATETIME")
+            .HasColumnType("TIMESTAMP")
             .HasColumnName("data_inicio")
             .IsRequired();
 
         builder.Property(x => x.DataFinal)
-            .HasColumnType("DATETIME")
+            .HasColumnType("TIMESTAMP")
             .HasColumnName("data_final")
             .IsRequired();
 

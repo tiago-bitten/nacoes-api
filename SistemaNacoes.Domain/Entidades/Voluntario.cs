@@ -2,6 +2,16 @@
 {
     public class Voluntario : EntidadeBase
     {
+        public Voluntario() {}
+        
+        public Voluntario(string nome, string email, string cpf, DateTime dataNascimento)
+        {
+            Nome = nome;
+            Email = email;
+            Cpf = cpf;
+            DataNascimento = dataNascimento;
+        }
+        
         public Voluntario(string nome, string email, string cpf, DateTime dataNascimento, Grupo grupo)
         {
             Nome = nome;
@@ -15,7 +25,7 @@
         public Guid ChaveAcesso { get; set; } = Guid.NewGuid();
         public string Nome { get; set; }
         public string Email { get; set; }
-        public string Cpf { get; set; }
+        public string? Cpf { get; set; }
         public DateTime? DataNascimento { get; set; }
         public int? GrupoId { get; set; }
         public bool Removido { get; set; } = false;
