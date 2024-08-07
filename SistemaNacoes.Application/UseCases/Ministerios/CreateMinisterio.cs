@@ -28,12 +28,8 @@ public class CreateMinisterio
         
         var ministerioDto = _mapper.Map<GetMinisterioDto>(ministerio);
 
-        var respostaBase = new RespostaBase<GetMinisterioDto>
-        {
-            Sucesso = true,
-            Mensagem = "Ministério cadastrado com sucesso",
-            Conteudo = ministerioDto
-        };
+        var respostaBase = new RespostaBase<GetMinisterioDto>(
+            MensagemRepostasConstant.CreateMinisterio, ministerioDto);
 
         return respostaBase;
     }

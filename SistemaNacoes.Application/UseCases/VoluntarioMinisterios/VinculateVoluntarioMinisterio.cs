@@ -37,13 +37,10 @@ public class VinculateVoluntarioMinisterio
         await _uow.CommitAsync();
         
         var voluntarioMinisterioDto = _mapper.Map<GetSimpVoluntarioMinisterioDto>(voluntarioMinisterio);
-        
-        var respostaBase = new RespostaBase<GetSimpVoluntarioMinisterioDto>
-        {
-            Sucesso = true,
-            Mensagem = "Voluntário e ministério vinculados com sucesso",
-            Conteudo = voluntarioMinisterioDto
-        };
+
+        var respostaBase =
+            new RespostaBase<GetSimpVoluntarioMinisterioDto>(
+                MensagemRepostasConstant.VinculateVoluntarioMinisterio, voluntarioMinisterioDto);
         
         return respostaBase;
     }

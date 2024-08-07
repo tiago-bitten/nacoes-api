@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Profiles;
 using SistemaNacoes.Application.Services;
+using SistemaNacoes.Application.UseCases.Agendas;
 using SistemaNacoes.Application.UseCases.Ministerios;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios;
 using SistemaNacoes.Application.UseCases.Voluntarios;
@@ -45,7 +46,9 @@ builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();
 builder.Services.AddScoped<GetAllVoluntarios>();
 builder.Services.AddScoped<GetAllVoluntarioMinisterios>();
+builder.Services.AddScoped<GetAllMinisterios>();
 builder.Services.AddScoped<VinculateVoluntarioMinisterio>();
+builder.Services.AddScoped<OpenAgenda>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));

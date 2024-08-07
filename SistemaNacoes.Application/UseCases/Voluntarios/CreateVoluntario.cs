@@ -36,12 +36,8 @@ public class CreateVoluntario
         
         var voluntarioDto = _mapper.Map<GetVoluntarioDto>(voluntario);
 
-        var respostaBase = new RespostaBase<GetVoluntarioDto>
-        {
-            Sucesso = true,
-            Mensagem = "Voluntário cadastrado com sucesso",
-            Conteudo = voluntarioDto
-        };
+        var respostaBase = new RespostaBase<GetVoluntarioDto>(
+            MensagemRepostasConstant.CreateVoluntario, voluntarioDto);
 
         return respostaBase;
     }
