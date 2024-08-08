@@ -49,6 +49,7 @@ builder.Services.AddScoped<GetAllVoluntarioMinisterios>();
 builder.Services.AddScoped<GetAllMinisterios>();
 builder.Services.AddScoped<VinculateVoluntarioMinisterio>();
 builder.Services.AddScoped<OpenAgenda>();
+builder.Services.AddScoped<CloseAgenda>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
