@@ -25,5 +25,10 @@
         {
             Ativo = false;
         }
+        
+        public void Finalize()
+        {
+            Finalizado = true;
+        }
     }
 }

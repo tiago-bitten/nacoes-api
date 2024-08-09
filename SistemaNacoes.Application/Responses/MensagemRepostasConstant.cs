@@ -20,4 +20,13 @@ public static class MensagemRepostasConstant
     //Agendas
     public const string OpenAgenda = "Agenda cadastrada com sucesso";
     public const string CloseAgenda = "Agenda fechada com sucesso";
+    public const string GetAgenda = "Agenda encontrada com sucesso";
+    public const string GetAgendas = "Agendas listadas com sucesso";
+    public const string FinalizeAgenda = "Agenda finalizada com sucesso";
+    
+    //DataIndisponiveis
+    public const string CreateDataIndisponivel = "Data indisponível cadastrada com sucesso";
+    
+    //Agendamentos
+    public const string CreateAgendamento = "Agendamento cadastrado com sucesso";
 }

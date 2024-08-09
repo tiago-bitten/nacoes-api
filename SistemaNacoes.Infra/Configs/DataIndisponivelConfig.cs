@@ -27,6 +27,10 @@ public class DataIndisponivelConfig : IEntityTypeConfiguration<DataIndisponivel>
             .HasColumnName("data_final")
             .IsRequired();
 
+        builder.Property(x => x.Motivo)
+            .HasColumnType("VARCHAR(255)")
+            .HasColumnName("motivo");
+
         builder.Property(x => x.VoluntarioId)
             .HasColumnType("INT")
             .HasColumnName("voluntario_id")

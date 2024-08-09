@@ -46,9 +46,14 @@ namespace SistemaNacoes.Infra.Migrations
                         .HasColumnName("data_inicio");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(150)")
                         .HasColumnName("descricao");
+
+                    b.Property<bool>("Finalizado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(false)
+                        .HasColumnName("finalizado");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
@@ -378,12 +383,10 @@ namespace SistemaNacoes.Infra.Migrations
                         .HasColumnName("chave_acesso");
 
                     b.Property<string>("Cpf")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(150)")
                         .HasColumnName("cpf");
 
                     b.Property<DateTime?>("DataNascimento")
-                        .IsRequired()
                         .HasColumnType("DATE")
                         .HasColumnName("data_nascimento");
 

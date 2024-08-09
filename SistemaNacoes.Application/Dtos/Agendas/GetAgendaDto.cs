@@ -7,4 +7,5 @@ public class GetAgendaDto
     public string? Descricao { get; set; }
     public DateTime DataInicio { get; set; }
     public DateTime DataFinal { get; set; }
+    public bool Finalizado { get; set; }
 }

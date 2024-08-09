@@ -5,7 +5,7 @@ namespace SistemaNacoes.Application.Services;
 
 public class ServiceBase<T> : IServiceBase<T> where T : class
 {
-    private readonly IRepositoryBase<T> _repository;
+    protected readonly IRepositoryBase<T> _repository;
 
     public ServiceBase(IRepositoryBase<T> repository)
     {

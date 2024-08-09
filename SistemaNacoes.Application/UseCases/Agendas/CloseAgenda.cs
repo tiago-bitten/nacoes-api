@@ -10,17 +10,15 @@ namespace SistemaNacoes.Application.UseCases.Agendas
     public class CloseAgenda
     {
         private readonly IUnitOfWork _uow;
-        private readonly IMapper _mapper;
         private readonly IServiceBase<Agenda> _agendaService;
 
-        public CloseAgenda(IUnitOfWork uow, IMapper mapper, IServiceBase<Agenda> agendaService)
+        public CloseAgenda(IUnitOfWork uow, IServiceBase<Agenda> agendaService)
         {
             _uow = uow;
-            _mapper = mapper;
             _agendaService = agendaService;
         }
 
-        public async Task<RespostaBase<GetAgendaDto>> ExecuteAsync(CloseAgendaDto dto)
+        public async Task<RespostaBase<dynamic>> ExecuteAsync(CloseAgendaDto dto)
         {
             var agenda = await _agendaService.GetAndValidateEntityAsync(dto.Id);
 
@@ -28,9 +26,7 @@ namespace SistemaNacoes.Application.UseCases.Agendas
             _uow.Agendas.Update(agenda);
             await _uow.CommitAsync();
 
-            var agendaDto = _mapper.Map<GetAgendaDto>(agenda);
-
-            var respostaBase = new RespostaBase<GetAgendaDto>(MensagemRepostasConstant.CloseAgenda, agendaDto);
+            var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.CloseAgenda);
 
             return respostaBase;
         }

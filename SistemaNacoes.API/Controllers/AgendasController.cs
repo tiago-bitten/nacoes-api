@@ -10,16 +10,36 @@ namespace SistemaNacoes.API.Controllers
     public class AgendasController : ControllerBase
     {
         private readonly OpenAgenda _openAgenda;
+        private readonly CloseAgenda _closeAgenda;
+        private readonly FinalizeAgenda _finalizeAgenda;
 
-        public AgendasController(OpenAgenda openAgenda)
+        public AgendasController(OpenAgenda openAgenda, FinalizeAgenda finalizeAgenda, CloseAgenda closeAgenda)
         {
             _openAgenda = openAgenda;
+            _finalizeAgenda = finalizeAgenda;
+            _closeAgenda = closeAgenda;
         }
 
         [HttpPost("Abrir")]
-        public async Task<IActionResult> AbrirAgenda([FromBody] OpenAgendaDto dto)
+        public async Task<IActionResult> Open([FromBody] OpenAgendaDto dto)
         {
             var result = await _openAgenda.ExecuteAsync(dto);
+
+            return Ok(result);
+        }
+        
+        [HttpPut("Fechar")]
+        public async Task<IActionResult> Close([FromBody] CloseAgendaDto dto)
+        {
+            var result = await _closeAgenda.ExecuteAsync(dto);
+
+            return Ok(result);
+        }
+
+        [HttpPut("Finalizar")]
+        public async Task<IActionResult> Finalize([FromBody] FinalizeAgendaDto dto)
+        {
+            var result = await _finalizeAgenda.ExecuteAsync(dto);
 
             return Ok(result);
         }

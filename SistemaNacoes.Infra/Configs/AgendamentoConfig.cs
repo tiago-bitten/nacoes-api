@@ -27,6 +27,10 @@ public class AgendamentoConfig : IEntityTypeConfiguration<Agendamento>
             .HasColumnName("ministerio_id")
             .IsRequired();
         
+        builder.Property(x => x.AtividadeId)
+            .HasColumnType("INT")
+            .HasColumnName("atividade_id");
+        
         builder.Property(x => x.AgendaId)
             .HasColumnType("INT")
             .HasColumnName("agenda_id")
@@ -46,6 +50,11 @@ public class AgendamentoConfig : IEntityTypeConfiguration<Agendamento>
         builder.HasOne(x => x.Ministerio)
             .WithMany(x => x.Agendamentos)
             .HasForeignKey(x => x.MinisterioId)
+            .OnDelete(DeleteBehavior.SetNull);
+        
+        builder.HasOne(x => x.Atividade)
+            .WithMany(x => x.Agendamentos)
+            .HasForeignKey(x => x.AtividadeId)
             .OnDelete(DeleteBehavior.SetNull);
         
         builder.HasOne(x => x.Agenda)

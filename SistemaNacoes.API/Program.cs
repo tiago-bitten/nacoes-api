@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Profiles;
 using SistemaNacoes.Application.Services;
 using SistemaNacoes.Application.UseCases.Agendas;
+using SistemaNacoes.Application.UseCases.DataIndisponiveis;
 using SistemaNacoes.Application.UseCases.Ministerios;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios;
 using SistemaNacoes.Application.UseCases.Voluntarios;
@@ -44,16 +45,20 @@ builder.Services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
 
 builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();
+builder.Services.AddScoped<CreateDataIndisponivel>();
 builder.Services.AddScoped<GetAllVoluntarios>();
 builder.Services.AddScoped<GetAllVoluntarioMinisterios>();
 builder.Services.AddScoped<GetAllMinisterios>();
 builder.Services.AddScoped<VinculateVoluntarioMinisterio>();
 builder.Services.AddScoped<OpenAgenda>();
 builder.Services.AddScoped<CloseAgenda>();
+builder.Services.AddScoped<FinalizeAgenda>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
 builder.Services.AddAutoMapper(typeof(VoluntarioMinisterioProfile));
+builder.Services.AddAutoMapper(typeof(AgendaProfile));
+builder.Services.AddAutoMapper(typeof(DataIndisponivelProfile));
 
 var app = builder.Build();
 

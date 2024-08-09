@@ -7,6 +7,13 @@ public class RespostaBase<T> where T : class
     public RespostaBase()
     {
     }
+    
+    public RespostaBase(string mensagem)
+    {
+        Sucesso = true;
+        Mensagem = mensagem;
+    }
+    
     public RespostaBase(string mensagem, T conteudo)
     {
         Sucesso = true;
