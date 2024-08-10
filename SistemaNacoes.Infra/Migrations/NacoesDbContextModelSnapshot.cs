@@ -103,6 +103,29 @@ namespace SistemaNacoes.Infra.Migrations
                     b.ToTable("agendamentos", (string)null);
                 });
 
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividade", b =>
+                {
+                    b.Property<int>("AgendamentoId")
+                        .HasColumnType("INT")
+                        .HasColumnName("agendamento_id");
+
+                    b.Property<int>("AtividadeId")
+                        .HasColumnType("INT")
+                        .HasColumnName("atividade_id");
+
+                    b.Property<bool>("Removido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(false)
+                        .HasColumnName("removido");
+
+                    b.HasKey("AgendamentoId", "AtividadeId");
+
+                    b.HasIndex("AtividadeId");
+
+                    b.ToTable("agendamentos_atividades", (string)null);
+                });
+
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Atividade", b =>
                 {
                     b.Property<int>("Id")
@@ -155,6 +178,10 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Property<DateTime>("DataInicio")
                         .HasColumnType("TIMESTAMP")
                         .HasColumnName("data_inicio");
+
+                    b.Property<string>("Motivo")
+                        .HasColumnType("VARCHAR(255)")
+                        .HasColumnName("motivo");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
@@ -467,6 +494,25 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Navigation("Voluntario");
                 });
 
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividade", b =>
+                {
+                    b.HasOne("SistemaNacoes.Domain.Entidades.Agendamento", "Agendamento")
+                        .WithMany("AgendamentoAtividades")
+                        .HasForeignKey("AgendamentoId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
+                    b.HasOne("SistemaNacoes.Domain.Entidades.Atividade", "Atividade")
+                        .WithMany("AgendamentoAtividades")
+                        .HasForeignKey("AtividadeId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
+                    b.Navigation("Agendamento");
+
+                    b.Navigation("Atividade");
+                });
+
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Atividade", b =>
                 {
                     b.HasOne("SistemaNacoes.Domain.Entidades.Ministerio", "Ministerio")
@@ -601,8 +647,15 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Navigation("Escalas");
                 });
 
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Agendamento", b =>
+                {
+                    b.Navigation("AgendamentoAtividades");
+                });
+
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Atividade", b =>
                 {
+                    b.Navigation("AgendamentoAtividades");
+
                     b.Navigation("EscalaItens");
                 });
 

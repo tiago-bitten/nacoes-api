@@ -22,7 +22,8 @@ namespace SistemaNacoes.Infra.Data
             IDataIndisponivelRepository dataIndisponivelRepository,
             IEscalaRepository escalaRepository,
             IEscalaItemRepository escalaItemRepository,
-            IVoluntarioMinisterioRepository voluntarioMinisterioRepository)
+            IVoluntarioMinisterioRepository voluntarioMinisterioRepository,
+            IAgendamentoAtividadeRepository agendamentoAtividadeRepository)
         {
             _context = context;
             Voluntarios = voluntarioRepository;
@@ -37,6 +38,7 @@ namespace SistemaNacoes.Infra.Data
             Escalas = escalaRepository;
             EscalaItens = escalaItemRepository;
             VoluntarioMinisterios = voluntarioMinisterioRepository;
+            AgendamentoAtividades = agendamentoAtividadeRepository;
         }
 
         public async Task<bool> CommitAsync()
@@ -75,5 +77,6 @@ namespace SistemaNacoes.Infra.Data
         public IEscalaRepository Escalas { get; }
         public IEscalaItemRepository EscalaItens { get; }
         public IVoluntarioMinisterioRepository VoluntarioMinisterios { get; }
+        public IAgendamentoAtividadeRepository AgendamentoAtividades { get; }
     }
 }

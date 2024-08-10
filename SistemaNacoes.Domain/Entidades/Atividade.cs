@@ -17,6 +17,6 @@
 
         public Ministerio Ministerio { get; set; }
         public List<EscalaItem> EscalaItens { get; set; } = new();
-        public List<Agendamento> Agendamentos { get; set; } = new();
+        public List<AgendamentoAtividade> AgendamentoAtividades { get; set; } = new();
     }
 }

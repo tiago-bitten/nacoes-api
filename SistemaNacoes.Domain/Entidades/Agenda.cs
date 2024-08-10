@@ -10,6 +10,13 @@
             DataInicio = dataInicio;
             DataFinal = dataFinal;
         }
+        
+        public Agenda(string titulo, DateTime dataInicio, DateTime dataFinal)
+        {
+            Titulo = titulo;
+            DataInicio = dataInicio;
+            DataFinal = dataFinal;
+        }
 
         public string Titulo { get; set; }
         public string? Descricao { get; set; }

@@ -1,7 +1,12 @@
-﻿namespace SistemaNacoes.Application.Dtos.Atividades;
+﻿using System.Text.Json.Serialization;
+
+namespace SistemaNacoes.Application.Dtos.Atividades;
 
 public class GetSimpAtividadeDto
 {
+    [JsonPropertyName("Id")]
     public int Id { get; set; }
+    
+    [JsonPropertyName("Nome")]
     public string Nome { get; set; }
 }

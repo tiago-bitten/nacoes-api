@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SistemaNacoes.Application.Dtos.Agendas;
+using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Application.UseCases.Agendas;
 
 namespace SistemaNacoes.API.Controllers
@@ -12,12 +13,14 @@ namespace SistemaNacoes.API.Controllers
         private readonly OpenAgenda _openAgenda;
         private readonly CloseAgenda _closeAgenda;
         private readonly FinalizeAgenda _finalizeAgenda;
+        private readonly GetAllAgendas _getAllAgendas;
 
-        public AgendasController(OpenAgenda openAgenda, FinalizeAgenda finalizeAgenda, CloseAgenda closeAgenda)
+        public AgendasController(OpenAgenda openAgenda, FinalizeAgenda finalizeAgenda, CloseAgenda closeAgenda, GetAllAgendas getAllAgendas)
         {
             _openAgenda = openAgenda;
             _finalizeAgenda = finalizeAgenda;
             _closeAgenda = closeAgenda;
+            _getAllAgendas = getAllAgendas;
         }
 
         [HttpPost("Abrir")]
@@ -40,6 +43,14 @@ namespace SistemaNacoes.API.Controllers
         public async Task<IActionResult> Finalize([FromBody] FinalizeAgendaDto dto)
         {
             var result = await _finalizeAgenda.ExecuteAsync(dto);
+
+            return Ok(result);
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] QueryParametro query)
+        {
+            var result = await _getAllAgendas.ExecuteAsync(query);
 
             return Ok(result);
         }

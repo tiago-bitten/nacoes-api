@@ -48,7 +48,7 @@ public class AtividadeConfig : IEntityTypeConfiguration<Atividade>
             .HasForeignKey(x => x.AtividadeId)
             .OnDelete(DeleteBehavior.SetNull);
         
-        builder.HasMany(x => x.Agendamentos)
+        builder.HasMany(x => x.AgendamentoAtividades)
             .WithOne(x => x.Atividade)
             .HasForeignKey(x => x.AtividadeId)
             .OnDelete(DeleteBehavior.SetNull);

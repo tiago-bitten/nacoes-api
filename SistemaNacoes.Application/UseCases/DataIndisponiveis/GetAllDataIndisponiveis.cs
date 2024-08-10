@@ -6,12 +6,12 @@ using SistemaNacoes.Domain.Interfaces.Repositorios;
 
 namespace SistemaNacoes.Application.UseCases.DataIndisponiveis;
 
-public class GetAllAgendas
+public class GetAllDataIndisponiveis
 {
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
 
-    public GetAllAgendas(IUnitOfWork uow, IMapper mapper)
+    public GetAllDataIndisponiveis(IUnitOfWork uow, IMapper mapper)
     {
         _uow = uow;
         _mapper = mapper;

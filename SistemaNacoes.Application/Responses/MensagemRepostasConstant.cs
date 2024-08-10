@@ -29,4 +29,11 @@ public static class MensagemRepostasConstant
     
     //Agendamentos
     public const string CreateAgendamento = "Agendamento cadastrado com sucesso";
+    public const string GetAgendamento = "Agendamento encontrado com sucesso";
+    public const string GetAgendamentos = "Agendamentos listados com sucesso";
+    
+    //Atividades
+    public const string CreateAtividade = "Atividade cadastrada com sucesso";
+    public const string GetAtividade = "Atividade encontrada com sucesso";
+    public const string GetAtividades = "Atividades listadas com sucesso";
 }
