@@ -12,10 +12,10 @@ public class CreateAgendamento
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private readonly IVoluntarioMinisterioService _voluntarioMinisterioService;
+    private readonly IAgendaService _agendaService;
     private readonly IServiceBase<Atividade> _atividadeService;
-    private readonly IServiceBase<Agenda> _agendaService;
 
-    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IServiceBase<Agenda> agendaService, IVoluntarioMinisterioService voluntarioMinisterioService)
+    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService)
     {
         _uow = uow;
         _mapper = mapper;

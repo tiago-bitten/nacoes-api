@@ -8,7 +8,7 @@ public static class MensagemErrosConstant
     public const string AtividadeNaoPertenceAoMinisterio = "Atividade não pertencente ao ministério";
     
     // Agendamentos
-    public const string AgendamentoJaExiste = "Agendamento já existe";
+    public const string AgendamentoJaExiste = "Voluntário já está agendado";
     
     // VoluntariosMinisterios
     public const string VoluntarioMinisterioNaoEncontrado = "Voluntário vinculado ao ministério não encontrado";
