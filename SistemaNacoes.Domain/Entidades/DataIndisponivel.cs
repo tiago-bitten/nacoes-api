@@ -21,6 +21,7 @@
         public DateTime DataInicio { get; set; }
         public DateTime DataFinal { get; set; }
         public string? Motivo { get; set; }
+        public bool Ativo { get; set; } = true;
         public bool Removido { get; set; } = false;
         public int VoluntarioId { get; set; }
 

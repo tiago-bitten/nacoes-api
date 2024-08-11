@@ -14,5 +14,5 @@ public class CreateAgendamentoDto
     public int AgendaId { get; set; }
     
     [JsonPropertyName("AtividadeIds")]
-    public List<int> AtividadeIds { get; set; } = new();
+    public List<int>? AtividadeIds { get; set; }
 }

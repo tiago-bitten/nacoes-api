@@ -11,11 +11,13 @@ public class AtividadesController : ControllerBase
 {
     private readonly CreateAtividade _createAtividade;
     private readonly GetAllAtividades _getAllAtividades;
+    private readonly DeleteAtividade _deleteAtividade;
 
-    public AtividadesController(CreateAtividade createAtividade, GetAllAtividades getAllAtividades)
+    public AtividadesController(CreateAtividade createAtividade, GetAllAtividades getAllAtividades, DeleteAtividade deleteAtividade)
     {
         _createAtividade = createAtividade;
         _getAllAtividades = getAllAtividades;
+        _deleteAtividade = deleteAtividade;
     }
     
     [HttpPost("Criar")]
@@ -30,6 +32,14 @@ public class AtividadesController : ControllerBase
     public async Task<IActionResult> GetAll([FromQuery] QueryParametro query)
     {
         var result = await _getAllAtividades.ExecuteAsync(query);
+
+        return Ok(result);
+    }
+    
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var result = await _deleteAtividade.ExecuteAsync(id);
 
         return Ok(result);
     }

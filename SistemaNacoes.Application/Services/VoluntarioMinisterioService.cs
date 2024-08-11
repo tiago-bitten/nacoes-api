@@ -21,6 +21,9 @@ public class VoluntarioMinisterioService : IVoluntarioMinisterioService
         if (exists == null)
             throw new Exception(MensagemErrosConstant.VoluntarioMinisterioNaoEncontrado);
         
+        if (exists.Voluntario.Removido || exists.Ministerio.Removido)
+            throw new Exception(MensagemErrosConstant.VoluntarioMinisterioNaoEncontrado);
+        
         return exists;
     }
 }

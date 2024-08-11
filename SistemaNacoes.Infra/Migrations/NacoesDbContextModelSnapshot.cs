@@ -171,6 +171,12 @@ namespace SistemaNacoes.Infra.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(true)
+                        .HasColumnName("ativo");
+
                     b.Property<DateTime>("DataFinal")
                         .HasColumnType("TIMESTAMP")
                         .HasColumnName("data_final");
@@ -337,6 +343,37 @@ namespace SistemaNacoes.Infra.Migrations
                     b.ToTable("ministerios", (string)null);
                 });
 
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.SituacaoAgendamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AgendamentoId")
+                        .HasColumnType("INT")
+                        .HasColumnName("agendamento_id");
+
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(true)
+                        .HasColumnName("ativo");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("VARCHAR(250)")
+                        .HasColumnName("descricao");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AgendamentoId")
+                        .IsUnique();
+
+                    b.ToTable("situacoes_agendamentos", (string)null);
+                });
+
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -387,6 +424,9 @@ namespace SistemaNacoes.Infra.Migrations
                         .HasColumnType("BOOLEAN")
                         .HasDefaultValue(true)
                         .HasColumnName("ativo");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
 
                     b.HasKey("UsuarioId", "MinisterioId");
 
@@ -592,6 +632,17 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Navigation("MinisterioPreferencial");
                 });
 
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.SituacaoAgendamento", b =>
+                {
+                    b.HasOne("SistemaNacoes.Domain.Entidades.Agendamento", "Agendamento")
+                        .WithOne("SituacaoAgendamento")
+                        .HasForeignKey("SistemaNacoes.Domain.Entidades.SituacaoAgendamento", "AgendamentoId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
+                    b.Navigation("Agendamento");
+                });
+
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.UsuarioMinisterio", b =>
                 {
                     b.HasOne("SistemaNacoes.Domain.Entidades.Ministerio", "Ministerio")
@@ -650,6 +701,9 @@ namespace SistemaNacoes.Infra.Migrations
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Agendamento", b =>
                 {
                     b.Navigation("AgendamentoAtividades");
+
+                    b.Navigation("SituacaoAgendamento")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Atividade", b =>

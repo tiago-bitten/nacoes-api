@@ -28,7 +28,7 @@ public class CreateAgendamento
     {
         var voluntarioMinisterio =
             await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId);
-        var agenda = await _agendaService.GetAndValidateEntityAsync(dto.AgendaId);
+        var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId);
 
         var exitsAgendamento = agenda.Agendamentos.Any(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
         if (exitsAgendamento)
@@ -37,20 +37,25 @@ public class CreateAgendamento
         var agendamento = _mapper.Map<Agendamento>(dto);
         await _uow.Agendamentos.AddAsync(agendamento);
         
-        foreach (var atividadeId in dto.AtividadeIds)
-        {
-            var atividade = await _atividadeService.GetAndValidateEntityAsync(atividadeId);
-            var existsAtividade = voluntarioMinisterio.Ministerio.Atividades.Any(a => a.Id == atividade.Id);
+        var situacaoAgendamento = new SituacaoAgendamento(agendamento);
+        await _uow.SituacaoAgendamentos.AddAsync(situacaoAgendamento);
 
-            if (!existsAtividade)
+        if (dto.AtividadeIds != null && dto.AtividadeIds.Any())
+            foreach (var atividadeId in dto.AtividadeIds)
             {
-                _uow.RollBack();
-                throw new Exception(MensagemErrosConstant.AtividadeNaoPertenceAoMinisterio);
+                var atividade = await _atividadeService.GetAndEnsureExistsAsync(atividadeId);
+                var existsAtividade = voluntarioMinisterio.Ministerio.Atividades.Any(a => a.Id == atividade.Id);
+
+                if (!existsAtividade)
+                {
+                    _uow.RollBack();
+                    throw new Exception(MensagemErrosConstant.AtividadeNaoPertenceAoMinisterio);
+                }
+
+                var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);
+                await _uow.AgendamentoAtividades.AddAsync(agendamentoAtividade);
             }
-            var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);
-            await _uow.AgendamentoAtividades.AddAsync(agendamentoAtividade);
-        }
-        
+
         await _uow.CommitAsync();
         
         var agendamentoDto = _mapper.Map<GetAgendamentoDto>(agendamento);

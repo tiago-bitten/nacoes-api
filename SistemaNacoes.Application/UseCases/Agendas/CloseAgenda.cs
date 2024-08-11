@@ -20,7 +20,7 @@ namespace SistemaNacoes.Application.UseCases.Agendas
 
         public async Task<RespostaBase<dynamic>> ExecuteAsync(CloseAgendaDto dto)
         {
-            var agenda = await _agendaService.GetAndValidateEntityAsync(dto.Id);
+            var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.Id);
 
             agenda.Close();
             _uow.Agendas.Update(agenda);

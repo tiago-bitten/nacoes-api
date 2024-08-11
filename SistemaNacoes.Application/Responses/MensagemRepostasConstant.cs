@@ -6,6 +6,7 @@ public static class MensagemRepostasConstant
     public const string CreateVoluntario = "Voluntário cadastrado com sucesso";
     public const string GetVoluntario = "Voluntário encontrado com sucesso";
     public const string GetVoluntarios = "Voluntários listados com sucesso";
+    public const string DeleteVoluntario = "Voluntário deletado com sucesso";
     
     //Ministerios
     public const string CreateMinisterio = "Ministério cadastrado com sucesso";
@@ -31,9 +32,11 @@ public static class MensagemRepostasConstant
     public const string CreateAgendamento = "Agendamento cadastrado com sucesso";
     public const string GetAgendamento = "Agendamento encontrado com sucesso";
     public const string GetAgendamentos = "Agendamentos listados com sucesso";
+    public const string DeleteAgendamento = "Agendamento deletado com sucesso";
     
     //Atividades
     public const string CreateAtividade = "Atividade cadastrada com sucesso";
     public const string GetAtividade = "Atividade encontrada com sucesso";
     public const string GetAtividades = "Atividades listadas com sucesso";
+    public const string DeleteAtividade = "Atividade deletada com sucesso";
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Infra.Contexts;
@@ -19,6 +20,7 @@ public class AgendamentoRepository : RepositoryBase<Agendamento>, IAgendamentoRe
             .Include(x => x.Ministerio)
             .Include(x => x.SituacaoAgendamento)
             .Include(x => x.AgendamentoAtividades).ThenInclude(x => x.Atividade);
+        //.Where(x => !x.Removido);
     }
 
     public override async Task<Agendamento> GetByIdAsync(int id)
@@ -28,6 +30,18 @@ public class AgendamentoRepository : RepositoryBase<Agendamento>, IAgendamentoRe
             .Include(x => x.Ministerio)
             .Include(x => x.SituacaoAgendamento)
             .Include(x => x.AgendamentoAtividades).ThenInclude(x => x.Atividade)
+            //.Where(x => !x.Removido)
             .FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public override async Task<Agendamento> FindAsync(Expression<Func<Agendamento, bool>> predicate)
+    {
+        return await _dbSet
+            .Include(x => x.Voluntario)
+            .Include(x => x.Ministerio)
+            .Include(x => x.SituacaoAgendamento)
+            .Include(x => x.AgendamentoAtividades).ThenInclude(x => x.Atividade)
+            //.Where(x => !x.Removido)
+            .FirstOrDefaultAsync(predicate);
     }
 }

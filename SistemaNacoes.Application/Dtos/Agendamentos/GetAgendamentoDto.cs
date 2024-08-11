@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using SistemaNacoes.Application.Dtos.Atividades;
 using SistemaNacoes.Application.Dtos.Ministerios;
+using SistemaNacoes.Application.Dtos.SituacaoAgendamentos;
 using SistemaNacoes.Application.Dtos.VoluntarioMinisterios;
 using SistemaNacoes.Application.Dtos.Voluntarios;
 
@@ -19,4 +20,7 @@ public class GetAgendamentoDto
     
     [JsonPropertyName("Atividades")]
     public List<GetSimpAtividadeDto>? Atividades { get; set; }
+    
+    [JsonPropertyName("SituacaoAgendamento")]
+    public GetSituacaoAgendamentoDto SituacaoAgendamento { get; set; }
 }

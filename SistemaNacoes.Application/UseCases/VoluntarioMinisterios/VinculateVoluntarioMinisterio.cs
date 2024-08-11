@@ -28,8 +28,8 @@ public class VinculateVoluntarioMinisterio
 
     public async Task<RespostaBase<GetSimpVoluntarioMinisterioDto>> ExecuteAsync(VinculateVoluntarioMinisterioDto dto)
     {
-        var voluntario = await _voluntarioService.GetAndValidateEntityAsync(dto.VoluntarioId);
-        var ministerio = await _ministerioService.GetAndValidateEntityAsync(dto.MinisterioId);
+        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId);
+        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(dto.MinisterioId);
 
         var voluntarioMinisterio = new VoluntarioMinisterio(voluntario, ministerio);
 

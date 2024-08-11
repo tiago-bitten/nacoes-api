@@ -1,6 +1,6 @@
 ﻿namespace SistemaNacoes.Domain.Entidades
 {
-    public class UsuarioMinisterio
+    public class UsuarioMinisterio : EntidadeBase
     {
         public UsuarioMinisterio() {}
         public UsuarioMinisterio(Usuario usuario, Ministerio ministerio)

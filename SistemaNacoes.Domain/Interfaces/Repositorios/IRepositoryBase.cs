@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace SistemaNacoes.Domain.Interfaces
+namespace SistemaNacoes.Domain.Interfaces.Repositorios
 {
     public interface IRepositoryBase<T>
     {

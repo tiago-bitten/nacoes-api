@@ -22,7 +22,7 @@ public class CreateAtividade
     
     public async Task<RespostaBase<GetAtividadeDto>> ExecuteAsync(CreateAtividadeDto dto)
     {
-        var ministerio = await _ministerioService.GetAndValidateEntityAsync(dto.MinisterioId);
+        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(dto.MinisterioId);
         
         var atividade = _mapper.Map<Atividade>(dto);
 

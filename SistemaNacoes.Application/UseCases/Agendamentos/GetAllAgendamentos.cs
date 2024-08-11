@@ -18,10 +18,14 @@ public class GetAllAgendamentos
     
     public async Task<RespostaBase<List<GetAgendamentoDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalAgendamentos = _uow.Agendamentos.GetAll().Count();
+        var totalAgendamentos = _uow.Agendamentos.GetAll()
+            .Where(x => !x.Removido)
+            .Count();
+        
         var agendamentos = _uow.Agendamentos.GetAll()
             .Skip(query.Skip)
             .Take(query.Take)
+            .Where(x => !x.Removido)
             .ToList();
         
         var agendamentosDto = _mapper.Map<List<GetAgendamentoDto>>(agendamentos);

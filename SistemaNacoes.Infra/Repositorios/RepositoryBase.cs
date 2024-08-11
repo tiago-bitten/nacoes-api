@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Interfaces;
+using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Infra.Contexts;
 
 namespace SistemaNacoes.Infra.Repositorios

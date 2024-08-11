@@ -11,11 +11,13 @@ public class VoluntariosController : ControllerBase
 {
     private readonly CreateVoluntario _createVoluntario;
     private readonly GetAllVoluntarios _getAllVoluntarios;
+    private readonly DeleteVoluntario _deleteVoluntario;
 
-    public VoluntariosController(CreateVoluntario createVoluntario, GetAllVoluntarios getAllVoluntarios)
+    public VoluntariosController(CreateVoluntario createVoluntario, GetAllVoluntarios getAllVoluntarios, DeleteVoluntario deleteVoluntario)
     {
         _createVoluntario = createVoluntario;
         _getAllVoluntarios = getAllVoluntarios;
+        _deleteVoluntario = deleteVoluntario;
     }
     
     [HttpPost("Criar")]
@@ -30,6 +32,14 @@ public class VoluntariosController : ControllerBase
     public async Task<IActionResult> Get([FromQuery] QueryParametro query)
     {
         var result = await _getAllVoluntarios.ExecuteAsync(query);
+
+        return Ok(result);
+    }
+    
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var result = await _deleteVoluntario.ExecuteAsync(id);
 
         return Ok(result);
     }

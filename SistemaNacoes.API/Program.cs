@@ -48,6 +48,7 @@ builder.Services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
 builder.Services.AddScoped<IVoluntarioService, VoluntarioService>();
 builder.Services.AddScoped<IVoluntarioMinisterioService, VoluntarioMinisterioService>();
 builder.Services.AddScoped<IAgendaService, AgendaService>();
+builder.Services.AddScoped<ISituacaoAgendamentoRepository, SituacaoAgendamentoRepository>();
 
 builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();
@@ -65,6 +66,9 @@ builder.Services.AddScoped<VinculateVoluntarioMinisterio>();
 builder.Services.AddScoped<OpenAgenda>();
 builder.Services.AddScoped<CloseAgenda>();
 builder.Services.AddScoped<FinalizeAgenda>();
+builder.Services.AddScoped<DeleteAgendamento>();
+builder.Services.AddScoped<DeleteVoluntario>();
+builder.Services.AddScoped<DeleteAtividade>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
@@ -73,6 +77,7 @@ builder.Services.AddAutoMapper(typeof(AgendaProfile));
 builder.Services.AddAutoMapper(typeof(DataIndisponivelProfile));
 builder.Services.AddAutoMapper(typeof(AtividadeProfile));
 builder.Services.AddAutoMapper(typeof(AgendamentoProfile));
+builder.Services.AddAutoMapper(typeof(SituacaoAgendamentoProfile));
 
 var app = builder.Build();
 
