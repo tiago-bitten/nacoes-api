@@ -24,6 +24,7 @@ public class NacoesDbContext : DbContext
     public DbSet<Escala> Escalas { get; set; }
     public DbSet<EscalaItem> EscalaItens { get; set; }
     public DbSet<AgendamentoAtividade> AgendamentoAtividades { get; set; }
+    public DbSet<SituacaoAgendamento> SituacaoAgendamentos { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,6 +41,7 @@ public class NacoesDbContext : DbContext
         modelBuilder.ApplyConfiguration(new EscalaConfig());
         modelBuilder.ApplyConfiguration(new EscalaItemConfig());
         modelBuilder.ApplyConfiguration(new AgendamentoAtividadeConfig());
+        modelBuilder.ApplyConfiguration(new SituacaoAgendamentoConfig());
         
         base.OnModelCreating(modelBuilder);
     }

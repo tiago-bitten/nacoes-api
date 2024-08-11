@@ -17,6 +17,7 @@ public class AgendamentoRepository : RepositoryBase<Agendamento>, IAgendamentoRe
         return _dbSet
             .Include(x => x.Voluntario)
             .Include(x => x.Ministerio)
+            .Include(x => x.SituacaoAgendamento)
             .Include(x => x.AgendamentoAtividades).ThenInclude(x => x.Atividade);
     }
 
@@ -25,6 +26,7 @@ public class AgendamentoRepository : RepositoryBase<Agendamento>, IAgendamentoRe
         return await _dbSet
             .Include(x => x.Voluntario)
             .Include(x => x.Ministerio)
+            .Include(x => x.SituacaoAgendamento)
             .Include(x => x.AgendamentoAtividades).ThenInclude(x => x.Atividade)
             .FirstOrDefaultAsync(x => x.Id == id);
     }

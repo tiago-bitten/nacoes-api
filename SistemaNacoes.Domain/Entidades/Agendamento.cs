@@ -22,5 +22,6 @@
         public Ministerio Ministerio { get; set; }
         public Agenda Agenda { get; set; }
         public List<AgendamentoAtividade> AgendamentoAtividades { get; set; } = new();
+        public SituacaoAgendamento SituacaoAgendamento { get; set; }
     }
 }

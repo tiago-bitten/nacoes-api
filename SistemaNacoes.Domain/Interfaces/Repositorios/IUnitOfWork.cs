@@ -18,4 +18,5 @@ public interface IUnitOfWork
     IEscalaItemRepository EscalaItens { get; }
     IVoluntarioMinisterioRepository VoluntarioMinisterios { get; }
     IAgendamentoAtividadeRepository AgendamentoAtividades { get; }
+    ISituacaoAgendamentoRepository SituacaoAgendamentos { get; }
 }
