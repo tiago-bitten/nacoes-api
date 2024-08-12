@@ -36,10 +36,10 @@ public class DataIndisponivelConfig : IEntityTypeConfiguration<DataIndisponivel>
             .HasColumnName("voluntario_id")
             .IsRequired();
         
-        builder.Property(x => x.Ativo)
+        builder.Property(x => x.Suspenso)
             .HasColumnType("BOOLEAN")
-            .HasColumnName("ativo")
-            .HasDefaultValue(true)
+            .HasColumnName("suspenso")
+            .HasDefaultValue(false)
             .IsRequired();
         
         builder.Property(x => x.Removido)

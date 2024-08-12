@@ -19,7 +19,8 @@ public class GetAllDataIndisponiveis
     
     public async Task<RespostaBase<List<GetAgendaDto>>> ExecuteAsync()
     {
-        var dataIndisponiveis = _uow.DataIndisponiveis.GetAll();
+        var dataIndisponiveis = _uow.DataIndisponiveis.GetAll()
+            .Where(x => !x.Removido && !x.Suspenso);
         
         return _mapper.Map<RespostaBase<List<GetAgendaDto>>>(dataIndisponiveis);
     }
