@@ -21,6 +21,9 @@ namespace SistemaNacoes.Application.UseCases.Agendas
         public async Task<RespostaBase<dynamic>> ExecuteAsync(CloseAgendaDto dto)
         {
             var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.Id);
+            
+            if (!agenda.Ativo)
+                throw new Exception(MensagemErrosConstant.AgendaJaFechada);
 
             agenda.Close();
             _uow.Agendas.Update(agenda);

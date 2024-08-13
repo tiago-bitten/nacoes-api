@@ -5,6 +5,7 @@ using SistemaNacoes.Application.UseCases.Agendamentos;
 using SistemaNacoes.Application.UseCases.Agendas;
 using SistemaNacoes.Application.UseCases.Atividades;
 using SistemaNacoes.Application.UseCases.DataIndisponiveis;
+using SistemaNacoes.Application.UseCases.Grupos;
 using SistemaNacoes.Application.UseCases.Ministerios;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios;
 using SistemaNacoes.Application.UseCases.Voluntarios;
@@ -50,6 +51,7 @@ builder.Services.AddScoped<IVoluntarioMinisterioService, VoluntarioMinisterioSer
 builder.Services.AddScoped<IAgendaService, AgendaService>();
 builder.Services.AddScoped<ISituacaoAgendamentoRepository, SituacaoAgendamentoRepository>();
 builder.Services.AddScoped<IDataIndisponivelService, DataIndisponivelService>();
+builder.Services.AddScoped<IMinisterioService, MinisterioService>();
 
 builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();
@@ -70,6 +72,9 @@ builder.Services.AddScoped<FinalizeAgenda>();
 builder.Services.AddScoped<DeleteAgendamento>();
 builder.Services.AddScoped<DeleteVoluntario>();
 builder.Services.AddScoped<DeleteAtividade>();
+builder.Services.AddScoped<SuspendDataIndisponivel>();
+builder.Services.AddScoped<DeleteMinisterio>();
+builder.Services.AddScoped<CreateGrupo>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
@@ -79,6 +84,7 @@ builder.Services.AddAutoMapper(typeof(DataIndisponivelProfile));
 builder.Services.AddAutoMapper(typeof(AtividadeProfile));
 builder.Services.AddAutoMapper(typeof(AgendamentoProfile));
 builder.Services.AddAutoMapper(typeof(SituacaoAgendamentoProfile));
+builder.Services.AddAutoMapper(typeof(GrupoProfile));
 
 var app = builder.Build();
 

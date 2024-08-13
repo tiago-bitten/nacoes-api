@@ -1,0 +1,41 @@
+﻿using System.Runtime.CompilerServices;
+using AutoMapper;
+using SistemaNacoes.Application.Dtos.Grupos;
+using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Interfaces.Repositorios;
+using SistemaNacoes.Domain.Interfaces.Services;
+
+namespace SistemaNacoes.Application.UseCases.Grupos;
+
+public class CreateGrupo
+{
+    private readonly IUnitOfWork _uow;
+    private readonly IMapper _mapper;
+    private readonly IVoluntarioService _voluntarioService;
+    
+    public CreateGrupo(IUnitOfWork uow, IMapper mapper, IVoluntarioService voluntarioService)
+    {
+        _uow = uow;
+        _mapper = mapper;
+        _voluntarioService = voluntarioService;
+    }
+    
+    public async Task<RespostaBase<GetGrupoDto>> ExecuteAsync(CreateGrupoDto dto)
+    {
+        var existsGrupo = await _uow.Grupos.FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
+        if (existsGrupo != null)
+            throw new Exception(MensagemErrosConstant.GrupoJaExiste);
+        
+        var grupo = _mapper.Map<Grupo>(dto);
+        
+        await _uow.Grupos.AddAsync(grupo);
+        await _uow.CommitAsync();
+
+        var grupoDto = _mapper.Map<GetGrupoDto>(grupo);
+        
+        var respostaBase = new RespostaBase<GetGrupoDto>(MensagemRepostasConstant.CreateGrupo, grupoDto);
+        
+        return respostaBase;
+    }
+}

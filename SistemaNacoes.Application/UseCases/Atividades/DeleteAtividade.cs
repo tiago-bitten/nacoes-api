@@ -20,6 +20,9 @@ public class DeleteAtividade
     {
         var atividade = await _atividadeService.GetAndEnsureExistsAsync(id);
         
+        if (atividade.Removido)
+            throw new Exception(MensagemErrosConstant.AtividadeJaRemovida);
+        
         _uow.Atividades.SoftDeleteAsync(atividade);
         await _uow.CommitAsync();
 

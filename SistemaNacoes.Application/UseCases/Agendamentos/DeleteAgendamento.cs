@@ -20,6 +20,9 @@ public class DeleteAgendamento
     {
         var agendamento = await _agendamentoService.GetAndEnsureExistsAsync(id);
         
+        if (agendamento.Removido)
+            throw new Exception(MensagemErrosConstant.AgendamentoJaRemovido);
+        
         _uow.Agendamentos.SoftDeleteAsync(agendamento);
         await _uow.CommitAsync();
 

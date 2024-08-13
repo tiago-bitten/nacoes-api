@@ -14,25 +14,33 @@ public class CreateAgendamento
     private readonly IVoluntarioMinisterioService _voluntarioMinisterioService;
     private readonly IAgendaService _agendaService;
     private readonly IServiceBase<Atividade> _atividadeService;
+    private readonly IDataIndisponivelService _dataIndisponivelService;
 
-    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService)
+    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService)
     {
         _uow = uow;
         _mapper = mapper;
         _atividadeService = atividadeService;
         _agendaService = agendaService;
         _voluntarioMinisterioService = voluntarioMinisterioService;
+        _dataIndisponivelService = dataIndisponivelService;
     }
     
     public async Task<RespostaBase<GetAgendamentoDto>> ExecuteAsync(CreateAgendamentoDto dto)
     {
         var voluntarioMinisterio =
             await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId);
+        
         var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId);
 
         var exitsAgendamento = agenda.Agendamentos.Any(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
         if (exitsAgendamento)
             throw new Exception(MensagemErrosConstant.AgendamentoJaExiste);
+
+        var agendamentoValidado = _dataIndisponivelService.EnsureDateIsAvailable(agenda, voluntarioMinisterio.Voluntario);
+        
+        if (!agendamentoValidado)
+            throw new Exception(MensagemErrosConstant.DataIndisponivel);
         
         var agendamento = _mapper.Map<Agendamento>(dto);
         await _uow.Agendamentos.AddAsync(agendamento);
