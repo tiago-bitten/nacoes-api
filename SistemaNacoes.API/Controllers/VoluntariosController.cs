@@ -36,7 +36,7 @@ public class VoluntariosController : ControllerBase
         return Ok(result);
     }
     
-    [HttpDelete("{id}")]
+    [HttpDelete("Deletar/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         var result = await _deleteVoluntario.ExecuteAsync(id);

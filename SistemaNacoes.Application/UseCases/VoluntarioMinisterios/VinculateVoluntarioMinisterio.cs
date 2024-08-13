@@ -31,17 +31,25 @@ public class VinculateVoluntarioMinisterio
         var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId);
         var ministerio = await _ministerioService.GetAndEnsureExistsAsync(dto.MinisterioId);
 
-        var voluntarioMinisterio = new VoluntarioMinisterio(voluntario, ministerio);
+        var existingVoluntarioMinisterio = await _uow.VoluntarioMinisterios.FindAsync(
+            x => x.VoluntarioId == voluntario.Id && x.MinisterioId == ministerio.Id);
 
-        await _uow.VoluntarioMinisterios.AddAsync(voluntarioMinisterio);
+        if (existingVoluntarioMinisterio != null)
+        {
+            existingVoluntarioMinisterio.Ativo = true;
+            _uow.VoluntarioMinisterios.Update(existingVoluntarioMinisterio);
+        }
+        else
+        {
+            var voluntarioMinisterio = new VoluntarioMinisterio(voluntario, ministerio);
+            await _uow.VoluntarioMinisterios.AddAsync(voluntarioMinisterio);
+        }
+
         await _uow.CommitAsync();
-        
-        var voluntarioMinisterioDto = _mapper.Map<GetSimpVoluntarioMinisterioDto>(voluntarioMinisterio);
 
-        var respostaBase =
-            new RespostaBase<GetSimpVoluntarioMinisterioDto>(
-                MensagemRepostasConstant.VinculateVoluntarioMinisterio, voluntarioMinisterioDto);
-        
+        var respostaBase = new RespostaBase<GetSimpVoluntarioMinisterioDto>(
+            MensagemRepostasConstant.VinculateVoluntarioMinisterio);
+
         return respostaBase;
     }
 }

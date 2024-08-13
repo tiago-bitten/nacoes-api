@@ -47,15 +47,11 @@ public class VoluntarioConfig : IEntityTypeConfiguration<Voluntario>
             .HasDefaultValue(false)
             .IsRequired();
 
-        builder.Property(x => x.GrupoId)
-            .HasColumnType("INT")
-            .HasColumnName("grupo_id");
-
-        builder.HasOne(x => x.Grupo)
-            .WithMany(x => x.Voluntarios)
-            .HasForeignKey(x => x.GrupoId)
+        builder.HasMany(x => x.GrupoVoluntarios)
+            .WithOne(x => x.Voluntario)
+            .HasForeignKey(x => x.VoluntarioId)
             .OnDelete(DeleteBehavior.SetNull);
-        
+            
         builder.HasMany(x => x.VoluntariosMinisterios)
             .WithOne(x => x.Voluntario)
             .HasForeignKey(x => x.VoluntarioId)

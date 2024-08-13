@@ -19,4 +19,5 @@ public interface IUnitOfWork
     IVoluntarioMinisterioRepository VoluntarioMinisterios { get; }
     IAgendamentoAtividadeRepository AgendamentoAtividades { get; }
     ISituacaoAgendamentoRepository SituacaoAgendamentos { get; }
+    IGrupoVoluntarioRepository GrupoVoluntarios { get; }
 }

@@ -24,8 +24,7 @@ public class GrupoConfig : IEntityTypeConfiguration<Grupo>
 
         builder.Property(x => x.MinisterioPreferencialId)
             .HasColumnType("INT")
-            .HasColumnName("ministerio_preferencial_id")
-            .IsRequired();
+            .HasColumnName("ministerio_preferencial_id");
 
         builder.Property(x => x.Removido)
             .HasColumnType("BOOLEAN")
@@ -33,7 +32,7 @@ public class GrupoConfig : IEntityTypeConfiguration<Grupo>
             .HasDefaultValue(false)
             .IsRequired();
 
-        builder.HasMany(x => x.Voluntarios)
+        builder.HasMany(x => x.GrupoVoluntarios)
             .WithOne(x => x.Grupo)
             .HasForeignKey(x => x.GrupoId)
             .OnDelete(DeleteBehavior.SetNull);

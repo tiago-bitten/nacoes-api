@@ -287,7 +287,6 @@ namespace SistemaNacoes.Infra.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("MinisterioPreferencialId")
-                        .IsRequired()
                         .HasColumnType("INT")
                         .HasColumnName("ministerio_preferencial_id");
 
@@ -307,6 +306,29 @@ namespace SistemaNacoes.Infra.Migrations
                     b.HasIndex("MinisterioPreferencialId");
 
                     b.ToTable("grupos", (string)null);
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.GrupoVoluntario", b =>
+                {
+                    b.Property<int>("GrupoId")
+                        .HasColumnType("INT")
+                        .HasColumnName("grupo_id");
+
+                    b.Property<int>("VoluntarioId")
+                        .HasColumnType("INT")
+                        .HasColumnName("voluntario_id");
+
+                    b.Property<bool>("Removido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(false)
+                        .HasColumnName("removido");
+
+                    b.HasKey("GrupoId", "VoluntarioId");
+
+                    b.HasIndex("VoluntarioId");
+
+                    b.ToTable("grupos_voluntarios", (string)null);
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Ministerio", b =>
@@ -462,10 +484,6 @@ namespace SistemaNacoes.Infra.Migrations
                         .HasColumnType("VARCHAR(150)")
                         .HasColumnName("email");
 
-                    b.Property<int?>("GrupoId")
-                        .HasColumnType("INT")
-                        .HasColumnName("grupo_id");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("VARCHAR(150)")
@@ -478,8 +496,6 @@ namespace SistemaNacoes.Infra.Migrations
                         .HasColumnName("removido");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GrupoId");
 
                     b.ToTable("voluntarios", (string)null);
                 });
@@ -626,10 +642,28 @@ namespace SistemaNacoes.Infra.Migrations
                     b.HasOne("SistemaNacoes.Domain.Entidades.Ministerio", "MinisterioPreferencial")
                         .WithMany("Grupos")
                         .HasForeignKey("MinisterioPreferencialId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("MinisterioPreferencial");
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.GrupoVoluntario", b =>
+                {
+                    b.HasOne("SistemaNacoes.Domain.Entidades.Grupo", "Grupo")
+                        .WithMany("GrupoVoluntarios")
+                        .HasForeignKey("GrupoId")
                         .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
-                    b.Navigation("MinisterioPreferencial");
+                    b.HasOne("SistemaNacoes.Domain.Entidades.Voluntario", "Voluntario")
+                        .WithMany("GrupoVoluntarios")
+                        .HasForeignKey("VoluntarioId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
+                    b.Navigation("Grupo");
+
+                    b.Navigation("Voluntario");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.SituacaoAgendamento", b =>
@@ -660,16 +694,6 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Navigation("Ministerio");
 
                     b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Voluntario", b =>
-                {
-                    b.HasOne("SistemaNacoes.Domain.Entidades.Grupo", "Grupo")
-                        .WithMany("Voluntarios")
-                        .HasForeignKey("GrupoId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Grupo");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.VoluntarioMinisterio", b =>
@@ -720,7 +744,7 @@ namespace SistemaNacoes.Infra.Migrations
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Grupo", b =>
                 {
-                    b.Navigation("Voluntarios");
+                    b.Navigation("GrupoVoluntarios");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Ministerio", b =>
@@ -750,6 +774,8 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Navigation("DatasIndisponiveis");
 
                     b.Navigation("EscalaItens");
+
+                    b.Navigation("GrupoVoluntarios");
 
                     b.Navigation("VoluntariosMinisterios");
                 });

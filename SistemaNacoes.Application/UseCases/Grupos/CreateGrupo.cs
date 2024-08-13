@@ -30,6 +30,22 @@ public class CreateGrupo
         var grupo = _mapper.Map<Grupo>(dto);
         
         await _uow.Grupos.AddAsync(grupo);
+        
+        if (dto.VoluntarioIds != null && dto.VoluntarioIds.Any())
+            foreach (var voluntarioId in dto.VoluntarioIds)
+            {
+                var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(voluntarioId);
+
+                if (voluntario.GrupoVoluntarios.Any(x => !x.Removido))
+                {
+                    _uow.RollBack();
+                    throw new Exception(MensagemErrosConstant.VoluntarioJaPossuiGrupo);
+                }
+                
+                var grupoVoluntario = new GrupoVoluntario(grupo, voluntario);
+                await _uow.GrupoVoluntarios.AddAsync(grupoVoluntario);
+            }
+        
         await _uow.CommitAsync();
 
         var grupoDto = _mapper.Map<GetGrupoDto>(grupo);

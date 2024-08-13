@@ -29,4 +29,7 @@ public static class MensagemErrosConstant
     // Grupos
     public const string GrupoJaRemovido = "Grupo já removido";
     public const string GrupoJaExiste = "Grupo já existe";
+    
+    // Grupo Voluntarios
+    public const string VoluntarioJaPossuiGrupo = "Voluntário já possui grupo";
 }

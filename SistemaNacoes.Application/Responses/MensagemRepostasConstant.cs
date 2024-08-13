@@ -18,6 +18,7 @@ public static class MensagemRepostasConstant
     public const string VinculateVoluntarioMinisterio = "Voluntário vinculado ao ministério com sucesso";
     public const string GetVoluntarioMinisterio = "Voluntário e ministério encontrado com sucesso";
     public const string GetVoluntariosMinisterios = "Voluntários e ministérios listados com sucesso";
+    public const string DesvinculateVoluntarioMinisterio = "Voluntário desvinculado do ministério com sucesso";
 
     //Agendas
     public const string OpenAgenda = "Agenda cadastrada com sucesso";

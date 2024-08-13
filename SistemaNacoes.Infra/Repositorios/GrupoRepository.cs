@@ -10,4 +10,17 @@ public class GrupoRepository : RepositoryBase<Grupo>, IGrupoRepository
         : base(context)
     {
     }
+
+    public override void SoftDeleteAsync(Grupo entity)
+    {
+        entity.Removido = true;
+        
+        _dbSet.Update(entity);
+        
+        entity.GrupoVoluntarios.ForEach(x =>
+        {
+            x.Removido = true;
+            _context.Set<GrupoVoluntario>().Update(x);
+        });
+    }
 }

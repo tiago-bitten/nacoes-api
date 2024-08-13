@@ -24,7 +24,8 @@ namespace SistemaNacoes.Infra.Data
             IEscalaItemRepository escalaItemRepository,
             IVoluntarioMinisterioRepository voluntarioMinisterioRepository,
             IAgendamentoAtividadeRepository agendamentoAtividadeRepository,
-            ISituacaoAgendamentoRepository situacaoAgendamentoRepository)
+            ISituacaoAgendamentoRepository situacaoAgendamentoRepository,
+            IGrupoVoluntarioRepository grupoVoluntarioRepository)
         {
             _context = context;
             Voluntarios = voluntarioRepository;
@@ -41,6 +42,7 @@ namespace SistemaNacoes.Infra.Data
             VoluntarioMinisterios = voluntarioMinisterioRepository;
             AgendamentoAtividades = agendamentoAtividadeRepository;
             SituacaoAgendamentos = situacaoAgendamentoRepository;
+            GrupoVoluntarios = grupoVoluntarioRepository;
         }
 
         public async Task<bool> CommitAsync()
@@ -81,5 +83,6 @@ namespace SistemaNacoes.Infra.Data
         public IVoluntarioMinisterioRepository VoluntarioMinisterios { get; }
         public IAgendamentoAtividadeRepository AgendamentoAtividades { get; }
         public ISituacaoAgendamentoRepository SituacaoAgendamentos { get; }
+        public IGrupoVoluntarioRepository GrupoVoluntarios { get; set; }
     }
 }
