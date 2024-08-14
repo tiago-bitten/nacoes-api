@@ -22,19 +22,21 @@ public class DesvinculateVoluntarioMinisterio
         voluntarioMinisterio.Ativo = false;
         _uow.VoluntarioMinisterios.Update(voluntarioMinisterio);
 
-        var situacoesAgendamentos = voluntarioMinisterio.Voluntario.Agendamentos
-            .Where(x => x.MinisterioId == ministerioId && !x.Agenda.Finalizado && x.Agenda.Ativo)
-            .Select(x => x.SituacaoAgendamento);
+        var situacoesAgendamentos = voluntarioMinisterio.Voluntario.Agendamentos?
+            .Where(x => x.MinisterioId == ministerioId && x.Agenda is { Finalizado: false, Ativo: true })
+            .Select(x => x.SituacaoAgendamento)
+            .ToList();
 
-        foreach (var situacaoAgendamento in situacoesAgendamentos)
-        {
-            situacaoAgendamento.Ativo = false;
-            situacaoAgendamento.Descricao =
-                $"{voluntarioMinisterio.Voluntario.Nome} não pertence mais ao ministério {voluntarioMinisterio.Ministerio.Nome}";
-            
-            _uow.SituacaoAgendamentos.Update(situacaoAgendamento);
-        }
-        
+        if (situacoesAgendamentos != null && situacoesAgendamentos.Any())
+            foreach (var situacaoAgendamento in situacoesAgendamentos)
+            {
+                situacaoAgendamento.Ativo = false;
+                situacaoAgendamento.Descricao =
+                    $"{voluntarioMinisterio.Voluntario.Nome} não pertence mais ao ministério {voluntarioMinisterio.Ministerio.Nome}";
+
+                _uow.SituacaoAgendamentos.Update(situacaoAgendamento);
+            }
+
         await _uow.CommitAsync();
         
         var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.DesvinculateVoluntarioMinisterio);
