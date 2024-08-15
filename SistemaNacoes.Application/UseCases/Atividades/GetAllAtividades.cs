@@ -18,14 +18,18 @@ public class GetAllAtividades
     
     public async Task<RespostaBase<List<GetAtividadeDto>>> ExecuteAsync(QueryParametro query)
     {
+        var totalAtividades = _uow.Atividades.GetAll()
+            .Count(x => !x.Removido);
+        
         var atividades = _uow.Atividades.GetAll()
+            .Where(x => !x.Removido)
             .Skip(query.Skip)
             .Take(query.Take)
             .ToList();
         
         var atividadesDto = _mapper.Map<List<GetAtividadeDto>>(atividades);
         
-        var respostaBase = new RespostaBase<List<GetAtividadeDto>>(MensagemRepostasConstant.GetAtividades, atividadesDto);
+        var respostaBase = new RespostaBase<List<GetAtividadeDto>>(MensagemRepostasConstant.GetAtividades, atividadesDto, totalAtividades);
         
         return respostaBase;
     }

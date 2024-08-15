@@ -23,9 +23,9 @@ public class GetAllAgendamentos
             .Count();
         
         var agendamentos = _uow.Agendamentos.GetAll()
+            .Where(x => !x.Removido)
             .Skip(query.Skip)
             .Take(query.Take)
-            .Where(x => !x.Removido)
             .ToList();
         
         var agendamentosDto = _mapper.Map<List<GetAgendamentoDto>>(agendamentos);

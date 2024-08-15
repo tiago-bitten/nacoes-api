@@ -9,16 +9,26 @@ namespace SistemaNacoes.API.Controllers;
 public class DataIndisponiveisController : ControllerBase
 {
     private readonly CreateDataIndisponivel _createDataIndisponivel;
+    private readonly GetAllDataIndisponiveis _getAllDataIndisponiveis;
 
-    public DataIndisponiveisController(CreateDataIndisponivel createDataIndisponivel)
+    public DataIndisponiveisController(CreateDataIndisponivel createDataIndisponivel, GetAllDataIndisponiveis getAllDataIndisponiveis)
     {
         _createDataIndisponivel = createDataIndisponivel;
+        _getAllDataIndisponiveis = getAllDataIndisponiveis;
     }
     
     [HttpPost("Criar")]
     public async Task<IActionResult> Create([FromBody] CreateDataIndisponivelDto dto)
     {
         var result = await _createDataIndisponivel.ExecuteAsync(dto);
+
+        return Ok(result);
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var result = await _getAllDataIndisponiveis.ExecuteAsync();
 
         return Ok(result);
     }
