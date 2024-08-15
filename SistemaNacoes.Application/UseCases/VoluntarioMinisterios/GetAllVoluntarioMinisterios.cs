@@ -18,8 +18,11 @@ public class GetAllVoluntarioMinisterios
     
     public async Task<RespostaBase<List<GetSimpVoluntarioMinisterioDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalVoluntarioMinisterios = _uow.VoluntarioMinisterios.GetAll().Count();
+        var totalVoluntarioMinisterios = _uow.VoluntarioMinisterios.GetAll()
+            .Count(x => x.Ativo);
+        
         var voluntarioMinisterios = _uow.VoluntarioMinisterios.GetAll()
+            .Where(x => x.Ativo)
             .Skip(query.Skip)
             .Take(query.Take)
             .ToList();

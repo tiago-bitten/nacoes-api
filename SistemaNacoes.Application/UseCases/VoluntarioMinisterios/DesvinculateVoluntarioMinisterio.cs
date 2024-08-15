@@ -19,10 +19,13 @@ public class DesvinculateVoluntarioMinisterio
     {
         var voluntarioMinisterio = await _voluntarioMinisterioService.GetAndEnsureExistsAsync(voluntarioId, ministerioId);
         
-        voluntarioMinisterio.Ativo = false;
-        _uow.VoluntarioMinisterios.Update(voluntarioMinisterio);
+        _uow.VoluntarioMinisterios.SoftDeleteAsync(voluntarioMinisterio);
 
-        var situacoesAgendamentos = voluntarioMinisterio.Voluntario.Agendamentos?
+        /**
+         *  Esse código deve ser movido para um serviço de SituacaoAgendamento
+         *  Ele 
+         */
+        /*var situacoesAgendamentos = voluntarioMinisterio.Voluntario.Agendamentos?
             .Where(x => x.MinisterioId == ministerioId && x.Agenda is { Finalizado: false, Ativo: true })
             .Select(x => x.SituacaoAgendamento)
             .ToList();
@@ -35,7 +38,7 @@ public class DesvinculateVoluntarioMinisterio
                     $"{voluntarioMinisterio.Voluntario.Nome} não pertence mais ao ministério {voluntarioMinisterio.Ministerio.Nome}";
 
                 _uow.SituacaoAgendamentos.Update(situacaoAgendamento);
-            }
+            }*/
 
         await _uow.CommitAsync();
         

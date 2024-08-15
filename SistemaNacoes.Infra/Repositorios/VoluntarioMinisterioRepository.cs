@@ -40,4 +40,10 @@ public class VoluntarioMinisterioRepository : RepositoryBase<VoluntarioMinisteri
             .Include(x => x.Ministerio).ThenInclude(x => x.Atividades)
             .FirstOrDefaultAsync(predicate);
     }
+
+    public override void SoftDeleteAsync(VoluntarioMinisterio entity)
+    {
+        entity.Ativo = false;
+        _dbSet.Update(entity);
+    }
 }

@@ -20,6 +20,12 @@ public class DeleteVoluntario
         var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(id);
 
         _uow.Voluntarios.SoftDeleteAsync(voluntario);
+
+        foreach (var voluntarioMinisterio in voluntario.VoluntariosMinisterios)
+        {
+            _uow.VoluntarioMinisterios.SoftDeleteAsync(voluntarioMinisterio);
+        }
+        
         await _uow.CommitAsync();
         
         return new RespostaBase<dynamic>(MensagemRepostasConstant.DeleteVoluntario);
