@@ -32,6 +32,7 @@ public static class MensagemRepostasConstant
     public const string SuspendDataIndisponivel = "Data indisponível suspensa com sucesso";
     public const string GetDataIndisponivel = "Data indisponível encontrada com sucesso";
     public const string GetDataIndisponiveis = "Datas indisponíveis listadas com sucesso";
+    public const string DeleteDataIndisponivel = "Data indisponível deletada com sucesso";
     
     //Agendamentos
     public const string CreateAgendamento = "Agendamento cadastrado com sucesso";

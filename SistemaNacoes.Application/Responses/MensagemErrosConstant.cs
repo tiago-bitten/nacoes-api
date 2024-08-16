@@ -17,6 +17,7 @@ public static class MensagemErrosConstant
     
     // DataIndisponiveis
     public const string DataIndisponivel = "Voluntário não disponível na data";
+    public const string DataIndisponivelJaRemovido = "Data indisponível já removida";
     
     // Ministerios
     public const string MinisterioJaRemovido = "Ministério já removido";
