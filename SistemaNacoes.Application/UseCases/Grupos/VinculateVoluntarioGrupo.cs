@@ -27,8 +27,10 @@ public class VinculateVoluntarioGrupo
     {
         var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId);
         var grupo = await _grupoService.GetAndEnsureExistsAsync(dto.GrupoId);
+
+        var existsVoluntarioGrupo = voluntario.GrupoVoluntarios.Any(x => !x.Removido);
         
-        if (voluntario.GrupoVoluntarios.Any(x => !x.Removido))
+        if (existsVoluntarioGrupo)
             throw new Exception(MensagemErrosConstant.VoluntarioJaPossuiGrupo);
         
         var grupoVoluntario = new GrupoVoluntario(grupo, voluntario);
