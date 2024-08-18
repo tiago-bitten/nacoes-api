@@ -80,6 +80,8 @@ builder.Services.AddScoped<GetAllGrupos>();
 builder.Services.AddScoped<DeleteGrupo>();
 builder.Services.AddScoped<DesvinculateVoluntarioMinisterio>();
 builder.Services.AddScoped<DeleteMinisterio>();
+builder.Services.AddScoped<VinculateVoluntarioGrupo>();
+builder.Services.AddScoped<VinculateAtividadeAgendamento>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));

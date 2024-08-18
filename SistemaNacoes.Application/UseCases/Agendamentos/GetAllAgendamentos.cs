@@ -19,8 +19,7 @@ public class GetAllAgendamentos
     public async Task<RespostaBase<List<GetAgendamentoDto>>> ExecuteAsync(QueryParametro query)
     {
         var totalAgendamentos = _uow.Agendamentos.GetAll()
-            .Where(x => !x.Removido)
-            .Count();
+            .Count(x => !x.Removido);
         
         var agendamentos = _uow.Agendamentos.GetAll()
             .Where(x => !x.Removido)

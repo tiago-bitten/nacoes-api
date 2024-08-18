@@ -11,6 +11,7 @@ public static class MensagemErrosConstant
     // Agendamentos
     public const string AgendamentoJaExiste = "Voluntário já está agendado";
     public const string AgendamentoJaRemovido = "Agendamento já removido";
+    public const string AtividadeJaVinculadaAoAgendamento = "Atividade já vinculada ao agendamento";
     
     // VoluntariosMinisterios
     public const string VoluntarioMinisterioNaoEncontrado = "Voluntário vinculado ao ministério não encontrado";

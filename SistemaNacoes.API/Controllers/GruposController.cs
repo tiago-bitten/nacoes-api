@@ -12,12 +12,14 @@ public class GruposController : ControllerBase
     private readonly CreateGrupo _createGrupo;
     private readonly DeleteGrupo _deleteGrupo;
     private readonly GetAllGrupos _getAllGrupos;
+    private readonly VinculateVoluntarioGrupo _vinculateVoluntarioGrupo;
     
-    public GruposController(CreateGrupo createGrupo, DeleteGrupo deleteGrupo, GetAllGrupos getAllGrupos)
+    public GruposController(CreateGrupo createGrupo, DeleteGrupo deleteGrupo, GetAllGrupos getAllGrupos, VinculateVoluntarioGrupo vinculateVoluntarioGrupo)
     {
         _createGrupo = createGrupo;
         _deleteGrupo = deleteGrupo;
         _getAllGrupos = getAllGrupos;
+        _vinculateVoluntarioGrupo = vinculateVoluntarioGrupo;
     }
     
     [HttpPost("Criar")]
@@ -40,6 +42,14 @@ public class GruposController : ControllerBase
     public async Task<IActionResult> GetAll([FromQuery] QueryParametro query)
     {
         var result = await _getAllGrupos.ExecuteAsync(query);
+        
+        return Ok(result);
+    }
+    
+    [HttpPost("VinicularVoluntario")]
+    public async Task<IActionResult> VinculateVoluntarioGrupo([FromBody] VinculateVoluntarioGrupoDto vinculateVoluntarioGrupoDto)
+    {
+        var result = await _vinculateVoluntarioGrupo.ExecuteAsync(vinculateVoluntarioGrupoDto);
         
         return Ok(result);
     }

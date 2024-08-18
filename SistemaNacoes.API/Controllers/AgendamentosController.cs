@@ -12,12 +12,14 @@ public class AgendamentosController : ControllerBase
     private readonly CreateAgendamento _createAgendamento;
     private readonly GetAllAgendamentos _getAllAgendamentos;
     private readonly DeleteAgendamento _deleteAgendamento;
+    private readonly VinculateAtividadeAgendamento _vinculateAtividadeAgendamento;
     
-    public AgendamentosController(CreateAgendamento createAgendamento, GetAllAgendamentos getAllAgendamentos, DeleteAgendamento deleteAgendamento)
+    public AgendamentosController(CreateAgendamento createAgendamento, GetAllAgendamentos getAllAgendamentos, DeleteAgendamento deleteAgendamento, VinculateAtividadeAgendamento vinculateAtividadeAgendamento)
     {
         _createAgendamento = createAgendamento;
         _getAllAgendamentos = getAllAgendamentos;
         _deleteAgendamento = deleteAgendamento;
+        _vinculateAtividadeAgendamento = vinculateAtividadeAgendamento;
     }
     
     [HttpPost("Criar")]
@@ -34,10 +36,18 @@ public class AgendamentosController : ControllerBase
         return Ok(result);
     }
     
-    [HttpDelete("{id}")]
+    [HttpDelete("Deletar/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         var result = await _deleteAgendamento.ExecuteAsync(id);
+        return Ok(result);
+    }
+    
+    [HttpPost("VincularAtividade")]
+    public async Task<IActionResult> VinculateAtividadeAgendamento([FromBody] VinculateAtividadeAgendamentoDto dto)
+    {
+        var result = await _vinculateAtividadeAgendamento.ExecuteAsync(dto);
+        
         return Ok(result);
     }
 }

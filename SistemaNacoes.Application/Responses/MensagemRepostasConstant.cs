@@ -46,9 +46,13 @@ public static class MensagemRepostasConstant
     public const string GetAtividades = "Atividades listadas com sucesso";
     public const string DeleteAtividade = "Atividade deletada com sucesso";
     
+    //AgendamentoAtividades
+    public const string VinculateAtividadeAgendamento = "Atividade vinculada ao agendamento com sucesso";
+    
     //Grupos
     public const string CreateGrupo = "Grupo cadastrado com sucesso";
     public const string GetGrupo = "Grupo encontrado com sucesso";
     public const string GetGrupos = "Grupos listados com sucesso";
     public const string DeleteGrupo = "Grupo deletado com sucesso";
+    public const string VinculateVoluntarioGrupo = "Voluntário vinculado ao grupo com sucesso";
 }
