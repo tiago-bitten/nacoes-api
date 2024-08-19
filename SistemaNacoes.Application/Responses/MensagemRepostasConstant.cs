@@ -7,6 +7,7 @@ public static class MensagemRepostasConstant
     public const string GetVoluntario = "Voluntário encontrado com sucesso";
     public const string GetVoluntarios = "Voluntários listados com sucesso";
     public const string DeleteVoluntario = "Voluntário deletado com sucesso";
+    public const string GetVoluntariosParaAgendar = "Voluntários para agendar listados com sucesso";
     
     //Ministerios
     public const string CreateMinisterio = "Ministério cadastrado com sucesso";

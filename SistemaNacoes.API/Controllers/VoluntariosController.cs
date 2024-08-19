@@ -12,12 +12,14 @@ public class VoluntariosController : ControllerBase
     private readonly CreateVoluntario _createVoluntario;
     private readonly GetAllVoluntarios _getAllVoluntarios;
     private readonly DeleteVoluntario _deleteVoluntario;
+    private readonly GetVoluntariosParaAgendar _getVoluntariosParaAgendar;
 
-    public VoluntariosController(CreateVoluntario createVoluntario, GetAllVoluntarios getAllVoluntarios, DeleteVoluntario deleteVoluntario)
+    public VoluntariosController(CreateVoluntario createVoluntario, GetAllVoluntarios getAllVoluntarios, DeleteVoluntario deleteVoluntario, GetVoluntariosParaAgendar getVoluntariosParaAgendar)
     {
         _createVoluntario = createVoluntario;
         _getAllVoluntarios = getAllVoluntarios;
         _deleteVoluntario = deleteVoluntario;
+        _getVoluntariosParaAgendar = getVoluntariosParaAgendar;
     }
     
     [HttpPost("Criar")]
@@ -42,5 +44,13 @@ public class VoluntariosController : ControllerBase
         var result = await _deleteVoluntario.ExecuteAsync(id);
 
         return Ok(result);
+    }
+    
+    [HttpGet("BuscarParaAgendar/Agenda/{int:agendaId}/Ministerio/{int:ministerioId}")]
+    public async Task<IActionResult> GetParaAgendar(int agendaId, int ministerioId)
+    {
+        var result = await _getVoluntariosParaAgendar.ExecuteAsync(agendaId, ministerioId);
+        
+        return Ok();
     }
 }
