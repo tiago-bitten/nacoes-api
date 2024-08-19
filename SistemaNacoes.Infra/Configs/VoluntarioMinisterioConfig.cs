@@ -37,11 +37,5 @@ public class VoluntarioMinisterioConfig : IEntityTypeConfiguration<VoluntarioMin
             .WithMany(x => x.VoluntariosMinisterios)
             .HasForeignKey(x => x.MinisterioId)
             .OnDelete(DeleteBehavior.SetNull);
-
-        builder.Navigation(x => x.Ministerio)
-            .AutoInclude();
-
-        builder.Navigation(x => x.Voluntario)
-            .AutoInclude();
     }
 }

@@ -62,20 +62,5 @@ public class AgendamentoConfig : IEntityTypeConfiguration<Agendamento>
             .WithOne(x => x.Agendamento)
             .HasForeignKey<SituacaoAgendamento>(x => x.AgendamentoId)
             .OnDelete(DeleteBehavior.SetNull);
-
-        builder.Navigation(x => x.Agenda)
-            .AutoInclude();
-
-        builder.Navigation(x => x.Voluntario)
-            .AutoInclude();
-
-        builder.Navigation(x => x.Ministerio)
-            .AutoInclude();
-
-        builder.Navigation(x => x.AgendamentoAtividades)
-            .AutoInclude();
-
-        builder.Navigation(x => x.SituacaoAgendamento)
-            .AutoInclude();
     }
 }

@@ -62,8 +62,5 @@ public class MinisterioConfig : IEntityTypeConfiguration<Ministerio>
             .WithOne(x => x.MinisterioPreferencial)
             .HasForeignKey(x => x.MinisterioPreferencialId)
             .OnDelete(DeleteBehavior.SetNull);
-
-        builder.Navigation(x => x.VoluntariosMinisterios)
-            .AutoInclude();
     }
 }

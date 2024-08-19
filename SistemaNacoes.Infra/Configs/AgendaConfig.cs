@@ -57,8 +57,5 @@ public class AgendaConfig : IEntityTypeConfiguration<Agenda>
             .WithOne(x => x.Agenda)
             .HasForeignKey(x => x.AgendaId)
             .OnDelete(DeleteBehavior.SetNull);
-
-        builder.Navigation(x => x.Agendamentos)
-            .AutoInclude();
     }
 }
