@@ -11,24 +11,4 @@ public class SituacaoAgendamentoRepository : RepositoryBase<SituacaoAgendamento>
     public SituacaoAgendamentoRepository(NacoesDbContext context) : base(context)
     {
     }
-
-    public override IQueryable<SituacaoAgendamento> GetAll()
-    {
-        return _dbSet
-            .Include(x => x.Agendamento);
-    }
-    
-    public override async Task<SituacaoAgendamento> GetByIdAsync(int id)
-    {
-        return await _dbSet
-            .Include(x => x.Agendamento)
-            .FirstOrDefaultAsync(x => x.Id == id);
-    }
-
-    public override async Task<SituacaoAgendamento> FindAsync(Expression<Func<SituacaoAgendamento, bool>> predicate)
-    {
-        return await _dbSet
-            .Include(x => x.Agendamento)
-            .FirstOrDefaultAsync(predicate);
-    }
 }

@@ -46,11 +46,11 @@ public class VoluntariosController : ControllerBase
         return Ok(result);
     }
     
-    [HttpGet("BuscarParaAgendar/Agenda/{int:agendaId}/Ministerio/{int:ministerioId}")]
+    [HttpGet("BuscarParaAgendar/Agenda/{agendaId}/Ministerio/{ministerioId}")]
     public async Task<IActionResult> GetParaAgendar(int agendaId, int ministerioId)
     {
         var result = await _getVoluntariosParaAgendar.ExecuteAsync(agendaId, ministerioId);
         
-        return Ok();
+        return Ok(result);
     }
 }

@@ -12,36 +12,4 @@ public class AgendamentoRepository : RepositoryBase<Agendamento>, IAgendamentoRe
         : base(context)
     {
     }
-
-    public override IQueryable<Agendamento> GetAll()
-    {
-        return _dbSet
-            .Include(x => x.Voluntario)
-            .Include(x => x.Ministerio)
-            .Include(x => x.SituacaoAgendamento)
-            .Include(x => x.AgendamentoAtividades).ThenInclude(x => x.Atividade);
-        //.Where(x => !x.Removido);
-    }
-
-    public override async Task<Agendamento> GetByIdAsync(int id)
-    {
-        return await _dbSet
-            .Include(x => x.Voluntario)
-            .Include(x => x.Ministerio)
-            .Include(x => x.SituacaoAgendamento)
-            .Include(x => x.AgendamentoAtividades).ThenInclude(x => x.Atividade)
-            //.Where(x => !x.Removido)
-            .FirstOrDefaultAsync(x => x.Id == id);
-    }
-
-    public override async Task<Agendamento> FindAsync(Expression<Func<Agendamento, bool>> predicate)
-    {
-        return await _dbSet
-            .Include(x => x.Voluntario)
-            .Include(x => x.Ministerio)
-            .Include(x => x.SituacaoAgendamento)
-            .Include(x => x.AgendamentoAtividades).ThenInclude(x => x.Atividade)
-            //.Where(x => !x.Removido)
-            .FirstOrDefaultAsync(predicate);
-    }
 }

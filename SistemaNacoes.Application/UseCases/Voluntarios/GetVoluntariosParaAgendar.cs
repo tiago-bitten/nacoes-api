@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using SistemaNacoes.Application.Dtos.Outros;
 using SistemaNacoes.Application.Dtos.Voluntarios;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Interfaces.Repositorios;

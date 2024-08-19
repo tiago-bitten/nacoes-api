@@ -20,8 +20,12 @@ public class GetAllVoluntarios
 
     public async Task<RespostaBase<List<GetVoluntarioDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalVoluntarios = _uow.Voluntarios.GetAll().Count();
-        var voluntarios = _uow.Voluntarios.GetAll()
+        var totalVoluntarios = _uow.Voluntarios
+            .GetAll()
+            .Count();
+        
+        var voluntarios = _uow.Voluntarios
+            .GetAll()
             .Skip(query.Skip)
             .Take(query.Take)
             .ToList();

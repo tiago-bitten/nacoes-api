@@ -71,5 +71,17 @@ public class VoluntarioConfig : IEntityTypeConfiguration<Voluntario>
             .WithOne(x => x.Voluntario)
             .HasForeignKey(x => x.VoluntarioId)
             .OnDelete(DeleteBehavior.SetNull);
+
+        builder.Navigation(x => x.Agendamentos)
+            .AutoInclude();
+
+        builder.Navigation(x => x.DatasIndisponiveis)
+            .AutoInclude();
+        
+        builder.Navigation(x => x.VoluntariosMinisterios)
+            .AutoInclude();
+
+        builder.Navigation(x => x.GrupoVoluntarios)
+            .AutoInclude();
     }
 }
