@@ -46,24 +46,50 @@ namespace SistemaNacoes.Infra.Repositorios
             }
         }
 
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(int id, params string[]? includes)
         {
-            return await _dbSet.FindAsync(id);
+            if (includes == null || includes.Length == 0)
+                return await _dbSet.FindAsync(id);
+            
+            var query = _dbSet.AsQueryable();
+            
+            query = includes.Aggregate(query, (current, include) => current.Include(include));
+            
+            return await query.FirstOrDefaultAsync(x => x.GetHashCode() == id);
         }
 
-        public virtual IQueryable<T> GetAll()
+        public virtual IQueryable<T> GetAll(params string[]? includes)
         {
-            return _dbSet.AsQueryable();
+            if (includes == null || includes.Length == 0)
+                return _dbSet;
+            
+            var query = _dbSet.AsQueryable();
+
+            return includes.Aggregate(query, (current, include) => current.Include(include));
         }
 
-        public virtual async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
+        public virtual async Task<T> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
         {
-            return await _dbSet.FirstOrDefaultAsync(predicate);
+            if (includes == null || includes.Length == 0)
+                return await _dbSet.FirstOrDefaultAsync(predicate);
+            
+            var query = _dbSet.AsQueryable();
+            
+            query = includes.Aggregate(query, (current, include) => current.Include(include));
+            
+            return await query.FirstOrDefaultAsync(predicate);
         }
 
-        public virtual IQueryable<T> FindAll(Expression<Func<T, bool>> predicate)
+        public virtual IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params string[]? includes)
         {
-            return _dbSet.Where(predicate);
+            if (includes == null || includes.Length == 0)
+                return _dbSet.Where(predicate);
+            
+            var query = _dbSet.AsQueryable();
+            
+            query = includes.Aggregate(query, (current, include) => current.Include(include));
+            
+            return query.Where(predicate);
         }
     }
 }
