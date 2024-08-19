@@ -48,6 +48,7 @@ public static class MensagemRepostasConstant
     
     //AgendamentoAtividades
     public const string VinculateAtividadeAgendamento = "Atividade vinculada ao agendamento com sucesso";
+    public const string DeleteAgendamentoAtividade = "AgendamentoAtividade deletada com sucesso";
     
     //Grupos
     public const string CreateGrupo = "Grupo cadastrado com sucesso";

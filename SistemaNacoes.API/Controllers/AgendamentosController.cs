@@ -12,14 +12,16 @@ public class AgendamentosController : ControllerBase
     private readonly CreateAgendamento _createAgendamento;
     private readonly GetAllAgendamentos _getAllAgendamentos;
     private readonly DeleteAgendamento _deleteAgendamento;
-    private readonly VinculateAtividadeAgendamento _vinculateAtividadeAgendamento;
+    private readonly VinculateAgendamentoAtividade _vinculateAgendamentoAtividade;
+    private readonly DeleteAgendamentoAtividade _deleteAgendamentoAtividade;
     
-    public AgendamentosController(CreateAgendamento createAgendamento, GetAllAgendamentos getAllAgendamentos, DeleteAgendamento deleteAgendamento, VinculateAtividadeAgendamento vinculateAtividadeAgendamento)
+    public AgendamentosController(CreateAgendamento createAgendamento, GetAllAgendamentos getAllAgendamentos, DeleteAgendamento deleteAgendamento, VinculateAgendamentoAtividade vinculateAgendamentoAtividade, DeleteAgendamentoAtividade deleteAgendamentoAtividade)
     {
         _createAgendamento = createAgendamento;
         _getAllAgendamentos = getAllAgendamentos;
         _deleteAgendamento = deleteAgendamento;
-        _vinculateAtividadeAgendamento = vinculateAtividadeAgendamento;
+        _vinculateAgendamentoAtividade = vinculateAgendamentoAtividade;
+        _deleteAgendamentoAtividade = deleteAgendamentoAtividade;
     }
     
     [HttpPost("Criar")]
@@ -44,9 +46,17 @@ public class AgendamentosController : ControllerBase
     }
     
     [HttpPost("VincularAtividade")]
-    public async Task<IActionResult> VinculateAtividadeAgendamento([FromBody] VinculateAtividadeAgendamentoDto dto)
+    public async Task<IActionResult> VinculateAtividadeAgendamento([FromBody] VinculateAgendamentoAtividadeDto dto)
     {
-        var result = await _vinculateAtividadeAgendamento.ExecuteAsync(dto);
+        var result = await _vinculateAgendamentoAtividade.ExecuteAsync(dto);
+        
+        return Ok(result);
+    }
+    
+    [HttpDelete("DesvincularAtividade/{agendamentoId}/{atividadeId}")]
+    public async Task<IActionResult> DeleteAgendamentoAtividade(int agendamentoId, int atividadeId)
+    {
+        var result = await _deleteAgendamentoAtividade.ExecuteAsync(agendamentoId, atividadeId);
         
         return Ok(result);
     }

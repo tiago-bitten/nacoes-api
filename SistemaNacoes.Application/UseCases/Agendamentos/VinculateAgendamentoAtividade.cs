@@ -7,14 +7,14 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Agendamentos;
 
-public class VinculateAtividadeAgendamento
+public class VinculateAgendamentoAtividade
 {
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private readonly IServiceBase<Atividade> _atividadeService;
     private readonly IServiceBase<Agendamento> _agendamentoService;
 
-    public VinculateAtividadeAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IServiceBase<Agendamento> agendamentoService)
+    public VinculateAgendamentoAtividade(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IServiceBase<Agendamento> agendamentoService)
     {
         _uow = uow;
         _mapper = mapper;
@@ -22,7 +22,7 @@ public class VinculateAtividadeAgendamento
         _agendamentoService = agendamentoService;
     }
 
-    public async Task<RespostaBase<dynamic>> ExecuteAsync(VinculateAtividadeAgendamentoDto dto)
+    public async Task<RespostaBase<dynamic>> ExecuteAsync(VinculateAgendamentoAtividadeDto dto)
     {
         var atividade = await _atividadeService.GetAndEnsureExistsAsync(dto.AtividadeId);
         var agendamento = await _agendamentoService.GetAndEnsureExistsAsync(dto.AgendamentoId);

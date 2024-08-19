@@ -2,7 +2,7 @@
 
 namespace SistemaNacoes.Application.Dtos.Agendamentos;
 
-public class VinculateAtividadeAgendamentoDto
+public class VinculateAgendamentoAtividadeDto
 {
     [JsonPropertyName("AtividadeId")]
     public int AtividadeId { get; set; }

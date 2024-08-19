@@ -13,6 +13,10 @@ public static class MensagemErrosConstant
     public const string AgendamentoJaRemovido = "Agendamento já removido";
     public const string AtividadeJaVinculadaAoAgendamento = "Atividade já vinculada ao agendamento";
     
+    // AgendamentoAtividades
+    public const string AgendamentoAtividadeNaoEncontrado = "AgendamentoAtividade não encontrado";
+    public const string AgendamentoAtividadeJaRemovido = "AgendamentoAtividade já removida";
+    
     // VoluntariosMinisterios
     public const string VoluntarioMinisterioNaoEncontrado = "Voluntário vinculado ao ministério não encontrado";
     
