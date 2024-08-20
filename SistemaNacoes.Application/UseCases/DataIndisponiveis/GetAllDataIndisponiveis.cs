@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.DataIndisponiveis;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -18,14 +19,14 @@ public class GetAllDataIndisponiveis
     
     public async Task<RespostaBase<List<GetDataIndisponivelDto>>> ExecuteAsync()
     {
-        var totalDataIndisponiveis = _uow.DataIndisponiveis
+        var totalDataIndisponiveis = await _uow.DataIndisponiveis
             .GetAll()
-            .Count(x => !x.Removido && !x.Suspenso);
+            .CountAsync(x => !x.Removido && !x.Suspenso);
         
-        var dataIndisponiveis = _uow.DataIndisponiveis
+        var dataIndisponiveis = await _uow.DataIndisponiveis
             .GetAll()
             .Where(x => !x.Removido && !x.Suspenso)
-            .ToList();
+            .ToListAsync();
         
         var dataIndisponiveisDto = _mapper.Map<List<GetDataIndisponivelDto>>(dataIndisponiveis);
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Atividades;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -18,16 +19,16 @@ public class GetAllAtividades
     
     public async Task<RespostaBase<List<GetAtividadeDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalAtividades = _uow.Atividades
+        var totalAtividades = await _uow.Atividades
             .GetAll()
-            .Count(x => !x.Removido);
+            .CountAsync(x => !x.Removido);
         
-        var atividades = _uow.Atividades
+        var atividades = await _uow.Atividades
             .GetAll()
             .Where(x => !x.Removido)
             .Skip(query.Skip)
             .Take(query.Take)
-            .ToList();
+            .ToListAsync();
         
         var atividadesDto = _mapper.Map<List<GetAtividadeDto>>(atividades);
         

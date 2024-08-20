@@ -36,7 +36,7 @@ public class CreateGrupo
         if (dto.VoluntarioIds != null && dto.VoluntarioIds.Any())
             foreach (var voluntarioId in dto.VoluntarioIds)
             {
-                var includes = new[] { "GrupoVoluntarios" };
+                var includes = new[] { nameof(Voluntario.GrupoVoluntarios) };
                 
                 var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(voluntarioId, includes);
 

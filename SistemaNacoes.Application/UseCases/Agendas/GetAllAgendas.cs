@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Agendas;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -18,15 +19,15 @@ public class GetAllAgendas
     
     public async Task<RespostaBase<List<GetAgendaDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalAgendas = _uow.Agendas
+        var totalAgendas = await _uow.Agendas
             .GetAll()
-            .Count();
+            .CountAsync();
         
-        var agendas = _uow.Agendas
+        var agendas = await _uow.Agendas
             .GetAll()
             .Skip(query.Skip)
             .Take(query.Take)
-            .ToList();
+            .ToListAsync();
         
         var agendasDto = _mapper.Map<List<GetAgendaDto>>(agendas);
         

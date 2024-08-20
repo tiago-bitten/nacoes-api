@@ -25,7 +25,9 @@ public class VinculateVoluntarioGrupo
 
     public async Task<RespostaBase<dynamic>> ExecuteAsync(VinculateVoluntarioGrupoDto dto)
     {
-        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId);
+        var voluntarioIncludes = new[] { nameof(Voluntario.GrupoVoluntarios) };
+        
+        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId, voluntarioIncludes);
         var grupo = await _grupoService.GetAndEnsureExistsAsync(dto.GrupoId);
 
         var existsVoluntarioGrupo = voluntario.GrupoVoluntarios.Any(x => !x.Removido);

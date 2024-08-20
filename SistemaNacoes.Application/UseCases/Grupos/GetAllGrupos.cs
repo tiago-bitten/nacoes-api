@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Grupos;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -18,17 +19,17 @@ public class GetAllGrupos
 
     public async Task<RespostaBase<List<GetGrupoDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalGrupos = _uow.Grupos
+        var totalGrupos = await _uow.Grupos
             .GetAll()
-            .Count(x => !x.Removido);
+            .CountAsync(x => !x.Removido);
         
-        var grupos = _uow.Grupos
+        var grupos = await _uow.Grupos
             .GetAll()
             .Where(x => !x.Removido)
             .OrderBy(x => x.Nome)
             .Skip(query.Skip)
             .Take(query.Take)
-            .ToList();
+            .ToListAsync();
         
         var gruposDto = _mapper.Map<List<GetGrupoDto>>(grupos);
         

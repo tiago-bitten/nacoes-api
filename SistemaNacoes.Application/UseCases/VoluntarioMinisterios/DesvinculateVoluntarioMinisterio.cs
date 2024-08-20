@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -17,7 +18,11 @@ public class DesvinculateVoluntarioMinisterio
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int voluntarioId, int ministerioId)
     {
-        var includes = new[] { "Voluntario", "Ministerio" };
+        var includes = new[]
+        {
+            nameof(VoluntarioMinisterio.Voluntario),
+            nameof(VoluntarioMinisterio.Ministerio)
+        };
         
         var voluntarioMinisterio = await _voluntarioMinisterioService.GetAndEnsureExistsAsync(voluntarioId, ministerioId, includes);
         

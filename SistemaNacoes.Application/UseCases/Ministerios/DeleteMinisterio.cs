@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -18,7 +19,7 @@ public class DeleteMinisterio
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int id)
     {
-        var includes = new[] { "VoluntarioMinisterios" };
+        var includes = new[] { nameof(Ministerio.VoluntarioMinisterios) };
         
         var ministerio = await _ministerioService.GetAndEnsureExistsAsync(id, includes);
         

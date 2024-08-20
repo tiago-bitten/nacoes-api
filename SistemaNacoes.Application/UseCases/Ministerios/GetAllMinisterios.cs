@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Ministerios;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -18,14 +19,14 @@ public class GetAllMinisterios
     
     public async Task<RespostaBase<List<GetMinisterioDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalMinisterios = _uow.Ministerios
+        var totalMinisterios = await _uow.Ministerios
             .GetAll()
-            .Count();
+            .CountAsync();
         
-        var ministerios = _uow.Ministerios.GetAll()
+        var ministerios = await _uow.Ministerios.GetAll()
             .Skip(query.Skip)
             .Take(query.Take)
-            .ToList();
+            .ToListAsync();
         
         var ministeriosDto = _mapper.Map<List<GetMinisterioDto>>(ministerios);
         
