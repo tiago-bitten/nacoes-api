@@ -48,7 +48,7 @@ public class CreateAgendamento
         if (exitsAgendamento)
             throw new Exception(MensagemErrosConstant.AgendamentoJaExiste);
 
-        var agendamentoValidado = _dataIndisponivelService.EnsureDateIsAvailable(agenda, voluntarioMinisterio.Voluntario);
+        var agendamentoValidado = await _dataIndisponivelService.EnsureDateIsAvailable(agenda.Id, voluntarioMinisterio.Voluntario.Id);
         
         if (!agendamentoValidado)
             throw new Exception(MensagemErrosConstant.DataIndisponivel);

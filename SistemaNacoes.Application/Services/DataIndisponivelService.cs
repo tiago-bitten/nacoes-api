@@ -6,15 +6,31 @@ namespace SistemaNacoes.Application.Services;
 
 public class DataIndisponivelService : ServiceBase<DataIndisponivel>, IDataIndisponivelService
 {
-    public DataIndisponivelService(IDataIndisponivelRepository repository)
+    private readonly IAgendaService _agendaService;
+    private readonly IVoluntarioService _voluntarioService;
+    
+    public DataIndisponivelService(IDataIndisponivelRepository repository, IVoluntarioService voluntarioService, IAgendaService agendaService)
         : base(repository)
     {
+        _voluntarioService = voluntarioService;
+        _agendaService = agendaService;
     }
 
-    public bool EnsureDateIsAvailable(Agenda agenda, Voluntario voluntario)
+    public async Task<bool> EnsureDateIsAvailable(int agendaId, int voluntarioId)
     {
+        var agenda = await _agendaService.GetAndEnsureExistsAsync(agendaId);
+        
+        var voluntarioIncludes = new[]
+        {
+            nameof(Voluntario.DatasIndisponiveis)
+        };
+        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(voluntarioId, voluntarioIncludes);
+        
         var datasIndisponiveis = voluntario.DatasIndisponiveis
-            .FindAll(x => x is { Suspenso: false, Removido: false });
+            .FindAll(x => !x.Removido && !x.Suspenso);
+        
+        if (!datasIndisponiveis.Any())
+            return true;
         
         foreach (var dataIndisponivel in datasIndisponiveis)
         {

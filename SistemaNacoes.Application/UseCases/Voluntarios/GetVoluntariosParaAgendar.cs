@@ -41,8 +41,8 @@ public class GetVoluntariosParaAgendar
         var voluntarios = await _uow.Voluntarios
             .GetAll(includes)
             .Where(x => !x.Removido 
-                        && x.VoluntarioMinisterios.Any(vm => vm.MinisterioId == ministerioId && vm.Ativo) 
-                        && x.Agendamentos.All(a => a.AgendaId != agendaId || a.Removido))
+                        && x.VoluntarioMinisterios.Any(vm => vm.MinisterioId == ministerioId && vm.Ativo)
+                        && (!x.Agendamentos.Any() || x.Agendamentos.All(a => a.AgendaId != agendaId || a.Removido)))
             .ToListAsync();
 
         var totalVoluntarios = voluntarios.Count;
@@ -58,7 +58,7 @@ public class GetVoluntariosParaAgendar
             getVoluntarioParaAgendarDto.Disponivel = true;
             getVoluntarioParaAgendarDto.MotivoIndisponibilidades = motivoIndisponibilidades;
             
-            var disponivelPorData = _dataIndisponivelService.EnsureDateIsAvailable(agenda, voluntario);
+            var disponivelPorData = await _dataIndisponivelService.EnsureDateIsAvailable(agenda.Id, voluntario.Id);
 
             if (!disponivelPorData)
             {
