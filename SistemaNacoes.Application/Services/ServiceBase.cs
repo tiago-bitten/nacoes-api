@@ -14,9 +14,9 @@ public class ServiceBase<T> : IServiceBase<T> where T : class
         _repository = repository;
     }
 
-    public virtual async Task<T> GetAndEnsureExistsAsync(int id)
+    public virtual async Task<T> GetAndEnsureExistsAsync(int id, params string[]? includes)
     {
-        var entity = await _repository.GetByIdAsync(id);
+        var entity = await _repository.GetByIdAsync(id, includes);
         
         if (entity == null)
             throw new Exception("Forneça um id válido");

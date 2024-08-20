@@ -4,5 +4,5 @@ namespace SistemaNacoes.Domain.Interfaces.Services;
 
 public interface IVoluntarioMinisterioService
 {
-    Task<VoluntarioMinisterio> GetAndEnsureExistsAsync(int voluntarioId, int ministerioId);
+    Task<VoluntarioMinisterio> GetAndEnsureExistsAsync(int voluntarioId, int ministerioId, params string[]? includes);
 }

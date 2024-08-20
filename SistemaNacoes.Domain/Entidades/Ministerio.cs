@@ -16,7 +16,7 @@
         public bool Removido { get; set; } = false;
 
         public List<Atividade> Atividades { get; set; } = new();
-        public List<VoluntarioMinisterio> VoluntariosMinisterios { get; set; } = new();
+        public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
         public List<UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
         public List<Agendamento> Agendamentos { get; set; } = new();
         public List<Escala> Escalas { get; set; } = new();

@@ -18,10 +18,12 @@ public class GetAllAgendas
     
     public async Task<RespostaBase<List<GetAgendaDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalAgendas = _uow.Agendas.GetAll()
+        var totalAgendas = _uow.Agendas
+            .GetAll()
             .Count();
         
-        var agendas = _uow.Agendas.GetAll()
+        var agendas = _uow.Agendas
+            .GetAll()
             .Skip(query.Skip)
             .Take(query.Take)
             .ToList();

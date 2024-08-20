@@ -14,9 +14,12 @@ public class VoluntarioMinisterioService : IVoluntarioMinisterioService
         _uow = uow;
     }
 
-    public async Task<VoluntarioMinisterio> GetAndEnsureExistsAsync(int voluntarioId, int ministerioId)
+    public async Task<VoluntarioMinisterio> GetAndEnsureExistsAsync(int voluntarioId, int ministerioId, params string[]? includes)
     {
-        var exists = await _uow.VoluntarioMinisterios.FindAsync(x => x.VoluntarioId == voluntarioId && x.MinisterioId == ministerioId && x.Ativo);
+        var exists = await _uow.VoluntarioMinisterios
+            .FindAsync(x => x.VoluntarioId == voluntarioId 
+                            && x.MinisterioId == ministerioId 
+                            && x.Ativo, includes);
         
         if (exists == null)
             throw new Exception(MensagemErrosConstant.VoluntarioMinisterioNaoEncontrado);

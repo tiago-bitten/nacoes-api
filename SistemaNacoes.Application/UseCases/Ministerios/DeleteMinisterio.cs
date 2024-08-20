@@ -18,14 +18,16 @@ public class DeleteMinisterio
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int id)
     {
-        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(id);
+        var includes = new[] { "VoluntarioMinisterios" };
+        
+        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(id, includes);
         
         if (ministerio.Removido)
             throw new Exception(MensagemErrosConstant.MinisterioJaRemovido);
         
         _uow.Ministerios.SoftDeleteAsync(ministerio);
 
-        foreach (var voluntarioMinisterio in ministerio.VoluntariosMinisterios)
+        foreach (var voluntarioMinisterio in ministerio.VoluntarioMinisterios)
         {
             _uow.VoluntarioMinisterios.SoftDeleteAsync(voluntarioMinisterio);
         }

@@ -28,10 +28,21 @@ public class CreateAgendamento
     
     public async Task<RespostaBase<GetAgendamentoDto>> ExecuteAsync(CreateAgendamentoDto dto)
     {
-        var voluntarioMinisterio =
-            await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId);
+        var voluntarioMinisteriosIncludes = new[] 
+            { 
+                nameof(VoluntarioMinisterio.Voluntario.DatasIndisponiveis),
+                nameof(VoluntarioMinisterio.Ministerio.Atividades) 
+            };
         
-        var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId);
+        var voluntarioMinisterio =
+            await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId, voluntarioMinisteriosIncludes);
+
+        var agendaIncludes = new[]
+        {
+            nameof(Agenda.Agendamentos)
+        };
+        
+        var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId, agendaIncludes);
 
         var exitsAgendamento = agenda.Agendamentos.Any(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
         if (exitsAgendamento)

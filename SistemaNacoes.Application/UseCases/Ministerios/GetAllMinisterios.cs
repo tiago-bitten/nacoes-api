@@ -18,7 +18,10 @@ public class GetAllMinisterios
     
     public async Task<RespostaBase<List<GetMinisterioDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalMinisterios = _uow.Ministerios.GetAll().Count();
+        var totalMinisterios = _uow.Ministerios
+            .GetAll()
+            .Count();
+        
         var ministerios = _uow.Ministerios.GetAll()
             .Skip(query.Skip)
             .Take(query.Take)

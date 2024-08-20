@@ -2,5 +2,5 @@
 
 public interface IServiceBase<T> where T : class
 {
-    Task<T> GetAndEnsureExistsAsync(int id);
+    Task<T> GetAndEnsureExistsAsync(int id, params string[]? includes);
 }

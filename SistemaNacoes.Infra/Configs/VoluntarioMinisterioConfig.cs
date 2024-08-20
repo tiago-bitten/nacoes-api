@@ -29,12 +29,12 @@ public class VoluntarioMinisterioConfig : IEntityTypeConfiguration<VoluntarioMin
             .IsRequired();
 
         builder.HasOne(x => x.Voluntario)
-            .WithMany(x => x.VoluntariosMinisterios)
+            .WithMany(x => x.VoluntarioMinisterios)
             .HasForeignKey(x => x.VoluntarioId)
             .OnDelete(DeleteBehavior.SetNull);
 
         builder.HasOne(x => x.Ministerio)
-            .WithMany(x => x.VoluntariosMinisterios)
+            .WithMany(x => x.VoluntarioMinisterios)
             .HasForeignKey(x => x.MinisterioId)
             .OnDelete(DeleteBehavior.SetNull);
     }

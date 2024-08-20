@@ -17,7 +17,9 @@ public class DesvinculateVoluntarioMinisterio
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int voluntarioId, int ministerioId)
     {
-        var voluntarioMinisterio = await _voluntarioMinisterioService.GetAndEnsureExistsAsync(voluntarioId, ministerioId);
+        var includes = new[] { "Voluntario", "Ministerio" };
+        
+        var voluntarioMinisterio = await _voluntarioMinisterioService.GetAndEnsureExistsAsync(voluntarioId, ministerioId, includes);
         
         _uow.VoluntarioMinisterios.SoftDeleteAsync(voluntarioMinisterio);
 

@@ -28,11 +28,14 @@ public class VinculateVoluntarioMinisterio
 
     public async Task<RespostaBase<GetSimpVoluntarioMinisterioDto>> ExecuteAsync(VinculateVoluntarioMinisterioDto dto)
     {
-        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId);
-        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(dto.MinisterioId);
+        var includes = new[] { "VoluntarioMinisterios" };
+        
+        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId, includes);
+        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(dto.MinisterioId, includes);
 
-        var existingVoluntarioMinisterio = await _uow.VoluntarioMinisterios.FindAsync(
-            x => x.VoluntarioId == voluntario.Id && x.MinisterioId == ministerio.Id);
+        var existingVoluntarioMinisterio = await _uow.VoluntarioMinisterios
+            .FindAsync(x => x.VoluntarioId == voluntario.Id
+                            && x.MinisterioId == ministerio.Id);
 
         if (existingVoluntarioMinisterio != null)
         {

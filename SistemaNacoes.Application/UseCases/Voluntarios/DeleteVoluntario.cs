@@ -17,11 +17,13 @@ public class DeleteVoluntario
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int id)
     {
-        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(id);
+        var includes = new[] { "VoluntarioMinisterios" };
+        
+        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(id, includes);
 
         _uow.Voluntarios.SoftDeleteAsync(voluntario);
 
-        foreach (var voluntarioMinisterio in voluntario.VoluntariosMinisterios)
+        foreach (var voluntarioMinisterio in voluntario.VoluntarioMinisterios)
         {
             _uow.VoluntarioMinisterios.SoftDeleteAsync(voluntarioMinisterio);
         }

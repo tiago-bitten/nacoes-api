@@ -38,7 +38,7 @@ public class MinisterioConfig : IEntityTypeConfiguration<Ministerio>
             .HasForeignKey(x => x.MinisterioId)
             .OnDelete(DeleteBehavior.SetNull);
 
-        builder.HasMany(x => x.VoluntariosMinisterios)
+        builder.HasMany(x => x.VoluntarioMinisterios)
             .WithOne(x => x.Ministerio)
             .HasForeignKey(x => x.MinisterioId)
             .OnDelete(DeleteBehavior.SetNull);

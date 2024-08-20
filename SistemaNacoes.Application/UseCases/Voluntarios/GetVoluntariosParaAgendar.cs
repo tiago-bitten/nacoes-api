@@ -28,12 +28,14 @@ public class GetVoluntariosParaAgendar
     public async Task<RespostaBase<List<GetVoluntarioParaAgendarDto>>> ExecuteAsync(int agendaId, int ministerioId)
     {
         var agenda = await _agendaService.GetAndEnsureExistsAsync(agendaId);
-        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(ministerioId);
+        await _ministerioService.GetAndEnsureExistsAsync(ministerioId);
+
+        var includes = new[] { "VoluntarioMinisterios", "Agendamentos", "Agendamentos.Agenda" };
         
         var voluntarios = await _uow.Voluntarios
-            .GetAll()
+            .GetAll(includes)
             .Where(x => !x.Removido 
-                        && x.VoluntariosMinisterios.Any(vm => vm.MinisterioId == ministerioId && vm.Ativo) 
+                        && x.VoluntarioMinisterios.Any(vm => vm.MinisterioId == ministerioId && vm.Ativo) 
                         && x.Agendamentos.All(a => a.AgendaId != agendaId && !a.Removido && a.Agenda.Ativo && !a.Agenda.Finalizado))
             .ToListAsync();
 

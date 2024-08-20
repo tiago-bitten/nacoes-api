@@ -18,10 +18,12 @@ public class GetAllDataIndisponiveis
     
     public async Task<RespostaBase<List<GetDataIndisponivelDto>>> ExecuteAsync()
     {
-        var totalDataIndisponiveis = _uow.DataIndisponiveis.GetAll()
+        var totalDataIndisponiveis = _uow.DataIndisponiveis
+            .GetAll()
             .Count(x => !x.Removido && !x.Suspenso);
         
-        var dataIndisponiveis = _uow.DataIndisponiveis.GetAll()
+        var dataIndisponiveis = _uow.DataIndisponiveis
+            .GetAll()
             .Where(x => !x.Removido && !x.Suspenso)
             .ToList();
         

@@ -21,8 +21,8 @@ public class CreateMinisterio
     
     public async Task<RespostaBase<GetMinisterioDto>> ExecuteAsync(CreateMinisterioDto dto)
     {
-        var existsMinisterio =
-            await _uow.Ministerios.FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
+        var existsMinisterio = await _uow.Ministerios
+            .FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
         
         if (existsMinisterio != null)
             throw new Exception(MensagemErrosConstant.MinisterioJaExiste);

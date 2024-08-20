@@ -23,7 +23,9 @@ public class CreateGrupo
     
     public async Task<RespostaBase<GetGrupoDto>> ExecuteAsync(CreateGrupoDto dto)
     {
-        var existsGrupo = await _uow.Grupos.FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
+        var existsGrupo = await _uow.Grupos
+            .FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
+        
         if (existsGrupo != null)
             throw new Exception(MensagemErrosConstant.GrupoJaExiste);
         
@@ -34,7 +36,9 @@ public class CreateGrupo
         if (dto.VoluntarioIds != null && dto.VoluntarioIds.Any())
             foreach (var voluntarioId in dto.VoluntarioIds)
             {
-                var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(voluntarioId);
+                var includes = new[] { "GrupoVoluntarios" };
+                
+                var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(voluntarioId, includes);
 
                 if (voluntario.GrupoVoluntarios.Any(x => !x.Removido))
                 {

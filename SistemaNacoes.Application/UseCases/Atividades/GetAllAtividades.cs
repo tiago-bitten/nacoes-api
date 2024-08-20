@@ -18,10 +18,12 @@ public class GetAllAtividades
     
     public async Task<RespostaBase<List<GetAtividadeDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalAtividades = _uow.Atividades.GetAll()
+        var totalAtividades = _uow.Atividades
+            .GetAll()
             .Count(x => !x.Removido);
         
-        var atividades = _uow.Atividades.GetAll()
+        var atividades = _uow.Atividades
+            .GetAll()
             .Where(x => !x.Removido)
             .Skip(query.Skip)
             .Take(query.Take)

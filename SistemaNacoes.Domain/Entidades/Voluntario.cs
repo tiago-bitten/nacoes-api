@@ -21,7 +21,7 @@
 
         public List<GrupoVoluntario> GrupoVoluntarios { get; set; } = new();
 
-        public List<VoluntarioMinisterio> VoluntariosMinisterios { get; set; } = new();
+        public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
         public List<Agendamento> Agendamentos { get; set; } = new();
         public List<DataIndisponivel> DatasIndisponiveis { get; set; } = new();
         public List<EscalaItem> EscalaItens { get; set; } = new();
