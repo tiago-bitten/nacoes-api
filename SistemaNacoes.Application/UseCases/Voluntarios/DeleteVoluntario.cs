@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -17,15 +18,15 @@ public class DeleteVoluntario
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int id)
     {
-        var includes = new[] { "VoluntarioMinisterios" };
+        var includes = new[] { nameof(Voluntario.VoluntarioMinisterios) };
         
         var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(id, includes);
 
-        _uow.Voluntarios.SoftDeleteAsync(voluntario);
+        _uow.Voluntarios.SoftDelete(voluntario);
 
         foreach (var voluntarioMinisterio in voluntario.VoluntarioMinisterios)
         {
-            _uow.VoluntarioMinisterios.SoftDeleteAsync(voluntarioMinisterio);
+            _uow.VoluntarioMinisterios.SoftDelete(voluntarioMinisterio);
         }
         
         await _uow.CommitAsync();

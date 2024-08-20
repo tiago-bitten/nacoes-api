@@ -7,7 +7,7 @@ namespace SistemaNacoes.Domain.Interfaces.Repositorios
         Task AddAsync(T entity);
         void Update(T entity);
         void Delete(T entity);
-        void SoftDeleteAsync(T entity);
+        void SoftDelete(T entity);
         Task<T> GetByIdAsync(int id, params string[]? includes);
         IQueryable<T> GetAll(params string[]? includes);
         Task<T> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes);

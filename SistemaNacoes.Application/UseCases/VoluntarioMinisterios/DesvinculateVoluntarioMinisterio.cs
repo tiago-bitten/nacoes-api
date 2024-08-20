@@ -26,7 +26,7 @@ public class DesvinculateVoluntarioMinisterio
         
         var voluntarioMinisterio = await _voluntarioMinisterioService.GetAndEnsureExistsAsync(voluntarioId, ministerioId, includes);
         
-        _uow.VoluntarioMinisterios.SoftDeleteAsync(voluntarioMinisterio);
+        _uow.VoluntarioMinisterios.SoftDelete(voluntarioMinisterio);
 
         /**
          *  Esse código deve ser movido para um serviço de SituacaoAgendamento

@@ -14,7 +14,7 @@ public class VoluntarioMinisterioRepository : RepositoryBase<VoluntarioMinisteri
     {
     }
 
-    public override void SoftDeleteAsync(VoluntarioMinisterio entity)
+    public override void SoftDelete(VoluntarioMinisterio entity)
     {
         entity.Ativo = false;
         _dbSet.Update(entity);

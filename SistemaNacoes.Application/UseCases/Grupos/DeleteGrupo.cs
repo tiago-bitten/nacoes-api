@@ -23,7 +23,7 @@ public class DeleteGrupo
     {
         var grupo = await _grupoService.GetAndEnsureExistsAsync(id);
         
-        _uow.Grupos.SoftDeleteAsync(grupo);
+        _uow.Grupos.SoftDelete(grupo);
         await _uow.CommitAsync();
         
         var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.DeleteGrupo);

@@ -21,9 +21,11 @@ public class GetAllMinisterios
     {
         var totalMinisterios = await _uow.Ministerios
             .GetAll()
-            .CountAsync();
+            .CountAsync(x => !x.Removido);
         
-        var ministerios = await _uow.Ministerios.GetAll()
+        var ministerios = await _uow.Ministerios
+            .GetAll()
+            .Where(x => !x.Removido)
             .Skip(query.Skip)
             .Take(query.Take)
             .ToListAsync();

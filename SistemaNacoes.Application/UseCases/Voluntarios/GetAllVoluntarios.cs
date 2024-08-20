@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Voluntarios;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -20,15 +21,16 @@ public class GetAllVoluntarios
 
     public async Task<RespostaBase<List<GetVoluntarioDto>>> ExecuteAsync(QueryParametro query)
     {
-        var totalVoluntarios = _uow.Voluntarios
+        var totalVoluntarios = await _uow.Voluntarios
             .GetAll()
-            .Count();
+            .CountAsync(x => !x.Removido);
         
-        var voluntarios = _uow.Voluntarios
+        var voluntarios = await _uow.Voluntarios
             .GetAll()
+            .Where(x => !x.Removido)
             .Skip(query.Skip)
             .Take(query.Take)
-            .ToList();
+            .ToListAsync();
         
         var voluntariosDto = _mapper.Map<List<GetVoluntarioDto>>(voluntarios);
         

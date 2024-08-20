@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Outros;
 using SistemaNacoes.Application.Dtos.Voluntarios;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -30,13 +31,18 @@ public class GetVoluntariosParaAgendar
         var agenda = await _agendaService.GetAndEnsureExistsAsync(agendaId);
         await _ministerioService.GetAndEnsureExistsAsync(ministerioId);
 
-        var includes = new[] { "VoluntarioMinisterios", "Agendamentos", "Agendamentos.Agenda" };
+        var includes = new[]
+        {
+            nameof(Voluntario.VoluntarioMinisterios),
+            nameof(Voluntario.Agendamentos),
+            $"{nameof(Voluntario.Agendamentos)}.{nameof(Agendamento.Agenda)}"
+        };
         
         var voluntarios = await _uow.Voluntarios
             .GetAll(includes)
             .Where(x => !x.Removido 
                         && x.VoluntarioMinisterios.Any(vm => vm.MinisterioId == ministerioId && vm.Ativo) 
-                        && x.Agendamentos.All(a => a.AgendaId != agendaId && !a.Removido && a.Agenda.Ativo && !a.Agenda.Finalizado))
+                        && x.Agendamentos.All(a => a.AgendaId != agendaId || a.Removido))
             .ToListAsync();
 
         var totalVoluntarios = voluntarios.Count;

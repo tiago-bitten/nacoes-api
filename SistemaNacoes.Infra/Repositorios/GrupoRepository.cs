@@ -11,7 +11,7 @@ public class GrupoRepository : RepositoryBase<Grupo>, IGrupoRepository
     {
     }
 
-    public override void SoftDeleteAsync(Grupo entity)
+    public override void SoftDelete(Grupo entity)
     {
         entity.Removido = true;
         

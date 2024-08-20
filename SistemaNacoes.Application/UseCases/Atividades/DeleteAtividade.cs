@@ -23,7 +23,7 @@ public class DeleteAtividade
         if (atividade.Removido)
             throw new Exception(MensagemErrosConstant.AtividadeJaRemovida);
         
-        _uow.Atividades.SoftDeleteAsync(atividade);
+        _uow.Atividades.SoftDelete(atividade);
         await _uow.CommitAsync();
 
         var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.DeleteAtividade);

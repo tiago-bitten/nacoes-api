@@ -21,10 +21,11 @@ public class GetAllAgendas
     {
         var totalAgendas = await _uow.Agendas
             .GetAll()
-            .CountAsync();
+            .CountAsync(x => x.Ativo);
         
         var agendas = await _uow.Agendas
             .GetAll()
+            .Where(x => x.Ativo)
             .Skip(query.Skip)
             .Take(query.Take)
             .ToListAsync();

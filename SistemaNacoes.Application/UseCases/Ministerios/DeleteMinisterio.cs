@@ -26,11 +26,11 @@ public class DeleteMinisterio
         if (ministerio.Removido)
             throw new Exception(MensagemErrosConstant.MinisterioJaRemovido);
         
-        _uow.Ministerios.SoftDeleteAsync(ministerio);
+        _uow.Ministerios.SoftDelete(ministerio);
 
         foreach (var voluntarioMinisterio in ministerio.VoluntarioMinisterios)
         {
-            _uow.VoluntarioMinisterios.SoftDeleteAsync(voluntarioMinisterio);
+            _uow.VoluntarioMinisterios.SoftDelete(voluntarioMinisterio);
         }
         
         await _uow.CommitAsync();

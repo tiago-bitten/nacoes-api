@@ -32,7 +32,7 @@ namespace SistemaNacoes.Infra.Repositorios
             _dbSet.Remove(entity);
         }
 
-        public virtual void SoftDeleteAsync(T entity)
+        public virtual void SoftDelete(T entity)
         {
             var propertyInfo = typeof(T).GetProperty("Removido");
             if (propertyInfo != null && propertyInfo.PropertyType == typeof(bool))

@@ -22,7 +22,7 @@ public class DeleteDataIndisponivel
         if (dataIndisponivel.Removido)
             throw new Exception(MensagemErrosConstant.DataIndisponivelJaRemovido);
             
-        _uow.DataIndisponiveis.SoftDeleteAsync(dataIndisponivel);
+        _uow.DataIndisponiveis.SoftDelete(dataIndisponivel);
         await _uow.CommitAsync();
         
         return new RespostaBase<dynamic>(MensagemRepostasConstant.DeleteDataIndisponivel);
