@@ -48,14 +48,14 @@ namespace SistemaNacoes.Infra.Repositorios
 
         public virtual async Task<T> GetByIdAsync(int id, params string[]? includes)
         {
-            if (includes == null || includes.Length == 0)
-                return await _dbSet.FindAsync(id);
-            
-            var query = _dbSet.AsQueryable();
-            
-            query = includes.Aggregate(query, (current, include) => current.Include(include));
-            
-            return await query.FirstOrDefaultAsync(x => x.GetHashCode() == id);
+            IQueryable<T> query = _context.Set<T>();
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
         }
 
         public virtual IQueryable<T> GetAll(params string[]? includes)

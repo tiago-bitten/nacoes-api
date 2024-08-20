@@ -30,17 +30,17 @@ public class CreateAgendamento
     {
         var voluntarioMinisteriosIncludes = new[] 
             { 
-                nameof(VoluntarioMinisterio.Voluntario.DatasIndisponiveis),
-                nameof(VoluntarioMinisterio.Ministerio.Atividades) 
+                nameof(VoluntarioMinisterio.Voluntario),
+                nameof(VoluntarioMinisterio.Ministerio) 
             };
         
-        var voluntarioMinisterio =
-            await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId, voluntarioMinisteriosIncludes);
-
         var agendaIncludes = new[]
         {
             nameof(Agenda.Agendamentos)
         };
+        
+        var voluntarioMinisterio =
+            await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId, voluntarioMinisteriosIncludes);
         
         var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId, agendaIncludes);
 
