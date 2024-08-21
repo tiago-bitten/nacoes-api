@@ -84,4 +84,4 @@ Este sistema também possui a funcionalidade de gerar escalas automaticamente.
 
 Veja uma demonstração do processo de geração automática de escalas no vídeo abaixo:
 
-[![Demonstração do Processo de Escala](https://cdn.loom.com/sessions/thumbnails/966e77b4523c47d2a2b97bf004280a4f-with-play.gif)](https://www.loom.com/share/966e77b4523c47d2a2b97bf004280a4f)
+[Demonstração do Processo de Escala](https://www.loom.com/share/966e77b4523c47d2a2b97bf004280a4f)
