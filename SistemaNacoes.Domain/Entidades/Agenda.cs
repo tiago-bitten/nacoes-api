@@ -1,22 +1,10 @@
-﻿namespace SistemaNacoes.Domain.Entidades
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+
+namespace SistemaNacoes.Domain.Entidades
 {
-    public class Agenda : EntidadeBase
+    public sealed class Agenda : EntidadeBase
     {
         public Agenda() {}
-        public Agenda(string titulo, string descricao, DateTime dataInicio, DateTime dataFinal)
-        {
-            Titulo = titulo;
-            Descricao = descricao;
-            DataInicio = dataInicio;
-            DataFinal = dataFinal;
-        }
-        
-        public Agenda(string titulo, DateTime dataInicio, DateTime dataFinal)
-        {
-            Titulo = titulo;
-            DataInicio = dataInicio;
-            DataFinal = dataFinal;
-        }
 
         public string Titulo { get; set; }
         public string? Descricao { get; set; }

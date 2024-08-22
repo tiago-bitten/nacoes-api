@@ -1,6 +1,8 @@
-﻿namespace SistemaNacoes.Domain.Entidades
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+
+namespace SistemaNacoes.Domain.Entidades
 {
-    public class Escala : EntidadeBase
+    public sealed class Escala : EntidadeBase
     {
         public Escala() {}
         public Escala(int quantidadeVoluntarios, Agenda agenda, Ministerio ministerio)

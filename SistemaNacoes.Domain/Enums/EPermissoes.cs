@@ -1,0 +1,76 @@
+﻿namespace SistemaNacoes.Domain.Enums;
+
+[Flags]
+public enum EPermissoes : long
+{
+    None = 0L,
+    
+    // Agenda
+    OPEN_AGENDA = 1L << 0, // 1(2^0)
+    CLOSE_AGENDA = 1L << 1, // 2(2^1)
+    FINALIZE_AGENDA = 1L << 2, // 4(2^2)
+    GET_AGENDA = 1L << 3, // 8(2^3)
+    UPDATE_AGENDA = 1L << 4, // 16(2^4)
+    
+    // Agendamento
+    CREATE_AGENDAMENTO = 1L << 5, // 32(2^5)
+    DELETE_AGENDAMENTO = 1L << 6, // 64(2^6)
+    DELETE_AGENDAMENTO_ATIVIDADE = 1L << 7, // 128(2^7)
+    GET_AGENDAMENTO = 1L << 8, // 256(2^8)
+    VINCULATE_AGENDAMENTO_ATIVIDADE = 1L << 9, // 512(2^9)
+    
+    // Atividade
+    CREATE_ATIVIDADE = 1L << 10, // 1024(2^10)
+    DELETE_ATIVIDADE = 1L << 11, // 2048(2^11)
+    GET_ATIVIDADE = 1L << 12, // 4096(2^12)
+    UPDATE_ATIVIDADE = 1L << 13, // 8192(2^13)
+    
+    // Voluntario
+    CREATE_VOLUNTARIO = 1L << 14, // 16384(2^14)
+    DELETE_VOLUNTARIO = 1L << 15, // 32768(2^15)
+    GET_VOLUNTARIO = 1L << 16, // 65536(2^16)
+    UPDATE_VOLUNTARIO = 1L << 17, // 131072(2^17)
+    
+    // Ministerio
+    CREATE_MINISTERIO = 1L << 18, // 262144(2^18)
+    DELETE_MINISTERIO = 1L << 19, // 524288(2^19)
+    GET_MINISTERIO = 1L << 20, // 1048576(2^20)
+    UPDATE_MINISTERIO = 1L << 21, // 2097152(2^21)
+    
+    // VoluntarioMinisterio
+    CREATE_VOLUNTARIO_MINISTERIO = 1L << 22, // 4194304(2^22)
+    DELETE_VOLUNTARIO_MINISTERIO = 1L << 23, // 8388608(2^23)
+    GET_VOLUNTARIO_MINISTERIO = 1L << 24, // 16777216(2^24)
+    
+    // Usuario 
+    CREATE_USUARIO = 1L << 25, // 33554432(2^25)
+    DELETE_USUARIO = 1L << 26, // 67108864(2^26)
+    GET_USUARIO = 1L << 27, // 134217728(2^27)
+    UPDATE_USUARIO = 1L << 28, // 268435456(2^28)
+    
+    // UsuarioMinisterio
+    CREATE_USUARIO_MINISTERIO = 1L << 29, // 536870912(2^29)
+    DELETE_USUARIO_MINISTERIO = 1L << 30, // 1073741824(2^30)
+    GET_USUARIO_MINISTERIO = 1L << 31, // 2147483648(2^31)
+    
+    // Grupo
+    CREATE_GRUPO = 1L << 32, // 4294967296(2^32)
+    DELETE_GRUPO = 1L << 33, // 8589934592(2^33)
+    GET_GRUPO = 1L << 34, // 17179869184(2^34)
+    UPDATE_GRUPO = 1L << 35, // 34359738368(2^35)
+    
+    // GrupoVoluntario
+    CREATE_GRUPO_VOLUNTARIO = 1L << 36, // 68719476736(2^36)
+    DELETE_GRUPO_VOLUNTARIO = 1L << 37, // 137438953472(2^37)
+    GET_GRUPO_VOLUNTARIO = 1L << 38, // 274877906944(2^38)
+    
+    // DataIndisponivel
+    CREATE_DATA_INDISPONIVEL = 1L << 39, // 549755813888(2^39)
+    DELETE_DATA_INDISPONIVEL = 1L << 40, // 1099511627776(2^40)
+    GET_DATA_INDISPONIVEL = 1L << 41, // 2199023255552(2^41)
+    SUSPEND_DATA_INDISPONIVEL = 1L << 42, // 4398046511104(2^42)
+    UPDATE_DATA_INDISPONIVEL = 1L << 43, // 8796093022208(2^43)
+    
+    // Escala
+    CREATE_ESCALA = 1L << 44, // 17592186044416(2^44)
+}

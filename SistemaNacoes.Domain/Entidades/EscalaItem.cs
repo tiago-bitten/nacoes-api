@@ -1,8 +1,9 @@
 ﻿namespace SistemaNacoes.Domain.Entidades
 {
-    public class EscalaItem
+    public sealed class EscalaItem
     {
         public EscalaItem() {}
+        
         public EscalaItem(Escala escala, Atividade atividade, Voluntario voluntario)
         {
             Escala = escala;

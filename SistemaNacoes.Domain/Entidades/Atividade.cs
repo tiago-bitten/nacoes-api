@@ -1,6 +1,8 @@
-﻿namespace SistemaNacoes.Domain.Entidades
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+
+namespace SistemaNacoes.Domain.Entidades
 {
-    public class Atividade : EntidadeBase
+    public sealed class Atividade : EntidadeBase
     {
         public Atividade() {}
         public Atividade(string nome, int maximoVoluntarios, Ministerio ministerio)

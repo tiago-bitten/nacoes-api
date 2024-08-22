@@ -1,6 +1,6 @@
 ﻿namespace SistemaNacoes.Domain.Entidades;
 
-public class AgendamentoAtividade
+public sealed class AgendamentoAtividade
 {
     public AgendamentoAtividade()
     {

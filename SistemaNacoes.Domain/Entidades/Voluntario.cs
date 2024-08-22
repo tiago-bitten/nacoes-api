@@ -2,7 +2,7 @@
 
 namespace SistemaNacoes.Domain.Entidades
 {
-    public class Voluntario : Pessoa
+    public sealed class Voluntario : Pessoa
     {
         public Voluntario() {}
         

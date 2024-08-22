@@ -1,6 +1,8 @@
-﻿namespace SistemaNacoes.Domain.Entidades;
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
 
-public class SituacaoAgendamento : EntidadeBase
+namespace SistemaNacoes.Domain.Entidades;
+
+public sealed class SituacaoAgendamento : EntidadeBase
 {
     public SituacaoAgendamento()
     {

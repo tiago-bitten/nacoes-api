@@ -1,14 +1,10 @@
-﻿namespace SistemaNacoes.Domain.Entidades
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+
+namespace SistemaNacoes.Domain.Entidades
 {
-    public class Ministerio : EntidadeBase
+    public sealed class Ministerio : EntidadeBase
     {
         public Ministerio() {}
-        public Ministerio(string nome, string descricao, string cor)
-        {
-            Nome = nome;
-            Descricao = descricao;
-            Cor = cor;
-        }
         
         public string Nome { get; set; }
         public string Descricao { get; set; }

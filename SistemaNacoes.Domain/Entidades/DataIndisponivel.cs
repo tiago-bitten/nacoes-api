@@ -1,6 +1,8 @@
-﻿namespace SistemaNacoes.Domain.Entidades
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+
+namespace SistemaNacoes.Domain.Entidades
 {
-    public class DataIndisponivel : EntidadeBase
+    public sealed class DataIndisponivel : EntidadeBase
     {
         public DataIndisponivel() {}
         public DataIndisponivel(Voluntario voluntario, DateTime dataInicio, DateTime dataFinal)

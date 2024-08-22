@@ -1,6 +1,8 @@
-﻿namespace SistemaNacoes.Domain.Entidades
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+
+namespace SistemaNacoes.Domain.Entidades
 {
-    public class Grupo : EntidadeBase
+    public sealed class Grupo : EntidadeBase
     {
         public Grupo() {}
         public Grupo(string nome)

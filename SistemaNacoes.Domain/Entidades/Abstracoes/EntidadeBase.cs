@@ -1,4 +1,4 @@
-﻿namespace SistemaNacoes.Domain.Entidades;
+﻿namespace SistemaNacoes.Domain.Entidades.Abstracoes;
 
 public abstract class EntidadeBase
 {

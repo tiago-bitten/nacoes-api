@@ -2,7 +2,7 @@
 
 namespace SistemaNacoes.Domain.Entidades
 {
-    public class Usuario : Pessoa
+    public sealed class Usuario : Pessoa
     {
         public Usuario() {}
         

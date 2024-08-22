@@ -1,6 +1,6 @@
 ﻿namespace SistemaNacoes.Domain.Entidades
 {
-    public class VoluntarioMinisterio
+    public sealed class VoluntarioMinisterio
     {
         public VoluntarioMinisterio() {}
         public VoluntarioMinisterio(Voluntario voluntario, Ministerio ministerio)
@@ -17,3 +17,5 @@
         public Ministerio Ministerio { get; set; }
     }
 }
+
+
