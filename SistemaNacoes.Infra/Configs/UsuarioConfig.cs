@@ -43,6 +43,11 @@ public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
             .HasColumnType("VARCHAR(900)")
             .HasColumnName("senha_hash")
             .IsRequired();
+        
+        builder.Property(x => x.Permissoes)
+            .HasColumnType("BIGINT")
+            .HasColumnName("permissoes")
+            .IsRequired();
 
         builder.Property(x => x.Removido)
             .HasColumnType("BOOLEAN")
