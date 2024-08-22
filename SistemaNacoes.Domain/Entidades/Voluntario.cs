@@ -1,22 +1,12 @@
-﻿namespace SistemaNacoes.Domain.Entidades
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+
+namespace SistemaNacoes.Domain.Entidades
 {
-    public class Voluntario : EntidadeBase
+    public class Voluntario : Pessoa
     {
         public Voluntario() {}
         
-        public Voluntario(string nome, string email, string cpf, DateTime dataNascimento)
-        {
-            Nome = nome;
-            Email = email;
-            Cpf = cpf;
-            DataNascimento = dataNascimento;
-        }
-        
         public Guid ChaveAcesso { get; set; } = Guid.NewGuid();
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string? Cpf { get; set; }
-        public DateTime? DataNascimento { get; set; }
         public bool Removido { get; set; } = false;
 
         public List<GrupoVoluntario> GrupoVoluntarios { get; set; } = new();

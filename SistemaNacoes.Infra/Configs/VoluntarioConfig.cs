@@ -24,12 +24,15 @@ public class VoluntarioConfig : IEntityTypeConfiguration<Voluntario>
 
         builder.Property(x => x.Email)
             .HasColumnType("VARCHAR(150)")
-            .HasColumnName("email")
-            .IsRequired();
+            .HasColumnName("email");
 
         builder.Property(x => x.Cpf)
             .HasColumnType("VARCHAR(150)")
             .HasColumnName("cpf");
+        
+        builder.Property(x => x.Celular)
+            .HasColumnType("VARCHAR(15)")
+            .HasColumnName("celular");
 
         builder.Property(x => x.ChaveAcesso)
             .HasColumnType("UUID")

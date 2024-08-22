@@ -22,12 +22,24 @@ public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
             .HasColumnName("nome")
             .IsRequired();
 
+        builder.Property(x => x.Cpf)
+            .HasColumnType("VARCHAR(11)")
+            .HasColumnName("cpf");
+        
+        builder.Property(x => x.Celular)
+            .HasColumnType("VARCHAR(15)")
+            .HasColumnName("celular");
+
+        builder.Property(x => x.DataNascimento)
+            .HasColumnType("DATE")
+            .HasColumnName("data_nascimento");
+
         builder.Property(x => x.Email)
             .HasColumnType("VARCHAR(150)")
             .HasColumnName("email")
             .IsRequired();
 
-        builder.Property(x => x.Senha)
+        builder.Property(x => x.SenhaHash)
             .HasColumnType("VARCHAR(900)")
             .HasColumnName("senha_hash")
             .IsRequired();

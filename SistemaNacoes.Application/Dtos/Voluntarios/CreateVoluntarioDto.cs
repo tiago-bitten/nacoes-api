@@ -13,6 +13,9 @@ public class CreateVoluntarioDto
     [JsonPropertyName("Cpf")]
     public string? Cpf { get; set; }
     
+    [JsonPropertyName("Celular")]
+    public string? Celular { get; set; }
+    
     [JsonPropertyName("DataNascimento")]
     public DateTime? DataNascimento { get; set; }
 }

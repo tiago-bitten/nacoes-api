@@ -22,7 +22,7 @@ public class CreateDataIndisponivel
     
     public async Task<RespostaBase<GetDataIndisponivelDto>> ExecuteAsync(CreateDataIndisponivelDto dto)
     {
-        var voluntario = await _voluntarioService.GetByChaveAcessoAsync(dto.VoluntarioChaveAcesso);
+        var voluntario = await _voluntarioService.GetByChaveAcessoAsync(Guid.Parse(dto.VoluntarioChaveAcesso.ToString()));
         
         if (dto.DataFinal < dto.DataInicio)
             throw new Exception("Data final não pode ser menor que a data inicial");
@@ -34,6 +34,12 @@ public class CreateDataIndisponivel
         await _uow.DataIndisponiveis.AddAsync(dataIndisponivel);
         await _uow.CommitAsync();
 
-        return new RespostaBase<GetDataIndisponivelDto>(MensagemRepostasConstant.CreateDataIndisponivel);
+        var dataIndisponivelDto = _mapper.Map<GetDataIndisponivelDto>(dataIndisponivel);
+
+        var respostaBase =
+            new RespostaBase<GetDataIndisponivelDto>(MensagemRepostasConstant.CreateDataIndisponivel,
+                dataIndisponivelDto);
+
+        return respostaBase;
     }
 }
