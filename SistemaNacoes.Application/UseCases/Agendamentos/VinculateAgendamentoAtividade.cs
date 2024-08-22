@@ -29,7 +29,7 @@ public class VinculateAgendamentoAtividade
         var agendamentoIncludes = new[]
         {
             nameof(Agendamento.AgendamentoAtividades),
-            nameof(Agendamento.Ministerio.Atividades)
+            $"{nameof(Agendamento.Ministerio)}.{nameof(Ministerio.Atividades)}"
         };
         var agendamento = await _agendamentoService.GetAndEnsureExistsAsync(dto.AgendamentoId, agendamentoIncludes);
         
