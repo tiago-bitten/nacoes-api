@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Grupos;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 
 namespace SistemaNacoes.Application.UseCases.Grupos;
@@ -19,14 +20,18 @@ public class GetAllGrupos
 
     public async Task<RespostaBase<List<GetGrupoDto>>> ExecuteAsync(QueryParametro query)
     {
+        var includes = new[]
+        {
+            nameof(Grupo.MinisterioPreferencial)
+        };
+        
         var totalGrupos = await _uow.Grupos
-            .GetAll()
+            .GetAll(includes)
             .CountAsync(x => !x.Removido);
         
         var grupos = await _uow.Grupos
-            .GetAll()
+            .GetAll(includes)
             .Where(x => !x.Removido)
-            .OrderBy(x => x.Nome)
             .Skip(query.Skip)
             .Take(query.Take)
             .ToListAsync();

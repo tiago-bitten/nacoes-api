@@ -6,6 +6,7 @@ using SistemaNacoes.Application.UseCases.Agendas;
 using SistemaNacoes.Application.UseCases.Atividades;
 using SistemaNacoes.Application.UseCases.DataIndisponiveis;
 using SistemaNacoes.Application.UseCases.Grupos;
+using SistemaNacoes.Application.UseCases.GrupoVoluntarios;
 using SistemaNacoes.Application.UseCases.Ministerios;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios;
 using SistemaNacoes.Application.UseCases.Voluntarios;
@@ -85,6 +86,7 @@ builder.Services.AddScoped<VinculateVoluntarioGrupo>();
 builder.Services.AddScoped<VinculateAgendamentoAtividade>();
 builder.Services.AddScoped<DeleteAgendamentoAtividade>();
 builder.Services.AddScoped<GetVoluntariosParaAgendar>();
+builder.Services.AddScoped<GetVoluntariosNoGrupo>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));

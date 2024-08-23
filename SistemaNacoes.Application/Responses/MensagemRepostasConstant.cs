@@ -57,4 +57,7 @@ public static class MensagemRepostasConstant
     public const string GetGrupos = "Grupos listados com sucesso";
     public const string DeleteGrupo = "Grupo deletado com sucesso";
     public const string VinculateVoluntarioGrupo = "Voluntário vinculado ao grupo com sucesso";
+    
+    //GrupoVoluntarios
+    public const string GetVoluntariosNoGrupo = "Voluntários no grupo listados com sucesso";
 }
