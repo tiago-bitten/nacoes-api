@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Agendas;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 
 namespace SistemaNacoes.Application.UseCases.Agendas;
@@ -17,18 +19,14 @@ public class GetAllAgendas
         _mapper = mapper;
     }
     
-    public async Task<RespostaBase<List<GetAgendaDto>>> ExecuteAsync(QueryParametro query)
+    public async Task<RespostaBase<List<GetAgendaDto>>> ExecuteAsync(int mes, int ano)
     {
-        var totalAgendas = await _uow.Agendas
+        var query = _uow.Agendas
             .GetAll()
-            .CountAsync(x => x.Ativo);
-        
-        var agendas = await _uow.Agendas
-            .GetAll()
-            .Where(x => x.Ativo)
-            .Skip(query.Skip)
-            .Take(query.Take)
-            .ToListAsync();
+            .Where(GetCondicao(mes, ano));
+
+        var totalAgendas = await query.CountAsync();
+        var agendas = await query.ToListAsync();
         
         var agendasDto = _mapper.Map<List<GetAgendaDto>>(agendas);
         
@@ -36,5 +34,10 @@ public class GetAllAgendas
             MensagemRepostasConstant.GetAgendas, agendasDto, totalAgendas);
         
         return respostaBase;
+    }
+    
+    private static Expression<Func<Agenda, bool>> GetCondicao(int mes, int ano)
+    {
+        return x => x.Ativo && x.DataInicio.Month == mes && x.DataInicio.Year == ano;
     }
 }

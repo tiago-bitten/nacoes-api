@@ -48,9 +48,9 @@ namespace SistemaNacoes.API.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] QueryParametro query)
+        public async Task<IActionResult> Get([FromQuery] int mes, int ano)
         {
-            var result = await _getAllAgendas.ExecuteAsync(query);
+            var result = await _getAllAgendas.ExecuteAsync(mes, ano);
 
             return Ok(result);
         }

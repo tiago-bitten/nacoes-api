@@ -28,7 +28,7 @@ public class GetAllAgendamentos
         };
         
         var totalAgendamentos = await _uow.Agendamentos
-            .GetAll(includes)
+            .GetAll()
             .CountAsync(x => !x.Removido);
         
         var agendamentos = await _uow.Agendamentos
