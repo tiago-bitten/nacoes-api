@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Grupos;
 using SistemaNacoes.Application.Responses;
@@ -18,28 +19,39 @@ public class GetAllGrupos
         _mapper = mapper;
     }
 
-    public async Task<RespostaBase<List<GetGrupoDto>>> ExecuteAsync(QueryParametro query)
+    public async Task<RespostaBase<List<GetGrupoDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
-        var includes = new[]
-        {
-            nameof(Grupo.MinisterioPreferencial)
-        };
+        var includes = GetIncludes();
         
-        var totalGrupos = await _uow.Grupos
+        var query = _uow.Grupos
             .GetAll(includes)
-            .CountAsync(x => !x.Removido);
+            .Where(GetCondicao());
         
-        var grupos = await _uow.Grupos
-            .GetAll(includes)
-            .Where(x => !x.Removido)
-            .Skip(query.Skip)
-            .Take(query.Take)
+        var totalGrupos = await query.CountAsync(x => !x.Removido);
+        
+        var grupos = await query
+            .Skip(queryParametro.Skip)
+            .Take(queryParametro.Take)
             .ToListAsync();
         
         var gruposDto = _mapper.Map<List<GetGrupoDto>>(grupos);
         
-        var respostaBase = new RespostaBase<List<GetGrupoDto>>(MensagemRepostasConstant.GetGrupos, gruposDto, totalGrupos);
+        var respostaBase = new RespostaBase<List<GetGrupoDto>>(
+            MensagemRepostasConstant.GetGrupos, gruposDto, totalGrupos);
         
         return respostaBase;
+    }
+    
+    private static Expression<Func<Grupo, bool>> GetCondicao()
+    {
+        return x => !x.Removido;
+    }
+    
+    private static string[] GetIncludes()
+    {
+        return new[]
+        {
+            nameof(Grupo.MinisterioPreferencial)
+        };
     }
 }
