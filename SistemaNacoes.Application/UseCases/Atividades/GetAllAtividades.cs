@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Atividades;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 
 namespace SistemaNacoes.Application.UseCases.Atividades;
@@ -17,17 +19,17 @@ public class GetAllAtividades
         _mapper = mapper;
     }
     
-    public async Task<RespostaBase<List<GetAtividadeDto>>> ExecuteAsync(QueryParametro query)
+    public async Task<RespostaBase<List<GetAtividadeDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
-        var totalAtividades = await _uow.Atividades
+        var query = _uow.Atividades
             .GetAll()
-            .CountAsync(x => !x.Removido);
+            .Where(GetCondicao());
         
-        var atividades = await _uow.Atividades
-            .GetAll()
-            .Where(x => !x.Removido)
-            .Skip(query.Skip)
-            .Take(query.Take)
+        var totalAtividades = await query.CountAsync();
+        
+        var atividades = await query
+            .Skip(queryParametro.Skip)
+            .Take(queryParametro.Take)
             .ToListAsync();
         
         var atividadesDto = _mapper.Map<List<GetAtividadeDto>>(atividades);
@@ -35,5 +37,10 @@ public class GetAllAtividades
         var respostaBase = new RespostaBase<List<GetAtividadeDto>>(MensagemRepostasConstant.GetAtividades, atividadesDto, totalAtividades);
         
         return respostaBase;
+    }
+
+    private static Expression<Func<Atividade, bool>> GetCondicao()
+    {
+        return x => !x.Removido;
     }
 }
