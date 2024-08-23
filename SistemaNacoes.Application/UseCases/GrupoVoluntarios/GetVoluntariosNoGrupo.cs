@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Grupos;
 using SistemaNacoes.Application.Dtos.GrupoVoluntarios;
 using SistemaNacoes.Application.Dtos.Voluntarios;
@@ -24,33 +26,38 @@ public class GetVoluntariosNoGrupo
 
     public async Task<RespostaBase<GetVoluntariosNoGrupoDto>> ExecuteAsync(int grupoId)
     {
-        var includes = new[]
-        {
-            nameof(Grupo.GrupoVoluntarios),
-            nameof(Grupo.MinisterioPreferencial),
-            $"{nameof(Grupo.GrupoVoluntarios)}.{nameof(GrupoVoluntario.Voluntario)}",
-        };
+        var includes = GetIncludes();
         
         var grupo = await _grupoService.GetAndEnsureExistsAsync(grupoId, includes);
-        
-        var voluntarios = grupo.GrupoVoluntarios
+
+        var voluntariosNoGrupo = grupo.GrupoVoluntarios
             .Where(x => !x.Removido)
             .Select(x => x.Voluntario)
+            .OrderBy(x => x.Nome)
             .ToList();
+
+        var totalVoluntariosNoGrupo = voluntariosNoGrupo.Count;
         
         var grupoDto = _mapper.Map<GetGrupoDto>(grupo);
-        var simpVoluntariosDto = _mapper.Map<List<GetSimpVoluntarioDto>>(voluntarios);
+        var simpVoluntariosDto = _mapper.Map<List<GetSimpVoluntarioDto>>(voluntariosNoGrupo);
 
-        var voluntariosNoGrupoDto = new GetVoluntariosNoGrupoDto()
+        var voluntariosNoGrupoDto = new GetVoluntariosNoGrupoDto
         {
             Grupo = grupoDto,
             Voluntarios = simpVoluntariosDto
         };
         
-        var respostaBase = new RespostaBase<GetVoluntariosNoGrupoDto>(
-            MensagemRepostasConstant.GetVoluntariosNoGrupo, voluntariosNoGrupoDto);
-        
-        return respostaBase;
-
+        return new RespostaBase<GetVoluntariosNoGrupoDto>(
+            MensagemRepostasConstant.GetVoluntariosNoGrupo, voluntariosNoGrupoDto, totalVoluntariosNoGrupo);
+    }
+    
+    private static string[] GetIncludes()
+    {
+        return new[]
+        {
+            nameof(Grupo.GrupoVoluntarios),
+            nameof(Grupo.MinisterioPreferencial),
+            $"{nameof(Grupo.GrupoVoluntarios)}.{nameof(GrupoVoluntario.Voluntario)}",
+        };
     }
 }
