@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Outros;
 using SistemaNacoes.Application.Dtos.Voluntarios;
@@ -26,26 +27,20 @@ public class GetVoluntariosParaAgendar
         _dataIndisponivelService = dataIndisponivelService;
     }
 
+    // TODO: Refatorar esse UseCase, lógica está muito acoplada no método ExecuteAsync
     public async Task<RespostaBase<List<GetVoluntarioParaAgendarDto>>> ExecuteAsync(int agendaId, int ministerioId)
     {
+        var includes = GetIncludes();
+        
         var agenda = await _agendaService.GetAndEnsureExistsAsync(agendaId);
         await _ministerioService.GetAndEnsureExistsAsync(ministerioId);
-
-        var includes = new[]
-        {
-            nameof(Voluntario.VoluntarioMinisterios),
-            nameof(Voluntario.Agendamentos),
-            $"{nameof(Voluntario.Agendamentos)}.{nameof(Agendamento.Agenda)}"
-        };
         
-        var voluntarios = await _uow.Voluntarios
+        var query = _uow.Voluntarios
             .GetAll(includes)
-            .Where(x => !x.Removido 
-                        && x.VoluntarioMinisterios.Any(vm => vm.MinisterioId == ministerioId && vm.Ativo)
-                        && (!x.Agendamentos.Any() || x.Agendamentos.All(a => a.AgendaId != agendaId || a.Removido)))
-            .ToListAsync();
-
-        var totalVoluntarios = voluntarios.Count;
+            .Where(GetVoluntariosParaAgendarCondicao(ministerioId, agendaId));
+        
+        var totalVoluntarios = await query.CountAsync();
+        var voluntarios = await query.ToListAsync();
         
         var getVoluntariosParaAgendarDtos = new List<GetVoluntarioParaAgendarDto>();
         
@@ -75,5 +70,23 @@ public class GetVoluntariosParaAgendar
         var respostaBase = new RespostaBase<List<GetVoluntarioParaAgendarDto>>(MensagemRepostasConstant.GetVoluntariosParaAgendar, getVoluntariosParaAgendarDtos, totalVoluntarios);
         
         return respostaBase;
+    }
+    
+    private static Expression<Func<Voluntario, bool>> GetVoluntariosParaAgendarCondicao(int ministerioId, int agendaId)
+    {
+        return x => 
+            !x.Removido 
+                && x.VoluntarioMinisterios.Any(vm => vm.MinisterioId == ministerioId && vm.Ativo)
+                && (!x.Agendamentos.Any() || x.Agendamentos.All(a => a.AgendaId != agendaId || a.Removido));
+    }
+    
+    private static string[] GetIncludes()
+    {
+        return new[]
+        {
+            nameof(Voluntario.VoluntarioMinisterios),
+            nameof(Voluntario.Agendamentos),
+            $"{nameof(Voluntario.Agendamentos)}.{nameof(Agendamento.Agenda)}"
+        };
     }
 }
