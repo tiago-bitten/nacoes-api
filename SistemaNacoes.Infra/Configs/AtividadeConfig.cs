@@ -23,7 +23,7 @@ public class AtividadeConfig : IEntityTypeConfiguration<Atividade>
             .IsRequired();
 
         builder.Property(x => x.MaximoVoluntarios)
-            .HasColumnType("VARCHAR(150)")
+            .HasColumnType("INT")
             .HasColumnName("maximo_voluntarios")
             .IsRequired();
 

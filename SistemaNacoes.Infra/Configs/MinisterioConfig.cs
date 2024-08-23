@@ -21,6 +21,10 @@ public class MinisterioConfig : IEntityTypeConfiguration<Ministerio>
             .HasColumnType("VARCHAR(150)")
             .HasColumnName("nome")
             .IsRequired();
+        
+        builder.Property(x => x.Descricao)
+            .HasColumnType("VARCHAR(255)")
+            .HasColumnName("descricao");
 
         builder.Property(x => x.Cor)
             .HasColumnType("VARCHAR(7)")
