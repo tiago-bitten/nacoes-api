@@ -26,38 +26,54 @@ public class GetVoluntariosNoGrupo
 
     public async Task<RespostaBase<GetVoluntariosNoGrupoDto>> ExecuteAsync(int grupoId)
     {
-        var includes = GetIncludes();
+        var grupoIncludes = GetGrupoIncludes();
+        var grupoVolutariosIncludes = GetGrupoVoluntariosIncludes();
         
-        var grupo = await _grupoService.GetAndEnsureExistsAsync(grupoId, includes);
+        var grupo = await _grupoService.GetAndEnsureExistsAsync(grupoId, grupoIncludes);
 
-        var voluntariosNoGrupo = grupo.GrupoVoluntarios
-            .Where(x => !x.Removido)
+        var query = _uow.GrupoVoluntarios
+            .GetAll(grupoVolutariosIncludes)
+            .Where(GetCondicao(grupo.Id))
             .Select(x => x.Voluntario)
-            .OrderBy(x => x.Nome)
-            .ToList();
-
-        var totalVoluntariosNoGrupo = voluntariosNoGrupo.Count;
+            .OrderBy(x => x.Nome);
+        
+        var totalVoluntariosNoGrupo = await query.CountAsync();
+        var voluntariosNoGrupo = await query.ToListAsync();
         
         var grupoDto = _mapper.Map<GetGrupoDto>(grupo);
         var simpVoluntariosDto = _mapper.Map<List<GetSimpVoluntarioDto>>(voluntariosNoGrupo);
 
-        var voluntariosNoGrupoDto = new GetVoluntariosNoGrupoDto
+        var voluntariosNoGrupoDto = new GetVoluntariosNoGrupoDto()
         {
             Grupo = grupoDto,
             Voluntarios = simpVoluntariosDto
         };
         
-        return new RespostaBase<GetVoluntariosNoGrupoDto>(
+        var respostaBase = new RespostaBase<GetVoluntariosNoGrupoDto>(
             MensagemRepostasConstant.GetVoluntariosNoGrupo, voluntariosNoGrupoDto, totalVoluntariosNoGrupo);
+        
+        return respostaBase;
+
     }
     
-    private static string[] GetIncludes()
+    private static Expression<Func<GrupoVoluntario, bool>> GetCondicao(int grupoId)
+    {
+        return x => !x.Removido && x.GrupoId == grupoId;
+    }
+    
+    private static string[] GetGrupoIncludes()
     {
         return new[]
         {
-            nameof(Grupo.GrupoVoluntarios),
             nameof(Grupo.MinisterioPreferencial),
-            $"{nameof(Grupo.GrupoVoluntarios)}.{nameof(GrupoVoluntario.Voluntario)}",
+        };
+    }
+    
+    private static string[] GetGrupoVoluntariosIncludes()
+    {
+        return new[]
+        {
+            nameof(GrupoVoluntario.Voluntario)
         };
     }
 }
