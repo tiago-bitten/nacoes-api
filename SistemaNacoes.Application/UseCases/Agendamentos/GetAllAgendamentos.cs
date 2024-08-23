@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Agendamentos;
 using SistemaNacoes.Application.Responses;
@@ -18,24 +19,19 @@ public class GetAllAgendamentos
         _mapper = mapper;
     }
     
-    public async Task<RespostaBase<List<GetAgendamentoDto>>> ExecuteAsync(QueryParametro query)
+    public async Task<RespostaBase<List<GetAgendamentoDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
-        var includes = new[]
-        {
-            nameof(Agendamento.Voluntario),
-            nameof(Agendamento.Ministerio),
-            $"{nameof(Agendamento.AgendamentoAtividades)}.{nameof(AgendamentoAtividade.Atividade)}"
-        };
+        var includes = GetIncludes();
         
-        var totalAgendamentos = await _uow.Agendamentos
-            .GetAll()
-            .CountAsync(x => !x.Removido);
-        
-        var agendamentos = await _uow.Agendamentos
+        var query = _uow.Agendamentos
             .GetAll(includes)
-            .Where(x => !x.Removido)
-            .Skip(query.Skip)
-            .Take(query.Take)
+            .Where(GetCondicao());
+        
+        var totalAgendamentos = await query.CountAsync();
+        
+        var agendamentos = await query
+            .Skip(queryParametro.Skip)
+            .Take(queryParametro.Take)
             .ToListAsync();
         
         var agendamentosDto = _mapper.Map<List<GetAgendamentoDto>>(agendamentos);
@@ -44,5 +40,20 @@ public class GetAllAgendamentos
             MensagemRepostasConstant.GetAgendamentos, agendamentosDto, totalAgendamentos);
         
         return respostaBase;
+    }
+    
+    private static Expression<Func<Agendamento, bool>> GetCondicao()
+    {
+        return x => !x.Removido;
+    }
+    
+    private static string[] GetIncludes()
+    {
+        return new[]
+        {
+            nameof(Agendamento.Voluntario),
+            nameof(Agendamento.Ministerio),
+            $"{nameof(Agendamento.AgendamentoAtividades)}.{nameof(AgendamentoAtividade.Atividade)}"
+        };
     }
 }
