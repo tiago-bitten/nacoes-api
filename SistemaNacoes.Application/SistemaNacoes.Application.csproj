@@ -14,10 +14,6 @@
     <ProjectReference Include="..\SistemaNacoes.Domain\SistemaNacoes.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Auth\" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

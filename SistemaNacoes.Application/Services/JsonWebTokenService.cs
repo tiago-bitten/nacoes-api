@@ -21,14 +21,16 @@ public class JsonWebTokenService : ITokenService
         _configuration = configuration;
     }
 
-    public string GenerateAccessToken(string principal)
+    public string GenerateAccessToken(Usuario usuario)
     {
         var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
         var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
         var claims = new[]
         {
-            new Claim(ClaimTypes.Name, principal)
+            new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+            new Claim(ClaimTypes.Name, usuario.Email),
+            new Claim(ClaimTypes.Role, usuario.Permissoes.ToString())
         };
 
         var tokenOptions = new JwtSecurityToken(

@@ -39,4 +39,7 @@ public static class MensagemErrosConstant
     
     // Grupo Voluntarios
     public const string VoluntarioJaPossuiGrupo = "Voluntário já possui grupo";
+    
+    // Auth
+    public const string RefreshTokenNaoEncontrado = "Faça login novamente";
 }

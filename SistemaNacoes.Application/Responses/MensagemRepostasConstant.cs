@@ -60,4 +60,7 @@ public static class MensagemRepostasConstant
     
     //GrupoVoluntarios
     public const string GetVoluntariosNoGrupo = "Voluntários no grupo listados com sucesso";
+    
+    // Auth
+    public const string GetAuthToken = "Tokens gerados com sucesso";
 }
