@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Agendamentos;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
@@ -28,16 +29,8 @@ public class CreateAgendamento
     
     public async Task<RespostaBase<GetAgendamentoDto>> ExecuteAsync(CreateAgendamentoDto dto)
     {
-        var voluntarioMinisteriosIncludes = new[] 
-            { 
-                nameof(VoluntarioMinisterio.Voluntario),
-                nameof(VoluntarioMinisterio.Ministerio) 
-            };
-        
-        var agendaIncludes = new[]
-        {
-            nameof(Agenda.Agendamentos)
-        };
+        var voluntarioMinisteriosIncludes = GetVoluntarioMinisterioIncludes();
+        var agendaIncludes = GetAgendaIncludes();
         
         var voluntarioMinisterio =
             await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId, voluntarioMinisteriosIncludes);
@@ -47,8 +40,15 @@ public class CreateAgendamento
         if (!agenda.Ativo || agenda.Finalizado)
             throw new Exception(MensagemErrosConstant.AgendaNaoDisponivel);
         
-        var exitsAgendamento = agenda.Agendamentos.Exists(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
-        if (exitsAgendamento)
+        // Em memória
+        // var existsAgendamento = agenda.Agendamentos.Exists(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
+
+        // Em banco
+        var existsAgendamento = await _uow.Agendamentos
+            .GetAll()
+            .AnyAsync(x => x.AgendaId == agenda.Id && x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
+        
+        if (existsAgendamento)
             throw new Exception(MensagemErrosConstant.AgendamentoJaExiste);
 
         var agendamentoValidado = await _dataIndisponivelService.EnsureDateIsAvailable(agenda.Id, voluntarioMinisterio.Voluntario.Id);
@@ -66,8 +66,17 @@ public class CreateAgendamento
             foreach (var atividadeId in dto.AtividadeIds)
             {
                 var atividade = await _atividadeService.GetAndEnsureExistsAsync(atividadeId);
-                var existsAtividade = voluntarioMinisterio.Ministerio.Atividades.Any(a => a.Id == atividade.Id);
+                
+                // Em memória
+                // var existsAtividade = voluntarioMinisterio.Ministerio.Atividades.Any(a => a.Id == atividade.Id);
 
+                // Em banco
+                var existsAtividade = await _uow.Atividades
+                    .GetAll()
+                    .AnyAsync(x => x.Id == atividade.Id 
+                                   && x.MinisterioId == voluntarioMinisterio.MinisterioId 
+                                   && !x.Removido);
+                
                 if (!existsAtividade)
                 {
                     _uow.RollBack();
@@ -83,5 +92,22 @@ public class CreateAgendamento
         var agendamentoDto = _mapper.Map<GetAgendamentoDto>(agendamento);
 
         return new RespostaBase<GetAgendamentoDto>(MensagemRepostasConstant.CreateAgendamento, agendamentoDto);
+    }
+
+    private static string[] GetVoluntarioMinisterioIncludes()
+    {
+        return new[]
+        {
+            nameof(VoluntarioMinisterio.Voluntario),
+            nameof(VoluntarioMinisterio.Ministerio)
+        };
+    }
+    
+    private static string[] GetAgendaIncludes()
+    {
+        return new[]
+        {
+            nameof(Agenda.Agendamentos)
+        };
     }
 }
