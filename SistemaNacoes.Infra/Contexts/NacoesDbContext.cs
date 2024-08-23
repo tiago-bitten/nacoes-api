@@ -26,6 +26,7 @@ public class NacoesDbContext : DbContext
     public DbSet<AgendamentoAtividade> AgendamentoAtividades { get; set; }
     public DbSet<SituacaoAgendamento> SituacaoAgendamentos { get; set; }
     public DbSet<GrupoVoluntario> GrupoVoluntarios { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,6 +45,7 @@ public class NacoesDbContext : DbContext
         modelBuilder.ApplyConfiguration(new AgendamentoAtividadeConfig());
         modelBuilder.ApplyConfiguration(new SituacaoAgendamentoConfig());
         modelBuilder.ApplyConfiguration(new GrupoVoluntarioConfig());
+        modelBuilder.ApplyConfiguration(new RefreshTokenConfig());
         
         base.OnModelCreating(modelBuilder);
     }
