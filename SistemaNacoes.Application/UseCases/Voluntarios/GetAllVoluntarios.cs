@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Voluntarios;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 
 namespace SistemaNacoes.Application.UseCases.Voluntarios;
@@ -19,17 +21,18 @@ public class GetAllVoluntarios
         _mapper = mapper;
     }
 
-    public async Task<RespostaBase<List<GetVoluntarioDto>>> ExecuteAsync(QueryParametro query)
+    public async Task<RespostaBase<List<GetVoluntarioDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
-        var totalVoluntarios = await _uow.Voluntarios
+        var query = _uow.Voluntarios
             .GetAll()
+            .Where(GetCondicao());
+        
+        var totalVoluntarios = await query
             .CountAsync(x => !x.Removido);
         
-        var voluntarios = await _uow.Voluntarios
-            .GetAll()
-            .Where(x => !x.Removido)
-            .Skip(query.Skip)
-            .Take(query.Take)
+        var voluntarios = await query
+            .Skip(queryParametro.Skip)
+            .Take(queryParametro.Take)
             .ToListAsync();
         
         var voluntariosDto = _mapper.Map<List<GetVoluntarioDto>>(voluntarios);
@@ -38,5 +41,10 @@ public class GetAllVoluntarios
             MensagemRepostasConstant.GetVoluntarios, voluntariosDto, totalVoluntarios);
         
         return respostaBase;
+    }
+    
+    private static Expression<Func<Voluntario, bool>> GetCondicao()
+    {
+        return x => !x.Removido;
     }
 }
