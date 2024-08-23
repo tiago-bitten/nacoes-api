@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.DataIndisponiveis;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 
 namespace SistemaNacoes.Application.UseCases.DataIndisponiveis;
@@ -19,19 +21,24 @@ public class GetAllDataIndisponiveis
     
     public async Task<RespostaBase<List<GetDataIndisponivelDto>>> ExecuteAsync()
     {
-        var totalDataIndisponiveis = await _uow.DataIndisponiveis
+        var query = _uow.DataIndisponiveis
             .GetAll()
-            .CountAsync(x => !x.Removido && !x.Suspenso);
+            .Where(GetCondicao());
         
-        var dataIndisponiveis = await _uow.DataIndisponiveis
-            .GetAll()
-            .Where(x => !x.Removido && !x.Suspenso)
-            .ToListAsync();
+        var totalDataIndisponiveis = await query.CountAsync();
+        
+        var dataIndisponiveis = await query.ToListAsync();
         
         var dataIndisponiveisDto = _mapper.Map<List<GetDataIndisponivelDto>>(dataIndisponiveis);
 
-        var respostaBase = new RespostaBase<List<GetDataIndisponivelDto>>(MensagemRepostasConstant.GetDataIndisponiveis, dataIndisponiveisDto, totalDataIndisponiveis);
+        var respostaBase = new RespostaBase<List<GetDataIndisponivelDto>>(
+            MensagemRepostasConstant.GetDataIndisponiveis, dataIndisponiveisDto, totalDataIndisponiveis);
 
         return respostaBase;
+    }
+    
+    private static Expression<Func<DataIndisponivel, bool>> GetCondicao()
+    {
+        return x => !x.Removido && !x.Suspenso;
     }
 }
