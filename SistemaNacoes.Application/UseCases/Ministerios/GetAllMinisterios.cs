@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Ministerios;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 
 namespace SistemaNacoes.Application.UseCases.Ministerios;
@@ -17,17 +19,17 @@ public class GetAllMinisterios
         _mapper = mapper;
     }
     
-    public async Task<RespostaBase<List<GetMinisterioDto>>> ExecuteAsync(QueryParametro query)
+    public async Task<RespostaBase<List<GetMinisterioDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
-        var totalMinisterios = await _uow.Ministerios
+        var query = _uow.Ministerios
             .GetAll()
-            .CountAsync(x => !x.Removido);
+            .Where(GetCondicao());
         
-        var ministerios = await _uow.Ministerios
-            .GetAll()
-            .Where(x => !x.Removido)
-            .Skip(query.Skip)
-            .Take(query.Take)
+        var totalMinisterios = await query.CountAsync(x => !x.Removido);
+        
+        var ministerios = query
+            .Skip(queryParametro.Skip)
+            .Take(queryParametro.Take)
             .ToListAsync();
         
         var ministeriosDto = _mapper.Map<List<GetMinisterioDto>>(ministerios);
@@ -36,5 +38,10 @@ public class GetAllMinisterios
             MensagemRepostasConstant.GetMinisterios, ministeriosDto, totalMinisterios);
         
         return respostaBase;
+    }
+    
+    private static Expression<Func<Ministerio, bool>> GetCondicao()
+    {
+        return x => !x.Removido;
     }
 }
