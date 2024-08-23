@@ -72,6 +72,7 @@ public class GetVoluntariosParaAgendar
         return respostaBase;
     }
     
+    // CONSULTA001: para buscar voluntários disponíveis para agendamento na agenda e ministério informados
     private static Expression<Func<Voluntario, bool>> GetVoluntariosParaAgendarCondicao(int ministerioId, int agendaId)
     {
         return x => 
