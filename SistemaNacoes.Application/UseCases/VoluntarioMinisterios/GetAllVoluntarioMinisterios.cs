@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.VoluntarioMinisterios;
 using SistemaNacoes.Application.Responses;
@@ -18,23 +19,19 @@ public class GetAllVoluntarioMinisterios
         _mapper = mapper;
     }
     
-    public async Task<RespostaBase<List<GetSimpVoluntarioMinisterioDto>>> ExecuteAsync(QueryParametro query)
+    public async Task<RespostaBase<List<GetSimpVoluntarioMinisterioDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
-        var includes = new[]
-        {
-            nameof(VoluntarioMinisterio.Voluntario),
-            nameof(VoluntarioMinisterio.Ministerio)
-        };
+        var includes = GetIncludes();
         
-        var totalVoluntarioMinisterios = await _uow.VoluntarioMinisterios
+        var query = _uow.VoluntarioMinisterios
             .GetAll(includes)
-            .CountAsync(x => x.Ativo);
+            .Where(GetCondicao());
         
-        var voluntarioMinisterios = await _uow.VoluntarioMinisterios
-            .GetAll(includes)
-            .Where(x => x.Ativo)
-            .Skip(query.Skip)
-            .Take(query.Take)
+        var totalVoluntarioMinisterios = await query.CountAsync(x => x.Ativo);
+        
+        var voluntarioMinisterios = await query
+            .Skip(queryParametro.Skip)
+            .Take(queryParametro.Take)
             .ToListAsync();
         
         var voluntarioMinisteriosDto = _mapper.Map<List<GetSimpVoluntarioMinisterioDto>>(voluntarioMinisterios);
@@ -43,5 +40,19 @@ public class GetAllVoluntarioMinisterios
             MensagemRepostasConstant.GetVoluntariosMinisterios, voluntarioMinisteriosDto, totalVoluntarioMinisterios);
         
         return respostaBase;
+    }
+    
+    private static Expression<Func<VoluntarioMinisterio, bool>> GetCondicao()
+    {
+        return x => x.Ativo;
+    }
+    
+    private static string[] GetIncludes()
+    {
+        return new[]
+        {
+            nameof(VoluntarioMinisterio.Voluntario),
+            nameof(VoluntarioMinisterio.Ministerio)
+        };
     }
 }
