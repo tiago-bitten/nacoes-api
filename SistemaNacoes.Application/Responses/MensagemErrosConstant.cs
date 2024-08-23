@@ -31,6 +31,7 @@ public static class MensagemErrosConstant
     // Agendas
     public const string AgendaJaFechada = "Agenda já fechada";
     public const string AgendaJaFinalizada = "Agenda já finalizada";
+    public const string AgendaNaoDisponivel = "Agenda não disponível";
     
     // Grupos
     public const string GrupoJaRemovido = "Grupo já removido";

@@ -44,7 +44,10 @@ public class CreateAgendamento
         
         var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId, agendaIncludes);
 
-        var exitsAgendamento = agenda.Agendamentos.Any(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
+        if (!agenda.Ativo || agenda.Finalizado)
+            throw new Exception(MensagemErrosConstant.AgendaNaoDisponivel);
+        
+        var exitsAgendamento = agenda.Agendamentos.Exists(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
         if (exitsAgendamento)
             throw new Exception(MensagemErrosConstant.AgendamentoJaExiste);
 
