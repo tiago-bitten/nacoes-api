@@ -9,6 +9,7 @@ using SistemaNacoes.Application.UseCases.DataIndisponiveis;
 using SistemaNacoes.Application.UseCases.Grupos;
 using SistemaNacoes.Application.UseCases.GrupoVoluntarios;
 using SistemaNacoes.Application.UseCases.Ministerios;
+using SistemaNacoes.Application.UseCases.Usuarios;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios;
 using SistemaNacoes.Application.UseCases.Voluntarios;
 using SistemaNacoes.Domain.Interfaces;
@@ -91,6 +92,7 @@ builder.Services.AddScoped<DeleteAgendamentoAtividade>();
 builder.Services.AddScoped<GetVoluntariosParaAgendar>();
 builder.Services.AddScoped<GetVoluntariosNoGrupo>();
 builder.Services.AddScoped<RefreshToken>();
+builder.Services.AddScoped<CreateUsuario>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
@@ -102,6 +104,7 @@ builder.Services.AddAutoMapper(typeof(AgendamentoProfile));
 builder.Services.AddAutoMapper(typeof(SituacaoAgendamentoProfile));
 builder.Services.AddAutoMapper(typeof(GrupoProfile));
 builder.Services.AddAutoMapper(typeof(AuthTokenProfile));
+builder.Services.AddAutoMapper(typeof(UsuarioProfile));
 
 var app = builder.Build();
 

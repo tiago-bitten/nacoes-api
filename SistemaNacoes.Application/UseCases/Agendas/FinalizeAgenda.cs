@@ -24,6 +24,9 @@ public class FinalizeAgenda
         if (agenda.Finalizado)
             throw new Exception(MensagemErrosConstant.AgendaJaFinalizada);
 
+        if (!agenda.Ativo)
+            throw new Exception(MensagemErrosConstant.AgendaNaoDisponivel);
+
         agenda.Finalize();
         _uow.Agendas.Update(agenda);
         await _uow.CommitAsync();

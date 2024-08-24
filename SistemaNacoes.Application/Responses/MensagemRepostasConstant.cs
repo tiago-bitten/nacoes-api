@@ -63,4 +63,7 @@ public static class MensagemRepostasConstant
     
     // Auth
     public const string GetAuthToken = "Tokens gerados com sucesso";
+    
+    // Usuarios
+    public const string CreateUsuario = "Usuário cadastrado com sucesso";
 }

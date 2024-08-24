@@ -26,7 +26,8 @@ public class DeleteAtividade
         _uow.Atividades.SoftDelete(atividade);
         await _uow.CommitAsync();
 
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.DeleteAtividade);
+        var respostaBase = new RespostaBase<dynamic>(
+            MensagemRepostasConstant.DeleteAtividade);
         
         return respostaBase;
     }

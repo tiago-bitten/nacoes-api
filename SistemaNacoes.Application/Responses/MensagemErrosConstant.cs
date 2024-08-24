@@ -42,4 +42,7 @@ public static class MensagemErrosConstant
     
     // Auth
     public const string RefreshTokenNaoEncontrado = "Faça login novamente";
+    
+    // Usuarios
+    public const string UsuarioJaCadastrado = "Usuário já cadastrado";
 }
