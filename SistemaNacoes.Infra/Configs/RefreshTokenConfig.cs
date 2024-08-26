@@ -35,7 +35,7 @@ public class RefreshTokenConfig : IEntityTypeConfiguration<RefreshToken>
             .IsRequired();
 
         builder.Property(x => x.DataExpiracao)
-            .HasColumnType("TIMESTAMP")
+            .HasColumnType("TIMESTAMP WITH TIME ZONE")
             .HasColumnName("data_expiracao")
             .IsRequired();
     }
