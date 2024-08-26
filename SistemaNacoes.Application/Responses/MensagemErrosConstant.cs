@@ -50,4 +50,5 @@ public static class MensagemErrosConstant
     
     // Permissoes
     public const string SemPermissaoRemoverAtividade = "Usuário não tem permissão para remover atividade";
+    public const string SemPermissaoParaAlterarUsuario = "Usuário não tem permissão para alterar usuário";
 }
