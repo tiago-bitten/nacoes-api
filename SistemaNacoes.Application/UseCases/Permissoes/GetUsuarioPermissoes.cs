@@ -21,12 +21,12 @@ public class GetUsuarioPermissoes
         var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
         var allPermissoes = _getAllPermissoes.Execute().Conteudo;
 
-        var permissoes = allPermissoes.Select(p => new GetPermissaoDto
+        var permissoes = allPermissoes.Select(x => new GetPermissaoDto
         {
-            Identificador = p.Identificador,
-            Nome = p.Nome,
-            NomeFormatado = p.NomeFormatado,
-            PossuiPermissao = usuarioLogado.Permissoes.HasFlag((EPermissoes)p.Identificador)
+            Identificador = x.Identificador,
+            Nome = x.Nome,
+            NomeFormatado = x.NomeFormatado,
+            PossuiPermissao = usuarioLogado.Permissoes.HasFlag((EPermissoes)x.Identificador)
         }).ToList();
 
         var totalPermissoes = permissoes.Count;
