@@ -6,7 +6,7 @@ namespace SistemaNacoes.Application.UseCases.Permissoes
 {
     public class GetAllPermissoes
     {
-        private static readonly Dictionary<EPermissoes, string> PermissaoDisplayNames = new()
+        public static readonly Dictionary<EPermissoes, string> PermissaoDisplayNames = new()
         {
             // Agenda
             { EPermissoes.OPEN_AGENDA, "Abrir agenda" },
@@ -88,7 +88,8 @@ namespace SistemaNacoes.Application.UseCases.Permissoes
                     Nome = permissao.ToString(),
                     NomeFormatado = PermissaoDisplayNames.TryGetValue(permissao, out var displayName)
                         ? displayName
-                        : permissao.ToString()
+                        : permissao.ToString(),
+                    PossuiPermissao = null
                 }).ToList();
 
             var totalPermissoes = permissoes.Count;

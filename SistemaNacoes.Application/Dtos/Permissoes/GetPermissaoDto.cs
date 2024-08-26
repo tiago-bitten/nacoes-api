@@ -12,4 +12,8 @@ public class GetPermissaoDto
     
     [JsonPropertyName("NomeFormatado")]
     public string NomeFormatado { get; set; }
+    
+    [JsonPropertyName("PossuiPermissao")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? PossuiPermissao { get; set; } 
 }

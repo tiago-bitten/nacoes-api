@@ -123,6 +123,7 @@ builder.Services.AddScoped<GetAllUsuarios>();
 builder.Services.AddScoped<Login>();
 builder.Services.AddScoped<GetAllPermissoes>();
 builder.Services.AddScoped<RemoveUsuarioPermissoes>();
+builder.Services.AddScoped<GetUsuarioPermissoes>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
