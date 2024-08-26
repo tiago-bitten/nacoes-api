@@ -47,4 +47,7 @@ public static class MensagemErrosConstant
     
     // Usuarios
     public const string UsuarioJaCadastrado = "Usuário já cadastrado";
+    
+    // Permissoes
+    public const string SemPermissaoRemoverAtividade = "Usuário não tem permissão para remover atividade";
 }

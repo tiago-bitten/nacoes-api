@@ -59,6 +59,7 @@ builder.Services.AddScoped<IGrupoVoluntarioRepository, GrupoVoluntarioRepository
 builder.Services.AddScoped<IAgendamentoAtividadeService, AgendamentoAtividadeService>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<ITokenService, JsonWebTokenService>();
+builder.Services.AddScoped<IAmbienteUsuarioService, AmbienteUsuarioService>();
 
 builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();
