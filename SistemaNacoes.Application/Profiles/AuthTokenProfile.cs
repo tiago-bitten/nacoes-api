@@ -10,6 +10,6 @@ public class AuthTokenProfile : Profile
         CreateMap<(string AccessToken, string RefreshToken, DateTime ExpiresIn), GetAuthTokenDto>()
             .ForMember(dest => dest.AccessToken, opt => opt.MapFrom(src => src.AccessToken))
             .ForMember(dest => dest.RefreshToken, opt => opt.MapFrom(src => src.RefreshToken))
-            .ForMember(dest => dest.ExpiresIn, opt => opt.MapFrom(src => src.ExpiresIn));
+            .ForMember(dest => dest.ExpiresIn, opt => opt.MapFrom(src => (int)(src.ExpiresIn - DateTime.UtcNow).TotalSeconds));
     }
 }

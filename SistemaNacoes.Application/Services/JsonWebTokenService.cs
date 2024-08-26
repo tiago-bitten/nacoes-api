@@ -30,7 +30,7 @@ public class JsonWebTokenService : ITokenService
         {
             new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
             new Claim(ClaimTypes.Name, usuario.Email),
-            new Claim(ClaimTypes.Role, usuario.Permissoes.ToString())
+            new Claim(ClaimTypes.Role, ((long)usuario.Permissoes).ToString())
         };
 
         var tokenOptions = new JwtSecurityToken(
