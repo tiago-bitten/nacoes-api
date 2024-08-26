@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SistemaNacoes.Application.Dtos.Agendas;
-using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Application.UseCases.Agendas;
 
 namespace SistemaNacoes.API.Controllers

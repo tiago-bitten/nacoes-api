@@ -66,4 +66,6 @@ public static class MensagemRepostasConstant
     
     // Usuarios
     public const string CreateUsuario = "Usuário cadastrado com sucesso";
+    public const string GetUsuario = "Usuário encontrado com sucesso";
+    public const string GetUsuarios = "Usuários listados com sucesso";
 }

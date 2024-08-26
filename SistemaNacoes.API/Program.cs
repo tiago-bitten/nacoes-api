@@ -93,6 +93,7 @@ builder.Services.AddScoped<GetVoluntariosParaAgendar>();
 builder.Services.AddScoped<GetVoluntariosNoGrupo>();
 builder.Services.AddScoped<RefreshToken>();
 builder.Services.AddScoped<CreateUsuario>();
+builder.Services.AddScoped<GetAllUsuarios>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
