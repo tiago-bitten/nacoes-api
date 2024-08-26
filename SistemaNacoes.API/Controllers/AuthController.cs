@@ -9,10 +9,20 @@ namespace SistemaNacoes.API.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly RefreshToken _refreshToken;
+    private readonly Login _login;
 
-    public AuthController(RefreshToken refreshToken)
+    public AuthController(RefreshToken refreshToken, Login login)
     {
         _refreshToken = refreshToken;
+        _login = login;
+    }
+    
+    [HttpPost("Login")]
+    public async Task<IActionResult> Login([FromBody] LoginDto dto)
+    {
+        var result = await _login.ExecuteAsync(dto);
+        
+        return Ok(result);
     }
     
     [HttpPost("RefreshToken")]

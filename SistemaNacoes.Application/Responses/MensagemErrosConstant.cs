@@ -42,6 +42,8 @@ public static class MensagemErrosConstant
     
     // Auth
     public const string RefreshTokenNaoEncontrado = "Faça login novamente";
+    public const string RefreshTokenExpirado = "Faça login novamente";
+    public const string LoginInvalido = "E-mail/Senha inválidos";
     
     // Usuarios
     public const string UsuarioJaCadastrado = "Usuário já cadastrado";

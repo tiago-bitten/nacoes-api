@@ -94,6 +94,7 @@ builder.Services.AddScoped<GetVoluntariosNoGrupo>();
 builder.Services.AddScoped<RefreshToken>();
 builder.Services.AddScoped<CreateUsuario>();
 builder.Services.AddScoped<GetAllUsuarios>();
+builder.Services.AddScoped<Login>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
