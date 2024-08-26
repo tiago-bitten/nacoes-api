@@ -69,4 +69,7 @@ public static class MensagemRepostasConstant
     public const string CreateUsuario = "Usuário cadastrado com sucesso";
     public const string GetUsuario = "Usuário encontrado com sucesso";
     public const string GetUsuarios = "Usuários listados com sucesso";
+    
+    // Permissoes
+    public const string GetPermissoes = "Permissões listadas com sucesso";
 }

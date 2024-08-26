@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "SistemaNacoes.API/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.12",
           "Microsoft.EntityFrameworkCore.Design": "7.0.0",
           "SistemaNacoes.Application": "1.0.0",

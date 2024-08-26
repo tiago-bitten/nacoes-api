@@ -1,4 +1,7 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SistemaNacoes.Application.Profiles;
 using SistemaNacoes.Application.Services;
 using SistemaNacoes.Application.UseCases.Agendamentos;
@@ -9,6 +12,7 @@ using SistemaNacoes.Application.UseCases.DataIndisponiveis;
 using SistemaNacoes.Application.UseCases.Grupos;
 using SistemaNacoes.Application.UseCases.GrupoVoluntarios;
 using SistemaNacoes.Application.UseCases.Ministerios;
+using SistemaNacoes.Application.UseCases.Permissoes;
 using SistemaNacoes.Application.UseCases.Usuarios;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios;
 using SistemaNacoes.Application.UseCases.Voluntarios;
@@ -32,6 +36,27 @@ builder.Services.AddDbContext<NacoesDbContext>(opt =>
 {
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddAuthentication(options => 
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        }; 
+    });
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
 builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
@@ -96,6 +121,7 @@ builder.Services.AddScoped<RefreshToken>();
 builder.Services.AddScoped<CreateUsuario>();
 builder.Services.AddScoped<GetAllUsuarios>();
 builder.Services.AddScoped<Login>();
+builder.Services.AddScoped<GetAllPermissoes>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
