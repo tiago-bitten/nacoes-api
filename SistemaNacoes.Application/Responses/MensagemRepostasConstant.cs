@@ -70,6 +70,11 @@ public static class MensagemRepostasConstant
     public const string GetUsuario = "Usuário encontrado com sucesso";
     public const string GetUsuarios = "Usuários listados com sucesso";
     
+    // UsuarioMinisterios
+    public const string VinculateUsuarioMinisterio = "Usuário vinculado ao ministério com sucesso";
+    public const string GetUsuarioMinisterio = "Usuário e ministério encontrado com sucesso";
+    public const string GetUsuarioMinisterios = "Usuários e ministérios listados com sucesso";
+    
     // Permissoes
     public const string GetPermissoes = "Permissões listadas com sucesso";
     public const string RemoveUsuarioPermissoes = "Permissões do usuário removidas com sucesso";

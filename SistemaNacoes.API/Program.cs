@@ -13,6 +13,7 @@ using SistemaNacoes.Application.UseCases.Grupos;
 using SistemaNacoes.Application.UseCases.GrupoVoluntarios;
 using SistemaNacoes.Application.UseCases.Ministerios;
 using SistemaNacoes.Application.UseCases.Permissoes;
+using SistemaNacoes.Application.UseCases.UsuarioMinisterios;
 using SistemaNacoes.Application.UseCases.Usuarios;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios;
 using SistemaNacoes.Application.UseCases.Voluntarios;
@@ -125,6 +126,8 @@ builder.Services.AddScoped<GetAllPermissoes>();
 builder.Services.AddScoped<RemoveUsuarioPermissoes>();
 builder.Services.AddScoped<GetUsuarioPermissoes>();
 builder.Services.AddScoped<AddPermissoesUsuario>();
+builder.Services.AddScoped<VinculateUsuarioMinisterio>();
+builder.Services.AddScoped<GetAllUsuarioMinisterios>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
