@@ -128,6 +128,7 @@ builder.Services.AddScoped<GetUsuarioPermissoes>();
 builder.Services.AddScoped<AddPermissoesUsuario>();
 builder.Services.AddScoped<VinculateUsuarioMinisterio>();
 builder.Services.AddScoped<GetAllUsuarioMinisterios>();
+builder.Services.AddScoped<GetUsuarioMinisterios>();
 
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));

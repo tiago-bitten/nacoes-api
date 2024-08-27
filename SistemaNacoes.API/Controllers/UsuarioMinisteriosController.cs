@@ -11,11 +11,13 @@ public class UsuarioMinisteriosController : ControllerBase
 {
     private readonly VinculateUsuarioMinisterio _vinculateUsuarioMinisterio;
     private readonly GetAllUsuarioMinisterios _getAllUsuarioMinisterios;
+    private readonly GetUsuarioMinisterios _getUsuarioMinisterios;
 
-    public UsuarioMinisteriosController(VinculateUsuarioMinisterio vinculateUsuarioMinisterio, GetAllUsuarioMinisterios getAllUsuarioMinisterios)
+    public UsuarioMinisteriosController(VinculateUsuarioMinisterio vinculateUsuarioMinisterio, GetAllUsuarioMinisterios getAllUsuarioMinisterios, GetUsuarioMinisterios getUsuarioMinisterios)
     {
         _vinculateUsuarioMinisterio = vinculateUsuarioMinisterio;
         _getAllUsuarioMinisterios = getAllUsuarioMinisterios;
+        _getUsuarioMinisterios = getUsuarioMinisterios;
     }
     
     [HttpPost("Vincular")]
@@ -30,6 +32,14 @@ public class UsuarioMinisteriosController : ControllerBase
     public async Task<IActionResult> GetAll([FromQuery] QueryParametro queryParametro)
     {
         var result = await _getAllUsuarioMinisterios.ExcecuteAsync(queryParametro);
+        
+        return Ok(result);
+    }
+    
+    [HttpGet("Usuario")]
+    public async Task<IActionResult> GetUsuarioMinisterios()
+    {
+        var result = await _getUsuarioMinisterios.ExecuteAsync();
         
         return Ok(result);
     }
