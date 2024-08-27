@@ -12,13 +12,15 @@ public class PermissoesController : ControllerBase
     private readonly GetAllPermissoes _getAllPermissoes;
     private readonly RemoveUsuarioPermissoes _removeUsuarioPermissoes;
     private readonly GetUsuarioPermissoes _getUsuarioPermissoes;
+    private readonly AddPermissoesUsuario _addPermissoesUsuario;
 
     public PermissoesController(GetAllPermissoes getAllPermissoes, RemoveUsuarioPermissoes removeUsuarioPermissoes,
-        GetUsuarioPermissoes getUsuarioPermissoes)
+        GetUsuarioPermissoes getUsuarioPermissoes, AddPermissoesUsuario addPermissoesUsuario)
     {
         _getAllPermissoes = getAllPermissoes;
         _removeUsuarioPermissoes = removeUsuarioPermissoes;
         _getUsuarioPermissoes = getUsuarioPermissoes;
+        _addPermissoesUsuario = addPermissoesUsuario;
     }
 
     [HttpGet]
@@ -29,10 +31,18 @@ public class PermissoesController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPut]
+    [HttpPut("Remover")]
     public async Task<IActionResult> RemoveUsuarioPermissoes([FromBody] RemoveUsuarioPermissoesDto dto)
     {
         var result = await _removeUsuarioPermissoes.ExecuteAsync(dto);
+
+        return Ok(result);
+    }
+    
+    [HttpPut("Adicionar")]
+    public async Task<IActionResult> AddPermissoesUsuario([FromBody] AddPermissoesUsuarioDto dto)
+    {
+        var result = await _addPermissoesUsuario.ExecuteAsync(dto);
 
         return Ok(result);
     }

@@ -74,4 +74,5 @@ public static class MensagemRepostasConstant
     public const string GetPermissoes = "Permissões listadas com sucesso";
     public const string RemoveUsuarioPermissoes = "Permissões do usuário removidas com sucesso";
     public const string GetUsuarioPermissoes = "Permissões do usuário listadas com sucesso";
+    public const string AddPermissoesUsuario = "Permissões do usuário adicionadas com sucesso";
 }
