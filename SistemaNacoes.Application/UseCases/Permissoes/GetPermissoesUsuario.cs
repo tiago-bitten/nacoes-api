@@ -5,12 +5,12 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Permissoes;
 
-public class GetUsuarioPermissoes
+public class GetPermissoesUsuario
 {
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     private readonly GetAllPermissoes _getAllPermissoes;
 
-    public GetUsuarioPermissoes(IAmbienteUsuarioService ambienteUsuarioService, GetAllPermissoes getAllPermissoes)
+    public GetPermissoesUsuario(IAmbienteUsuarioService ambienteUsuarioService, GetAllPermissoes getAllPermissoes)
     {
         _ambienteUsuarioService = ambienteUsuarioService;
         _getAllPermissoes = getAllPermissoes;
@@ -32,7 +32,7 @@ public class GetUsuarioPermissoes
         var totalPermissoes = permissoes.Count;
 
         var respostaBase = new RespostaBase<List<GetPermissaoDto>>(
-            MensagemRepostasConstant.GetUsuarioPermissoes, permissoes, totalPermissoes);
+            MensagemRepostaConstant.GetUsuarioPermissoes, permissoes, totalPermissoes);
 
         return respostaBase;
     }

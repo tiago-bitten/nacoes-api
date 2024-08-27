@@ -37,7 +37,7 @@ public class CreateVoluntario
         var voluntarioDto = _mapper.Map<GetVoluntarioDto>(voluntario);
 
         var respostaBase = new RespostaBase<GetVoluntarioDto>(
-            MensagemRepostasConstant.CreateVoluntario, voluntarioDto);
+            MensagemRepostaConstant.CreateVoluntario, voluntarioDto);
 
         return respostaBase;
     }

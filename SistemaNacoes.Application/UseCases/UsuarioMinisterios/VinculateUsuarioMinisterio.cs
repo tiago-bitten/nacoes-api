@@ -30,7 +30,7 @@ public class VinculateUsuarioMinisterio
                             && x.Ativo);
 
         if (existsUsuarioMinisterio != null)
-            throw new Exception(MensagemErrosConstant.UsuarioMinisterioJaCadastrado);
+            throw new Exception(MensagemErroConstant.UsuarioMinisterioJaCadastrado);
 
         var usuarioMinisterio = new UsuarioMinisterio(usuario, ministerio);
         
@@ -38,7 +38,7 @@ public class VinculateUsuarioMinisterio
         await _uow.CommitAsync();
         
         var respostaBase = new RespostaBase<dynamic>(
-            MensagemRepostasConstant.VinculateUsuarioMinisterio);
+            MensagemRepostaConstant.VinculateUsuarioMinisterio);
         
         return respostaBase;
     }

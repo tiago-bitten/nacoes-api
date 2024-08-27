@@ -25,18 +25,18 @@ public class DeleteAtividade
         var usuario = await _ambienteUsuarioService.GetUsuarioAsync();
 
         if (!usuario.HasPermission(EPermissoes.DELETE_ATIVIDADE))
-            throw new Exception(MensagemErrosConstant.SemPermissaoRemoverAtividade);
+            throw new Exception(MensagemErroConstant.SemPermissaoRemoverAtividade);
         
         var atividade = await _atividadeService.GetAndEnsureExistsAsync(id);
         
         if (atividade.Removido)
-            throw new Exception(MensagemErrosConstant.AtividadeJaRemovida);
+            throw new Exception(MensagemErroConstant.AtividadeJaRemovida);
         
         _uow.Atividades.SoftDelete(atividade);
         await _uow.CommitAsync();
 
         var respostaBase = new RespostaBase<dynamic>(
-            MensagemRepostasConstant.DeleteAtividade);
+            MensagemRepostaConstant.DeleteAtividade);
         
         return respostaBase;
     }

@@ -34,7 +34,7 @@ public class GetAllAtividades
         
         var atividadesDto = _mapper.Map<List<GetAtividadeDto>>(atividades);
         
-        var respostaBase = new RespostaBase<List<GetAtividadeDto>>(MensagemRepostasConstant.GetAtividades, atividadesDto, totalAtividades);
+        var respostaBase = new RespostaBase<List<GetAtividadeDto>>(MensagemRepostaConstant.GetAtividades, atividadesDto, totalAtividades);
         
         return respostaBase;
     }

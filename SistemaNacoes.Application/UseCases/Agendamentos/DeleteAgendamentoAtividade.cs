@@ -23,12 +23,12 @@ public class DeleteAgendamentoAtividade
         var agendamentoAtividade = await _agendamentoAtividadeService.GetAndEnsureExistsAsync(agendamentoId, atividadeId);
         
         if (agendamentoAtividade.Removido)
-            throw new Exception(MensagemErrosConstant.AgendamentoAtividadeJaRemovido);
+            throw new Exception(MensagemErroConstant.AgendamentoAtividadeJaRemovido);
         
         _uow.AgendamentoAtividades.SoftDelete(agendamentoAtividade);
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.DeleteAgendamentoAtividade);
+        var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.DeleteAgendamentoAtividade);
         
         return respostaBase;
     }

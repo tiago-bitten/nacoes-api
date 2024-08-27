@@ -33,14 +33,14 @@ public class VinculateVoluntarioGrupo
         var existsVoluntarioGrupo = voluntario.GrupoVoluntarios.Any(x => !x.Removido);
         
         if (existsVoluntarioGrupo)
-            throw new Exception(MensagemErrosConstant.VoluntarioJaPossuiGrupo);
+            throw new Exception(MensagemErroConstant.VoluntarioJaPossuiGrupo);
         
         var grupoVoluntario = new GrupoVoluntario(grupo, voluntario);
         
         await _uow.GrupoVoluntarios.AddAsync(grupoVoluntario);
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.VinculateVoluntarioGrupo);
+        var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.VinculateVoluntarioGrupo);
         
         return respostaBase;
     }

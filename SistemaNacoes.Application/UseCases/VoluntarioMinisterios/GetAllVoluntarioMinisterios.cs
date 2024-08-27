@@ -37,7 +37,7 @@ public class GetAllVoluntarioMinisterios
         var voluntarioMinisteriosDto = _mapper.Map<List<GetSimpVoluntarioMinisterioDto>>(voluntarioMinisterios);
 
         var respostaBase = new RespostaBase<List<GetSimpVoluntarioMinisterioDto>>(
-            MensagemRepostasConstant.GetVoluntariosMinisterios, voluntarioMinisteriosDto, totalVoluntarioMinisterios);
+            MensagemRepostaConstant.GetVoluntariosMinisterios, voluntarioMinisteriosDto, totalVoluntarioMinisterios);
         
         return respostaBase;
     }

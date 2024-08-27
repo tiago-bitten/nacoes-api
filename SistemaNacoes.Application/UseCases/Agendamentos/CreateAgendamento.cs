@@ -38,7 +38,7 @@ public class CreateAgendamento
         var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId, agendaIncludes);
 
         if (!agenda.Ativo || agenda.Finalizado)
-            throw new Exception(MensagemErrosConstant.AgendaNaoDisponivel);
+            throw new Exception(MensagemErroConstant.AgendaNaoDisponivel);
         
         // Em memória
         // var existsAgendamento = agenda.Agendamentos.Exists(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
@@ -49,12 +49,12 @@ public class CreateAgendamento
             .AnyAsync(x => x.AgendaId == agenda.Id && x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
         
         if (existsAgendamento)
-            throw new Exception(MensagemErrosConstant.AgendamentoJaExiste);
+            throw new Exception(MensagemErroConstant.AgendamentoJaExiste);
 
         var agendamentoValidado = await _dataIndisponivelService.EnsureDateIsAvailable(agenda.Id, voluntarioMinisterio.Voluntario.Id);
         
         if (!agendamentoValidado)
-            throw new Exception(MensagemErrosConstant.DataIndisponivel);
+            throw new Exception(MensagemErroConstant.DataIndisponivel);
         
         var agendamento = _mapper.Map<Agendamento>(dto);
         await _uow.Agendamentos.AddAsync(agendamento);
@@ -80,7 +80,7 @@ public class CreateAgendamento
                 if (!existsAtividade)
                 {
                     _uow.RollBack();
-                    throw new Exception(MensagemErrosConstant.AtividadeNaoPertenceAoMinisterio);
+                    throw new Exception(MensagemErroConstant.AtividadeNaoPertenceAoMinisterio);
                 }
 
                 var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);
@@ -91,7 +91,7 @@ public class CreateAgendamento
         
         var agendamentoDto = _mapper.Map<GetAgendamentoDto>(agendamento);
 
-        return new RespostaBase<GetAgendamentoDto>(MensagemRepostasConstant.CreateAgendamento, agendamentoDto);
+        return new RespostaBase<GetAgendamentoDto>(MensagemRepostaConstant.CreateAgendamento, agendamentoDto);
     }
 
     private static string[] GetVoluntarioMinisterioIncludes()

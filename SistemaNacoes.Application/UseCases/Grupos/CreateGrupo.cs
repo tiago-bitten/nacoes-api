@@ -27,7 +27,7 @@ public class CreateGrupo
             .FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
         
         if (existsGrupo != null)
-            throw new Exception(MensagemErrosConstant.GrupoJaExiste);
+            throw new Exception(MensagemErroConstant.GrupoJaExiste);
         
         var grupo = _mapper.Map<Grupo>(dto);
         
@@ -43,7 +43,7 @@ public class CreateGrupo
                 if (voluntario.GrupoVoluntarios.Any(x => !x.Removido))
                 {
                     _uow.RollBack();
-                    throw new Exception(MensagemErrosConstant.VoluntarioJaPossuiGrupo);
+                    throw new Exception(MensagemErroConstant.VoluntarioJaPossuiGrupo);
                 }
                 
                 var grupoVoluntario = new GrupoVoluntario(grupo, voluntario);
@@ -54,7 +54,7 @@ public class CreateGrupo
 
         var grupoDto = _mapper.Map<GetGrupoDto>(grupo);
         
-        var respostaBase = new RespostaBase<GetGrupoDto>(MensagemRepostasConstant.CreateGrupo, grupoDto);
+        var respostaBase = new RespostaBase<GetGrupoDto>(MensagemRepostaConstant.CreateGrupo, grupoDto);
         
         return respostaBase;
     }

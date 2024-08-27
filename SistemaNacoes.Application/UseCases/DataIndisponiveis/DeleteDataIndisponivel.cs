@@ -20,11 +20,11 @@ public class DeleteDataIndisponivel
         var dataIndisponivel = await _dataIndisponivelService.GetAndEnsureExistsAsync(id);
         
         if (dataIndisponivel.Removido)
-            throw new Exception(MensagemErrosConstant.DataIndisponivelJaRemovido);
+            throw new Exception(MensagemErroConstant.DataIndisponivelJaRemovido);
             
         _uow.DataIndisponiveis.SoftDelete(dataIndisponivel);
         await _uow.CommitAsync();
         
-        return new RespostaBase<dynamic>(MensagemRepostasConstant.DeleteDataIndisponivel);
+        return new RespostaBase<dynamic>(MensagemRepostaConstant.DeleteDataIndisponivel);
     }
 }

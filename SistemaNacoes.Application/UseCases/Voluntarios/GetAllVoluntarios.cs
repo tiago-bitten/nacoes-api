@@ -38,7 +38,7 @@ public class GetAllVoluntarios
         var voluntariosDto = _mapper.Map<List<GetVoluntarioDto>>(voluntarios);
         
         var respostaBase = new RespostaBase<List<GetVoluntarioDto>>(
-            MensagemRepostasConstant.GetVoluntarios, voluntariosDto, totalVoluntarios);
+            MensagemRepostaConstant.GetVoluntarios, voluntariosDto, totalVoluntarios);
         
         return respostaBase;
     }

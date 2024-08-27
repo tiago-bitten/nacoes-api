@@ -49,7 +49,7 @@ public class DesvinculateVoluntarioMinisterio
 
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.DesvinculateVoluntarioMinisterio);
+        var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.DesvinculateVoluntarioMinisterio);
         
         return respostaBase;
     }

@@ -22,15 +22,15 @@ public class FinalizeAgenda
         var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.Id);
         
         if (agenda.Finalizado)
-            throw new Exception(MensagemErrosConstant.AgendaJaFinalizada);
+            throw new Exception(MensagemErroConstant.AgendaJaFinalizada);
 
         if (!agenda.Ativo)
-            throw new Exception(MensagemErrosConstant.AgendaNaoDisponivel);
+            throw new Exception(MensagemErroConstant.AgendaNaoDisponivel);
 
         agenda.Finalize();
         _uow.Agendas.Update(agenda);
         await _uow.CommitAsync();
 
-        return new RespostaBase<dynamic>(MensagemRepostasConstant.FinalizeAgenda);
+        return new RespostaBase<dynamic>(MensagemRepostaConstant.FinalizeAgenda);
     }
 }

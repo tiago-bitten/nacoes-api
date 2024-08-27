@@ -26,7 +26,7 @@ public class AddPermissoesUsuario
         var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
         
         if (!usuarioLogado.HasPermission(EPermissoes.UPDATE_USUARIO))
-            throw new Exception(MensagemErrosConstant.SemPermissaoParaAlterarUsuario);
+            throw new Exception(MensagemErroConstant.SemPermissaoParaAlterarUsuario);
         
         var usuario = await _usuarioService.GetAndEnsureExistsAsync(dto.UsuarioId);
         
@@ -44,7 +44,7 @@ public class AddPermissoesUsuario
         }
         
         var respostaBase = new RespostaBase<dynamic>(
-            MensagemRepostasConstant.AddPermissoesUsuario);
+            MensagemRepostaConstant.AddPermissoesUsuario);
 
         return respostaBase;
     }

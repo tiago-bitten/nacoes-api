@@ -34,7 +34,7 @@ public class RefreshToken
         var refreshToken = await _uow.RefreshTokens.GetByTokenAsync(dto.RefreshToken);
         
         if (refreshToken is null || refreshToken.Revogado || refreshToken.DataExpiracao < DateTime.UtcNow || refreshToken.Principal != usuario.Email)
-            throw new Exception(MensagemErrosConstant.RefreshTokenNaoEncontrado);
+            throw new Exception(MensagemErroConstant.RefreshTokenNaoEncontrado);
         
         var newRefreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);
         var newAccessToken = _tokenService.GenerateAccessToken(usuario);
@@ -47,7 +47,7 @@ public class RefreshToken
         var getAuthTokenDto = _mapper.Map<GetAuthTokenDto>(authToken);
         
         var respostaBase = new RespostaBase<GetAuthTokenDto>(
-            MensagemRepostasConstant.GetAuthToken, getAuthTokenDto);
+            MensagemRepostaConstant.GetAuthToken, getAuthTokenDto);
         
         return respostaBase;
     }

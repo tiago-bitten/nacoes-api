@@ -8,13 +8,13 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Permissoes;
 
-public class RemoveUsuarioPermissoes
+public class RemovePermissoesUsuario
 {
     private readonly IUnitOfWork _uow;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     private readonly IServiceBase<Usuario> _usuarioService;
 
-    public RemoveUsuarioPermissoes(IUnitOfWork uow, IAmbienteUsuarioService ambienteUsuarioService, IServiceBase<Usuario> usuarioService)
+    public RemovePermissoesUsuario(IUnitOfWork uow, IAmbienteUsuarioService ambienteUsuarioService, IServiceBase<Usuario> usuarioService)
     {
         _uow = uow;
         _ambienteUsuarioService = ambienteUsuarioService;
@@ -26,7 +26,7 @@ public class RemoveUsuarioPermissoes
         var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
 
         if (!usuarioLogado.HasPermission(EPermissoes.UPDATE_USUARIO))
-            throw new Exception(MensagemErrosConstant.SemPermissaoParaAlterarUsuario);
+            throw new Exception(MensagemErroConstant.SemPermissaoParaAlterarUsuario);
 
         var usuario = await _usuarioService.GetAndEnsureExistsAsync(dto.UsuarioId);
 
@@ -44,6 +44,6 @@ public class RemoveUsuarioPermissoes
         }
         
         return new RespostaBase<dynamic>(
-            MensagemRepostasConstant.RemoveUsuarioPermissoes);
+            MensagemRepostaConstant.RemoveUsuarioPermissoes);
     }
 }

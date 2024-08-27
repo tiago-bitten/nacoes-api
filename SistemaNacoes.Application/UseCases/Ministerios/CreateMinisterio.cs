@@ -25,7 +25,7 @@ public class CreateMinisterio
             .FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
         
         if (existsMinisterio != null)
-            throw new Exception(MensagemErrosConstant.MinisterioJaExiste);
+            throw new Exception(MensagemErroConstant.MinisterioJaExiste);
         
         var ministerio = _mapper.Map<Ministerio>(dto);
         
@@ -35,7 +35,7 @@ public class CreateMinisterio
         var ministerioDto = _mapper.Map<GetMinisterioDto>(ministerio);
 
         var respostaBase = new RespostaBase<GetMinisterioDto>(
-            MensagemRepostasConstant.CreateMinisterio, ministerioDto);
+            MensagemRepostaConstant.CreateMinisterio, ministerioDto);
 
         return respostaBase;
     }

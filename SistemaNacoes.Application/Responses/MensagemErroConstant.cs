@@ -1,6 +1,6 @@
 ﻿namespace SistemaNacoes.Application.Responses;
 
-public static class MensagemErrosConstant
+public static class MensagemErroConstant
 {
     public const string NaoEncontrado = "Não encontrado";
     

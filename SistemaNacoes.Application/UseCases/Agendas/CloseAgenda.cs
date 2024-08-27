@@ -23,13 +23,13 @@ namespace SistemaNacoes.Application.UseCases.Agendas
             var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.Id);
             
             if (!agenda.Ativo)
-                throw new Exception(MensagemErrosConstant.AgendaJaFechada);
+                throw new Exception(MensagemErroConstant.AgendaJaFechada);
 
             agenda.Close();
             _uow.Agendas.Update(agenda);
             await _uow.CommitAsync();
 
-            var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.CloseAgenda);
+            var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.CloseAgenda);
 
             return respostaBase;
         }

@@ -24,7 +24,7 @@ public class DeleteMinisterio
         var ministerio = await _ministerioService.GetAndEnsureExistsAsync(id, includes);
         
         if (ministerio.Removido)
-            throw new Exception(MensagemErrosConstant.MinisterioJaRemovido);
+            throw new Exception(MensagemErroConstant.MinisterioJaRemovido);
         
         _uow.Ministerios.SoftDelete(ministerio);
 
@@ -35,7 +35,7 @@ public class DeleteMinisterio
         
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.DeleteMinisterio);
+        var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.DeleteMinisterio);
         
         return respostaBase;
     }

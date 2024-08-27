@@ -22,10 +22,10 @@ public class VoluntarioMinisterioService : IVoluntarioMinisterioService
                             && x.Ativo, includes);
         
         if (exists == null)
-            throw new Exception(MensagemErrosConstant.VoluntarioMinisterioNaoEncontrado);
+            throw new Exception(MensagemErroConstant.VoluntarioMinisterioNaoEncontrado);
         
         if (exists.Voluntario.Removido || exists.Ministerio.Removido)
-            throw new Exception(MensagemErrosConstant.VoluntarioMinisterioNaoEncontrado);
+            throw new Exception(MensagemErroConstant.VoluntarioMinisterioNaoEncontrado);
         
         return exists;
     }

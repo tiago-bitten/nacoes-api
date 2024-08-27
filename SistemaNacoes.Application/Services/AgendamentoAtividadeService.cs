@@ -27,7 +27,7 @@ public class AgendamentoAtividadeService : IAgendamentoAtividadeService
             .FindAsync(x => x.AgendamentoId == agendamentoId && x.AtividadeId == atividadeId && !x.Removido);
         
         if (agendamentoAtividade is null)
-            throw new Exception(MensagemErrosConstant.AgendamentoAtividadeNaoEncontrado);
+            throw new Exception(MensagemErroConstant.AgendamentoAtividadeNaoEncontrado);
         
         return agendamentoAtividade;
     }

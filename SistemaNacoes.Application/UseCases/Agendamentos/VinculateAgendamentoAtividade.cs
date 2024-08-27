@@ -42,7 +42,7 @@ public class VinculateAgendamentoAtividade
                            && !x.Removido);
         
         if (existsAtividade)
-            throw new Exception(MensagemErrosConstant.AtividadeJaVinculadaAoAgendamento);
+            throw new Exception(MensagemErroConstant.AtividadeJaVinculadaAoAgendamento);
         
         // Em memória
         /*var existsAtividadeNoMinisterio = agendamento.Ministerio.Atividades
@@ -56,14 +56,14 @@ public class VinculateAgendamentoAtividade
                            && !x.Removido);
         
         if (!existsAtividadeNoMinisterio)
-            throw new Exception(MensagemErrosConstant.AtividadeNaoPertenceAoMinisterio);
+            throw new Exception(MensagemErroConstant.AtividadeNaoPertenceAoMinisterio);
         
         var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);
         
         await _uow.AgendamentoAtividades.AddAsync(agendamentoAtividade);
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostasConstant.VinculateAtividadeAgendamento);
+        var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.VinculateAtividadeAgendamento);
         
         return respostaBase;
     }

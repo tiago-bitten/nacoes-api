@@ -8,19 +8,19 @@ namespace SistemaNacoes.API.Controllers;
 [Route("api/[controller]")]
 public class AmbienteController : ControllerBase
 {
-    private readonly GetUsuarioPermissoes _getUsuarioPermissoes;
+    private readonly GetPermissoesUsuario _getPermissoesUsuario;
     private readonly GetUsuarioMinisterios _getUsuarioMinisterios;
 
-    public AmbienteController(GetUsuarioPermissoes getUsuarioPermissoes, GetUsuarioMinisterios getUsuarioMinisterios)
+    public AmbienteController(GetPermissoesUsuario getPermissoesUsuario, GetUsuarioMinisterios getUsuarioMinisterios)
     {
-        _getUsuarioPermissoes = getUsuarioPermissoes;
+        _getPermissoesUsuario = getPermissoesUsuario;
         _getUsuarioMinisterios = getUsuarioMinisterios;
     }
 
     [HttpGet("UsuarioPermissoes")]
     public async Task<IActionResult> GetPermissoesUsuario()
     {
-        var result = await _getUsuarioPermissoes.ExecuteAsync();
+        var result = await _getPermissoesUsuario.ExecuteAsync();
         
         return Ok(result);
     }

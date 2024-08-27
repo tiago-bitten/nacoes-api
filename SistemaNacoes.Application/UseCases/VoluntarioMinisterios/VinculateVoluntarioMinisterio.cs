@@ -49,7 +49,7 @@ public class VinculateVoluntarioMinisterio
         await _uow.CommitAsync();
 
         var respostaBase = new RespostaBase<GetSimpVoluntarioMinisterioDto>(
-            MensagemRepostasConstant.VinculateVoluntarioMinisterio);
+            MensagemRepostaConstant.VinculateVoluntarioMinisterio);
 
         return respostaBase;
     }

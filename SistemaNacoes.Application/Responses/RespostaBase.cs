@@ -10,27 +10,24 @@ public class RespostaBase<T> where T : class
     
     public RespostaBase(string mensagem)
     {
-        Sucesso = true;
         Mensagem = mensagem;
     }
     
     public RespostaBase(string mensagem, T conteudo)
     {
-        Sucesso = true;
         Mensagem = mensagem;
         Conteudo = conteudo;
     }
     
     public RespostaBase(string mensagem, T conteudo, int total)
     {
-        Sucesso = true;
         Mensagem = mensagem;
         Conteudo = conteudo;
         Total = total;
     }
-    
-    [JsonPropertyName("Sucesso")]
-    public bool Sucesso { get; set; }
+
+    [JsonPropertyName("Sucesso")] 
+    public bool Sucesso { get; set; } = true;
     
     [JsonPropertyName("Mensagem")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

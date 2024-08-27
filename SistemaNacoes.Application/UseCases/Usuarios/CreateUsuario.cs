@@ -23,7 +23,7 @@ public class CreateUsuario
         var existsUsuario = await _uow.Usuarios.FindAsync(x => x.Email == dto.Email || x.Cpf == dto.Cpf);
         
         if (existsUsuario != null)
-            throw new Exception(MensagemErrosConstant.UsuarioJaCadastrado);
+            throw new Exception(MensagemErroConstant.UsuarioJaCadastrado);
         
         var usuario = _mapper.Map<Usuario>(dto);
         usuario.SenhaHash = BCrypt.Net.BCrypt.HashPassword("123456");
@@ -39,7 +39,7 @@ public class CreateUsuario
         var usuarioDto = _mapper.Map<GetUsuarioDto>(usuario);
         
         var respostaBase = new RespostaBase<GetUsuarioDto>(
-            MensagemRepostasConstant.CreateUsuario, usuarioDto);
+            MensagemRepostaConstant.CreateUsuario, usuarioDto);
         
         return respostaBase;
     }

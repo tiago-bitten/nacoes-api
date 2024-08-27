@@ -95,7 +95,7 @@ namespace SistemaNacoes.Application.UseCases.Permissoes
             var totalPermissoes = permissoes.Count;
             
             var respostaBase = new RespostaBase<List<GetPermissaoDto>>(
-                MensagemRepostasConstant.GetPermissoes, permissoes, totalPermissoes);
+                MensagemRepostaConstant.GetPermissoes, permissoes, totalPermissoes);
 
             return respostaBase;
         }

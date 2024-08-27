@@ -35,7 +35,7 @@ public class GetAllUsuarios
         var usuariosDto = _mapper.Map<List<GetSimpUsuarioDto>>(usuarios);
     
         var respostaBase = new RespostaBase<List<GetSimpUsuarioDto>>(
-            MensagemRepostasConstant.GetUsuarios, usuariosDto, totalUsuarios);
+            MensagemRepostaConstant.GetUsuarios, usuariosDto, totalUsuarios);
 
         return respostaBase;
     }

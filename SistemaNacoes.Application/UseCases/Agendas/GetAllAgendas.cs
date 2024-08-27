@@ -31,7 +31,7 @@ public class GetAllAgendas
         var agendasDto = _mapper.Map<List<GetAgendaDto>>(agendas);
         
         var respostaBase = new RespostaBase<List<GetAgendaDto>>(
-            MensagemRepostasConstant.GetAgendas, agendasDto, totalAgendas);
+            MensagemRepostaConstant.GetAgendas, agendasDto, totalAgendas);
         
         return respostaBase;
     }

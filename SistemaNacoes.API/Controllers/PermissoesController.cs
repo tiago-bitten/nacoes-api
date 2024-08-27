@@ -10,16 +10,16 @@ namespace SistemaNacoes.API.Controllers;
 public class PermissoesController : ControllerBase
 {
     private readonly GetAllPermissoes _getAllPermissoes;
-    private readonly RemoveUsuarioPermissoes _removeUsuarioPermissoes;
-    private readonly GetUsuarioPermissoes _getUsuarioPermissoes;
+    private readonly RemovePermissoesUsuario _removePermissoesUsuario;
+    private readonly GetPermissoesUsuario _getPermissoesUsuario;
     private readonly AddPermissoesUsuario _addPermissoesUsuario;
 
-    public PermissoesController(GetAllPermissoes getAllPermissoes, RemoveUsuarioPermissoes removeUsuarioPermissoes,
-        GetUsuarioPermissoes getUsuarioPermissoes, AddPermissoesUsuario addPermissoesUsuario)
+    public PermissoesController(GetAllPermissoes getAllPermissoes, RemovePermissoesUsuario removePermissoesUsuario,
+        GetPermissoesUsuario getPermissoesUsuario, AddPermissoesUsuario addPermissoesUsuario)
     {
         _getAllPermissoes = getAllPermissoes;
-        _removeUsuarioPermissoes = removeUsuarioPermissoes;
-        _getUsuarioPermissoes = getUsuarioPermissoes;
+        _removePermissoesUsuario = removePermissoesUsuario;
+        _getPermissoesUsuario = getPermissoesUsuario;
         _addPermissoesUsuario = addPermissoesUsuario;
     }
 
@@ -34,7 +34,7 @@ public class PermissoesController : ControllerBase
     [HttpPut("Remover")]
     public async Task<IActionResult> RemoveUsuarioPermissoes([FromBody] RemoveUsuarioPermissoesDto dto)
     {
-        var result = await _removeUsuarioPermissoes.ExecuteAsync(dto);
+        var result = await _removePermissoesUsuario.ExecuteAsync(dto);
 
         return Ok(result);
     }
@@ -51,7 +51,7 @@ public class PermissoesController : ControllerBase
     [HttpGet("Usuario")]
     public async Task<IActionResult> GetUsuarioPermissoes()
     {
-        var result = await _getUsuarioPermissoes.ExecuteAsync();
+        var result = await _getPermissoesUsuario.ExecuteAsync();
 
         return Ok(result);
     }

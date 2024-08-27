@@ -26,7 +26,7 @@ public class Login
         var senhaInvalida = !BCrypt.Net.BCrypt.Verify(dto.Senha, usuario.SenhaHash);
 
         if (usuario == null || senhaInvalida)
-            throw new Exception(MensagemErrosConstant.LoginInvalido);
+            throw new Exception(MensagemErroConstant.LoginInvalido);
         
         var accessToken = _tokenService.GenerateAccessToken(usuario);
         var refreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);
@@ -39,7 +39,7 @@ public class Login
         var authTokensDto = _mapper.Map<GetAuthTokenDto>(authTokens);
         
         var respostaBase = new RespostaBase<GetAuthTokenDto>(
-            MensagemRepostasConstant.LoginSucesso, authTokensDto);
+            MensagemRepostaConstant.LoginSucesso, authTokensDto);
         
         return respostaBase;
     }

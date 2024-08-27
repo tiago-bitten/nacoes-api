@@ -35,7 +35,7 @@ public class GetAllMinisterios
         var ministeriosDto = _mapper.Map<List<GetMinisterioDto>>(ministerios);
         
         var respostaBase = new RespostaBase<List<GetMinisterioDto>>(
-            MensagemRepostasConstant.GetMinisterios, ministeriosDto, totalMinisterios);
+            MensagemRepostaConstant.GetMinisterios, ministeriosDto, totalMinisterios);
         
         return respostaBase;
     }
