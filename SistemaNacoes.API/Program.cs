@@ -86,6 +86,7 @@ builder.Services.AddScoped<IAgendamentoAtividadeService, AgendamentoAtividadeSer
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<ITokenService, JsonWebTokenService>();
 builder.Services.AddScoped<IAmbienteUsuarioService, AmbienteUsuarioService>();
+builder.Services.AddScoped<IRegistroLoginRepository, RegistroLoginRepository>();
 
 builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();

@@ -21,4 +21,5 @@ public interface IUnitOfWork
     ISituacaoAgendamentoRepository SituacaoAgendamentos { get; }
     IGrupoVoluntarioRepository GrupoVoluntarios { get; }
     IRefreshTokenRepository RefreshTokens { get; }    
+    IRegistroLoginRepository RegistroLogins { get; }
 }
