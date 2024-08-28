@@ -25,4 +25,14 @@ public class AmbienteUsuarioService : IAmbienteUsuarioService
         
         return usuario;
     }
+
+    public string GetUsuarioIp()
+    {
+        return _httpContextAccessor.HttpContext.Connection.RemoteIpAddress?.ToString();
+    }
+
+    public string GetUsuarioUserAgent()
+    {
+        return _httpContextAccessor.HttpContext.Request.Headers["User-Agent"];
+    }
 }
