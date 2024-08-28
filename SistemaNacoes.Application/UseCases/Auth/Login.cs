@@ -11,12 +11,14 @@ public class Login
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private readonly ITokenService _tokenService;
+    private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     
-    public Login(IUnitOfWork uow, IMapper mapper, ITokenService tokenService)
+    public Login(IUnitOfWork uow, IMapper mapper, ITokenService tokenService, IAmbienteUsuarioService ambienteUsuarioService)
     {
         _uow = uow;
         _mapper = mapper;
         _tokenService = tokenService;
+        _ambienteUsuarioService = ambienteUsuarioService;
     }
     
     public async Task<RespostaBase<GetAuthTokenDto>> ExecuteAsync(LoginDto dto)
