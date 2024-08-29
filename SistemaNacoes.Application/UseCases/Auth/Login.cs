@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.Dtos.Auth;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -12,13 +13,15 @@ public class Login
     private readonly IMapper _mapper;
     private readonly ITokenService _tokenService;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
+    private readonly IRegistroLoginService _registroLoginService;
     
-    public Login(IUnitOfWork uow, IMapper mapper, ITokenService tokenService, IAmbienteUsuarioService ambienteUsuarioService)
+    public Login(IUnitOfWork uow, IMapper mapper, ITokenService tokenService, IAmbienteUsuarioService ambienteUsuarioService, IRegistroLoginService registroLoginService)
     {
         _uow = uow;
         _mapper = mapper;
         _tokenService = tokenService;
         _ambienteUsuarioService = ambienteUsuarioService;
+        _registroLoginService = registroLoginService;
     }
     
     public async Task<RespostaBase<GetAuthTokenDto>> ExecuteAsync(LoginDto dto)
@@ -28,7 +31,13 @@ public class Login
         var senhaInvalida = !BCrypt.Net.BCrypt.Verify(dto.Senha, usuario.SenhaHash);
 
         if (usuario == null || senhaInvalida)
+        {
+            var ip = _ambienteUsuarioService.GetUsuarioIp();
+            var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
+            
+            await _registroLoginService.LogFailedLoginAsync(usuario?.Id, ip, userAgent);
             throw new Exception(MensagemErroConstant.LoginInvalido);
+        }
         
         var accessToken = _tokenService.GenerateAccessToken(usuario);
         var refreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);
