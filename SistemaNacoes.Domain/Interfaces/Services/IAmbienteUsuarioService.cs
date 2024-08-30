@@ -4,7 +4,7 @@ namespace SistemaNacoes.Domain.Interfaces.Services;
 
 public interface IAmbienteUsuarioService
 {
-    Task<Usuario> GetUsuarioAsync();
-    string GetUsuarioIp();
-    string GetUsuarioUserAgent();
+    Task<Usuario?> GetUsuarioAsync();
+    string? GetUsuarioIp();
+    string? GetUsuarioUserAgent();
 }

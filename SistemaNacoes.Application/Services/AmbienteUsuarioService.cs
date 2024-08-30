@@ -16,9 +16,9 @@ public class AmbienteUsuarioService : IAmbienteUsuarioService
         _usuarioService = usuarioService;
     }
 
-    public async Task<Usuario> GetUsuarioAsync()
+    public async Task<Usuario?> GetUsuarioAsync()
     {
-        var principal = _httpContextAccessor.HttpContext.User;
+        var principal = _httpContextAccessor.HttpContext?.User;
 
         var usuarioId = int.Parse(principal.FindFirstValue(ClaimTypes.NameIdentifier));
         var usuario = await _usuarioService.GetAndEnsureExistsAsync(usuarioId);
@@ -26,13 +26,13 @@ public class AmbienteUsuarioService : IAmbienteUsuarioService
         return usuario;
     }
 
-    public string GetUsuarioIp()
+    public string? GetUsuarioIp()
     {
-        return _httpContextAccessor.HttpContext.Connection.RemoteIpAddress?.ToString();
+        return _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString();
     }
 
-    public string GetUsuarioUserAgent()
+    public string? GetUsuarioUserAgent()
     {
-        return _httpContextAccessor.HttpContext.Request.Headers["User-Agent"];
+        return _httpContextAccessor.HttpContext?.Request.Headers["User-Agent"];
     }
 }

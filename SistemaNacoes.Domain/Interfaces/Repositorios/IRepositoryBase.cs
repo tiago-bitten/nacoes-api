@@ -10,7 +10,7 @@ namespace SistemaNacoes.Domain.Interfaces.Repositorios
         void SoftDelete(T entity);
         Task<T> GetByIdAsync(int id, params string[]? includes);
         IQueryable<T> GetAll(params string[]? includes);
-        Task<T> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes);
+        Task<T?> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes);
         IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params string[]? includes);
     }
 }

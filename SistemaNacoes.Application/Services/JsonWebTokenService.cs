@@ -66,7 +66,6 @@ public class JsonWebTokenService : ITokenService
         var refreshToken = new RefreshToken(newToken, principal, dataExpiracao);
 
         await _uow.RefreshTokens.AddAsync(refreshToken);
-        await _uow.CommitAsync();
 
         return refreshToken;
     }
@@ -81,7 +80,6 @@ public class JsonWebTokenService : ITokenService
             throw new InvalidOperationException("Refresh token not found.");
         
         _uow.RefreshTokens.Revogar(refreshToken);
-        await _uow.CommitAsync();
     }
 
     public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)

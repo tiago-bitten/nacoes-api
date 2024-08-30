@@ -39,6 +39,8 @@ public class RefreshToken
         var newRefreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);
         var newAccessToken = _tokenService.GenerateAccessToken(usuario);
 
+        await _uow.CommitAsync();
+
         var authToken = (
             AccessToken: newAccessToken,
             RefreshToken: newRefreshToken.Token,

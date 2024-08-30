@@ -59,6 +59,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddHttpContextAccessor();
 
+// TODO: mover para um arquivo de configuração
 builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
 builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
 builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
@@ -87,6 +88,7 @@ builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<ITokenService, JsonWebTokenService>();
 builder.Services.AddScoped<IAmbienteUsuarioService, AmbienteUsuarioService>();
 builder.Services.AddScoped<IRegistroLoginRepository, RegistroLoginRepository>();
+builder.Services.AddScoped<IRegistroLoginService, RegistroLoginService>();
 
 builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();

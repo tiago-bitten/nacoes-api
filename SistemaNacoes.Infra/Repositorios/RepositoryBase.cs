@@ -68,7 +68,7 @@ namespace SistemaNacoes.Infra.Repositorios
             return includes.Aggregate(query, (current, include) => current.Include(include));
         }
 
-        public virtual async Task<T> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
+        public virtual async Task<T?> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
         {
             if (includes == null || includes.Length == 0)
                 return await _dbSet.FirstOrDefaultAsync(predicate);

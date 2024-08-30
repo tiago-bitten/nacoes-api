@@ -18,7 +18,7 @@ public class RegistroLogin : EntidadeBase
     public int? UsuarioId { get; set; }
     public string Ip { get; set; }
     public string UserAgent { get; set; }
-    public DateTime Data { get; set; } = DateTime.Now;
+    public DateTime Data { get; set; } = DateTime.UtcNow;
     public bool Sucesso { get; set; }
     public EMotivoLoginAcessoNegado? Motivo { get; set; }
 
