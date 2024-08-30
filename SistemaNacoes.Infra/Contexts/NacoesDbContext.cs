@@ -27,6 +27,7 @@ public class NacoesDbContext : DbContext
     public DbSet<SituacaoAgendamento> SituacaoAgendamentos { get; set; }
     public DbSet<GrupoVoluntario> GrupoVoluntarios { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
+    public DbSet<RegistroLogin> RegistrosLogins { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -46,6 +47,7 @@ public class NacoesDbContext : DbContext
         modelBuilder.ApplyConfiguration(new SituacaoAgendamentoConfig());
         modelBuilder.ApplyConfiguration(new GrupoVoluntarioConfig());
         modelBuilder.ApplyConfiguration(new RefreshTokenConfig());
+        modelBuilder.ApplyConfiguration(new RegistroLoginConfig());
         
         base.OnModelCreating(modelBuilder);
     }

@@ -2,6 +2,7 @@
 using SistemaNacoes.Application.Dtos.Auth;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -27,17 +28,19 @@ public class Login
     public async Task<RespostaBase<GetAuthTokenDto>> ExecuteAsync(LoginDto dto)
     {
         var usuario = await _uow.Usuarios.FindAsync(x => x.Email.ToUpper() == dto.Email.ToUpper());
-
+        var ip = _ambienteUsuarioService.GetUsuarioIp();
+        var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
+        
         var senhaInvalida = !BCrypt.Net.BCrypt.Verify(dto.Senha, usuario.SenhaHash);
 
         if (usuario == null || senhaInvalida)
         {
-            var ip = _ambienteUsuarioService.GetUsuarioIp();
-            var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
-            
-            await _registroLoginService.LogFailedLoginAsync(usuario?.Id, ip, userAgent);
+            var motivo = senhaInvalida ? EMotivoLoginAcessoNegado.SenhaIncorreta : EMotivoLoginAcessoNegado.UsuarioNaoEncontrado;
+            await _registroLoginService.LogFailedLoginAsync(usuario?.Id ?? null, ip, userAgent, motivo);
             throw new Exception(MensagemErroConstant.LoginInvalido);
         }
+        
+        await _registroLoginService.LogSuccessLoginAsync(usuario.Id, ip, userAgent);
         
         var accessToken = _tokenService.GenerateAccessToken(usuario);
         var refreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);

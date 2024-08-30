@@ -12,5 +12,6 @@ namespace SistemaNacoes.Domain.Entidades
         public bool Removido { get; set; } = false;
 
         public List<UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
+        public List<RegistroLogin> RegistroLogins { get; set; } = new();
     }
 }

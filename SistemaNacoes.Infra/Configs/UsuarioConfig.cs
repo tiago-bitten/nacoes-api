@@ -59,5 +59,10 @@ public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
             .WithOne(x => x.Usuario)
             .HasForeignKey(x => x.UsuarioId)
             .OnDelete(DeleteBehavior.SetNull);
+        
+        builder.HasMany(x => x.RegistroLogins)
+            .WithOne(x => x.Usuario)
+            .HasForeignKey(x => x.UsuarioId)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

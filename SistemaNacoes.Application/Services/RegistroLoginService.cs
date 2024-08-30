@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -18,15 +19,22 @@ public class RegistroLoginService : IRegistroLoginService
         await _uow.RegistroLogins.AddAsync(registroLogin);
     }
 
-    public async Task LogSuccessLoginAsync(int? usuarioId, string ip, string userAgent)
+    public async Task LogSuccessLoginAsync(int usuarioId, string ip, string userAgent)
     {
-        var registroLogin = new RegistroLogin(usuarioId, ip, userAgent, true);
+        var registroLogin = new RegistroLogin(usuarioId, ip, userAgent);
         await LoginAttemptAsync(registroLogin);
     }
 
-    public async Task LogFailedLoginAsync(int? usuarioId, string ip, string userAgent)
+    public async Task LogFailedLoginAsync(int? usuarioId, string ip, string userAgent, EMotivoLoginAcessoNegado motivo)
     {
-        var registroLogin = new RegistroLogin(usuarioId, ip, userAgent, false);
+        var registroLogin = new RegistroLogin();
+        
+        registroLogin.UsuarioId = usuarioId ?? null;
+        registroLogin.Ip = ip;
+        registroLogin.UserAgent = userAgent;
+        registroLogin.Motivo = motivo;
+        registroLogin.Sucesso = false;
+        
         await LoginAttemptAsync(registroLogin);
     }
 }
