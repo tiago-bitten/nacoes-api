@@ -34,3 +34,15 @@ C:\Users\tiago\Documents\CSHARP\p-projetos\nacoes-api\SistemaNacoes.Domain\obj\D
 C:\Users\tiago\Documents\CSHARP\p-projetos\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\refint\SistemaNacoes.Domain.dll
 C:\Users\tiago\Documents\CSHARP\p-projetos\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.pdb
 C:\Users\tiago\Documents\CSHARP\p-projetos\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\ref\SistemaNacoes.Domain.dll
+D:\csharp\nacoes-api\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.deps.json
+D:\csharp\nacoes-api\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.dll
+D:\csharp\nacoes-api\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.pdb
+D:\csharp\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\csharp\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.AssemblyInfoInputs.cache
+D:\csharp\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.AssemblyInfo.cs
+D:\csharp\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.csproj.CoreCompileInputs.cache
+D:\csharp\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.sourcelink.json
+D:\csharp\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.dll
+D:\csharp\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\refint\SistemaNacoes.Domain.dll
+D:\csharp\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.pdb
+D:\csharp\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\ref\SistemaNacoes.Domain.dll

@@ -9,7 +9,9 @@ public class RegistroLoginConfig : IEntityTypeConfiguration<RegistroLogin>
 {
     public void Configure(EntityTypeBuilder<RegistroLogin> builder)
     {
-        builder.ToTable("registros_logins");
+        builder.ToTable("registros_logins")
+            .Ignore(x => x.Tabela)
+            .Ignore(x => x.ItemId);
         
         builder.HasKey(x => x.Id);
 

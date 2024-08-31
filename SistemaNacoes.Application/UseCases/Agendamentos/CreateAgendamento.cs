@@ -10,13 +10,16 @@ namespace SistemaNacoes.Application.UseCases.Agendamentos;
 
 public class CreateAgendamento
 {
+    #region dp
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private readonly IVoluntarioMinisterioService _voluntarioMinisterioService;
     private readonly IAgendaService _agendaService;
     private readonly IServiceBase<Atividade> _atividadeService;
     private readonly IDataIndisponivelService _dataIndisponivelService;
-
+    #endregion
+    
+    #region ctor
     public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService)
     {
         _uow = uow;
@@ -26,6 +29,7 @@ public class CreateAgendamento
         _voluntarioMinisterioService = voluntarioMinisterioService;
         _dataIndisponivelService = dataIndisponivelService;
     }
+    #endregion
     
     public async Task<RespostaBase<GetAgendamentoDto>> ExecuteAsync(CreateAgendamentoDto dto)
     {
@@ -40,13 +44,15 @@ public class CreateAgendamento
         if (!agenda.Ativo || agenda.Finalizado)
             throw new Exception(MensagemErroConstant.AgendaNaoDisponivel);
         
-        // Em memória
+        #region consulta em memoria
         // var existsAgendamento = agenda.Agendamentos.Exists(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
-
-        // Em banco
+        #endregion
+        
+        #region consulta no banco
         var existsAgendamento = await _uow.Agendamentos
             .GetAll()
             .AnyAsync(x => x.AgendaId == agenda.Id && x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
+        #endregion
         
         if (existsAgendamento)
             throw new Exception(MensagemErroConstant.AgendamentoJaExiste);
@@ -67,15 +73,17 @@ public class CreateAgendamento
             {
                 var atividade = await _atividadeService.GetAndEnsureExistsAsync(atividadeId);
                 
-                // Em memória
+                #region consulta em memoria
                 // var existsAtividade = voluntarioMinisterio.Ministerio.Atividades.Any(a => a.Id == atividade.Id);
-
-                // Em banco
+                #endregion
+                
+                #region consulta no banco
                 var existsAtividade = await _uow.Atividades
                     .GetAll()
                     .AnyAsync(x => x.Id == atividade.Id 
                                    && x.MinisterioId == voluntarioMinisterio.MinisterioId 
                                    && !x.Removido);
+                #endregion
                 
                 if (!existsAtividade)
                 {

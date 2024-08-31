@@ -38,6 +38,7 @@ builder.Services.AddDbContext<NacoesDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+// TODO: mover para um arquivo de configuração
 builder.Services.AddAuthentication(options => 
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -59,7 +60,6 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddHttpContextAccessor();
 
-// TODO: mover para um arquivo de configuração
 builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
 builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
 builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
@@ -89,6 +89,8 @@ builder.Services.AddScoped<ITokenService, JsonWebTokenService>();
 builder.Services.AddScoped<IAmbienteUsuarioService, AmbienteUsuarioService>();
 builder.Services.AddScoped<IRegistroLoginRepository, RegistroLoginRepository>();
 builder.Services.AddScoped<IRegistroLoginService, RegistroLoginService>();
+builder.Services.AddScoped<IRegistroCriacaoRepository, RegistroCriacaoRepository>();
+builder.Services.AddScoped<IRegistroAlteracaoRepository, RegistroAlteracaoRepository>();
 
 builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();

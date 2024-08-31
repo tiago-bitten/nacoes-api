@@ -399,6 +399,96 @@ namespace SistemaNacoes.Infra.Migrations
                     b.ToTable("refresh_tokens", (string)null);
                 });
 
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroAlteracao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DadosAntigos")
+                        .IsRequired()
+                        .HasColumnType("JSONB")
+                        .HasColumnName("dados_antigos");
+
+                    b.Property<string>("DadosNovos")
+                        .IsRequired()
+                        .HasColumnType("JSONB")
+                        .HasColumnName("dados_novos");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
+                        .HasColumnName("data");
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("ip");
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Tabela")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserAgent")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(500)")
+                        .HasColumnName("user_agent");
+
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("INT")
+                        .HasColumnName("usuario_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("registros_alteracoes", (string)null);
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroCriacao", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
+                        .HasColumnName("data");
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("ip");
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Tabela")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserAgent")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(500)")
+                        .HasColumnName("user_agent");
+
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("INT")
+                        .HasColumnName("usuario_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("registros_criacao", (string)null);
+                });
+
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroLogin", b =>
                 {
                     b.Property<int>("Id")
@@ -761,6 +851,26 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Navigation("Voluntario");
                 });
 
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroAlteracao", b =>
+                {
+                    b.HasOne("SistemaNacoes.Domain.Entidades.Usuario", "Usuario")
+                        .WithMany("RegistroAlteracoes")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroCriacao", b =>
+                {
+                    b.HasOne("SistemaNacoes.Domain.Entidades.Usuario", "Usuario")
+                        .WithMany("RegistroCriacoes")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroLogin", b =>
                 {
                     b.HasOne("SistemaNacoes.Domain.Entidades.Usuario", "Usuario")
@@ -869,6 +979,10 @@ namespace SistemaNacoes.Infra.Migrations
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Usuario", b =>
                 {
+                    b.Navigation("RegistroAlteracoes");
+
+                    b.Navigation("RegistroCriacoes");
+
                     b.Navigation("RegistroLogins");
 
                     b.Navigation("UsuariosMinisterios");

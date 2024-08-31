@@ -2,8 +2,6 @@
 
 namespace SistemaNacoes.Domain.Interfaces.Repositorios;
 
-public interface IRegistroLoginRepository
+public interface IRegistroLoginRepository : IRegistroRepository<RegistroLogin>
 {
-    Task AddAsync(RegistroLogin entity);
-    IQueryable<RegistroLogin> GetAll();
 }
