@@ -2033,24 +2033,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\teste\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\tiago\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.API\\SistemaNacoes.API.csproj",
+      "projectUniqueName": "D:\\csharp\\nacoes-api\\SistemaNacoes.API\\SistemaNacoes.API.csproj",
       "projectName": "SistemaNacoes.API",
-      "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.API\\SistemaNacoes.API.csproj",
-      "packagesPath": "C:\\Users\\teste\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.API\\obj\\",
+      "projectPath": "D:\\csharp\\nacoes-api\\SistemaNacoes.API\\SistemaNacoes.API.csproj",
+      "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
+      "outputPath": "D:\\csharp\\nacoes-api\\SistemaNacoes.API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\teste\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2065,11 +2060,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Application\\SistemaNacoes.Application.csproj": {
-              "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Application\\SistemaNacoes.Application.csproj"
+            "D:\\csharp\\nacoes-api\\SistemaNacoes.Application\\SistemaNacoes.Application.csproj": {
+              "projectPath": "D:\\csharp\\nacoes-api\\SistemaNacoes.Application\\SistemaNacoes.Application.csproj"
             },
-            "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {
-              "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj"
+            "D:\\csharp\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {
+              "projectPath": "D:\\csharp\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj"
             }
           }
         }
@@ -2114,24 +2109,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.20, 7.0.20]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[7.0.20, 7.0.20]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.20, 7.0.20]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[7.0.20, 7.0.20]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2140,7 +2117,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
