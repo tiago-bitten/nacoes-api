@@ -54,7 +54,8 @@ public class CreateGrupo
 
         var grupoDto = _mapper.Map<GetGrupoDto>(grupo);
         
-        var respostaBase = new RespostaBase<GetGrupoDto>(MensagemRepostaConstant.CreateGrupo, grupoDto);
+        var respostaBase = new RespostaBase<GetGrupoDto>(
+            MensagemRepostaConstant.CreateGrupo, grupoDto);
         
         return respostaBase;
     }

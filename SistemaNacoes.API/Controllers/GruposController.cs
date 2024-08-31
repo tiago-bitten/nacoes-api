@@ -9,19 +9,22 @@ namespace SistemaNacoes.API.Controllers;
 [Route("api/[controller]")]
 public class GruposController : ControllerBase
 {
+    #region dp
     private readonly CreateGrupo _createGrupo;
     private readonly DeleteGrupo _deleteGrupo;
     private readonly GetAllGrupos _getAllGrupos;
-    private readonly VinculateVoluntarioGrupo _vinculateVoluntarioGrupo;
+    #endregion
     
-    public GruposController(CreateGrupo createGrupo, DeleteGrupo deleteGrupo, GetAllGrupos getAllGrupos, VinculateVoluntarioGrupo vinculateVoluntarioGrupo)
+    #region ctor
+    public GruposController(CreateGrupo createGrupo, DeleteGrupo deleteGrupo, GetAllGrupos getAllGrupos)
     {
         _createGrupo = createGrupo;
         _deleteGrupo = deleteGrupo;
         _getAllGrupos = getAllGrupos;
-        _vinculateVoluntarioGrupo = vinculateVoluntarioGrupo;
     }
+    #endregion
     
+    #region Criar Grupo
     [HttpPost("Criar")]
     public async Task<IActionResult> Create([FromBody] CreateGrupoDto createGrupoDto)
     {
@@ -29,7 +32,9 @@ public class GruposController : ControllerBase
         
         return Ok(result);
     }
+    #endregion
     
+    #region Deletar Grupo
     [HttpDelete("Deletar/{id}")]
     public async Task<IActionResult> Delete(int id)
     {
@@ -37,7 +42,9 @@ public class GruposController : ControllerBase
         
         return Ok(result);
     }
+    #endregion
     
+    #region Listar Grupos
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] QueryParametro query)
     {
@@ -45,12 +52,5 @@ public class GruposController : ControllerBase
         
         return Ok(result);
     }
-    
-    [HttpPost("VinicularVoluntario")]
-    public async Task<IActionResult> VinculateVoluntarioGrupo([FromBody] VinculateVoluntarioGrupoDto vinculateVoluntarioGrupoDto)
-    {
-        var result = await _vinculateVoluntarioGrupo.ExecuteAsync(vinculateVoluntarioGrupoDto);
-        
-        return Ok(result);
-    }
+    #endregion
 }

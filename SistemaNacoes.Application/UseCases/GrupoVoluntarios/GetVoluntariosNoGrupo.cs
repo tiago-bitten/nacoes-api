@@ -58,7 +58,7 @@ public class GetVoluntariosNoGrupo
     
     private static Expression<Func<GrupoVoluntario, bool>> GetCondicao(int grupoId)
     {
-        return x => !x.Removido && x.GrupoId == grupoId;
+        return x => !x.Removido && !x.Voluntario.Removido && x.GrupoId == grupoId;
     }
     
     private static string[] GetGrupoIncludes()
