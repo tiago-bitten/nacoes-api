@@ -24,6 +24,7 @@ public class GetVoluntariosNoGrupo
         _grupoService = grupoService;
     }
 
+    // TODO: Refatorar adicionando a lógica de listagem igual a de outras entidades
     public async Task<RespostaBase<GetVoluntariosNoGrupoDto>> ExecuteAsync(int grupoId)
     {
         var grupoIncludes = GetGrupoIncludes();
