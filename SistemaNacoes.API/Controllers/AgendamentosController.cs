@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaNacoes.Application.Dtos.Agendamentos;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Application.UseCases.Agendamentos;
@@ -24,6 +25,7 @@ public class AgendamentosController : ControllerBase
         _deleteAgendamentoAtividade = deleteAgendamentoAtividade;
     }
     
+    [Authorize]
     [HttpPost("Criar")]
     public async Task<IActionResult> Criar([FromBody] CreateAgendamentoDto dto)
     {

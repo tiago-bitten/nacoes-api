@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\csharp\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {}
+    "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {}
   },
   "projects": {
-    "D:\\csharp\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
+    "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\csharp\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
         "projectName": "SistemaNacoes.Domain",
-        "projectPath": "D:\\csharp\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
-        "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "D:\\csharp\\nacoes-api\\SistemaNacoes.Domain\\obj\\",
+        "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
+        "packagesPath": "C:\\Users\\teste\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\teste\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -51,26 +55,44 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\csharp\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {
+    "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\csharp\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj",
+        "projectUniqueName": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj",
         "projectName": "SistemaNacoes.Infra",
-        "projectPath": "D:\\csharp\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj",
-        "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "D:\\csharp\\nacoes-api\\SistemaNacoes.Infra\\obj\\",
+        "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj",
+        "packagesPath": "C:\\Users\\teste\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\teste\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,8 +107,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\csharp\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
-                "projectPath": "D:\\csharp\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj"
+              "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
+                "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj"
               }
             }
           }
@@ -133,12 +155,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

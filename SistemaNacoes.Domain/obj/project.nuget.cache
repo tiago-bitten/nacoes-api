@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Nmcwv7E65bjEk9DumfaSZfEz7PzjHO4LQTKBaPUzA5WiOiPmjimz68um5oxw5cLGTFwkDtyhlYW/XwMo+A2fvQ==",
+  "dgSpecHash": "ITT5ryH2WnkegqCVTSeP19BkJUUyJSOA56YZ8OkcvxZ9JuS3c5gJXlpOiWTPU0kLLmMYsEQZEyhWsviwKWnpAw==",
   "success": true,
-  "projectFilePath": "D:\\csharp\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\teste\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.20\\microsoft.netcore.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\teste\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.20\\microsoft.windowsdesktop.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\teste\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.20\\microsoft.aspnetcore.app.ref.7.0.20.nupkg.sha512"
+  ],
   "logs": []
 }

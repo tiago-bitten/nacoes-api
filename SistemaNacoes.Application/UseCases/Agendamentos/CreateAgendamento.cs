@@ -109,10 +109,10 @@ public class CreateAgendamento
                 await _uow.AgendamentoAtividades.AddAsync(agendamentoAtividade);
             }
 
+        await _uow.CommitAsync();
+        
         var registroCriacao = new RegistroCriacao("agendamentos", agendamento.Id, usuarioLogado.Id, ip, userAgent);
         await _registroCriacaoService.LogAsync(registroCriacao);
-        
-        await _uow.CommitAsync();
         
         var agendamentoDto = _mapper.Map<GetAgendamentoDto>(agendamento);
 

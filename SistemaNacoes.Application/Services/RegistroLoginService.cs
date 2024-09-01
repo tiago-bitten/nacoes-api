@@ -17,6 +17,7 @@ public class RegistroLoginService : IRegistroLoginService
     public async Task LoginAttemptAsync(RegistroLogin registroLogin)
     {
         await _uow.RegistroLogins.AddAsync(registroLogin);
+        await _uow.CommitAsync();
     }
 
     public async Task LogSuccessLoginAsync(int usuarioId, string ip, string userAgent)

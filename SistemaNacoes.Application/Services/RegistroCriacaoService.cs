@@ -18,6 +18,6 @@ public class RegistroCriacaoService : IRegistroCriacaoService
         //var registroCriacao = new RegistroCriacao(tabela, itemId, usuarioId, ip, userAgent);
 
         await _uow.RegistroCriacoes.AddAsync(registroCriacao);
-        
+        await _uow.CommitAsync();
     }
 }

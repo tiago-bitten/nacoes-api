@@ -8,7 +8,7 @@ public class RegistroCriacaoConfig : IEntityTypeConfiguration<RegistroCriacao>
 {
     public void Configure(EntityTypeBuilder<RegistroCriacao> builder)
     {
-        builder.ToTable("registros_criacao");
+        builder.ToTable("registros_criacoes");
 
         builder.HasKey(x => x.Id);
 
