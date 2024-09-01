@@ -17,6 +17,16 @@ public class RegistroAlteracaoConfig : IEntityTypeConfiguration<RegistroAlteraca
             .HasColumnName("id")
             .ValueGeneratedOnAdd();
 
+        builder.Property(x => x.Tabela)
+            .HasColumnType("TEXT")
+            .HasColumnName("tabela")
+            .IsRequired();
+
+        builder.Property(x => x.ItemId)
+            .HasColumnType("INT")
+            .HasColumnName("item_id")
+            .IsRequired();
+
         builder.Property(x => x.DadosAntigos)
             .HasColumnType("JSONB")
             .HasColumnName("dados_antigos")
