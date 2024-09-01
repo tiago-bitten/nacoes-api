@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SistemaNacoes.Infra.Contexts;
@@ -11,9 +12,11 @@ using SistemaNacoes.Infra.Contexts;
 namespace SistemaNacoes.Infra.Migrations
 {
     [DbContext(typeof(NacoesDbContext))]
-    partial class NacoesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240901215338_alterando nome da tabela registro criacoes")]
+    partial class alterandonomedatabelaregistrocriacoes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -468,14 +471,10 @@ namespace SistemaNacoes.Infra.Migrations
                         .HasColumnName("ip");
 
                     b.Property<int?>("ItemId")
-                        .IsRequired()
-                        .HasColumnType("INT")
-                        .HasColumnName("item_id");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Tabela")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("tabela");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserAgent")
                         .IsRequired()

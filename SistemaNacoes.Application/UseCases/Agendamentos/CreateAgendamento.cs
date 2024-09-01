@@ -40,8 +40,6 @@ public class CreateAgendamento
     public async Task<RespostaBase<GetAgendamentoDto>> ExecuteAsync(CreateAgendamentoDto dto)
     {
         var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
-        var ip = _ambienteUsuarioService.GetUsuarioIp();
-        var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
 
         if (!usuarioLogado.HasPermission(EPermissoes.CREATE_AGENDAMENTO))
             throw new Exception(MensagemErroConstant.SemPermissaoParaCriarAgendamento);
