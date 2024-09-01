@@ -29,6 +29,7 @@ public class RegistroLoginService : IRegistroLoginService
     {
         var registroLogin = new RegistroLogin();
         
+        // TODO: revisar imp de 'UsuarioId', talvez esteja redundante, pois já está nullable
         registroLogin.UsuarioId = usuarioId ?? null;
         registroLogin.Ip = ip;
         registroLogin.UserAgent = userAgent;

@@ -27,7 +27,9 @@ namespace SistemaNacoes.Infra.Data
             ISituacaoAgendamentoRepository situacaoAgendamentoRepository,
             IGrupoVoluntarioRepository grupoVoluntarioRepository,
             IRefreshTokenRepository refreshTokenRepository,
-            IRegistroLoginRepository registroLoginRepository)
+            IRegistroLoginRepository registroLoginRepository,
+            IRegistroCriacaoRepository registroCriacaoRepository,
+            IRegistroAlteracaoRepository registroAlteracaoRepository)
         {
             _context = context;
             Voluntarios = voluntarioRepository;
@@ -47,6 +49,8 @@ namespace SistemaNacoes.Infra.Data
             GrupoVoluntarios = grupoVoluntarioRepository;
             RefreshTokens = refreshTokenRepository;
             RegistroLogins = registroLoginRepository;
+            RegistroCriacoes = registroCriacaoRepository;
+            RegistroAlteracoes = registroAlteracaoRepository;
         }
 
         public async Task<bool> CommitAsync()
@@ -90,5 +94,7 @@ namespace SistemaNacoes.Infra.Data
         public IGrupoVoluntarioRepository GrupoVoluntarios { get; set; }
         public IRefreshTokenRepository RefreshTokens { get; }
         public IRegistroLoginRepository RegistroLogins { get; }
+        public IRegistroCriacaoRepository RegistroCriacoes { get; }
+        public IRegistroAlteracaoRepository RegistroAlteracoes { get; }
     }
 }

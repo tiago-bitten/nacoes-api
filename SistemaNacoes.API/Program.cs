@@ -91,6 +91,7 @@ builder.Services.AddScoped<IRegistroLoginRepository, RegistroLoginRepository>();
 builder.Services.AddScoped<IRegistroLoginService, RegistroLoginService>();
 builder.Services.AddScoped<IRegistroCriacaoRepository, RegistroCriacaoRepository>();
 builder.Services.AddScoped<IRegistroAlteracaoRepository, RegistroAlteracaoRepository>();
+builder.Services.AddScoped<IRegistroCriacaoService, RegistroCriacaoService>();
 
 builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();

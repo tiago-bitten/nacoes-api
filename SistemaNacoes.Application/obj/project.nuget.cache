@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fijd/EiFjh0=",
+  "dgSpecHash": "psYq9tN+awgT+/HOEREKtulcuAtZJXyz5Lsh9bH8yyHDLN+XezmNbfqL041hE2bPTQ6shqWZvivkYAuomzzV+A==",
   "success": true,
   "projectFilePath": "D:\\csharp\\nacoes-api\\SistemaNacoes.Application\\SistemaNacoes.Application.csproj",
   "expectedPackageFiles": [
@@ -34,7 +34,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'System.IdentityModel.Tokens.Jwt' 7.0.0 tem uma moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
+      "message": "Package 'System.IdentityModel.Tokens.Jwt' 7.0.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
       "libraryId": "System.IdentityModel.Tokens.Jwt",
       "targetGraphs": [
         "net7.0"

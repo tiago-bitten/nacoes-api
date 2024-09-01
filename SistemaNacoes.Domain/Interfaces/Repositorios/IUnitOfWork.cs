@@ -22,4 +22,6 @@ public interface IUnitOfWork
     IGrupoVoluntarioRepository GrupoVoluntarios { get; }
     IRefreshTokenRepository RefreshTokens { get; }    
     IRegistroLoginRepository RegistroLogins { get; }
+    IRegistroCriacaoRepository RegistroCriacoes { get; }
+    IRegistroAlteracaoRepository RegistroAlteracoes { get; }
 }

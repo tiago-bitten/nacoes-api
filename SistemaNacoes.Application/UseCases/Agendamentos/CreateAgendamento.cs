@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Agendamentos;
+using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -17,10 +19,12 @@ public class CreateAgendamento
     private readonly IAgendaService _agendaService;
     private readonly IServiceBase<Atividade> _atividadeService;
     private readonly IDataIndisponivelService _dataIndisponivelService;
+    private readonly IRegistroCriacaoService _registroCriacaoService;
+    private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     #endregion
     
     #region ctor
-    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService)
+    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService)
     {
         _uow = uow;
         _mapper = mapper;
@@ -28,11 +32,20 @@ public class CreateAgendamento
         _agendaService = agendaService;
         _voluntarioMinisterioService = voluntarioMinisterioService;
         _dataIndisponivelService = dataIndisponivelService;
+        _registroCriacaoService = registroCriacaoService;
+        _ambienteUsuarioService = ambienteUsuarioService;
     }
     #endregion
     
     public async Task<RespostaBase<GetAgendamentoDto>> ExecuteAsync(CreateAgendamentoDto dto)
     {
+        var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
+        var ip = _ambienteUsuarioService.GetUsuarioIp();
+        var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
+
+        if (!usuarioLogado.HasPermission(EPermissoes.CREATE_AGENDAMENTO))
+            throw new Exception(MensagemErroConstant.SemPermissaoParaCriarAgendamento);
+        
         var voluntarioMinisteriosIncludes = GetVoluntarioMinisterioIncludes();
         var agendaIncludes = GetAgendaIncludes();
         
@@ -87,6 +100,7 @@ public class CreateAgendamento
                 
                 if (!existsAtividade)
                 {
+                    // TODO: passar o rollback para middleware de exceções
                     _uow.RollBack();
                     throw new Exception(MensagemErroConstant.AtividadeNaoPertenceAoMinisterio);
                 }
@@ -95,11 +109,17 @@ public class CreateAgendamento
                 await _uow.AgendamentoAtividades.AddAsync(agendamentoAtividade);
             }
 
+        var registroCriacao = new RegistroCriacao("agendamentos", agendamento.Id, usuarioLogado.Id, ip, userAgent);
+        await _registroCriacaoService.LogAsync(registroCriacao);
+        
         await _uow.CommitAsync();
         
         var agendamentoDto = _mapper.Map<GetAgendamentoDto>(agendamento);
 
-        return new RespostaBase<GetAgendamentoDto>(MensagemRepostaConstant.CreateAgendamento, agendamentoDto);
+        var respostaBase = new RespostaBase<GetAgendamentoDto>(
+            MensagemRepostaConstant.CreateAgendamento, agendamentoDto);
+
+        return respostaBase;
     }
 
     private static string[] GetVoluntarioMinisterioIncludes()
