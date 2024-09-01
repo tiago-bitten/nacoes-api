@@ -12,27 +12,23 @@ public class Login
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private readonly ITokenService _tokenService;
-    private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     private readonly IRegistroLoginService _registroLoginService;
 
-    public Login(IUnitOfWork uow, IMapper mapper, ITokenService tokenService, IAmbienteUsuarioService ambienteUsuarioService, IRegistroLoginService registroLoginService)
+    public Login(IUnitOfWork uow, IMapper mapper, ITokenService tokenService, IRegistroLoginService registroLoginService)
     {
         _uow = uow;
         _mapper = mapper;
         _tokenService = tokenService;
-        _ambienteUsuarioService = ambienteUsuarioService;
         _registroLoginService = registroLoginService;
     }
 
     public async Task<RespostaBase<GetAuthTokenDto>> ExecuteAsync(LoginDto dto)
     {
         var usuario = await _uow.Usuarios.FindAsync(x => x.Email.ToUpper() == dto.Email.ToUpper());
-        var ip = _ambienteUsuarioService.GetUsuarioIp();
-        var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
         
         if (usuario == null)
         {
-            await _registroLoginService.LogFailedLoginAsync(null, ip, userAgent, EMotivoLoginAcessoNegado.UsuarioNaoEncontrado);
+            await _registroLoginService.LogFailedLoginAsync(null, EMotivoLoginAcessoNegado.UsuarioNaoEncontrado);
             await _uow.CommitAsync();
             throw new Exception(MensagemErroConstant.LoginInvalido);
         }
@@ -41,12 +37,12 @@ public class Login
 
         if (senhaInvalida)
         {
-            await _registroLoginService.LogFailedLoginAsync(usuario.Id, ip, userAgent, EMotivoLoginAcessoNegado.SenhaIncorreta);
+            await _registroLoginService.LogFailedLoginAsync(usuario.Id, EMotivoLoginAcessoNegado.SenhaIncorreta);
             await _uow.CommitAsync();
             throw new Exception(MensagemErroConstant.LoginInvalido);
         }
     
-        await _registroLoginService.LogSuccessLoginAsync(usuario.Id, ip, userAgent);
+        await _registroLoginService.LogSuccessLoginAsync(usuario.Id);
     
         var accessToken = _tokenService.GenerateAccessToken(usuario);
         var refreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);

@@ -7,15 +7,21 @@ namespace SistemaNacoes.Application.Services;
 public class RegistroCriacaoService : IRegistroCriacaoService
 {
     private readonly IUnitOfWork _uow;
-
-    public RegistroCriacaoService(IUnitOfWork uow)
+    private readonly IAmbienteUsuarioService _ambienteUsuarioService;
+    
+    public RegistroCriacaoService(IUnitOfWork uow, IAmbienteUsuarioService ambienteUsuarioService)
     {
         _uow = uow;
+        _ambienteUsuarioService = ambienteUsuarioService;
     }
 
-    public async Task LogAsync(RegistroCriacao registroCriacao)
+    public async Task LogAsync(string tabela, int itemId)
     {
-        //var registroCriacao = new RegistroCriacao(tabela, itemId, usuarioId, ip, userAgent);
+        var usuario = await _ambienteUsuarioService.GetUsuarioAsync();
+        var ip = _ambienteUsuarioService.GetUsuarioIp();
+        var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
+        
+        var registroCriacao = new RegistroCriacao(tabela, itemId, usuario.Id, ip, userAgent);
 
         await _uow.RegistroCriacoes.AddAsync(registroCriacao);
         await _uow.CommitAsync();
