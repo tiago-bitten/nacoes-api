@@ -29,7 +29,7 @@ public class VoluntarioMinisterioConfig : IEntityTypeConfiguration<VoluntarioMin
 
         builder.Property(x => x.Removido)
             .HasColumnType("BOOLEAN")
-            .HasColumnName("ativo")
+            .HasColumnName("removido")
             .HasDefaultValue(false)
             .IsRequired();
 
