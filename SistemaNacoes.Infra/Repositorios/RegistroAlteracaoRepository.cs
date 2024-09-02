@@ -17,6 +17,11 @@ public class RegistroAlteracaoRepository : IRegistroAlteracaoRepository
         await _repositoryBase.AddAsync(registro);
     }
 
+    public async Task AddRangeAsync(IEnumerable<RegistroAlteracao> registros)
+    {
+        await _repositoryBase.AddRangeAsync(registros);
+    }
+
     public IQueryable<RegistroAlteracao> GetAll()
     {
         return _repositoryBase.GetAll();

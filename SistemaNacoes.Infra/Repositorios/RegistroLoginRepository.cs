@@ -16,7 +16,13 @@ public class RegistroLoginRepository : IRegistroLoginRepository
     {
         await _repository.AddAsync(entity);
     }
-    
+
+    // Não utilizar este método
+    public Task AddRangeAsync(IEnumerable<RegistroLogin> registros)
+    {
+        throw new NotImplementedException();
+    }
+
     public IQueryable<RegistroLogin> GetAll()
     {
         return _repository.GetAll();

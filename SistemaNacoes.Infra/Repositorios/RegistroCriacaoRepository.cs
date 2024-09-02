@@ -21,4 +21,9 @@ public class RegistroCriacaoRepository : IRegistroCriacaoRepository
     {
         return _repositoryBase.GetAll();
     }
+
+    public async Task AddRangeAsync(IEnumerable<RegistroCriacao> registros)
+    {
+        await _repositoryBase.AddRangeAsync(registros);
+    }
 }

@@ -5,6 +5,7 @@ namespace SistemaNacoes.Domain.Interfaces.Repositorios
     public interface IRepositoryBase<T>
     {
         Task AddAsync(T entity);
+        Task AddRangeAsync(IEnumerable<T> entities);
         void Update(T entity);
         void Delete(T entity);
         void SoftDelete(T entity);

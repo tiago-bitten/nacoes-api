@@ -1,8 +1,9 @@
-﻿using System.Runtime.CompilerServices;
-using AutoMapper;
+﻿using AutoMapper;
 using SistemaNacoes.Application.Dtos.Grupos;
+using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -13,16 +14,25 @@ public class CreateGrupo
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private readonly IVoluntarioService _voluntarioService;
+    private readonly IAmbienteUsuarioService _ambienteUsuarioService;
+    private readonly IRegistroCriacaoService _registroCriacaoService;
     
-    public CreateGrupo(IUnitOfWork uow, IMapper mapper, IVoluntarioService voluntarioService)
+    public CreateGrupo(IUnitOfWork uow, IMapper mapper, IVoluntarioService voluntarioService, IAmbienteUsuarioService ambienteUsuarioService, IRegistroCriacaoService registroCriacaoService)
     {
         _uow = uow;
         _mapper = mapper;
         _voluntarioService = voluntarioService;
+        _ambienteUsuarioService = ambienteUsuarioService;
+        _registroCriacaoService = registroCriacaoService;
     }
     
     public async Task<RespostaBase<GetGrupoDto>> ExecuteAsync(CreateGrupoDto dto)
     {
+        var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
+
+        if (!usuarioLogado.HasPermission(EPermissoes.CREATE_GRUPO))
+            throw new Exception(MensagemErroConstant.SemPermissaoParaCriarGrupo);
+        
         var existsGrupo = await _uow.Grupos
             .FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
         
@@ -51,6 +61,9 @@ public class CreateGrupo
             }
         
         await _uow.CommitAsync();
+
+        await _registroCriacaoService.LogAsync("grupos", grupo.Id);
+        await _registroCriacaoService.LogRangeAsync("grupos_voluntarios", grupo.GrupoVoluntarios.Select(x => x.VoluntarioId));
 
         var grupoDto = _mapper.Map<GetGrupoDto>(grupo);
         

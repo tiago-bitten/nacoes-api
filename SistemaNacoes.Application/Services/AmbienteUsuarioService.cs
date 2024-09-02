@@ -16,7 +16,7 @@ public class AmbienteUsuarioService : IAmbienteUsuarioService
         _usuarioService = usuarioService;
     }
 
-    public async Task<Usuario?> GetUsuarioAsync()
+    public async Task<Usuario> GetUsuarioAsync()
     {
         var principal = _httpContextAccessor.HttpContext?.User;
 
