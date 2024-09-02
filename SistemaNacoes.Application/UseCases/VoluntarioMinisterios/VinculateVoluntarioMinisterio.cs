@@ -26,25 +26,22 @@ public class VinculateVoluntarioMinisterio
         _ministerioService = ministerioService;
     }
 
+    // TODO URGENTE: Refatorar totalmente esse usecase, voluntariominsiterio agora tem identificador unico
     public async Task<RespostaBase<GetSimpVoluntarioMinisterioDto>> ExecuteAsync(VinculateVoluntarioMinisterioDto dto)
     {
         var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId);
         var ministerio = await _ministerioService.GetAndEnsureExistsAsync(dto.MinisterioId);
 
         var existingVoluntarioMinisterio = await _uow.VoluntarioMinisterios
-            .FindAsync(x => x.VoluntarioId == voluntario.Id
+            .FindAsync(x => !x.Removido 
+                            && x.VoluntarioId == voluntario.Id
                             && x.MinisterioId == ministerio.Id);
-
+        
         if (existingVoluntarioMinisterio != null)
-        {
-            existingVoluntarioMinisterio.Ativo = true;
-            _uow.VoluntarioMinisterios.Update(existingVoluntarioMinisterio);
-        }
-        else
-        {
-            var voluntarioMinisterio = new VoluntarioMinisterio(voluntario, ministerio);
-            await _uow.VoluntarioMinisterios.AddAsync(voluntarioMinisterio);
-        }
+            throw new Exception(MensagemErroConstant.VoluntarioJaPossueMinisterio);
+
+        var voluntarioMinisterio = new VoluntarioMinisterio(voluntario, ministerio);
+        await _uow.VoluntarioMinisterios.AddAsync(voluntarioMinisterio);
 
         await _uow.CommitAsync();
 

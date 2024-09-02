@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SistemaNacoes.Infra.Contexts;
@@ -11,9 +12,11 @@ using SistemaNacoes.Infra.Contexts;
 namespace SistemaNacoes.Infra.Migrations
 {
     [DbContext(typeof(NacoesDbContext))]
-    partial class NacoesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240902013133_adicionando entidade base em grupovoluntario")]
+    partial class adicionandoentidadebaseemgrupovoluntario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

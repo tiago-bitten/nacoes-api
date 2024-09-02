@@ -19,6 +19,7 @@ public static class MensagemErroConstant
     
     // VoluntariosMinisterios
     public const string VoluntarioMinisterioNaoEncontrado = "Voluntário vinculado ao ministério não encontrado";
+    public const string VoluntarioJaPossueMinisterio = "Voluntário já está vinculado ao ministério";
     
     // DataIndisponiveis
     public const string DataIndisponivel = "Voluntário não disponível na data";
@@ -57,4 +58,5 @@ public static class MensagemErroConstant
     public const string SemPermissaoParaAbrirAgenda = "Usuário não tem permissão para abrir agenda";
     public const string SemPermissaoParaCriarAtividade = "Usuário não tem permissão para criar atividade";
     public const string SemPermissaoParaCriarGrupo = "usuário não tem permissão para criar grupo";
+    public const string SemPermissaoParaCriarVoluntario = "Usuário não tem permissão para criar voluntário";
 }

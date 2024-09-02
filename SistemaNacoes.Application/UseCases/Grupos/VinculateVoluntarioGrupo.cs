@@ -9,19 +9,25 @@ namespace SistemaNacoes.Application.UseCases.Grupos;
 
 public class VinculateVoluntarioGrupo
 {
+    
+    #region dp
     private readonly IUnitOfWork _uow;
-    private readonly IMapper _mapper;
     private readonly IVoluntarioService _voluntarioService;
     private readonly IServiceBase<Grupo> _grupoService;
-    
+    private readonly IAmbienteUsuarioService _ambienteUsuarioService;
+    private readonly IRegistroCriacaoService _registroCriacaoService;
+    #endregion
 
-    public VinculateVoluntarioGrupo(IUnitOfWork uow, IMapper mapper, IVoluntarioService voluntarioService, IServiceBase<Grupo> grupoService)
+    #region ctor
+    public VinculateVoluntarioGrupo(IUnitOfWork uow, IVoluntarioService voluntarioService, IServiceBase<Grupo> grupoService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService)
     {
         _uow = uow;
-        _mapper = mapper;
         _voluntarioService = voluntarioService;
         _grupoService = grupoService;
+        _registroCriacaoService = registroCriacaoService;
+        _ambienteUsuarioService = ambienteUsuarioService;
     }
+    #endregion
 
     public async Task<RespostaBase<dynamic>> ExecuteAsync(VinculateVoluntarioGrupoDto dto)
     {
@@ -40,7 +46,8 @@ public class VinculateVoluntarioGrupo
         await _uow.GrupoVoluntarios.AddAsync(grupoVoluntario);
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.VinculateVoluntarioGrupo);
+        var respostaBase = new RespostaBase<dynamic>(
+            MensagemRepostaConstant.VinculateVoluntarioGrupo);
         
         return respostaBase;
     }

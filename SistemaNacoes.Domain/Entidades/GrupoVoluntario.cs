@@ -1,6 +1,8 @@
-﻿namespace SistemaNacoes.Domain.Entidades;
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
 
-public sealed class GrupoVoluntario
+namespace SistemaNacoes.Domain.Entidades;
+
+public sealed class GrupoVoluntario : EntidadeBase
 {
     public GrupoVoluntario()
     {

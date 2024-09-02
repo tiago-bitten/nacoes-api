@@ -63,7 +63,7 @@ public class CreateGrupo
         await _uow.CommitAsync();
 
         await _registroCriacaoService.LogAsync("grupos", grupo.Id);
-        await _registroCriacaoService.LogRangeAsync("grupos_voluntarios", grupo.GrupoVoluntarios.Select(x => x.VoluntarioId));
+        await _registroCriacaoService.LogRangeAsync("grupos_voluntarios", grupo.GrupoVoluntarios.Select(x => x.Id));
 
         var grupoDto = _mapper.Map<GetGrupoDto>(grupo);
         

@@ -27,7 +27,7 @@ public class GetAllVoluntarioMinisterios
             .GetAll(includes)
             .Where(GetCondicao());
         
-        var totalVoluntarioMinisterios = await query.CountAsync(x => x.Ativo);
+        var totalVoluntarioMinisterios = await query.CountAsync();
         
         var voluntarioMinisterios = await query
             .Skip(queryParametro.Skip)
@@ -44,7 +44,7 @@ public class GetAllVoluntarioMinisterios
     
     private static Expression<Func<VoluntarioMinisterio, bool>> GetCondicao()
     {
-        return x => x.Ativo;
+        return x => !x.Removido;
     }
     
     private static string[] GetIncludes()

@@ -10,7 +10,12 @@ public class GrupoVoluntarioConfig : IEntityTypeConfiguration<GrupoVoluntario>
     {
         builder.ToTable("grupos_voluntarios");
 
-        builder.HasKey(x => new { x.GrupoId, x.VoluntarioId });
+        builder.HasKey(x => x.Id);
+        
+        builder.Property(x => x.Id)
+            .HasColumnType("INT")
+            .HasColumnName("id")
+            .ValueGeneratedOnAdd();
 
         builder.Property(x => x.GrupoId)
             .HasColumnType("INT")

@@ -13,10 +13,4 @@ public class VoluntarioMinisterioRepository : RepositoryBase<VoluntarioMinisteri
         : base(context)
     {
     }
-
-    public override void SoftDelete(VoluntarioMinisterio entity)
-    {
-        entity.Ativo = false;
-        _dbSet.Update(entity);
-    }
 }

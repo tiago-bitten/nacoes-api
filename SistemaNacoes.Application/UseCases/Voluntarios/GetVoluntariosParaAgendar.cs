@@ -77,7 +77,7 @@ public class GetVoluntariosParaAgendar
     {
         return x => 
             !x.Removido 
-                && x.VoluntarioMinisterios.Any(vm => vm.MinisterioId == ministerioId && vm.Ativo)
+                && x.VoluntarioMinisterios.Any(vm => vm.MinisterioId == ministerioId && !vm.Removido)
                 && (!x.Agendamentos.Any() || x.Agendamentos.All(a => a.AgendaId != agendaId || a.Removido));
     }
     

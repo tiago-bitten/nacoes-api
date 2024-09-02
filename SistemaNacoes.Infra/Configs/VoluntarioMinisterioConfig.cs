@@ -9,8 +9,13 @@ public class VoluntarioMinisterioConfig : IEntityTypeConfiguration<VoluntarioMin
     public void Configure(EntityTypeBuilder<VoluntarioMinisterio> builder)
     {
         builder.ToTable("voluntarios_ministerios");
+
+        builder.HasKey(x => x.Id);
         
-        builder.HasKey(x => new { x.VoluntarioId, x.MinisterioId });
+        builder.Property(x => x.Id)
+            .HasColumnType("INT")
+            .HasColumnName("id")
+            .ValueGeneratedOnAdd();
         
         builder.Property(x => x.VoluntarioId)
             .HasColumnType("INT")
@@ -22,10 +27,10 @@ public class VoluntarioMinisterioConfig : IEntityTypeConfiguration<VoluntarioMin
             .HasColumnName("ministerio_id")
             .IsRequired();
 
-        builder.Property(x => x.Ativo)
+        builder.Property(x => x.Removido)
             .HasColumnType("BOOLEAN")
             .HasColumnName("ativo")
-            .HasDefaultValue(true)
+            .HasDefaultValue(false)
             .IsRequired();
 
         builder.HasOne(x => x.Voluntario)
