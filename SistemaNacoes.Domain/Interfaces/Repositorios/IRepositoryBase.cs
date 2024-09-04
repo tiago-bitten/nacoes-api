@@ -13,5 +13,6 @@ namespace SistemaNacoes.Domain.Interfaces.Repositorios
         IQueryable<T> GetAll(params string[]? includes);
         Task<T?> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes);
         IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params string[]? includes);
+        Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, params string[]? includes);
     }
 }

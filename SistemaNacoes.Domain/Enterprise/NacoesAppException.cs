@@ -2,7 +2,7 @@
 
 public class NacoesAppException : Exception
 {
-    protected NacoesAppException(string message) : base(message)
+    public NacoesAppException(string message) : base(message)
     {
     }
 }

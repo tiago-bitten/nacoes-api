@@ -39,6 +39,7 @@ builder.Services.AddDbContext<NacoesDbContext>(opt =>
 });
 
 // TODO: mover para um arquivo de configuração
+#region jwt config
 builder.Services.AddAuthentication(options => 
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -57,9 +58,13 @@ builder.Services.AddAuthentication(options =>
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         }; 
     });
+#endregion
 
+#region http context
 builder.Services.AddHttpContextAccessor();
+#endregion
 
+#region repositorios/services
 builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
 builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
 builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
@@ -92,7 +97,10 @@ builder.Services.AddScoped<IRegistroLoginService, RegistroLoginService>();
 builder.Services.AddScoped<IRegistroCriacaoRepository, RegistroCriacaoRepository>();
 builder.Services.AddScoped<IRegistroAlteracaoRepository, RegistroAlteracaoRepository>();
 builder.Services.AddScoped<IRegistroCriacaoService, RegistroCriacaoService>();
+builder.Services.AddScoped<IAtividadeService, AtividadeService>();
+#endregion
 
+#region usecases
 builder.Services.AddScoped<CreateVoluntario>();
 builder.Services.AddScoped<CreateMinisterio>();
 builder.Services.AddScoped<CreateDataIndisponivel>();
@@ -135,7 +143,9 @@ builder.Services.AddScoped<AddPermissoesUsuario>();
 builder.Services.AddScoped<VinculateUsuarioMinisterio>();
 builder.Services.AddScoped<GetAllUsuarioMinisterios>();
 builder.Services.AddScoped<GetUsuarioMinisterios>();
+#endregion
 
+#region automapper profiles
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));
 builder.Services.AddAutoMapper(typeof(VoluntarioMinisterioProfile));
@@ -147,6 +157,7 @@ builder.Services.AddAutoMapper(typeof(SituacaoAgendamentoProfile));
 builder.Services.AddAutoMapper(typeof(GrupoProfile));
 builder.Services.AddAutoMapper(typeof(AuthTokenProfile));
 builder.Services.AddAutoMapper(typeof(UsuarioProfile));
+#endregion
 
 var app = builder.Build();
 

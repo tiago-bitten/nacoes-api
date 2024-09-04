@@ -96,5 +96,17 @@ namespace SistemaNacoes.Infra.Repositorios
             
             return query.Where(predicate);
         }
+
+        public virtual async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
+        {
+            if (includes == null || includes.Length == 0)
+                return await _dbSet.AnyAsync(predicate);
+            
+            var query = _dbSet.AsQueryable();
+            
+            query = includes.Aggregate(query, (current, include) => current.Include(include));
+            
+            return query.Any(predicate);
+        }
     }
 }
