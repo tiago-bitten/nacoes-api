@@ -75,10 +75,12 @@ public class CreateAgendamento
         
         var agendamento = _mapper.Map<Agendamento>(dto);
         await _uow.Agendamentos.AddAsync(agendamento);
-        
+
+        /* Revisar possível remoção da entidade situacaoagendamento 
         var situacaoAgendamento = new SituacaoAgendamento(agendamento);
         await _uow.SituacaoAgendamentos.AddAsync(situacaoAgendamento);
-
+        */
+        
         if (dto.AtividadeIds != null && dto.AtividadeIds.Any())
             foreach (var atividadeId in dto.AtividadeIds)
             {
