@@ -32,7 +32,7 @@ public class GetAllDataIndisponiveis
         var dataIndisponiveisDto = _mapper.Map<List<GetDataIndisponivelDto>>(dataIndisponiveis);
 
         var respostaBase = new RespostaBase<List<GetDataIndisponivelDto>>(
-            MensagemRepostaConstant.GetDataIndisponiveis, dataIndisponiveisDto, totalDataIndisponiveis);
+            RespostaBaseMensagem.GetDataIndisponiveis, dataIndisponiveisDto, totalDataIndisponiveis);
 
         return respostaBase;
     }

@@ -37,7 +37,7 @@ public class GetAllGrupos
         var gruposDto = _mapper.Map<List<GetGrupoDto>>(grupos);
         
         var respostaBase = new RespostaBase<List<GetGrupoDto>>(
-            MensagemRepostaConstant.GetGrupos, gruposDto, totalGrupos);
+            RespostaBaseMensagem.GetGrupos, gruposDto, totalGrupos);
         
         return respostaBase;
     }

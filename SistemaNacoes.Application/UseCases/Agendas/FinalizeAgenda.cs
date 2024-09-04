@@ -31,6 +31,9 @@ public class FinalizeAgenda
         _uow.Agendas.Update(agenda);
         await _uow.CommitAsync();
 
-        return new RespostaBase<dynamic>(MensagemRepostaConstant.FinalizeAgenda);
+        var respostaBase = new RespostaBase<dynamic>(
+            RespostaBaseMensagem.FinalizeAgenda);
+
+        return respostaBase; 
     }
 }

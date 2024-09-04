@@ -38,7 +38,7 @@ public class VinculateUsuarioMinisterio
         await _uow.CommitAsync();
         
         var respostaBase = new RespostaBase<dynamic>(
-            MensagemRepostaConstant.VinculateUsuarioMinisterio);
+            RespostaBaseMensagem.VinculateUsuarioMinisterio);
         
         return respostaBase;
     }

@@ -35,7 +35,7 @@ public class CreateMinisterio
         var ministerioDto = _mapper.Map<GetMinisterioDto>(ministerio);
 
         var respostaBase = new RespostaBase<GetMinisterioDto>(
-            MensagemRepostaConstant.CreateMinisterio, ministerioDto);
+            RespostaBaseMensagem.CreateMinisterio, ministerioDto);
 
         return respostaBase;
     }

@@ -25,6 +25,6 @@ public class DeleteDataIndisponivel
         _uow.DataIndisponiveis.SoftDelete(dataIndisponivel);
         await _uow.CommitAsync();
         
-        return new RespostaBase<dynamic>(MensagemRepostaConstant.DeleteDataIndisponivel);
+        return new RespostaBase<dynamic>(RespostaBaseMensagem.DeleteDataIndisponivel);
     }
 }

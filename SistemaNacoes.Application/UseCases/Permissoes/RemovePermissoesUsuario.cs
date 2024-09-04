@@ -44,6 +44,6 @@ public class RemovePermissoesUsuario
         }
         
         return new RespostaBase<dynamic>(
-            MensagemRepostaConstant.RemoveUsuarioPermissoes);
+            RespostaBaseMensagem.RemoveUsuarioPermissoes);
     }
 }

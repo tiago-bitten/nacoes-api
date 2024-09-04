@@ -43,7 +43,7 @@ public class OpenAgenda
 
         var agendaDto = _mapper.Map<GetAgendaDto>(agenda);
 
-        var responstaBase = new RespostaBase<GetAgendaDto>(MensagemRepostaConstant.OpenAgenda, agendaDto);
+        var responstaBase = new RespostaBase<GetAgendaDto>(RespostaBaseMensagem.OpenAgenda, agendaDto);
         
         return responstaBase;
     }

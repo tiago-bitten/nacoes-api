@@ -44,7 +44,7 @@ public class AddPermissoesUsuario
         }
         
         var respostaBase = new RespostaBase<dynamic>(
-            MensagemRepostaConstant.AddPermissoesUsuario);
+            RespostaBaseMensagem.AddPermissoesUsuario);
 
         return respostaBase;
     }

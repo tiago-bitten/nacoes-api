@@ -1,4 +1,5 @@
-﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+﻿using SistemaNacoes.Domain.Enterprise;
+using SistemaNacoes.Domain.Entidades.Abstracoes;
 
 namespace SistemaNacoes.Domain.Entidades
 {
@@ -20,6 +21,11 @@ namespace SistemaNacoes.Domain.Entidades
         {
             Ativo = false;
         }
+
+        public void ReOpen()
+        {
+            Ativo = true;
+        }
         
         public void Finalize()
         {
@@ -31,7 +37,7 @@ namespace SistemaNacoes.Domain.Entidades
         {
             if (!Ativo || Finalizado)
             {
-                throw new Exception();
+                throw new DominioException(ErroRegraDominio.AgendaIndisponivel);
             }
         }
         #endregion

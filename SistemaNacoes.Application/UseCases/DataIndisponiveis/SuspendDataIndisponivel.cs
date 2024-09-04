@@ -23,6 +23,6 @@ public class SuspendDataIndisponivel
         _uow.DataIndisponiveis.Update(dataIndisponivel);
         await _uow.CommitAsync();
         
-        return new RespostaBase<dynamic>(MensagemRepostaConstant.SuspendDataIndisponivel);
+        return new RespostaBase<dynamic>(RespostaBaseMensagem.SuspendDataIndisponivel);
     }
 }

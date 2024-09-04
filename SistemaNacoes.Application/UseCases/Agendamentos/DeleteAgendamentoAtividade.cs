@@ -28,7 +28,7 @@ public class DeleteAgendamentoAtividade
         _uow.AgendamentoAtividades.SoftDelete(agendamentoAtividade);
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.DeleteAgendamentoAtividade);
+        var respostaBase = new RespostaBase<dynamic>(RespostaBaseMensagem.DeleteAgendamentoAtividade);
         
         return respostaBase;
     }

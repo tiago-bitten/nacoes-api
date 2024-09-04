@@ -32,7 +32,7 @@ public class GetPermissoesUsuario
         var totalPermissoes = permissoes.Count;
 
         var respostaBase = new RespostaBase<List<GetPermissaoDto>>(
-            MensagemRepostaConstant.GetUsuarioPermissoes, permissoes, totalPermissoes);
+            RespostaBaseMensagem.GetUsuarioPermissoes, permissoes, totalPermissoes);
 
         return respostaBase;
     }

@@ -31,6 +31,6 @@ public class DeleteVoluntario
         
         await _uow.CommitAsync();
         
-        return new RespostaBase<dynamic>(MensagemRepostaConstant.DeleteVoluntario);
+        return new RespostaBase<dynamic>(RespostaBaseMensagem.DeleteVoluntario);
     }
 }

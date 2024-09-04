@@ -26,7 +26,7 @@ public class DeleteGrupo
         _uow.Grupos.SoftDelete(grupo);
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.DeleteGrupo);
+        var respostaBase = new RespostaBase<dynamic>(RespostaBaseMensagem.DeleteGrupo);
         
         return respostaBase;
     }

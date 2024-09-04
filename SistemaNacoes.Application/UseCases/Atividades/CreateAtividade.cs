@@ -47,7 +47,7 @@ public class CreateAtividade
         var atividadeDto = _mapper.Map<GetAtividadeDto>(atividade);
         
         var respostaBase = new RespostaBase<GetAtividadeDto>(
-            MensagemRepostaConstant.CreateAtividade, atividadeDto);
+            RespostaBaseMensagem.CreateAtividade, atividadeDto);
         
         return respostaBase;
     }

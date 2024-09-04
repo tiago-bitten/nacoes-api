@@ -35,7 +35,7 @@ public class DeleteMinisterio
         
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.DeleteMinisterio);
+        var respostaBase = new RespostaBase<dynamic>(RespostaBaseMensagem.DeleteMinisterio);
         
         return respostaBase;
     }

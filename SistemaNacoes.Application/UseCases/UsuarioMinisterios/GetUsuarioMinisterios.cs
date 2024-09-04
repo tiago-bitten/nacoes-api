@@ -40,7 +40,7 @@ public class GetUsuarioMinisterios
         var usuarioMinisteriosDto = _mapper.Map<List<GetUsuarioMinisterioDto>>(usuarioMinisterios);
         
         var respostaBase = new RespostaBase<List<GetUsuarioMinisterioDto>>(
-            MensagemRepostaConstant.GetUsuarioMinisterios, usuarioMinisteriosDto, totalUsuarioMinisterios);
+            RespostaBaseMensagem.GetUsuarioMinisterios, usuarioMinisteriosDto, totalUsuarioMinisterios);
         
         return respostaBase;
     }

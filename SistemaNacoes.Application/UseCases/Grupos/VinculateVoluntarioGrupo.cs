@@ -47,7 +47,7 @@ public class VinculateVoluntarioGrupo
         await _uow.CommitAsync();
         
         var respostaBase = new RespostaBase<dynamic>(
-            MensagemRepostaConstant.VinculateVoluntarioGrupo);
+            RespostaBaseMensagem.VinculateVoluntarioGrupo);
         
         return respostaBase;
     }

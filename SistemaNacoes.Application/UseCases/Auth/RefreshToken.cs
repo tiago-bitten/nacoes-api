@@ -49,7 +49,7 @@ public class RefreshToken
         var getAuthTokenDto = _mapper.Map<GetAuthTokenDto>(authToken);
         
         var respostaBase = new RespostaBase<GetAuthTokenDto>(
-            MensagemRepostaConstant.GetAuthToken, getAuthTokenDto);
+            RespostaBaseMensagem.GetAuthToken, getAuthTokenDto);
         
         return respostaBase;
     }

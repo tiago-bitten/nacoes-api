@@ -51,7 +51,7 @@ public class GetVoluntariosNoGrupo
         };
         
         var respostaBase = new RespostaBase<GetVoluntariosNoGrupoDto>(
-            MensagemRepostaConstant.GetVoluntariosNoGrupo, voluntariosNoGrupoDto, totalVoluntariosNoGrupo);
+            RespostaBaseMensagem.GetVoluntariosNoGrupo, voluntariosNoGrupoDto, totalVoluntariosNoGrupo);
         
         return respostaBase;
 

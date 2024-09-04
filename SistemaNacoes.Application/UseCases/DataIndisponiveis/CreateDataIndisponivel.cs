@@ -37,7 +37,7 @@ public class CreateDataIndisponivel
         var dataIndisponivelDto = _mapper.Map<GetDataIndisponivelDto>(dataIndisponivel);
 
         var respostaBase =
-            new RespostaBase<GetDataIndisponivelDto>(MensagemRepostaConstant.CreateDataIndisponivel,
+            new RespostaBase<GetDataIndisponivelDto>(RespostaBaseMensagem.CreateDataIndisponivel,
                 dataIndisponivelDto);
 
         return respostaBase;

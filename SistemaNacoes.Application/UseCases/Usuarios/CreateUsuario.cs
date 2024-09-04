@@ -39,7 +39,7 @@ public class CreateUsuario
         var usuarioDto = _mapper.Map<GetUsuarioDto>(usuario);
         
         var respostaBase = new RespostaBase<GetUsuarioDto>(
-            MensagemRepostaConstant.CreateUsuario, usuarioDto);
+            RespostaBaseMensagem.CreateUsuario, usuarioDto);
         
         return respostaBase;
     }

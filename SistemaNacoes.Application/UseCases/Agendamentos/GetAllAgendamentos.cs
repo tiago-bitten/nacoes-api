@@ -37,7 +37,7 @@ public class GetAllAgendamentos
         var agendamentosDto = _mapper.Map<List<GetAgendamentoDto>>(agendamentos);
         
         var respostaBase = new RespostaBase<List<GetAgendamentoDto>>(
-            MensagemRepostaConstant.GetAgendamentos, agendamentosDto, totalAgendamentos);
+            RespostaBaseMensagem.GetAgendamentos, agendamentosDto, totalAgendamentos);
         
         return respostaBase;
     }

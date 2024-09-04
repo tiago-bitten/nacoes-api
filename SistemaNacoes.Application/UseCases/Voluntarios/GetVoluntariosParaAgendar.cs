@@ -67,7 +67,7 @@ public class GetVoluntariosParaAgendar
             getVoluntariosParaAgendarDtos.Add(getVoluntarioParaAgendarDto);
         }
         
-        var respostaBase = new RespostaBase<List<GetVoluntarioParaAgendarDto>>(MensagemRepostaConstant.GetVoluntariosParaAgendar, getVoluntariosParaAgendarDtos, totalVoluntarios);
+        var respostaBase = new RespostaBase<List<GetVoluntarioParaAgendarDto>>(RespostaBaseMensagem.GetVoluntariosParaAgendar, getVoluntariosParaAgendarDtos, totalVoluntarios);
         
         return respostaBase;
     }

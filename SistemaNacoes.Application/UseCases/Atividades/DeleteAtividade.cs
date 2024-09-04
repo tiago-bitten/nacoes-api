@@ -36,7 +36,7 @@ public class DeleteAtividade
         await _uow.CommitAsync();
 
         var respostaBase = new RespostaBase<dynamic>(
-            MensagemRepostaConstant.DeleteAtividade);
+            RespostaBaseMensagem.DeleteAtividade);
         
         return respostaBase;
     }

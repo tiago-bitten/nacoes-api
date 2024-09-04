@@ -57,7 +57,7 @@ public class Login
         var authTokensDto = _mapper.Map<GetAuthTokenDto>(authTokens);
     
         var respostaBase = new RespostaBase<GetAuthTokenDto>(
-            MensagemRepostaConstant.LoginSucesso, authTokensDto);
+            RespostaBaseMensagem.LoginSucesso, authTokensDto);
     
         return respostaBase;
     }

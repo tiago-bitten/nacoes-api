@@ -29,7 +29,7 @@ namespace SistemaNacoes.Application.UseCases.Agendas
             _uow.Agendas.Update(agenda);
             await _uow.CommitAsync();
 
-            var respostaBase = new RespostaBase<dynamic>(MensagemRepostaConstant.CloseAgenda);
+            var respostaBase = new RespostaBase<dynamic>(RespostaBaseMensagem.CloseAgenda);
 
             return respostaBase;
         }

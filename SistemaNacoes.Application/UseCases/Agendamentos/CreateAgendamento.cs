@@ -113,7 +113,7 @@ public class CreateAgendamento
         var agendamentoDto = _mapper.Map<GetAgendamentoDto>(agendamento);
 
         var respostaBase = new RespostaBase<GetAgendamentoDto>(
-            MensagemRepostaConstant.CreateAgendamento, agendamentoDto);
+            RespostaBaseMensagem.CreateAgendamento, agendamentoDto);
 
         return respostaBase;
     }

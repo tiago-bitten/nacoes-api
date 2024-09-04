@@ -1,6 +1,6 @@
 ﻿namespace SistemaNacoes.Application.Responses;
 
-public static class MensagemRepostaConstant
+public static class RespostaBaseMensagem
 {
     //Voluntarios
     public const string CreateVoluntario = "Voluntário cadastrado com sucesso";
