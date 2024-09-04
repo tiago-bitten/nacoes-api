@@ -25,5 +25,15 @@ namespace SistemaNacoes.Domain.Entidades
         {
             Finalizado = true;
         }
+
+        #region regras
+        public void CheckStatus()
+        {
+            if (!Ativo || Finalizado)
+            {
+                throw new Exception();
+            }
+        }
+        #endregion
     }
 }
