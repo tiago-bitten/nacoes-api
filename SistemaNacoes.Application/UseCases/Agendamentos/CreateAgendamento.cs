@@ -24,6 +24,7 @@ public class CreateAgendamento
     #endregion
     
     #region ctor
+    // TODO: Refatorar; passar lógica de consultas para services
     public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService)
     {
         _uow = uow;
