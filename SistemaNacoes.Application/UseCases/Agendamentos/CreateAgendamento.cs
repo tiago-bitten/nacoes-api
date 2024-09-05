@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Agendamentos;
 using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -12,20 +13,18 @@ namespace SistemaNacoes.Application.UseCases.Agendamentos;
 
 public class CreateAgendamento
 {
-    #region dp
+    #region ctor
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private readonly IVoluntarioMinisterioService _voluntarioMinisterioService;
     private readonly IAgendaService _agendaService;
-    private readonly IServiceBase<Atividade> _atividadeService;
+    private readonly IAtividadeService _atividadeService;
     private readonly IDataIndisponivelService _dataIndisponivelService;
     private readonly IRegistroCriacaoService _registroCriacaoService;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
-    #endregion
+    private readonly IAgendamentoService _agendamentoService;
     
-    #region ctor
-    // TODO: Refatorar; passar lógica de consultas para services
-    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IServiceBase<Atividade> atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService)
+    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IAtividadeService atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService, IAgendamentoService agendamentoService)
     {
         _uow = uow;
         _mapper = mapper;
@@ -35,6 +34,7 @@ public class CreateAgendamento
         _dataIndisponivelService = dataIndisponivelService;
         _registroCriacaoService = registroCriacaoService;
         _ambienteUsuarioService = ambienteUsuarioService;
+        _agendamentoService = agendamentoService;
     }
     #endregion
     
@@ -43,75 +43,39 @@ public class CreateAgendamento
         var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
 
         if (!usuarioLogado.HasPermission(EPermissoes.CREATE_AGENDAMENTO))
-            throw new Exception(MensagemErroConstant.SemPermissaoParaCriarAgendamento);
-        
-        var voluntarioMinisteriosIncludes = GetVoluntarioMinisterioIncludes();
-        var agendaIncludes = GetAgendaIncludes();
+            throw new NacoesAppException(MensagemErroConstant.SemPermissaoParaCriarAgendamento);
         
         var voluntarioMinisterio =
-            await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId, voluntarioMinisteriosIncludes);
+            await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId);
         
-        var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId, agendaIncludes);
+        var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId);
 
         agenda.CheckStatus();
         
-        #region consulta em memoria
-        // var existsAgendamento = agenda.Agendamentos.Exists(x => x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
-        #endregion
-        
-        #region consulta no banco
-        var existsAgendamento = await _uow.Agendamentos
-            .GetAll()
-            .AnyAsync(x => x.AgendaId == agenda.Id && x.VoluntarioId == voluntarioMinisterio.VoluntarioId && !x.Removido);
-        #endregion
-        
-        if (existsAgendamento)
-            throw new Exception(MensagemErroConstant.AgendamentoJaExiste);
-
-        var agendamentoValidado = await _dataIndisponivelService.EnsureDateIsAvailable(agenda.Id, voluntarioMinisterio.Voluntario.Id);
-        
-        if (!agendamentoValidado)
-            throw new Exception(MensagemErroConstant.DataIndisponivel);
+        await _agendamentoService.EnsureNotExistsVoluntarioJaAgendadoAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
+        await _dataIndisponivelService.EnsureExistsDataAvaliableAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
         
         var agendamento = _mapper.Map<Agendamento>(dto);
         await _uow.Agendamentos.AddAsync(agendamento);
-
-        /* Revisar possível remoção da entidade situacaoagendamento 
-        var situacaoAgendamento = new SituacaoAgendamento(agendamento);
-        await _uow.SituacaoAgendamentos.AddAsync(situacaoAgendamento);
-        */
         
+        #region adicionando atividades no agendamento
         if (dto.AtividadeIds != null && dto.AtividadeIds.Any())
             foreach (var atividadeId in dto.AtividadeIds)
             {
                 var atividade = await _atividadeService.GetAndEnsureExistsAsync(atividadeId);
-                
-                #region consulta em memoria
-                // var existsAtividade = voluntarioMinisterio.Ministerio.Atividades.Any(a => a.Id == atividade.Id);
-                #endregion
-                
-                #region consulta no banco
-                var existsAtividade = await _uow.Atividades
-                    .GetAll()
-                    .AnyAsync(x => x.Id == atividade.Id 
-                                   && x.MinisterioId == voluntarioMinisterio.MinisterioId 
-                                   && !x.Removido);
-                #endregion
-                
-                if (!existsAtividade)
-                {
-                    // TODO: passar o rollback para middleware de exceções
-                    _uow.RollBack();
-                    throw new Exception(MensagemErroConstant.AtividadeNaoPertenceAoMinisterio);
-                }
 
+                await _atividadeService.ExistsAtividadeNoMinisterioAsync()
+                await _atividadeService.EnsureExistsAtividadeNoMinisterioAsync(atividade.Id, voluntarioMinisterio.MinisterioId);
+                
                 var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);
                 await _uow.AgendamentoAtividades.AddAsync(agendamentoAtividade);
             }
+        #endregion
 
         await _uow.CommitAsync();
         
         await _registroCriacaoService.LogAsync("agendamentos", agendamento.Id);
+        await _registroCriacaoService.LogRangeAsync("agendamentos_atividades", agendamento.AgendamentoAtividades.Select(x => x.Id));
         
         var agendamentoDto = _mapper.Map<GetAgendamentoDto>(agendamento);
 
@@ -119,22 +83,5 @@ public class CreateAgendamento
             RespostaBaseMensagem.CreateAgendamento, agendamentoDto);
 
         return respostaBase;
-    }
-
-    private static string[] GetVoluntarioMinisterioIncludes()
-    {
-        return new[]
-        {
-            nameof(VoluntarioMinisterio.Voluntario),
-            nameof(VoluntarioMinisterio.Ministerio)
-        };
-    }
-    
-    private static string[] GetAgendaIncludes()
-    {
-        return new[]
-        {
-            nameof(Agenda.Agendamentos)
-        };
     }
 }

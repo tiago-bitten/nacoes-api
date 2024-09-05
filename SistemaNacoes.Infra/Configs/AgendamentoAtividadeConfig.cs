@@ -10,7 +10,12 @@ public class AgendamentoAtividadeConfig : IEntityTypeConfiguration<AgendamentoAt
     {
         builder.ToTable("agendamentos_atividades");
         
-        builder.HasKey(x => new { x.AgendamentoId, x.AtividadeId });
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.Id)
+            .HasColumnType("INT")
+            .HasColumnName("id")
+            .ValueGeneratedOnAdd();
 
         builder.Property(x => x.AgendamentoId)
             .HasColumnType("INT")

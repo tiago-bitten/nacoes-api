@@ -13,7 +13,13 @@ namespace SistemaNacoes.Domain.Entidades
 
         public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
         public List<Agendamento> Agendamentos { get; set; } = new();
-        public List<DataIndisponivel> DatasIndisponiveis { get; set; } = new();
+        public List<DataIndisponivel> DataIndisponiveis { get; set; } = new();
         public List<EscalaItem> EscalaItens { get; set; } = new();
+
+        public List<DataIndisponivel> GetDataIndisponiveis()
+        {
+            return DataIndisponiveis.Where(x => !x.Suspenso && !x.Removido)
+                .ToList();
+        }
     }
 }

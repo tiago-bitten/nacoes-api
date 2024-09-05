@@ -1,4 +1,6 @@
-﻿using SistemaNacoes.Domain.Entidades;
+﻿using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Enterprise;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -16,18 +18,12 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel>, IDataIndis
         _agendaService = agendaService;
     }
 
-    public async Task<bool> EnsureDateIsAvailable(int agendaId, int voluntarioId)
+    public async Task<bool> ExistsDataAvaliableAsync(int agendaId, int voluntarioId)
     {
         var agenda = await _agendaService.GetAndEnsureExistsAsync(agendaId);
+        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(voluntarioId, "DataIndisponiveis");
         
-        var voluntarioIncludes = new[]
-        {
-            nameof(Voluntario.DatasIndisponiveis)
-        };
-        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(voluntarioId, voluntarioIncludes);
-        
-        var datasIndisponiveis = voluntario.DatasIndisponiveis
-            .FindAll(x => !x.Removido && !x.Suspenso);
+        var datasIndisponiveis = voluntario.GetDataIndisponiveis();
         
         if (!datasIndisponiveis.Any())
             return true;
@@ -42,5 +38,13 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel>, IDataIndis
         }
         
         return true;
+    }
+
+    public async Task EnsureExistsDataAvaliableAsync(int agendaId, int voluntarioId)
+    {
+        var exists = await ExistsDataAvaliableAsync(agendaId, voluntarioId);
+
+        if (!exists)
+            throw new NacoesAppException(MensagemErroConstant.DataIndisponivel);
     }
 }

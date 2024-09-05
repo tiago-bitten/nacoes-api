@@ -65,7 +65,7 @@ public class VoluntarioConfig : IEntityTypeConfiguration<Voluntario>
             .HasForeignKey(x => x.VoluntarioId)
             .OnDelete(DeleteBehavior.SetNull);
 
-        builder.HasMany(x => x.DatasIndisponiveis)
+        builder.HasMany(x => x.DataIndisponiveis)
             .WithOne(x => x.Voluntario)
             .HasForeignKey(x => x.VoluntarioId)
             .OnDelete(DeleteBehavior.SetNull);

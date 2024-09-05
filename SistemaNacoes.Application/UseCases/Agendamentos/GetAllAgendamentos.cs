@@ -21,10 +21,8 @@ public class GetAllAgendamentos
     
     public async Task<RespostaBase<List<GetAgendamentoDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
-        var includes = GetIncludes();
-        
         var query = _uow.Agendamentos
-            .GetAll(includes)
+            .GetAll(GetIncludes())
             .Where(GetCondicao());
         
         var totalAgendamentos = await query.CountAsync();

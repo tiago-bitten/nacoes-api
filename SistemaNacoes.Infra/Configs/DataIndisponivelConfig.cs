@@ -49,7 +49,7 @@ public class DataIndisponivelConfig : IEntityTypeConfiguration<DataIndisponivel>
             .IsRequired();
         
         builder.HasOne(x => x.Voluntario)
-            .WithMany(x => x.DatasIndisponiveis)
+            .WithMany(x => x.DataIndisponiveis)
             .HasForeignKey(x => x.VoluntarioId)
             .OnDelete(DeleteBehavior.SetNull);
     }

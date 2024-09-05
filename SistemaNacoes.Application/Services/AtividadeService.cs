@@ -14,31 +14,32 @@ public class AtividadeService : ServiceBase<Atividade>, IAtividadeService
     {
     }
 
-    public async Task EnsureExistsAtividadeNoMinisterioAsync(int id, int ministerioId)
+    public async Task EnsureExistsAtividadeNoMinisterioAsync(int atividadeId, int ministerioId)
     {
-        var exists = await ExistsAtividadeNoMinisterioAsync(id, ministerioId);
+        var exists = await ExistsAtividadeNoMinisterioAsync(atividadeId, ministerioId);
 
         if (!exists)
             throw new NacoesAppException(MensagemErroConstant.AtividadeNaoPertenceAoMinisterio);
     }
 
-    public async Task<bool> ExistsAtividadeNoMinisterioAsync(int id, int ministerioId)
+    public async Task<bool> ExistsAtividadeNoMinisterioAsync(int atividadeId, int ministerioId)
     {
-        return await _repository.AnyAsync(x => x.Id == id
+        return await _repository.AnyAsync(x => x.Id == atividadeId
                                                         && x.MinisterioId == ministerioId && !x.Ministerio.Removido
                                                         && !x.Removido, "Ministerio");
     }
 
-    public async Task<bool> ExitsAtividadeNoAgendamentoAsync(int id, int agendamentoId)
+    public async Task<bool> ExitsAtividadeNoAgendamentoAsync(int atividadeId, int agendamentoId)
     {
-        return await _repository.AnyAsync(x => x.Id == id
-                                               && x.AgendamentoAtividades.Any(at => at.AgendamentoId == agendamentoId && !at.Removido)
+        return await _repository.AnyAsync(x => x.Id == atividadeId
+                                               && x.AgendamentoAtividades
+                                                   .Any(at => at.AgendamentoId == agendamentoId && !at.Removido)
                                                && !x.Removido, "AgendamentoAtividades");
     }
 
-    public async Task EnsureNotExistAtividadeNoMinisterioAsync(int id, int ministerioId)
+    public async Task EnsureNotExistAtividadeNoMinisterioAsync(int atividadeId, int ministerioId)
     {
-        var exists = await ExistsAtividadeNoMinisterioAsync(id, ministerioId);
+        var exists = await ExistsAtividadeNoMinisterioAsync(atividadeId, ministerioId);
         
         if (!exists)
             throw new NacoesAppException(MensagemErroConstant.AtividadeNaoPertenceAoMinisterio);

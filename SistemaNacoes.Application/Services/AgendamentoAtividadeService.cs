@@ -31,4 +31,12 @@ public class AgendamentoAtividadeService : IAgendamentoAtividadeService
         
         return agendamentoAtividade;
     }
+
+    public Task<bool> ExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
+    {
+    }
+
+    public Task EnsureNotExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
+    {
+     }
 }
