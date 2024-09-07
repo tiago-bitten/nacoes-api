@@ -1,21 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class GrupoConfig : IEntityTypeConfiguration<Grupo>
+public class GrupoConfig : EntidadeBaseConfig<Grupo>, IEntityTypeConfiguration<Grupo>
 {
+    public GrupoConfig() : base("grupos") { }
+    
     public void Configure(EntityTypeBuilder<Grupo> builder)
     {
-        builder.ToTable("grupos");
+        /*builder.ToTable("grupos");
 
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id)
             .HasColumnType("INT")
             .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+            .ValueGeneratedOnAdd();*/
 
         builder.Property(x => x.Nome)
             .HasColumnType("VARCHAR(150)")
