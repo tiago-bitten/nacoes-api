@@ -1,22 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class RefreshTokenConfig : IEntityTypeConfiguration<RefreshToken>
+public class RefreshTokenConfig : EntidadeBaseConfig<RefreshToken>
 {
-    public void Configure(EntityTypeBuilder<RefreshToken> builder)
+    private const string NomeTabela = "refresh_tokens";
+    
+    public RefreshTokenConfig() : base(NomeTabela) { }
+    
+    public override void Configure(EntityTypeBuilder<RefreshToken> builder)
     {
-        builder.ToTable("refresh_tokens");
-        
-        builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd()
-            .IsRequired();
+        base.Configure(builder);
         
         builder.Property(x => x.Token)
             .HasColumnType("text")

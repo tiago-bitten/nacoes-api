@@ -1,21 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class MinisterioConfig : IEntityTypeConfiguration<Ministerio>
+public class MinisterioConfig : EntidadeBaseConfig<Ministerio>
 {
-    public void Configure(EntityTypeBuilder<Ministerio> builder)
+    private const string NomeTabela = "ministerios";
+
+    public MinisterioConfig() : base(NomeTabela) { }
+    
+    public override void Configure(EntityTypeBuilder<Ministerio> builder)
     {
-        builder.ToTable("ministerios");
-        
-        builder.HasKey(x => x.Id);
-        
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+        base.Configure(builder);
         
         builder.Property(x => x.Nome)
             .HasColumnType("VARCHAR(150)")

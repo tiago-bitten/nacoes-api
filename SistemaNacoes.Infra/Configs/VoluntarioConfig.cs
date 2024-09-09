@@ -1,21 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class VoluntarioConfig : IEntityTypeConfiguration<Voluntario>
+public class VoluntarioConfig : EntidadeBaseConfig<Voluntario>
 {
-    public void Configure(EntityTypeBuilder<Voluntario> builder)
+    private const string NomeTabela = "voluntarios";
+    
+    public VoluntarioConfig() : base(NomeTabela) { }
+    
+    public override void Configure(EntityTypeBuilder<Voluntario> builder)
     {
-        builder.ToTable("voluntarios");
-
-        builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+        base.Configure(builder);
 
         builder.Property(x => x.Nome)
             .HasColumnType("VARCHAR(150)")

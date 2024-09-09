@@ -5,11 +5,11 @@ using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class GrupoConfig : EntidadeBaseConfig<Grupo>, IEntityTypeConfiguration<Grupo>
+public class GrupoConfig : EntidadeBaseConfig<Grupo>
 {
     public GrupoConfig() : base("grupos") { }
     
-    public new void Configure(EntityTypeBuilder<Grupo> builder)
+    public override void Configure(EntityTypeBuilder<Grupo> builder)
     {
         base.Configure(builder);
 

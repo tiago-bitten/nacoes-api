@@ -1,22 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class RegistroAlteracaoConfig : IEntityTypeConfiguration<RegistroAlteracao>
+public class RegistroAlteracaoConfig : EntidadeBaseConfig<RegistroAlteracao>
 {
-    public void Configure(EntityTypeBuilder<RegistroAlteracao> builder)
+    private const string NomeTabela = "registros_alteracoes";
+    
+    public RegistroAlteracaoConfig() : base(NomeTabela) { }
+    
+    public override void Configure(EntityTypeBuilder<RegistroAlteracao> builder)
     {
-        builder.ToTable("registros_alteracoes");
-
-        builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
-
+        base.Configure(builder);
+        
         builder.Property(x => x.Tabela)
             .HasColumnType("TEXT")
             .HasColumnName("tabela")

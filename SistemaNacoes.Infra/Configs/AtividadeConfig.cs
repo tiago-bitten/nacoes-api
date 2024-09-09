@@ -1,22 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class AtividadeConfig : IEntityTypeConfiguration<Atividade>
+public class AtividadeConfig : EntidadeBaseConfig<Atividade>
 {
-    public void Configure(EntityTypeBuilder<Atividade> builder)
+    private const string NomeTabela = "atividades";
+    
+    public AtividadeConfig() : base(NomeTabela) { }
+    
+    public override void Configure(EntityTypeBuilder<Atividade> builder)
     {
-        builder.ToTable("atividades");
-
-        builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
-
+        base.Configure(builder);
+        
         builder.Property(x => x.Nome)
             .HasColumnType("VARCHAR(150)")
             .HasColumnName("nome")

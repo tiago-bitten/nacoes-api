@@ -13,7 +13,7 @@ public class EntidadeBaseConfig<T> : IEntityTypeConfiguration<T> where T : Entid
         _nomeTabela = nomeTabela;
     }
     
-    public void Configure(EntityTypeBuilder<T> builder)
+    public virtual void Configure(EntityTypeBuilder<T> builder)
     {
         builder.ToTable(_nomeTabela);
 
