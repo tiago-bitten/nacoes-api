@@ -9,16 +9,9 @@ public class GrupoConfig : EntidadeBaseConfig<Grupo>, IEntityTypeConfiguration<G
 {
     public GrupoConfig() : base("grupos") { }
     
-    public void Configure(EntityTypeBuilder<Grupo> builder)
+    public new void Configure(EntityTypeBuilder<Grupo> builder)
     {
-        /*builder.ToTable("grupos");
-
-        builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();*/
+        base.Configure(builder);
 
         builder.Property(x => x.Nome)
             .HasColumnType("VARCHAR(150)")
