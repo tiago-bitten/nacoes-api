@@ -64,7 +64,7 @@ public class CreateAgendamento
             {
                 var atividade = await _atividadeService.GetAndEnsureExistsAsync(atividadeId);
 
-                await _atividadeService.ExistsAtividadeNoMinisterioAsync()
+                //await _atividadeService.ExistsAtividadeNoMinisterioAsync()
                 await _atividadeService.EnsureExistsAtividadeNoMinisterioAsync(atividade.Id, voluntarioMinisterio.MinisterioId);
                 
                 var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);

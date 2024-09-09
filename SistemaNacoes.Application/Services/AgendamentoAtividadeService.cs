@@ -31,12 +31,13 @@ public class AgendamentoAtividadeService : IAgendamentoAtividadeService
         
         return agendamentoAtividade;
     }
-
     public Task<bool> ExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
     {
+        throw new NotImplementedException();
     }
 
     public Task EnsureNotExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
     {
-     }
+        throw new NotImplementedException();
+    }
 }
