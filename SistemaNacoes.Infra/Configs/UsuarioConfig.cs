@@ -1,21 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
+public class UsuarioConfig : EntidadeBaseConfig<Usuario>
 {
-    public void Configure(EntityTypeBuilder<Usuario> builder)
+    private const string NomeTabela = "usuarios";
+    
+    public UsuarioConfig() : base(NomeTabela) { }
+    
+    public override void Configure(EntityTypeBuilder<Usuario> builder)
     {
-        builder.ToTable("usuarios");
-
-        builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+        base.Configure(builder);
 
         builder.Property(x => x.Nome)
             .HasColumnName("VARCHAR(150)")

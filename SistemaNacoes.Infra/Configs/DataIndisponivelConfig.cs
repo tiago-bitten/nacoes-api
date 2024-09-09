@@ -1,21 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class DataIndisponivelConfig : IEntityTypeConfiguration<DataIndisponivel>
+public class DataIndisponivelConfig : EntidadeBaseConfig<DataIndisponivel>
 {
-    public void Configure(EntityTypeBuilder<DataIndisponivel> builder)
+    private const string NomeTabela = "datas_indisponiveis";
+    
+    public DataIndisponivelConfig() : base(NomeTabela) { }
+    
+    public override void Configure(EntityTypeBuilder<DataIndisponivel> builder)
     {
-        builder.ToTable("datas_indisponiveis");
-        
-        builder.HasKey(x => x.Id);
-        
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+        base.Configure(builder);
         
         builder.Property(x => x.DataInicio)
             .HasColumnType("TIMESTAMP")

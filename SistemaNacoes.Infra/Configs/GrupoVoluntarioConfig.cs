@@ -1,21 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class GrupoVoluntarioConfig : IEntityTypeConfiguration<GrupoVoluntario>
+public class GrupoVoluntarioConfig : EntidadeBaseConfig<GrupoVoluntario>
 {
-    public void Configure(EntityTypeBuilder<GrupoVoluntario> builder)
+    private const string NomeTable = "grupos_voluntarios";
+    
+    public GrupoVoluntarioConfig() : base(NomeTable) { }
+    
+    public override void Configure(EntityTypeBuilder<GrupoVoluntario> builder)
     {
-        builder.ToTable("grupos_voluntarios");
-
-        builder.HasKey(x => x.Id);
-        
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
+        base.Configure(builder);
 
         builder.Property(x => x.GrupoId)
             .HasColumnType("INT")

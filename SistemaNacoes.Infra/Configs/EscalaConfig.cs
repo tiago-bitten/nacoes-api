@@ -1,22 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class EscalaConfig : IEntityTypeConfiguration<Escala>
+public class EscalaConfig : EntidadeBaseConfig<Escala>
 {
-    public void Configure(EntityTypeBuilder<Escala> builder)
+    private const string NomeTabela = "escalas";
+    
+    public EscalaConfig() : base(NomeTabela) { }
+    
+    public override void Configure(EntityTypeBuilder<Escala> builder)
     {
-        builder.ToTable("escalas");
+        base.Configure(builder);
         
-        builder.HasKey(x => x.Id);
-        
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
-
         builder.Property(x => x.QuantidadeVoluntarios)
             .HasColumnType("INT")
             .HasColumnName("quantidade_voluntarios")
@@ -24,7 +22,7 @@ public class EscalaConfig : IEntityTypeConfiguration<Escala>
 
         builder.Property(x => x.AgendaId)
             .HasColumnType("INT")
-            .HasColumnName("agend_id")
+            .HasColumnName("agenda_id")
             .IsRequired();
         
         builder.Property(x => x.MinisterioId)
