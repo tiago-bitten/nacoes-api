@@ -1,8 +1,10 @@
-﻿namespace SistemaNacoes.Application.Extensions
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+
+namespace SistemaNacoes.Application.Extensions
 {
     public static class QueryExtensions
     {
-        // TODO: Refatorar esse método para atender a seleção personalizado de campos em uma query
+        // TODO: rever e refatorar
         public static IQueryable<Dictionary<string, object>> SelectFields<T>(this IQueryable<T> source, List<string> fields) where T : class
         {
             return source.AsEnumerable().Select(item =>
@@ -48,6 +50,11 @@
 
                 return result;
             }).AsQueryable();
+        }
+
+        public static IQueryable<T> WhereNotRemovido<T>(this IQueryable<T> source) where T : EntidadeBase
+        {
+            return source.Where(entidade => !entidade.Removido);
         }
     }
 }
