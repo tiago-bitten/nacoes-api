@@ -23,5 +23,11 @@ public class EntidadeBaseConfig<T> : IEntityTypeConfiguration<T> where T : Entid
             .HasColumnType("INT")
             .HasColumnName("id")
             .ValueGeneratedOnAdd();
+
+        builder.Property(x => x.Removido)
+            .HasColumnType("BOOLEAN")
+            .HasColumnName("removido")
+            .HasDefaultValue(false)
+            .IsRequired();
     }
 }

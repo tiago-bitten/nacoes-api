@@ -1,22 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Abstracoes;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class AgendamentoAtividadeConfig : IEntityTypeConfiguration<AgendamentoAtividade>
+public class AgendamentoAtividadeConfig : EntidadeBaseConfig<AgendamentoAtividade>
 {
-    public void Configure(EntityTypeBuilder<AgendamentoAtividade> builder)
+    private const string NomeTabela = "agendamentos_atividades";
+    
+    public AgendamentoAtividadeConfig() : base(NomeTabela) { }
+    
+    public override void Configure(EntityTypeBuilder<AgendamentoAtividade> builder)
     {
-        builder.ToTable("agendamentos_atividades");
+        base.Configure(builder);
         
-        builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
-
         builder.Property(x => x.AgendamentoId)
             .HasColumnType("INT")
             .HasColumnName("agendamento_id")
@@ -27,12 +26,6 @@ public class AgendamentoAtividadeConfig : IEntityTypeConfiguration<AgendamentoAt
             .HasColumnName("atividade_id")
             .IsRequired();
         
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
-            .IsRequired();
-
         builder.HasOne(x => x.Agendamento)
             .WithMany(x => x.AgendamentoAtividades)
             .HasForeignKey(x => x.AgendamentoId)

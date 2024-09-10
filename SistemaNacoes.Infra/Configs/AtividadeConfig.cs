@@ -30,12 +30,6 @@ public class AtividadeConfig : EntidadeBaseConfig<Atividade>
             .HasColumnName("ministerio_id")
             .IsRequired();
 
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
-            .IsRequired();
-
         builder.HasOne(x => x.Ministerio)
             .WithMany(x => x.Atividades)
             .HasForeignKey(x => x.MinisterioId)

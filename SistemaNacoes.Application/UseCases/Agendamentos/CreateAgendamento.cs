@@ -23,8 +23,9 @@ public class CreateAgendamento
     private readonly IRegistroCriacaoService _registroCriacaoService;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     private readonly IAgendamentoService _agendamentoService;
+    private readonly IAgendamentoAtividadeService _agendamentoAtividadeService;
     
-    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IAtividadeService atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService, IAgendamentoService agendamentoService)
+    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IAtividadeService atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService, IAgendamentoService agendamentoService, IAgendamentoAtividadeService agendamentoAtividadeService)
     {
         _uow = uow;
         _mapper = mapper;
@@ -35,6 +36,7 @@ public class CreateAgendamento
         _registroCriacaoService = registroCriacaoService;
         _ambienteUsuarioService = ambienteUsuarioService;
         _agendamentoService = agendamentoService;
+        _agendamentoAtividadeService = agendamentoAtividadeService;
     }
     #endregion
     
@@ -58,13 +60,16 @@ public class CreateAgendamento
         var agendamento = _mapper.Map<Agendamento>(dto);
         await _uow.Agendamentos.AddAsync(agendamento);
         
+        // TODO: passar para AgendamentoAtividadeService
         #region adicionando atividades no agendamento
         if (dto.AtividadeIds != null && dto.AtividadeIds.Any())
             foreach (var atividadeId in dto.AtividadeIds)
             {
                 var atividade = await _atividadeService.GetAndEnsureExistsAsync(atividadeId);
 
-                //await _atividadeService.ExistsAtividadeNoMinisterioAsync()
+                /** Revisar, isso não faz sentido
+                 * await _agendamentoAtividadeService.EnsureNotExistsAtividadeNoAgendamentoAsync(agendamento.Id, atividade.Id) 
+                 */
                 await _atividadeService.EnsureExistsAtividadeNoMinisterioAsync(atividade.Id, voluntarioMinisterio.MinisterioId);
                 
                 var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);

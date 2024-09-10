@@ -22,12 +22,6 @@ public class GrupoConfig : EntidadeBaseConfig<Grupo>
             .HasColumnType("INT")
             .HasColumnName("ministerio_preferencial_id");
 
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
-            .IsRequired();
-
         builder.HasMany(x => x.GrupoVoluntarios)
             .WithOne(x => x.Grupo)
             .HasForeignKey(x => x.GrupoId)

@@ -36,12 +36,6 @@ public class EscalaConfig : EntidadeBaseConfig<Escala>
             .HasDefaultValue(false)
             .IsRequired();
 
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
-            .IsRequired();
-
         builder.HasOne(x => x.Agenda)
             .WithMany(x => x.Escalas)
             .HasForeignKey(x => x.AgendaId)

@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
@@ -19,9 +20,6 @@ public class DeleteAgendamento
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int id)
     {
         var agendamento = await _agendamentoService.GetAndEnsureExistsAsync(id);
-        
-        if (agendamento.Removido)
-            throw new Exception(MensagemErroConstant.AgendamentoJaRemovido);
         
         _uow.Agendamentos.SoftDelete(agendamento);
         await _uow.CommitAsync();

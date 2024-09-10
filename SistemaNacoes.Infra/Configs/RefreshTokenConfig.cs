@@ -25,12 +25,6 @@ public class RefreshTokenConfig : EntidadeBaseConfig<RefreshToken>
             .HasColumnName("principal")
             .IsRequired();
 
-        builder.Property(x => x.Revogado)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("revogado")
-            .HasDefaultValue(false)
-            .IsRequired();
-
         builder.Property(x => x.DataExpiracao)
             .HasColumnType("TIMESTAMP WITH TIME ZONE")
             .HasColumnName("data_expiracao")

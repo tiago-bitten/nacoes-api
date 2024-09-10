@@ -24,14 +24,14 @@ public class AtividadeService : ServiceBase<Atividade>, IAtividadeService
 
     public async Task<bool> ExistsAtividadeNoMinisterioAsync(int atividadeId, int ministerioId)
     {
-        return await _repository.AnyAsync(x => x.Id == atividadeId
+        return await Repository.AnyAsync(x => x.Id == atividadeId
                                                         && x.MinisterioId == ministerioId && !x.Ministerio.Removido
                                                         && !x.Removido, "Ministerio");
     }
 
     public async Task<bool> ExitsAtividadeNoAgendamentoAsync(int atividadeId, int agendamentoId)
     {
-        return await _repository.AnyAsync(x => x.Id == atividadeId
+        return await Repository.AnyAsync(x => x.Id == atividadeId
                                                && x.AgendamentoAtividades
                                                    .Any(at => at.AgendamentoId == agendamentoId && !at.Removido)
                                                && !x.Removido, "AgendamentoAtividades");

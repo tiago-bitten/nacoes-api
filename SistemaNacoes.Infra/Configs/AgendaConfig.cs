@@ -34,7 +34,7 @@ public class AgendaConfig : EntidadeBaseConfig<Agenda>
             .HasColumnName("data_final")
             .IsRequired();
 
-        builder.Property(x => x.Ativo)
+        builder.Property(x => x.Removido)
             .HasColumnType("BOOLEAN")
             .HasColumnName("ativo")
             .HasDefaultValue(true)

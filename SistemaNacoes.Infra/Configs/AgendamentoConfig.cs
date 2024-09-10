@@ -30,12 +30,6 @@ public class AgendamentoConfig : EntidadeBaseConfig<Agendamento>
             .HasColumnName("agenda_id")
             .IsRequired();
         
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
-            .IsRequired();
-        
         builder.HasOne(x => x.Voluntario)
             .WithMany(x => x.Agendamentos)
             .HasForeignKey(x => x.VoluntarioId)

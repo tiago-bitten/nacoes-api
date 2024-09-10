@@ -1,24 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Abstracoes;
 using SistemaNacoes.Domain.Enums;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class RegistroLoginConfig : IEntityTypeConfiguration<RegistroLogin>
+public class RegistroLoginConfig : EntidadeBaseConfig<RegistroLogin>
 {
-    public void Configure(EntityTypeBuilder<RegistroLogin> builder)
+    private const string NomeTabela = "registros_logins";
+    
+    public RegistroLoginConfig() : base(NomeTabela) { }
+
+    public override void Configure(EntityTypeBuilder<RegistroLogin> builder)
     {
-        builder.ToTable("registros_logins")
+        base.Configure(builder);
+        
+        builder
             .Ignore(x => x.Tabela)
             .Ignore(x => x.ItemId);
-        
-        builder.HasKey(x => x.Id);
-
-        builder.Property(x => x.Id)
-            .HasColumnType("INT")
-            .HasColumnName("id")
-            .ValueGeneratedOnAdd();
 
         builder.Property(x => x.UsuarioId)
             .HasColumnType("INT")

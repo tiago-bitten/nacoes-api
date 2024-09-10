@@ -21,10 +21,7 @@ public class DeleteMinisterio
     {
         var includes = new[] { nameof(Ministerio.VoluntarioMinisterios) };
         
-        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(id, includes);
-        
-        if (ministerio.Removido)
-            throw new Exception(MensagemErroConstant.MinisterioJaRemovido);
+        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(id, includes: includes);
         
         _uow.Ministerios.SoftDelete(ministerio);
 
@@ -35,7 +32,8 @@ public class DeleteMinisterio
         
         await _uow.CommitAsync();
         
-        var respostaBase = new RespostaBase<dynamic>(RespostaBaseMensagem.DeleteMinisterio);
+        var respostaBase = new RespostaBase<dynamic>(
+            RespostaBaseMensagem.DeleteMinisterio);
         
         return respostaBase;
     }

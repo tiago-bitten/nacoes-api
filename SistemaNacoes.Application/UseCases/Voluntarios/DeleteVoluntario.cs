@@ -20,7 +20,7 @@ public class DeleteVoluntario
     {
         var includes = new[] { nameof(Voluntario.VoluntarioMinisterios) };
         
-        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(id, includes);
+        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(id, includes: includes);
 
         _uow.Voluntarios.SoftDelete(voluntario);
 

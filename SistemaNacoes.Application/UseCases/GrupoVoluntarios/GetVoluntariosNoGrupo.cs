@@ -30,7 +30,7 @@ public class GetVoluntariosNoGrupo
         var grupoIncludes = GetGrupoIncludes();
         var grupoVolutariosIncludes = GetGrupoVoluntariosIncludes();
         
-        var grupo = await _grupoService.GetAndEnsureExistsAsync(grupoId, grupoIncludes);
+        var grupo = await _grupoService.GetAndEnsureExistsAsync(grupoId, includes: grupoIncludes);
 
         var query = _uow.GrupoVoluntarios
             .GetAll(grupoVolutariosIncludes)

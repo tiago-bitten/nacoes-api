@@ -1,16 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class UsuarioMinisterioConfig : IEntityTypeConfiguration<UsuarioMinisterio>
+public class UsuarioMinisterioConfig : EntidadeBaseConfig<UsuarioMinisterio>
 {
-    public void Configure(EntityTypeBuilder<UsuarioMinisterio> builder)
+    private const string NomeTabela = "usuarios_ministerios";
+    
+    public UsuarioMinisterioConfig() : base(NomeTabela) { }
+
+    public override void Configure(EntityTypeBuilder<UsuarioMinisterio> builder)
     {
-        builder.ToTable("usuarios_ministerios");
-        
-        builder.HasKey(x => new { x.UsuarioId, x.MinisterioId });
+        base.Configure(builder);   
         
         builder.Property(x => x.UsuarioId)
             .HasColumnType("INT")
@@ -20,12 +23,6 @@ public class UsuarioMinisterioConfig : IEntityTypeConfiguration<UsuarioMinisteri
         builder.Property(x => x.MinisterioId)
             .HasColumnType("INT")
             .HasColumnName("ministerio_id")
-            .IsRequired();
-
-        builder.Property(x => x.Ativo)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("ativo")
-            .HasDefaultValue(true)
             .IsRequired();
 
         builder.HasOne(x => x.Usuario)

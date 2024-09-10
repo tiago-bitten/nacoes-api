@@ -13,7 +13,7 @@ public class VoluntarioService : ServiceBase<Voluntario>, IVoluntarioService
 
     public async Task<Voluntario> GetByChaveAcessoAsync(Guid chaveAcesso)
     {
-        var exists = await _repository.FindAsync(x => x.ChaveAcesso == chaveAcesso);
+        var exists = await Repository.FindAsync(x => x.ChaveAcesso == chaveAcesso);
         
         if (exists == null)
             throw new Exception("Forneça uma chave de acesso válida");

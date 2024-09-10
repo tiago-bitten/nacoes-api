@@ -42,12 +42,6 @@ public class VoluntarioConfig : EntidadeBaseConfig<Voluntario>
             .HasColumnType("DATE")
             .HasColumnName("data_nascimento");
 
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
-            .IsRequired();
-
         builder.HasMany(x => x.GrupoVoluntarios)
             .WithOne(x => x.Voluntario)
             .HasForeignKey(x => x.VoluntarioId)

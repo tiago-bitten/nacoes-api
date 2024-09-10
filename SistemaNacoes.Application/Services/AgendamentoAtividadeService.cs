@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
@@ -27,17 +28,22 @@ public class AgendamentoAtividadeService : IAgendamentoAtividadeService
             .FindAsync(x => x.AgendamentoId == agendamentoId && x.AtividadeId == atividadeId && !x.Removido);
         
         if (agendamentoAtividade is null)
-            throw new Exception(MensagemErroConstant.AgendamentoAtividadeNaoEncontrado);
+            throw new NacoesAppException(MensagemErroConstant.AgendamentoAtividadeNaoEncontrado);
         
         return agendamentoAtividade;
     }
-    public Task<bool> ExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
+    public async Task<bool> ExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
     {
-        throw new NotImplementedException();
+        return await _uow.AgendamentoAtividades.AnyAsync(x => x.AgendamentoId == agendamentoId 
+                                                              && x.AtividadeId == atividadeId
+                                                              && !x.Removido);
     }
 
-    public Task EnsureNotExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
+    public async Task EnsureNotExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
     {
-        throw new NotImplementedException();
+        var exists = await ExistsAtividadeNoAgendamentoAsync(agendamentoId, atividadeId);
+
+        if (exists)
+            throw new NacoesAppException(MensagemErroConstant.AtividadeJaVinculadaAoAgendamento);
     }
 }

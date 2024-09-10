@@ -10,15 +10,13 @@ namespace SistemaNacoes.Application.UseCases.Grupos;
 public class VinculateVoluntarioGrupo
 {
     
-    #region dp
+    #region ctor
     private readonly IUnitOfWork _uow;
     private readonly IVoluntarioService _voluntarioService;
     private readonly IServiceBase<Grupo> _grupoService;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     private readonly IRegistroCriacaoService _registroCriacaoService;
-    #endregion
 
-    #region ctor
     public VinculateVoluntarioGrupo(IUnitOfWork uow, IVoluntarioService voluntarioService, IServiceBase<Grupo> grupoService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService)
     {
         _uow = uow;
@@ -33,7 +31,7 @@ public class VinculateVoluntarioGrupo
     {
         var voluntarioIncludes = new[] { nameof(Voluntario.GrupoVoluntarios) };
         
-        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId, voluntarioIncludes);
+        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId, includes: voluntarioIncludes);
         var grupo = await _grupoService.GetAndEnsureExistsAsync(dto.GrupoId);
 
         var existsVoluntarioGrupo = voluntario.GrupoVoluntarios.Any(x => !x.Removido);

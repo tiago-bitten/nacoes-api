@@ -29,12 +29,6 @@ public class MinisterioConfig : EntidadeBaseConfig<Ministerio>
             .HasColumnName("cor")
             .IsRequired();
 
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
-            .IsRequired();
-
         builder.HasMany(x => x.Atividades)
             .WithOne(x => x.Ministerio)
             .HasForeignKey(x => x.MinisterioId)

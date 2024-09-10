@@ -25,12 +25,6 @@ public class GrupoVoluntarioConfig : EntidadeBaseConfig<GrupoVoluntario>
             .HasColumnName("voluntario_id")
             .IsRequired();
 
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
-            .IsRequired();
-
         builder.HasOne(x => x.Grupo)
             .WithMany(x => x.GrupoVoluntarios)
             .HasForeignKey(x => x.GrupoId)

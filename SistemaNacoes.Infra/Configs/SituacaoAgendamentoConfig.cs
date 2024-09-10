@@ -5,6 +5,7 @@ using SistemaNacoes.Domain.Entidades;
 
 namespace SistemaNacoes.Infra.Configs;
 
+[Obsolete]
 public class SituacaoAgendamentoConfig : IEntityTypeConfiguration<SituacaoAgendamento>
 {
     public void Configure(EntityTypeBuilder<SituacaoAgendamento> builder)
