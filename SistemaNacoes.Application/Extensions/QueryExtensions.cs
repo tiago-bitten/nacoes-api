@@ -1,4 +1,5 @@
-﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+﻿using System.Linq.Expressions;
+using SistemaNacoes.Domain.Entidades.Abstracoes;
 
 namespace SistemaNacoes.Application.Extensions
 {
@@ -52,9 +53,15 @@ namespace SistemaNacoes.Application.Extensions
             }).AsQueryable();
         }
 
-        public static IQueryable<T> WhereNotRemovido<T>(this IQueryable<T> source) where T : EntidadeBase
+        public static IQueryable<T> WhereNotRemovido<T>(this IQueryable<T> source, Expression<Func<T, bool>>? condicaoAdicional = null) where T : EntidadeBase
         {
-            return source.Where(entidade => !entidade.Removido);
+            var query = source.Where(entidade => !entidade.Removido);
+
+            if (condicaoAdicional is not null)
+                query = query.Where(condicaoAdicional);
+
+            return query;
         }
+
     }
 }

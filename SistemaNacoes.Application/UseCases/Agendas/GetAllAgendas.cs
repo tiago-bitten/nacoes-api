@@ -2,6 +2,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Agendas;
+using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -23,7 +24,7 @@ public class GetAllAgendas
     {
         var query = _uow.Agendas
             .GetAll()
-            .Where(GetCondicao(mes, ano));
+            .WhereNotRemovido(GetCondicao(mes, ano));
 
         var totalAgendas = await query.CountAsync();
         var agendas = await query.ToListAsync();
@@ -38,6 +39,6 @@ public class GetAllAgendas
     
     private static Expression<Func<Agenda, bool>> GetCondicao(int mes, int ano)
     {
-        return x => x.Ativo && x.DataInicio.Month == mes && x.DataInicio.Year == ano;
+        return x => x.DataInicio.Month == mes && x.DataInicio.Year == ano;
     }
 }
