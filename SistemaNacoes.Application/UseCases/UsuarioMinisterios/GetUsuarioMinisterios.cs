@@ -2,6 +2,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.UsuarioMinisterios;
+using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -24,13 +25,11 @@ public class GetUsuarioMinisterios
     
     public async Task<RespostaBase<List<GetUsuarioMinisterioDto>>> ExecuteAsync()
     {
-        var usuario = await _ambienteUsuarioService.GetUsuarioAsync();
+        var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
         
-        var includes = GetIncludes();
-
         var query = _uow.UsuarioMinisterios
-            .GetAll(includes)
-            .Where(GetCondicao(usuario.Id));
+            .GetAll("Ministerio", "Usuario")
+            .WhereNotRemovido(GetCondicao(usuarioLogado.Id));
         
         var totalUsuarioMinisterios = await query.CountAsync();
         
@@ -47,15 +46,6 @@ public class GetUsuarioMinisterios
     
     private static Expression<Func<UsuarioMinisterio, bool>> GetCondicao(int usuarioId)
     {
-        return x => x.Ativo && x.UsuarioId == usuarioId;
-    }
-    
-    private static string[] GetIncludes()
-    {
-        return new[]
-        {
-            nameof(UsuarioMinisterio.Ministerio),
-            nameof(UsuarioMinisterio.Usuario)
-        };
+        return x => x.UsuarioId == usuarioId;
     }
 }

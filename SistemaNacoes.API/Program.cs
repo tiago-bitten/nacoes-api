@@ -115,7 +115,7 @@ builder.Services.AddScoped<GetAllDataIndisponiveis>();
 builder.Services.AddScoped<GetAllAgendamentos>();
 builder.Services.AddScoped<VinculateVoluntarioMinisterio>();
 builder.Services.AddScoped<OpenAgenda>();
-builder.Services.AddScoped<CloseAgenda>();
+builder.Services.AddScoped<RemoveAgenda>();
 builder.Services.AddScoped<FinalizeAgenda>();
 builder.Services.AddScoped<DeleteAgendamento>();
 builder.Services.AddScoped<DeleteVoluntario>();

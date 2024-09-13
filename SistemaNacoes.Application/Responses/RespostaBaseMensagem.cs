@@ -23,7 +23,7 @@ public static class RespostaBaseMensagem
 
     //Agendas
     public const string OpenAgenda = "Agenda cadastrada com sucesso";
-    public const string CloseAgenda = "Agenda fechada com sucesso";
+    public const string RemoveAgenda = "Agenda fechada com sucesso";
     public const string GetAgenda = "Agenda encontrada com sucesso";
     public const string GetAgendas = "Agendas listadas com sucesso";
     public const string FinalizeAgenda = "Agenda finalizada com sucesso";

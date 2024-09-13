@@ -2,7 +2,7 @@
 
 public static class MensagemErroConstant
 {
-    public const string NaoEncontrado = "Não encontrado";
+    public const string NaoEncontrado = "não encontrado";
     
     // Atividades
     public const string AtividadeNaoPertenceAoMinisterio = "Atividade não pertencente ao ministério";

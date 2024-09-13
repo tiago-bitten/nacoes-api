@@ -7,12 +7,12 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Agendas
 {
-    public class CloseAgenda
+    public class RemoveAgenda
     {
         private readonly IUnitOfWork _uow;
         private readonly IServiceBase<Agenda> _agendaService;
 
-        public CloseAgenda(IUnitOfWork uow, IServiceBase<Agenda> agendaService)
+        public RemoveAgenda(IUnitOfWork uow, IServiceBase<Agenda> agendaService)
         {
             _uow = uow;
             _agendaService = agendaService;
@@ -22,14 +22,13 @@ namespace SistemaNacoes.Application.UseCases.Agendas
         {
             var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.Id);
             
-            if (!agenda.Ativo)
-                throw new Exception(MensagemErroConstant.AgendaJaFechada);
-
-            agenda.Close();
+            agenda.Remove();
+            
             _uow.Agendas.Update(agenda);
             await _uow.CommitAsync();
 
-            var respostaBase = new RespostaBase<dynamic>(RespostaBaseMensagem.CloseAgenda);
+            var respostaBase = new RespostaBase<dynamic>(
+                RespostaBaseMensagem.RemoveAgenda);
 
             return respostaBase;
         }

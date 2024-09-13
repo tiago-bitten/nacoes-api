@@ -9,15 +9,15 @@ namespace SistemaNacoes.API.Controllers
     public class AgendasController : ControllerBase
     {
         private readonly OpenAgenda _openAgenda;
-        private readonly CloseAgenda _closeAgenda;
+        private readonly RemoveAgenda _removeAgenda;
         private readonly FinalizeAgenda _finalizeAgenda;
         private readonly GetAllAgendas _getAllAgendas;
 
-        public AgendasController(OpenAgenda openAgenda, FinalizeAgenda finalizeAgenda, CloseAgenda closeAgenda, GetAllAgendas getAllAgendas)
+        public AgendasController(OpenAgenda openAgenda, FinalizeAgenda finalizeAgenda, RemoveAgenda removeAgenda, GetAllAgendas getAllAgendas)
         {
             _openAgenda = openAgenda;
             _finalizeAgenda = finalizeAgenda;
-            _closeAgenda = closeAgenda;
+            _removeAgenda = removeAgenda;
             _getAllAgendas = getAllAgendas;
         }
 
@@ -32,7 +32,7 @@ namespace SistemaNacoes.API.Controllers
         [HttpPut("Fechar")]
         public async Task<IActionResult> Close([FromBody] CloseAgendaDto dto)
         {
-            var result = await _closeAgenda.ExecuteAsync(dto);
+            var result = await _removeAgenda.ExecuteAsync(dto);
 
             return Ok(result);
         }
