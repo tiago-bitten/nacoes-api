@@ -17,7 +17,7 @@ public class DeleteDataIndisponivel
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int id)
     {
-        var dataIndisponivel = await _dataIndisponivelService.GetAndEnsureExistsAsync(id);
+        var dataIndisponivel = await _dataIndisponivelService.RecuperaGaranteExisteAsync(id);
         
         if (dataIndisponivel.Removido)
             throw new Exception(MensagemErroConstant.DataIndisponivelJaRemovido);

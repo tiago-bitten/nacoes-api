@@ -19,9 +19,9 @@ public class DeleteAgendamento
 
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int id)
     {
-        var agendamento = await _agendamentoService.GetAndEnsureExistsAsync(id);
+        var agendamento = await _agendamentoService.RecuperaGaranteExisteAsync(id);
         
-        _uow.Agendamentos.SoftDelete(agendamento);
+        
         await _uow.CommitAsync();
 
         var respostaBase = new RespostaBase<dynamic>(

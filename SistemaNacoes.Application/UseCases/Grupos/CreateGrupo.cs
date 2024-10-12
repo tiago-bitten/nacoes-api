@@ -48,7 +48,7 @@ public class CreateGrupo
             {
                 var includes = new[] { nameof(Voluntario.GrupoVoluntarios) };
                 
-                var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(voluntarioId, includes: includes);
+                var voluntario = await _voluntarioService.RecuperaGaranteExisteAsync(voluntarioId, includes: includes);
 
                 if (voluntario.GrupoVoluntarios.Any(x => !x.Removido))
                 {

@@ -29,8 +29,8 @@ public class VinculateVoluntarioMinisterio
     // TODO URGENTE: Refatorar totalmente esse usecase, voluntariominsiterio agora tem identificador unico
     public async Task<RespostaBase<GetSimpVoluntarioMinisterioDto>> ExecuteAsync(VinculateVoluntarioMinisterioDto dto)
     {
-        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId);
-        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(dto.MinisterioId);
+        var voluntario = await _voluntarioService.RecuperaGaranteExisteAsync(dto.VoluntarioId);
+        var ministerio = await _ministerioService.RecuperaGaranteExisteAsync(dto.MinisterioId);
 
         var existingVoluntarioMinisterio = await _uow.VoluntarioMinisterios
             .FindAsync(x => !x.Removido 

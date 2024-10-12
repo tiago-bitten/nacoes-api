@@ -1,112 +1,74 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using SistemaNacoes.Domain.Entidades.Abstracoes;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Infra.Contexts;
+using SistemaNacoes.Shared.Extensions;
 
 namespace SistemaNacoes.Infra.Repositorios
 {
-    public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+    public class RepositoryBase<T> : IRepositoryBase<T> where T : EntidadeBase
     {
-        protected readonly NacoesDbContext _context;
-        protected readonly DbSet<T> _dbSet;
+        protected readonly NacoesDbContext Context;
+        protected readonly DbSet<T> DbSet;
 
         public RepositoryBase(NacoesDbContext context)
         {
-            _context = context;
-            _dbSet = context.Set<T>();
+            Context = context;
+            DbSet = context.Set<T>();
         }
 
-        public virtual async Task AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
-            await _dbSet.AddAsync(entity);
+            await DbSet.AddAsync(entity);
         }
 
-        public virtual async Task AddRangeAsync(IEnumerable<T> entities)
+        public async Task AddRangeAsync(IEnumerable<T> entities)
         {
-            await _dbSet.AddRangeAsync(entities);
+            await DbSet.AddRangeAsync(entities);
         }
 
-        public virtual void Update(T entity)
+        public void Update(T entity)
         {
-            _dbSet.Update(entity);
+            DbSet.Update(entity);
         }
 
-        public virtual void Delete(T entity)
+        public void Delete(T entity)
         {
-            _dbSet.Remove(entity);
+            DbSet.Remove(entity);
         }
 
-        public virtual void SoftDelete(T entity)
+        public async Task<T?> GetByIdAsync(int id, params string[]? includes)
         {
-            var propertyInfo = typeof(T).GetProperty("Removido");
-            if (propertyInfo != null && propertyInfo.PropertyType == typeof(bool))
-            {
-                propertyInfo.SetValue(entity, true);
-                _dbSet.Update(entity);
-            }
-            else
-            {
-                throw new InvalidOperationException("Entity does not have a 'Removido' property or it is not of type bool.");
-            }
+            return await FindAsync(x => x.Id == id, includes);
+
         }
 
-        public virtual async Task<T> GetByIdAsync(int id, params string[]? includes)
+        public IQueryable<T> GetAll(params string[]? includes)
         {
-            if (includes == null || includes.Length == 0)
-                return await _dbSet.FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
-            
-            var query = _dbSet.AsQueryable();
-
-            query = includes.Aggregate(query, (current, include) => current.Include(include));
-
-            return await query.FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
+            return DbSet.BaseQuery(includes);
         }
 
-        public virtual IQueryable<T> GetAll(params string[]? includes)
+        public async Task<T?> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
         {
-            if (includes == null || includes.Length == 0)
-                return _dbSet;
-            
-            var query = _dbSet.AsQueryable();
-
-            return includes.Aggregate(query, (current, include) => current.Include(include));
+            return await DbSet
+                .BaseQuery(includes)
+                .FirstOrDefaultAsync(predicate);
         }
 
-        public virtual async Task<T?> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
+        public IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params string[]? includes)
         {
-            if (includes == null || includes.Length == 0)
-                return await _dbSet.FirstOrDefaultAsync(predicate);
-            
-            var query = _dbSet.AsQueryable();
-            
-            query = includes.Aggregate(query, (current, include) => current.Include(include));
-            
-            return await query.FirstOrDefaultAsync(predicate);
+            return DbSet
+                .BaseQuery(includes)
+                .Where(predicate);
         }
 
-        public virtual IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params string[]? includes)
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
         {
-            if (includes == null || includes.Length == 0)
-                return _dbSet.Where(predicate);
-            
-            var query = _dbSet.AsQueryable();
-            
-            query = includes.Aggregate(query, (current, include) => current.Include(include));
-            
-            return query.Where(predicate);
-        }
-
-        public virtual async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
-        {
-            if (includes == null || includes.Length == 0)
-                return await _dbSet.AnyAsync(predicate);
-            
-            var query = _dbSet.AsQueryable();
-            
-            query = includes.Aggregate(query, (current, include) => current.Include(include));
-            
-            return query.Any(predicate);
+            return await DbSet
+                .BaseQuery()
+                .AnyAsync(predicate);
         }
     }
 }

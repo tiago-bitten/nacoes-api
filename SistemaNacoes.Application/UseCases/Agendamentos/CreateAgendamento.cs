@@ -50,7 +50,7 @@ public class CreateAgendamento
         var voluntarioMinisterio =
             await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId);
         
-        var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.AgendaId);
+        var agenda = await _agendaService.RecuperaGaranteExisteAsync(dto.AgendaId);
 
         agenda.CheckStatus();
         
@@ -65,7 +65,7 @@ public class CreateAgendamento
         if (dto.AtividadeIds != null && dto.AtividadeIds.Any())
             foreach (var atividadeId in dto.AtividadeIds)
             {
-                var atividade = await _atividadeService.GetAndEnsureExistsAsync(atividadeId);
+                var atividade = await _atividadeService.RecuperaGaranteExisteAsync(atividadeId);
 
                 /** Revisar, isso não faz sentido
                  * await _agendamentoAtividadeService.EnsureNotExistsAtividadeNoAgendamentoAsync(agendamento.Id, atividade.Id) 

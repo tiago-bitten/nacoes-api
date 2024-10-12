@@ -19,7 +19,7 @@ public class FinalizeAgenda
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(FinalizeAgendaDto dto)
     {
-        var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.Id);
+        var agenda = await _agendaService.RecuperaGaranteExisteAsync(dto.Id);
         
         if (agenda.Finalizado)
             throw new Exception(MensagemErroConstant.AgendaJaFinalizada);

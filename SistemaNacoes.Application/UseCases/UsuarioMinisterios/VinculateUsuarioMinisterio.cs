@@ -21,13 +21,13 @@ public class VinculateUsuarioMinisterio
 
     public async Task<RespostaBase<dynamic>> ExecuteAsync(VinculateUsuarioMinisterioDto dto)
     {
-        var usuario = await _usuarioService.GetAndEnsureExistsAsync(dto.UsuarioId);
-        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(dto.MinisterioId);
+        var usuario = await _usuarioService.RecuperaGaranteExisteAsync(dto.UsuarioId);
+        var ministerio = await _ministerioService.RecuperaGaranteExisteAsync(dto.MinisterioId);
         
         var existsUsuarioMinisterio = await _uow.UsuarioMinisterios
             .FindAsync(x => x.UsuarioId == usuario.Id 
                             && x.MinisterioId == ministerio.Id
-                            && x.Ativo);
+                            && !x.Removido);
 
         if (existsUsuarioMinisterio != null)
             throw new Exception(MensagemErroConstant.UsuarioMinisterioJaCadastrado);

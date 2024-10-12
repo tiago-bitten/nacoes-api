@@ -20,9 +20,9 @@ namespace SistemaNacoes.Application.UseCases.Agendas
 
         public async Task<RespostaBase<dynamic>> ExecuteAsync(CloseAgendaDto dto)
         {
-            var agenda = await _agendaService.GetAndEnsureExistsAsync(dto.Id);
+            var agenda = await _agendaService.RecuperaGaranteExisteAsync(dto.Id);
             
-            agenda.Remove();
+            agenda.Remover();
             
             _uow.Agendas.Update(agenda);
             await _uow.CommitAsync();

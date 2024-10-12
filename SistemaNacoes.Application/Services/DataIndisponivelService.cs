@@ -20,8 +20,8 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel>, IDataIndis
 
     public async Task<bool> ExistsDataAvaliableAsync(int agendaId, int voluntarioId)
     {
-        var agenda = await _agendaService.GetAndEnsureExistsAsync(agendaId);
-        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(voluntarioId, includes: "DataIndisponiveis");
+        var agenda = await _agendaService.RecuperaGaranteExisteAsync(agendaId);
+        var voluntario = await _voluntarioService.RecuperaGaranteExisteAsync(voluntarioId, includes: "DataIndisponiveis");
         
         var datasIndisponiveis = voluntario.GetDataIndisponiveis();
         

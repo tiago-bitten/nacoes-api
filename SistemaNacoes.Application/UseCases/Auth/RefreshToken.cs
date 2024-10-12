@@ -29,7 +29,7 @@ public class RefreshToken
         var principal = _tokenService.GetPrincipalFromExpiredToken(dto.AccessToken);
 
         var usuarioId = int.Parse(principal.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0");
-        var usuario = await _usuarioService.GetAndEnsureExistsAsync(usuarioId);
+        var usuario = await _usuarioService.RecuperaGaranteExisteAsync(usuarioId);
         
         var refreshToken = await _uow.RefreshTokens.GetByTokenAsync(dto.RefreshToken);
         

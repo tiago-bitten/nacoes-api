@@ -26,8 +26,8 @@ public class VinculateAgendamentoAtividade
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(VinculateAgendamentoAtividadeDto dto)
     {
-        var atividade = await _atividadeService.GetAndEnsureExistsAsync(dto.AtividadeId);
-        var agendamento = await _agendamentoService.GetAndEnsureExistsAsync(dto.AgendamentoId);
+        var atividade = await _atividadeService.RecuperaGaranteExisteAsync(dto.AtividadeId);
+        var agendamento = await _agendamentoService.RecuperaGaranteExisteAsync(dto.AgendamentoId);
 
         //await _atividadeService.ensure(atividade.Id, agendamento.Id);        
         await _atividadeService.EnsureExistsAtividadeNoMinisterioAsync(atividade.Id, agendamento.MinisterioId);

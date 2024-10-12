@@ -32,8 +32,8 @@ public class GetVoluntariosParaAgendar
     {
         var includes = GetIncludes();
         
-        var agenda = await _agendaService.GetAndEnsureExistsAsync(agendaId);
-        await _ministerioService.GetAndEnsureExistsAsync(ministerioId);
+        var agenda = await _agendaService.RecuperaGaranteExisteAsync(agendaId);
+        await _ministerioService.RecuperaGaranteExisteAsync(ministerioId);
         
         var query = _uow.Voluntarios
             .GetAll(includes)

@@ -31,8 +31,8 @@ public class VinculateVoluntarioGrupo
     {
         var voluntarioIncludes = new[] { nameof(Voluntario.GrupoVoluntarios) };
         
-        var voluntario = await _voluntarioService.GetAndEnsureExistsAsync(dto.VoluntarioId, includes: voluntarioIncludes);
-        var grupo = await _grupoService.GetAndEnsureExistsAsync(dto.GrupoId);
+        var voluntario = await _voluntarioService.RecuperaGaranteExisteAsync(dto.VoluntarioId, includes: voluntarioIncludes);
+        var grupo = await _grupoService.RecuperaGaranteExisteAsync(dto.GrupoId);
 
         var existsVoluntarioGrupo = voluntario.GrupoVoluntarios.Any(x => !x.Removido);
         

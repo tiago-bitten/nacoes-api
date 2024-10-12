@@ -33,7 +33,7 @@ public class CreateAtividade
         if (!usuarioLogado.HasPermission(EPermissoes.CREATE_ATIVIDADE))
             throw new Exception(MensagemErroConstant.SemPermissaoParaCriarAtividade);
         
-        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(dto.MinisterioId);
+        var ministerio = await _ministerioService.RecuperaGaranteExisteAsync(dto.MinisterioId);
         
         var atividade = _mapper.Map<Atividade>(dto);
 

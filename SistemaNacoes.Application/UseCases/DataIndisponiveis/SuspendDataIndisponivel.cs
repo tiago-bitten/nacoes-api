@@ -17,7 +17,7 @@ public class SuspendDataIndisponivel
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int id)
     {
-        var dataIndisponivel = await _dataIndisponivelService.GetAndEnsureExistsAsync(id);
+        var dataIndisponivel = await _dataIndisponivelService.RecuperaGaranteExisteAsync(id);
         dataIndisponivel.Suspenso = true;
         
         _uow.DataIndisponiveis.Update(dataIndisponivel);

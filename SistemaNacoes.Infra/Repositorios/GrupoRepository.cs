@@ -15,12 +15,12 @@ public class GrupoRepository : RepositoryBase<Grupo>, IGrupoRepository
     {
         entity.Removido = true;
         
-        _dbSet.Update(entity);
+        DbSet.Update(entity);
         
         entity.GrupoVoluntarios.ForEach(x =>
         {
             x.Removido = true;
-            _context.Set<GrupoVoluntario>().Update(x);
+            Context.Set<GrupoVoluntario>().Update(x);
         });
     }
 }

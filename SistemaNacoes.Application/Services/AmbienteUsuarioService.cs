@@ -21,7 +21,7 @@ public class AmbienteUsuarioService : IAmbienteUsuarioService
         var principal = _httpContextAccessor.HttpContext?.User;
 
         var usuarioId = int.Parse(principal.FindFirstValue(ClaimTypes.NameIdentifier));
-        var usuario = await _usuarioService.GetAndEnsureExistsAsync(usuarioId);
+        var usuario = await _usuarioService.RecuperaGaranteExisteAsync(usuarioId);
         
         return usuario;
     }

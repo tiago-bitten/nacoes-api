@@ -21,7 +21,7 @@ public class DeleteMinisterio
     {
         var includes = new[] { nameof(Ministerio.VoluntarioMinisterios) };
         
-        var ministerio = await _ministerioService.GetAndEnsureExistsAsync(id, includes: includes);
+        var ministerio = await _ministerioService.RecuperaGaranteExisteAsync(id, includes: includes);
         
         _uow.Ministerios.SoftDelete(ministerio);
 

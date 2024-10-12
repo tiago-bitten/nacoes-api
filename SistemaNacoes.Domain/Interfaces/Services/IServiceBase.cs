@@ -5,8 +5,8 @@ namespace SistemaNacoes.Domain.Interfaces.Services;
 
 public interface IServiceBase<T> where T : EntidadeBase
 {
-    Task<bool> ExistsAsync(int id, bool considerRemovido = false, params string[]? includes);
-    Task EnsureExistsAsync(int id, bool considerRemovido = false, params string[]? includes);
-    Task<T> GetAndEnsureExistsAsync(int id, bool considerRemovido = false, params string[]? includes);
-    IRepositoryBase<T> GetRepository();
+    Task<bool> ExisteAsync(int id);
+    Task GaranteExisteAsync(int id);
+    Task<T> RecuperaGaranteExisteAsync(int id, params string[]? includes);
+    void Remover(T entity);
 }

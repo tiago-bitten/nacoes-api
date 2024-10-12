@@ -21,8 +21,8 @@ public class AgendamentoAtividadeService : IAgendamentoAtividadeService
 
     public async Task<AgendamentoAtividade> GetAndEnsureExistsAsync(int agendamentoId, int atividadeId)
     {
-        await _agendamentoService.GetAndEnsureExistsAsync(agendamentoId);
-        await _atividadeService.GetAndEnsureExistsAsync(atividadeId);
+        await _agendamentoService.RecuperaGaranteExisteAsync(agendamentoId);
+        await _atividadeService.RecuperaGaranteExisteAsync(atividadeId);
         
         var agendamentoAtividade = await _uow.AgendamentoAtividades
             .FindAsync(x => x.AgendamentoId == agendamentoId && x.AtividadeId == atividadeId && !x.Removido);

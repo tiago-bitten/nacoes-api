@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SistemaNacoes.Domain\SistemaNacoes.Domain.csproj" />
+      <ProjectReference Include="..\SistemaNacoes.Shared\SistemaNacoes.Shared.csproj" />
     </ItemGroup>
 
 </Project>

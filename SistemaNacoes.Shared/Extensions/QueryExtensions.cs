@@ -1,11 +1,13 @@
 ﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Entidades.Abstracoes;
 
-namespace SistemaNacoes.Application.Extensions
+namespace SistemaNacoes.Shared.Extensions
 {
     public static class QueryExtensions
     {
         // TODO: rever e refatorar
+        #region SelectFields
         public static IQueryable<Dictionary<string, object>> SelectFields<T>(this IQueryable<T> source, List<string> fields) where T : class
         {
             return source.AsEnumerable().Select(item =>
@@ -52,7 +54,9 @@ namespace SistemaNacoes.Application.Extensions
                 return result;
             }).AsQueryable();
         }
+        #endregion
 
+        #region WhereNotRemovido
         public static IQueryable<T> WhereNotRemovido<T>(this IQueryable<T> source, Expression<Func<T, bool>>? condicaoAdicional = null) where T : EntidadeBase
         {
             var query = source.Where(entidade => !entidade.Removido);
@@ -62,6 +66,22 @@ namespace SistemaNacoes.Application.Extensions
 
             return query;
         }
-
+        #endregion
+        
+        #region ApplyIncludes
+        public static IQueryable<T> ApplyIncludes<T>(this IQueryable<T> query, params string[]? includes) where T : class
+        {
+            return includes == null ? query : includes.Aggregate(query, (current, include) => current.Include(include));
+        }
+        #endregion
+        
+        #region BaseQuery
+        public static IQueryable<T> BaseQuery<T>(this IQueryable<T> query, params string[]? includes) where T : EntidadeBase
+        {
+            return query
+                .ApplyIncludes(includes)
+                .WhereNotRemovido();
+        }
+        #endregion
     }
 }

@@ -27,7 +27,7 @@ public class DeleteAtividade
         if (!usuario.HasPermission(EPermissoes.DELETE_ATIVIDADE))
             throw new Exception(MensagemErroConstant.SemPermissaoRemoverAtividade);
         
-        var atividade = await _atividadeService.GetAndEnsureExistsAsync(id);
+        var atividade = await _atividadeService.RecuperaGaranteExisteAsync(id);
         
         if (atividade.Removido)
             throw new Exception(MensagemErroConstant.AtividadeJaRemovida);

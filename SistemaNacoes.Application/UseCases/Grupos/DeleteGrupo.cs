@@ -21,7 +21,7 @@ public class DeleteGrupo
 
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int id)
     {
-        var grupo = await _grupoService.GetAndEnsureExistsAsync(id);
+        var grupo = await _grupoService.RecuperaGaranteExisteAsync(id);
         
         _uow.Grupos.SoftDelete(grupo);
         await _uow.CommitAsync();

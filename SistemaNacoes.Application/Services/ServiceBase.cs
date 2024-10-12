@@ -1,7 +1,5 @@
-﻿using SistemaNacoes.Domain.Interfaces;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
+﻿using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
-using System.Reflection;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades.Abstracoes;
@@ -17,28 +15,29 @@ public class ServiceBase<T> : IServiceBase<T> where T : EntidadeBase
         Repository = repository;
     }
 
-    public virtual async Task<bool> ExistsAsync(int id, bool considerRemovido = false, params string[]? includes)
+    public async Task<bool> ExisteAsync(int id)
     {
-        return await Repository.AnyAsync(x => x.Id == id && x.Removido == considerRemovido);
+        return await Repository.AnyAsync(x => x.Id == id);
     }
 
-    public virtual async Task EnsureExistsAsync(int id, bool considerRemovido = false, params string[]? includes)
+    public async Task GaranteExisteAsync(int id)
     {
-        var exists = await ExistsAsync(id, considerRemovido, includes);
+        var exists = await ExisteAsync(id);
 
         if (!exists)
             throw new NacoesAppException($"{typeof(T)} {MensagemErroConstant.NaoEncontrado}");
     }
 
-    public virtual async Task<T> GetAndEnsureExistsAsync(int id, bool considerRemovido = false, params string[]? includes)
+    public async Task<T> RecuperaGaranteExisteAsync(int id, params string[]? includes)
     {
-        await EnsureExistsAsync(id, considerRemovido, includes);
+        await GaranteExisteAsync(id);
         
-        return await Repository.GetByIdAsync(id);
+        return await Repository.GetByIdAsync(id, includes);
     }
 
-    public IRepositoryBase<T> GetRepository()
+    public void Remover(T entity)
     {
-        return Repository;
+        entity.Remover();
+        Repository.Update(entity);
     }
 }

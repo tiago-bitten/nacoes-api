@@ -28,7 +28,7 @@ public class AddPermissoesUsuario
         if (!usuarioLogado.HasPermission(EPermissoes.UPDATE_USUARIO))
             throw new Exception(MensagemErroConstant.SemPermissaoParaAlterarUsuario);
         
-        var usuario = await _usuarioService.GetAndEnsureExistsAsync(dto.UsuarioId);
+        var usuario = await _usuarioService.RecuperaGaranteExisteAsync(dto.UsuarioId);
         
         var originalPermissions = usuario.Permissoes;
         
