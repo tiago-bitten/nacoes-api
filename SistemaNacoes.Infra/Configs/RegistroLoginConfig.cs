@@ -9,10 +9,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class RegistroLoginConfig : EntidadeBaseConfig<RegistroLogin>
 {
-    private const string NomeTabela = "registros_logins";
-    
-    public RegistroLoginConfig() : base(NomeTabela) { }
-
     public override void Configure(EntityTypeBuilder<RegistroLogin> builder)
     {
         base.Configure(builder);

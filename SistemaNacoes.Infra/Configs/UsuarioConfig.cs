@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class UsuarioConfig : EntidadeBaseConfig<Usuario>
 {
-    private const string NomeTabela = "usuarios";
-    
-    public UsuarioConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<Usuario> builder)
     {
         base.Configure(builder);

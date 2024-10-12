@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class RefreshTokenConfig : EntidadeBaseConfig<RefreshToken>
 {
-    private const string NomeTabela = "refresh_tokens";
-    
-    public RefreshTokenConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<RefreshToken> builder)
     {
         base.Configure(builder);

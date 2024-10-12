@@ -13,16 +13,16 @@ public class AgendamentoService : ServiceBase<Agendamento>, IAgendamentoService
     {
     }
 
-    public async Task<bool> ExistsVoluntarioJaAgendadoAsync(int agendaId, int voluntarioId)
+    public async Task<bool> ExisteVoluntarioAgendadoAsync(int agendaId, int voluntarioId)
     {
         return await Repository.AnyAsync(x => x.AgendaId == agendaId
                                                && x.VoluntarioId == voluntarioId
                                                && !x.Removido);
     }
 
-    public async Task EnsureNotExistsVoluntarioJaAgendadoAsync(int agendaId, int voluntarioId)
+    public async Task GaranteNaoExisteVoluntarioAgendadoAsync(int agendaId, int voluntarioId)
     {
-        var exists = await ExistsVoluntarioJaAgendadoAsync(agendaId, voluntarioId);
+        var exists = await ExisteVoluntarioAgendadoAsync(agendaId, voluntarioId);
 
         if (exists)
             throw new NacoesAppException(MensagemErroConstant.AgendamentoJaExiste);

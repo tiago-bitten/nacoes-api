@@ -704,6 +704,7 @@
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.IdentityModel.Tokens": "7.0.0",
           "SistemaNacoes.Domain": "1.0.0",
+          "SistemaNacoes.Shared": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "7.0.0"
         },
         "compile": {

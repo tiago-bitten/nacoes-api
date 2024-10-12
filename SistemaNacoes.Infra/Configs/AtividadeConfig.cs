@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class AtividadeConfig : EntidadeBaseConfig<Atividade>
 {
-    private const string NomeTabela = "atividades";
-    
-    public AtividadeConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<Atividade> builder)
     {
         base.Configure(builder);

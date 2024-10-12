@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class EscalaConfig : EntidadeBaseConfig<Escala>
 {
-    private const string NomeTabela = "escalas";
-    
-    public EscalaConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<Escala> builder)
     {
         base.Configure(builder);

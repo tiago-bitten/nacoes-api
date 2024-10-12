@@ -408,6 +408,20 @@
         "runtime": {
           "bin/placeholder/SistemaNacoes.Domain.dll": {}
         }
+      },
+      "SistemaNacoes.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.0",
+          "SistemaNacoes.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SistemaNacoes.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SistemaNacoes.Shared.dll": {}
+        }
       }
     }
   },
@@ -1050,6 +1064,11 @@
       "type": "project",
       "path": "../SistemaNacoes.Domain/SistemaNacoes.Domain.csproj",
       "msbuildProject": "../SistemaNacoes.Domain/SistemaNacoes.Domain.csproj"
+    },
+    "SistemaNacoes.Shared/1.0.0": {
+      "type": "project",
+      "path": "../SistemaNacoes.Shared/SistemaNacoes.Shared.csproj",
+      "msbuildProject": "../SistemaNacoes.Shared/SistemaNacoes.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1061,6 +1080,7 @@
       "Microsoft.Extensions.Configuration.Abstractions >= 7.0.0",
       "Microsoft.IdentityModel.Tokens >= 7.0.0",
       "SistemaNacoes.Domain >= 1.0.0",
+      "SistemaNacoes.Shared >= 1.0.0",
       "System.IdentityModel.Tokens.Jwt >= 7.0.0"
     ]
   },
@@ -1099,6 +1119,9 @@
           "projectReferences": {
             "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
               "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj"
+            },
+            "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj": {
+              "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj"
             }
           }
         }

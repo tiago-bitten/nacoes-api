@@ -7,8 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class GrupoConfig : EntidadeBaseConfig<Grupo>
 {
-    public GrupoConfig() : base("grupos") { }
-    
     public override void Configure(EntityTypeBuilder<Grupo> builder)
     {
         base.Configure(builder);

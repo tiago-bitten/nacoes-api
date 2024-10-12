@@ -8,6 +8,7 @@ namespace SistemaNacoes.Application.Services;
 
 public class DataIndisponivelService : ServiceBase<DataIndisponivel>, IDataIndisponivelService
 {
+    #region ctor
     private readonly IAgendaService _agendaService;
     private readonly IVoluntarioService _voluntarioService;
     
@@ -17,11 +18,12 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel>, IDataIndis
         _voluntarioService = voluntarioService;
         _agendaService = agendaService;
     }
+    #endregion
 
-    public async Task<bool> ExistsDataAvaliableAsync(int agendaId, int voluntarioId)
+    public async Task<bool> ExisteDataDisponivelAsync(int agendaId, int voluntarioId)
     {
         var agenda = await _agendaService.RecuperaGaranteExisteAsync(agendaId);
-        var voluntario = await _voluntarioService.RecuperaGaranteExisteAsync(voluntarioId, includes: "DataIndisponiveis");
+        var voluntario = await _voluntarioService.RecuperaGaranteExisteAsync(voluntarioId, "DataIndisponiveis");
         
         var datasIndisponiveis = voluntario.GetDataIndisponiveis();
         
@@ -40,9 +42,9 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel>, IDataIndis
         return true;
     }
 
-    public async Task EnsureExistsDataAvaliableAsync(int agendaId, int voluntarioId)
+    public async Task GaranteExisteDataDisponivelAsync(int agendaId, int voluntarioId)
     {
-        var exists = await ExistsDataAvaliableAsync(agendaId, voluntarioId);
+        var exists = await ExisteDataDisponivelAsync(agendaId, voluntarioId);
 
         if (!exists)
             throw new NacoesAppException(MensagemErroConstant.DataIndisponivel);

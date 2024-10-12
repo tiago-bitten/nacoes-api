@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class AgendaConfig : EntidadeBaseConfig<Agenda>
 {
-    private const string NomeTabela = "agendas";
-    
-    public AgendaConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<Agenda> builder)
     {
         base.Configure(builder);

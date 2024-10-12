@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Agendamentos;
 using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
@@ -11,7 +10,7 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Agendamentos;
 
-public class CreateAgendamento
+public class CriarAgendamento
 {
     #region ctor
     private readonly IUnitOfWork _uow;
@@ -25,7 +24,7 @@ public class CreateAgendamento
     private readonly IAgendamentoService _agendamentoService;
     private readonly IAgendamentoAtividadeService _agendamentoAtividadeService;
     
-    public CreateAgendamento(IUnitOfWork uow, IMapper mapper, IAtividadeService atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService, IAgendamentoService agendamentoService, IAgendamentoAtividadeService agendamentoAtividadeService)
+    public CriarAgendamento(IUnitOfWork uow, IMapper mapper, IAtividadeService atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService, IAgendamentoService agendamentoService, IAgendamentoAtividadeService agendamentoAtividadeService)
     {
         _uow = uow;
         _mapper = mapper;
@@ -42,20 +41,20 @@ public class CreateAgendamento
     
     public async Task<RespostaBase<GetAgendamentoDto>> ExecuteAsync(CreateAgendamentoDto dto)
     {
-        var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
+        var usuarioLogado = await _ambienteUsuarioService.RecuperaUsuarioAsync();
 
         if (!usuarioLogado.HasPermission(EPermissoes.CREATE_AGENDAMENTO))
             throw new NacoesAppException(MensagemErroConstant.SemPermissaoParaCriarAgendamento);
         
         var voluntarioMinisterio =
-            await _voluntarioMinisterioService.GetAndEnsureExistsAsync(dto.VoluntarioId, dto.MinisterioId);
+            await _voluntarioMinisterioService.RecuperaGaranteExisteAsync(dto.VoluntarioMinisterioId);
         
         var agenda = await _agendaService.RecuperaGaranteExisteAsync(dto.AgendaId);
 
         agenda.CheckStatus();
         
-        await _agendamentoService.EnsureNotExistsVoluntarioJaAgendadoAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
-        await _dataIndisponivelService.EnsureExistsDataAvaliableAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
+        await _agendamentoService.GaranteNaoExisteVoluntarioAgendadoAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
+        await _dataIndisponivelService.GaranteExisteDataDisponivelAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
         
         var agendamento = _mapper.Map<Agendamento>(dto);
         await _uow.Agendamentos.AddAsync(agendamento);
@@ -67,9 +66,6 @@ public class CreateAgendamento
             {
                 var atividade = await _atividadeService.RecuperaGaranteExisteAsync(atividadeId);
 
-                /** Revisar, isso não faz sentido
-                 * await _agendamentoAtividadeService.EnsureNotExistsAtividadeNoAgendamentoAsync(agendamento.Id, atividade.Id) 
-                 */
                 await _atividadeService.EnsureExistsAtividadeNoMinisterioAsync(atividade.Id, voluntarioMinisterio.MinisterioId);
                 
                 var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);

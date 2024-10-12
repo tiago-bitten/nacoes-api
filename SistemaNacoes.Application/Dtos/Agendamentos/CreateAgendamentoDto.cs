@@ -4,11 +4,8 @@ namespace SistemaNacoes.Application.Dtos.Agendamentos;
 
 public class CreateAgendamentoDto
 {
-    [JsonPropertyName("VoluntarioId")]
-    public int VoluntarioId { get; set; }
-    
-    [JsonPropertyName("MinisterioId")]
-    public int MinisterioId { get; set; }
+    [JsonPropertyName("VoluntarioMinisterioId")]
+    public int VoluntarioMinisterioId { get; set; }
     
     [JsonPropertyName("AgendaId")]
     public int AgendaId { get; set; }

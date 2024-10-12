@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class GrupoVoluntarioConfig : EntidadeBaseConfig<GrupoVoluntario>
 {
-    private const string NomeTable = "grupos_voluntarios";
-    
-    public GrupoVoluntarioConfig() : base(NomeTable) { }
-    
     public override void Configure(EntityTypeBuilder<GrupoVoluntario> builder)
     {
         base.Configure(builder);

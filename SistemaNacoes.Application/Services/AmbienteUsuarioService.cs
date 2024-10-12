@@ -16,23 +16,52 @@ public class AmbienteUsuarioService : IAmbienteUsuarioService
         _usuarioService = usuarioService;
     }
 
-    public async Task<Usuario> GetUsuarioAsync()
+    public async Task<Usuario> RecuperaUsuarioAsync(params string[]? includes)
     {
-        var principal = _httpContextAccessor.HttpContext?.User;
-
-        var usuarioId = int.Parse(principal.FindFirstValue(ClaimTypes.NameIdentifier));
-        var usuario = await _usuarioService.RecuperaGaranteExisteAsync(usuarioId);
+        var usuario = await _usuarioService.RecuperaGaranteExisteAsync(RecuperaUsuarioId(), includes);
         
         return usuario;
     }
 
-    public string? GetUsuarioIp()
+    public string? RecuperaUsuarioIp()
     {
         return _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString();
     }
 
-    public string? GetUsuarioUserAgent()
+    public string? RecuperaUsuarioUserAgent()
     {
         return _httpContextAccessor.HttpContext?.Request.Headers["User-Agent"];
+    }
+
+    public int RecuperaUsuarioId()
+    {
+        var principal = _httpContextAccessor.HttpContext?.User;
+        var usuarioId = principal?.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        return int.Parse(usuarioId ?? "0");
+    }
+
+    public List<string>? RecuperaUsuarioRoles()
+    {
+        var principal = _httpContextAccessor.HttpContext?.User;
+        return principal?.Claims
+            .Where(c => c.Type == ClaimTypes.Role)
+            .Select(c => c.Value)
+            .ToList();
+    }
+
+    public string? RecuperaUsuarioNome()
+    {
+        return _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Name);
+    }
+
+    public string? RecuperaUsuarioEmail()
+    {
+        return _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email);
+    }
+
+    public bool VerificaUsuarioAutenticado()
+    {
+        return _httpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated ?? false;
     }
 }

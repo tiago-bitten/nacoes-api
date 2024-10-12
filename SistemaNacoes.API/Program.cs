@@ -106,7 +106,7 @@ builder.Services.AddScoped<CreateMinisterio>();
 builder.Services.AddScoped<CreateDataIndisponivel>();
 builder.Services.AddScoped<CreateAtividade>();
 builder.Services.AddScoped<GetAllVoluntarios>();
-builder.Services.AddScoped<CreateAgendamento>();
+builder.Services.AddScoped<CriarAgendamento>();
 builder.Services.AddScoped<GetAllVoluntarioMinisterios>();
 builder.Services.AddScoped<GetAllMinisterios>();
 builder.Services.AddScoped<GetAllAtividades>();

@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class DataIndisponivelConfig : EntidadeBaseConfig<DataIndisponivel>
 {
-    private const string NomeTabela = "datas_indisponiveis";
-    
-    public DataIndisponivelConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<DataIndisponivel> builder)
     {
         base.Configure(builder);

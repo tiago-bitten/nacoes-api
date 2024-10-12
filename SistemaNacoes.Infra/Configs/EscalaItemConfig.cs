@@ -1,16 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class EscalaItemConfig : IEntityTypeConfiguration<EscalaItem>
+public class EscalaItemConfig : EntidadeBaseConfig<EscalaItem>
 {
-    public void Configure(EntityTypeBuilder<EscalaItem> builder)
+    public override void Configure(EntityTypeBuilder<EscalaItem> builder)
     {
         builder.ToTable("escalas_itens");
-        
-        builder.HasKey(x => new { x.EscalaId, x.VoluntarioId, x.AtividadeId });
         
         builder.Property(x => x.EscalaId)
             .HasColumnType("INT")
@@ -25,12 +24,6 @@ public class EscalaItemConfig : IEntityTypeConfiguration<EscalaItem>
         builder.Property(x => x.AtividadeId)
             .HasColumnType("INT")
             .HasColumnName("atividade_id")
-            .IsRequired();
-        
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
             .IsRequired();
         
         builder.HasOne(x => x.Escala)

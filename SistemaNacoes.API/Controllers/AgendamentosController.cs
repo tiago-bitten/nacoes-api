@@ -10,13 +10,13 @@ namespace SistemaNacoes.API.Controllers;
 [Route("api/[controller]")]
 public class AgendamentosController : ControllerBase
 {
-    private readonly CreateAgendamento _createAgendamento;
+    private readonly CriarAgendamento _createAgendamento;
     private readonly GetAllAgendamentos _getAllAgendamentos;
     private readonly DeleteAgendamento _deleteAgendamento;
     private readonly VinculateAgendamentoAtividade _vinculateAgendamentoAtividade;
     private readonly DeleteAgendamentoAtividade _deleteAgendamentoAtividade;
     
-    public AgendamentosController(CreateAgendamento createAgendamento, GetAllAgendamentos getAllAgendamentos, DeleteAgendamento deleteAgendamento, VinculateAgendamentoAtividade vinculateAgendamentoAtividade, DeleteAgendamentoAtividade deleteAgendamentoAtividade)
+    public AgendamentosController(CriarAgendamento createAgendamento, GetAllAgendamentos getAllAgendamentos, DeleteAgendamento deleteAgendamento, VinculateAgendamentoAtividade vinculateAgendamentoAtividade, DeleteAgendamentoAtividade deleteAgendamentoAtividade)
     {
         _createAgendamento = createAgendamento;
         _getAllAgendamentos = getAllAgendamentos;

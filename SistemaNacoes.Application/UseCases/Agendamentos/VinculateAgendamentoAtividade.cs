@@ -29,7 +29,6 @@ public class VinculateAgendamentoAtividade
         var atividade = await _atividadeService.RecuperaGaranteExisteAsync(dto.AtividadeId);
         var agendamento = await _agendamentoService.RecuperaGaranteExisteAsync(dto.AgendamentoId);
 
-        //await _atividadeService.ensure(atividade.Id, agendamento.Id);        
         await _atividadeService.EnsureExistsAtividadeNoMinisterioAsync(atividade.Id, agendamento.MinisterioId);
         
         var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);

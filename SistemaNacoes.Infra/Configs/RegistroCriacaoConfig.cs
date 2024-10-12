@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class RegistroCriacaoConfig : EntidadeBaseConfig<RegistroCriacao>
 {
-    private const string NomeTabela = "registros_alteracoes";
-    
-    public RegistroCriacaoConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<RegistroCriacao> builder)
     {
         base.Configure(builder);

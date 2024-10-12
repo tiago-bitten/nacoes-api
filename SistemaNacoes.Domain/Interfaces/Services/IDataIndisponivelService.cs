@@ -4,6 +4,6 @@ namespace SistemaNacoes.Domain.Interfaces.Services;
 
 public interface IDataIndisponivelService : IServiceBase<DataIndisponivel>
 {
-    Task<bool> ExistsDataAvaliableAsync(int agenda, int voluntarioId);
-    Task EnsureExistsDataAvaliableAsync(int agendaId, int voluntarioId);
+    Task<bool> ExisteDataDisponivelAsync(int agenda, int voluntarioId);
+    Task GaranteExisteDataDisponivelAsync(int agendaId, int voluntarioId);
 }

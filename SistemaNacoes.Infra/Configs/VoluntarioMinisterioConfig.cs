@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class VoluntarioMinisterioConfig : EntidadeBaseConfig<VoluntarioMinisterio>
 {
-    private const string NomeTabela = "voluntarios_ministerios";
-    
-    public VoluntarioMinisterioConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<VoluntarioMinisterio> builder)
     {
         base.Configure(builder);

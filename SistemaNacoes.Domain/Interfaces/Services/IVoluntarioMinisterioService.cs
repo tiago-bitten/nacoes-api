@@ -2,7 +2,6 @@
 
 namespace SistemaNacoes.Domain.Interfaces.Services;
 
-public interface IVoluntarioMinisterioService
+public interface IVoluntarioMinisterioService : IServiceBase<VoluntarioMinisterio>
 {
-    Task<VoluntarioMinisterio> GetAndEnsureExistsAsync(int voluntarioId, int ministerioId, params string[]? includes);
 }

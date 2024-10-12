@@ -7,10 +7,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class MinisterioConfig : EntidadeBaseConfig<Ministerio>
 {
-    private const string NomeTabela = "ministerios";
-
-    public MinisterioConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<Ministerio> builder)
     {
         base.Configure(builder);

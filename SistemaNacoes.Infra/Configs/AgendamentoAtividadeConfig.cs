@@ -8,10 +8,6 @@ namespace SistemaNacoes.Infra.Configs;
 
 public class AgendamentoAtividadeConfig : EntidadeBaseConfig<AgendamentoAtividade>
 {
-    private const string NomeTabela = "agendamentos_atividades";
-    
-    public AgendamentoAtividadeConfig() : base(NomeTabela) { }
-    
     public override void Configure(EntityTypeBuilder<AgendamentoAtividade> builder)
     {
         base.Configure(builder);

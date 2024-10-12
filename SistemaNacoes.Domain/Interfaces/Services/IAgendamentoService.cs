@@ -4,6 +4,6 @@ namespace SistemaNacoes.Domain.Interfaces.Services;
 
 public interface IAgendamentoService : IServiceBase<Agendamento>
 {
-    Task<bool> ExistsVoluntarioJaAgendadoAsync(int agendaId, int voluntarioId);
-    Task EnsureNotExistsVoluntarioJaAgendadoAsync(int agendaId, int voluntarioId);
+    Task<bool> ExisteVoluntarioAgendadoAsync(int agendaId, int voluntarioId);
+    Task GaranteNaoExisteVoluntarioAgendadoAsync(int agendaId, int voluntarioId);
 }

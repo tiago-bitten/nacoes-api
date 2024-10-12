@@ -1,20 +1,23 @@
-﻿namespace SistemaNacoes.Domain.Entidades
+﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+
+namespace SistemaNacoes.Domain.Entidades
 {
-    public sealed class EscalaItem
+    public sealed class EscalaItem : EntidadeBase
     {
-        public EscalaItem() {}
-        
-        public EscalaItem(Escala escala, Atividade atividade, Voluntario voluntario)
-        {
-            Escala = escala;
-            Atividade = atividade;
-            Voluntario = voluntario;
-        }
-        
         public int EscalaId { get; set; }
         public int AtividadeId { get; set; }
         public int VoluntarioId { get; set; }
-        public bool Removido { get; set; } = false;
+
+        public EscalaItem()
+        {
+        }
+        
+        public EscalaItem(int escalaId, int atividadeId, int voluntarioId)
+        {
+            EscalaId = escalaId;
+            AtividadeId = atividadeId;
+            VoluntarioId = voluntarioId;
+        }
 
         public Escala Escala { get; set; }
         public Atividade Atividade { get; set; }

@@ -53,7 +53,7 @@ public class GetVoluntariosParaAgendar
             getVoluntarioParaAgendarDto.Disponivel = true;
             getVoluntarioParaAgendarDto.MotivoIndisponibilidades = motivoIndisponibilidades;
             
-            var disponivelPorData = await _dataIndisponivelService.ExistsDataAvaliableAsync(agenda.Id, voluntario.Id);
+            var disponivelPorData = await _dataIndisponivelService.ExisteDataDisponivelAsync(agenda.Id, voluntario.Id);
 
             if (!disponivelPorData)
             {
