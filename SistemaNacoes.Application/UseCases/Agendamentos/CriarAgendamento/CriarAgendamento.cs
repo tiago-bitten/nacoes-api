@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.Dtos.Agendamentos;
-using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
@@ -8,9 +7,9 @@ using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
-namespace SistemaNacoes.Application.UseCases.Agendamentos;
+namespace SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento;
 
-public class CriarAgendamento
+public class CriarAgendamento : ICriarAgendamentoUseCase
 {
     #region ctor
     private readonly IUnitOfWork _uow;
@@ -39,7 +38,7 @@ public class CriarAgendamento
     }
     #endregion
     
-    public async Task<RespostaBase<GetAgendamentoDto>> ExecuteAsync(CreateAgendamentoDto dto)
+    public async Task<CriarAgendamentoResponse> ExecutarAsync(CriarAgendamentoRequest dto)
     {
         var usuarioLogado = await _ambienteUsuarioService.RecuperaUsuarioAsync();
 
@@ -78,11 +77,8 @@ public class CriarAgendamento
         await _registroCriacaoService.LogAsync("agendamentos", agendamento.Id);
         await _registroCriacaoService.LogRangeAsync("agendamentos_atividades", agendamento.AgendamentoAtividades.Select(x => x.Id));
         
-        var agendamentoDto = _mapper.Map<GetAgendamentoDto>(agendamento);
+        var agendamentoResponse = _mapper.Map<CriarAgendamentoResponse>(agendamento);
 
-        var respostaBase = new RespostaBase<GetAgendamentoDto>(
-            RespostaBaseMensagem.CreateAgendamento, agendamentoDto);
-
-        return respostaBase;
+        return agendamentoResponse;
     }
-}
+}1

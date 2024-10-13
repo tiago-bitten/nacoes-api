@@ -8,9 +8,9 @@ public class AgendamentoProfile : Profile
 {
     public AgendamentoProfile()
     {
-        CreateMap<CreateAgendamentoDto, Agendamento>();
+        CreateMap<CriarAgendamentoRequest, Agendamento>();
 
-        CreateMap<Agendamento, GetAgendamentoDto>()
+        CreateMap<Agendamento, CriarAgendamentoResponse>()
             .ForMember(dest => dest.Atividades, opt => opt.MapFrom(src => src.AgendamentoAtividades.Select(x => x.Atividade)));
     }
 }

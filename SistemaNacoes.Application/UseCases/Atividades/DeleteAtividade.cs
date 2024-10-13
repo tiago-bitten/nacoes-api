@@ -1,5 +1,4 @@
-﻿using SistemaNacoes.Application.Extensions;
-using SistemaNacoes.Application.Responses;
+﻿using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;

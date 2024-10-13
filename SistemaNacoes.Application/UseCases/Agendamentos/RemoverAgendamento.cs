@@ -6,12 +6,12 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Agendamentos;
 
-public class DeleteAgendamento
+public class RemoverAgendamento
 {
     private readonly IUnitOfWork _uow;
     private readonly IServiceBase<Agendamento> _agendamentoService;
 
-    public DeleteAgendamento(IUnitOfWork uow, IServiceBase<Agendamento> agendamentoService)
+    public RemoverAgendamento(IUnitOfWork uow, IServiceBase<Agendamento> agendamentoService)
     {
         _uow = uow;
         _agendamentoService = agendamentoService;
@@ -21,7 +21,7 @@ public class DeleteAgendamento
     {
         var agendamento = await _agendamentoService.RecuperaGaranteExisteAsync(id);
         
-        
+        _agendamentoService.Remover(agendamento);
         await _uow.CommitAsync();
 
         var respostaBase = new RespostaBase<dynamic>(

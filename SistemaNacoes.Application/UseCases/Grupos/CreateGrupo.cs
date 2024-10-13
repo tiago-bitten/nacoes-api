@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.Dtos.Grupos;
-using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Enums;

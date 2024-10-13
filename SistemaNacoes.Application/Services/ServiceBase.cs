@@ -31,7 +31,7 @@ public class ServiceBase<T> : IServiceBase<T> where T : EntidadeBase
     public async Task<T> RecuperaGaranteExisteAsync(int id, params string[]? includes)
     {
         await GaranteExisteAsync(id);
-        
+
         return await Repository.GetByIdAsync(id, includes);
     }
 

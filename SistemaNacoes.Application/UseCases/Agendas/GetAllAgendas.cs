@@ -2,7 +2,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Application.Dtos.Agendas;
-using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;

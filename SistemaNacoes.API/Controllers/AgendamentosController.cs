@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaNacoes.Application.Dtos.Agendamentos;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Application.UseCases.Agendamentos;
+using SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento;
 
 namespace SistemaNacoes.API.Controllers;
 
@@ -10,15 +11,15 @@ namespace SistemaNacoes.API.Controllers;
 [Route("api/[controller]")]
 public class AgendamentosController : ControllerBase
 {
-    private readonly CriarAgendamento _createAgendamento;
+    private readonly ICriarAgendamentoUseCase _criarUseCase;
     private readonly GetAllAgendamentos _getAllAgendamentos;
-    private readonly DeleteAgendamento _deleteAgendamento;
+    private readonly RemoverAgendamento _deleteAgendamento;
     private readonly VinculateAgendamentoAtividade _vinculateAgendamentoAtividade;
     private readonly DeleteAgendamentoAtividade _deleteAgendamentoAtividade;
     
-    public AgendamentosController(CriarAgendamento createAgendamento, GetAllAgendamentos getAllAgendamentos, DeleteAgendamento deleteAgendamento, VinculateAgendamentoAtividade vinculateAgendamentoAtividade, DeleteAgendamentoAtividade deleteAgendamentoAtividade)
+    public AgendamentosController(ICriarAgendamentoUseCase createAgendamento, GetAllAgendamentos getAllAgendamentos, RemoverAgendamento deleteAgendamento, VinculateAgendamentoAtividade vinculateAgendamentoAtividade, DeleteAgendamentoAtividade deleteAgendamentoAtividade)
     {
-        _createAgendamento = createAgendamento;
+        _criarUseCase = createAgendamento;
         _getAllAgendamentos = getAllAgendamentos;
         _deleteAgendamento = deleteAgendamento;
         _vinculateAgendamentoAtividade = vinculateAgendamentoAtividade;
@@ -27,9 +28,9 @@ public class AgendamentosController : ControllerBase
     
     [Authorize]
     [HttpPost("Criar")]
-    public async Task<IActionResult> Criar([FromBody] CreateAgendamentoDto dto)
+    public async Task<IActionResult> Criar([FromBody] CriarAgendamentoRequest dto)
     {
-        var result = await _createAgendamento.ExecuteAsync(dto);
+        var result = await _criarUseCase.ExecutarAsync(dto);
         return Ok(result);
     }
     

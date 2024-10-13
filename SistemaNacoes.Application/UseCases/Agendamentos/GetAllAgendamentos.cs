@@ -19,7 +19,7 @@ public class GetAllAgendamentos
         _mapper = mapper;
     }
     
-    public async Task<RespostaBase<List<GetAgendamentoDto>>> ExecuteAsync(QueryParametro queryParametro)
+    public async Task<RespostaBase<List<CriarAgendamentoResponse>>> ExecuteAsync(QueryParametro queryParametro)
     {
         var query = _uow.Agendamentos
             .GetAll(GetIncludes())
@@ -32,9 +32,9 @@ public class GetAllAgendamentos
             .Take(queryParametro.Take)
             .ToListAsync();
         
-        var agendamentosDto = _mapper.Map<List<GetAgendamentoDto>>(agendamentos);
+        var agendamentosDto = _mapper.Map<List<CriarAgendamentoResponse>>(agendamentos);
         
-        var respostaBase = new RespostaBase<List<GetAgendamentoDto>>(
+        var respostaBase = new RespostaBase<List<CriarAgendamentoResponse>>(
             RespostaBaseMensagem.GetAgendamentos, agendamentosDto, totalAgendamentos);
         
         return respostaBase;

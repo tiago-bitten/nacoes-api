@@ -7,7 +7,7 @@ using SistemaNacoes.Application.Dtos.Voluntarios;
 
 namespace SistemaNacoes.Application.Dtos.Agendamentos;
 
-public class GetAgendamentoDto
+public class CriarAgendamentoResponse : Response
 {
     [JsonPropertyName("Id")]
     public int Id { get; set; }

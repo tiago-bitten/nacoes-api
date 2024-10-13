@@ -1,11 +1,11 @@
 ﻿using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Enums;
 
-namespace SistemaNacoes.Application.Extensions;
+namespace SistemaNacoes.Shared.Extensions;
 
 public static class  PermissoesExtensions
 {
-    public static bool HasPermission(this Usuario usuario, EPermissoes permissao)
+    public static bool PossuiPermissao(this Usuario usuario, EPermissoes permissao)
     {
         return (usuario.Permissoes & permissao) == permissao;
     }

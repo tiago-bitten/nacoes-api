@@ -6,37 +6,17 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
-public class AgendamentoAtividadeService : IAgendamentoAtividadeService
+public class AgendamentoAtividadeService : ServiceBase<AgendamentoAtividade>, IAgendamentoAtividadeService
 {
-    private readonly IUnitOfWork _uow;
-    private readonly IServiceBase<Agendamento> _agendamentoService;
-    private readonly IServiceBase<Atividade> _atividadeService;
-
-    public AgendamentoAtividadeService(IUnitOfWork uow, IServiceBase<Agendamento> agendamentoService, IServiceBase<Atividade> atividadeService)
+    public AgendamentoAtividadeService(IAgendamentoAtividadeRepository repository)
+        : base(repository)
     {
-        _uow = uow;
-        _agendamentoService = agendamentoService;
-        _atividadeService = atividadeService;
     }
-
-    public async Task<AgendamentoAtividade> GetAndEnsureExistsAsync(int agendamentoId, int atividadeId)
-    {
-        await _agendamentoService.RecuperaGaranteExisteAsync(agendamentoId);
-        await _atividadeService.RecuperaGaranteExisteAsync(atividadeId);
-        
-        var agendamentoAtividade = await _uow.AgendamentoAtividades
-            .FindAsync(x => x.AgendamentoId == agendamentoId && x.AtividadeId == atividadeId && !x.Removido);
-        
-        if (agendamentoAtividade is null)
-            throw new NacoesAppException(MensagemErroConstant.AgendamentoAtividadeNaoEncontrado);
-        
-        return agendamentoAtividade;
-    }
+    
     public async Task<bool> ExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
     {
-        return await _uow.AgendamentoAtividades.AnyAsync(x => x.AgendamentoId == agendamentoId 
-                                                              && x.AtividadeId == atividadeId
-                                                              && !x.Removido);
+        return await Repository.AnyAsync(x => x.AgendamentoId == agendamentoId 
+                                                              && x.AtividadeId == atividadeId);
     }
 
     public async Task EnsureNotExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)

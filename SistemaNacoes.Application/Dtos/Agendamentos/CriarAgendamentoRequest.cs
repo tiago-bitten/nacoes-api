@@ -2,7 +2,7 @@
 
 namespace SistemaNacoes.Application.Dtos.Agendamentos;
 
-public class CreateAgendamentoDto
+public class CriarAgendamentoRequest : Request
 {
     [JsonPropertyName("VoluntarioMinisterioId")]
     public int VoluntarioMinisterioId { get; set; }

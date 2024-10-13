@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using SistemaNacoes.Application.Dtos.Voluntarios;
-using SistemaNacoes.Application.Extensions;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Enums;

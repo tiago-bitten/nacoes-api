@@ -5,6 +5,7 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Agendamentos;
 
+// todo: passar para pasta AgendamentoAtividade
 public class DeleteAgendamentoAtividade
 {
     private readonly IUnitOfWork _uow;
@@ -25,7 +26,7 @@ public class DeleteAgendamentoAtividade
         if (agendamentoAtividade.Removido)
             throw new Exception(MensagemErroConstant.AgendamentoAtividadeJaRemovido);
         
-        _uow.AgendamentoAtividades.SoftDelete(agendamentoAtividade);
+        _agendamentoAtividadeService
         await _uow.CommitAsync();
         
         var respostaBase = new RespostaBase<dynamic>(
