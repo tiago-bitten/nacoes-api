@@ -2,8 +2,6 @@
 {
     public interface IUnitOfWork : IDisposable
     {
-        Task<bool> CommitAsync();
-        void RollBack();
         Task IniciarTransacaoAsync();
         Task CommitTransacaoAsync();
         Task RollbackTransacaoAsync();
