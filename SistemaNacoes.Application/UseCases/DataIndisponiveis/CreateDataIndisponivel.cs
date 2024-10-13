@@ -31,7 +31,7 @@ public class CreateDataIndisponivel
         
         dataIndisponivel.Voluntario = voluntario;
 
-        await _uow.DataIndisponiveis.AddAsync(dataIndisponivel);
+        await _uow.DataIndisponiveis.AdicionarAsync(dataIndisponivel);
         await _uow.CommitAsync();
 
         var dataIndisponivelDto = _mapper.Map<GetDataIndisponivelDto>(dataIndisponivel);

@@ -22,7 +22,7 @@ public class GetAllUsuarios
     public async Task<RespostaBase<List<GetSimpUsuarioDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
         var query = _uow.Usuarios
-            .GetAll()
+            .RecuperarTodos()
             .Where(GetCondicao());
     
         var totalUsuarios = await query.CountAsync();

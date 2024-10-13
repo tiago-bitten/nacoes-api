@@ -22,7 +22,7 @@ public class GetAllDataIndisponiveis
     public async Task<RespostaBase<List<GetDataIndisponivelDto>>> ExecuteAsync()
     {
         var query = _uow.DataIndisponiveis
-            .GetAll()
+            .RecuperarTodos()
             .Where(GetCondicao());
         
         var totalDataIndisponiveis = await query.CountAsync();

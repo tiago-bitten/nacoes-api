@@ -20,7 +20,7 @@ public class SuspendDataIndisponivel
         var dataIndisponivel = await _dataIndisponivelService.RecuperaGaranteExisteAsync(id);
         dataIndisponivel.Suspenso = true;
         
-        _uow.DataIndisponiveis.Update(dataIndisponivel);
+        _uow.DataIndisponiveis.Atualizar(dataIndisponivel);
         await _uow.CommitAsync();
         
         return new RespostaBase<dynamic>(RespostaBaseMensagem.SuspendDataIndisponivel);

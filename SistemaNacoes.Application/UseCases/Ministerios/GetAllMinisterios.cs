@@ -22,7 +22,7 @@ public class GetAllMinisterios
     public async Task<RespostaBase<List<GetMinisterioDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
         var query = _uow.Ministerios
-            .GetAll()
+            .RecuperarTodos()
             .Where(GetCondicao());
         
         var totalMinisterios = await query.CountAsync(x => !x.Removido);

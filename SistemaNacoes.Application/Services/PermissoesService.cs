@@ -99,11 +99,11 @@ public class PermissoesService : IPermissoesService
                     : permissao.ToString());
     }
 
-    public async Task VerificarPermissaoAsync(long idPermissao, string mensagemErro = "Você não possui permissão")
+    public async Task VerificaGarantePermissaoAsync(EPermissoes permissao, string mensagemErro = "Você não possui permissão")
     {
         var usuario = await _ambienteService.RecuperaUsuarioAsync();
         
-        if (!usuario.PossuiPermissao((EPermissoes)idPermissao))
+        if (!usuario.PossuiPermissao(permissao))
             throw new NacoesAppException(mensagemErro);
     }
 }

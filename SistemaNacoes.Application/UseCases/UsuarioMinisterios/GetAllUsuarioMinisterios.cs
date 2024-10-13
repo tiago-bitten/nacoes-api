@@ -22,7 +22,7 @@ public class GetAllUsuarioMinisterios
     public async Task<RespostaBase<List<GetUsuarioMinisterioDto>>> ExcecuteAsync(QueryParametro queryParametro)
     {
         var query = _uow.UsuarioMinisterios
-            .GetAll()
+            .RecuperarTodos()
             .WhereNotRemovido();
 
         var totalUsuarioMinisterios = await query.CountAsync();

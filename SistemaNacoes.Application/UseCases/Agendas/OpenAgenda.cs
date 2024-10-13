@@ -35,7 +35,7 @@ public class OpenAgenda
 
         var agenda = _mapper.Map<Agenda>(dto);
 
-        await _uow.Agendas.AddAsync(agenda);
+        await _uow.Agendas.AdicionarAsync(agenda);
         await _uow.CommitAsync();
 
         await _registroCriacaoService.LogAsync("agendas", agenda.Id);

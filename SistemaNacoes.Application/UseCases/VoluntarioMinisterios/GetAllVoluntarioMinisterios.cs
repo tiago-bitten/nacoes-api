@@ -24,7 +24,7 @@ public class GetAllVoluntarioMinisterios
         var includes = GetIncludes();
         
         var query = _uow.VoluntarioMinisterios
-            .GetAll(includes)
+            .RecuperarTodos(includes)
             .Where(GetCondicao());
         
         var totalVoluntarioMinisterios = await query.CountAsync();

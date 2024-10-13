@@ -14,16 +14,16 @@ public class RegistroAlteracaoRepository : IRegistroAlteracaoRepository
 
     public async Task AddAsync(RegistroAlteracao registro)
     {
-        await _repositoryBase.AddAsync(registro);
+        await _repositoryBase.AdicionarAsync(registro);
     }
 
     public async Task AddRangeAsync(IEnumerable<RegistroAlteracao> registros)
     {
-        await _repositoryBase.AddRangeAsync(registros);
+        await _repositoryBase.AdicionarVariosAsync(registros);
     }
 
     public IQueryable<RegistroAlteracao> GetAll()
     {
-        return _repositoryBase.GetAll();
+        return _repositoryBase.RecuperarTodos();
     }
 }

@@ -24,7 +24,7 @@ public class GetAllVoluntarios
     public async Task<RespostaBase<List<GetVoluntarioDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
         var query = _uow.Voluntarios
-            .GetAll()
+            .RecuperarTodos()
             .Where(GetCondicao());
         
         var totalVoluntarios = await query

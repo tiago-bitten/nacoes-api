@@ -38,7 +38,7 @@ public class CreateAtividade
 
         atividade.Ministerio = ministerio;
         
-        await _uow.Atividades.AddAsync(atividade);
+        await _uow.Atividades.AdicionarAsync(atividade);
         await _uow.CommitAsync();
         
         await _registroCriacaoService.LogAsync("atividades", atividade.Id);

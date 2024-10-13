@@ -24,8 +24,8 @@ public class FinalizeAgenda
         if (agenda.Finalizado)
             throw new Exception(MensagemErroConstant.AgendaJaFinalizada);
 
-        agenda.Finalize();
-        _uow.Agendas.Update(agenda);
+        agenda.Finalizar();
+        _uow.Agendas.Atualizar(agenda);
         await _uow.CommitAsync();
 
         var respostaBase = new RespostaBase<dynamic>(

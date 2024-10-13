@@ -36,7 +36,7 @@ public class GetVoluntariosParaAgendar
         await _ministerioService.RecuperaGaranteExisteAsync(ministerioId);
         
         var query = _uow.Voluntarios
-            .GetAll(includes)
+            .RecuperarTodos(includes)
             .Where(GetVoluntariosParaAgendarCondicao(ministerioId, agendaId));
         
         var totalVoluntarios = await query.CountAsync();

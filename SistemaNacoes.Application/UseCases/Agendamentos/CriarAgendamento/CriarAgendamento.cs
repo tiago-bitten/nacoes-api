@@ -22,8 +22,9 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     private readonly IAgendamentoService _agendamentoService;
     private readonly IAgendamentoAtividadeService _agendamentoAtividadeService;
+    private readonly IPermissoesService _permissoesService;
     
-    public CriarAgendamento(IUnitOfWork uow, IMapper mapper, IAtividadeService atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService, IAgendamentoService agendamentoService, IAgendamentoAtividadeService agendamentoAtividadeService)
+    public CriarAgendamento(IUnitOfWork uow, IMapper mapper, IAtividadeService atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService, IAgendamentoService agendamentoService, IAgendamentoAtividadeService agendamentoAtividadeService, IPermissoesService permissoesService)
     {
         _uow = uow;
         _mapper = mapper;
@@ -35,28 +36,26 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
         _ambienteUsuarioService = ambienteUsuarioService;
         _agendamentoService = agendamentoService;
         _agendamentoAtividadeService = agendamentoAtividadeService;
+        _permissoesService = permissoesService;
     }
     #endregion
     
     public async Task<CriarAgendamentoResponse> ExecutarAsync(CriarAgendamentoRequest dto)
     {
-        var usuarioLogado = await _ambienteUsuarioService.RecuperaUsuarioAsync();
-
-        if (!usuarioLogado.HasPermission(EPermissoes.CREATE_AGENDAMENTO))
-            throw new NacoesAppException(MensagemErroConstant.SemPermissaoParaCriarAgendamento);
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_AGENDAMENTO, "Você não possui permissão para criar agendamentos");
         
         var voluntarioMinisterio =
             await _voluntarioMinisterioService.RecuperaGaranteExisteAsync(dto.VoluntarioMinisterioId);
         
         var agenda = await _agendaService.RecuperaGaranteExisteAsync(dto.AgendaId);
 
-        agenda.CheckStatus();
+        agenda.VerificaGaranteDisponibilidade();
         
         await _agendamentoService.GaranteNaoExisteVoluntarioAgendadoAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
         await _dataIndisponivelService.GaranteExisteDataDisponivelAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
         
         var agendamento = _mapper.Map<Agendamento>(dto);
-        await _uow.Agendamentos.AddAsync(agendamento);
+        await _uow.Agendamentos.AdicionarAsync(agendamento);
         
         // TODO: passar para AgendamentoAtividadeService
         #region adicionando atividades no agendamento
@@ -68,7 +67,7 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
                 await _atividadeService.EnsureExistsAtividadeNoMinisterioAsync(atividade.Id, voluntarioMinisterio.MinisterioId);
                 
                 var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);
-                await _uow.AgendamentoAtividades.AddAsync(agendamentoAtividade);
+                await _uow.AgendamentoAtividades.AdicionarAsync(agendamentoAtividade);
             }
         #endregion
 
@@ -81,4 +80,4 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
 
         return agendamentoResponse;
     }
-}1
+}

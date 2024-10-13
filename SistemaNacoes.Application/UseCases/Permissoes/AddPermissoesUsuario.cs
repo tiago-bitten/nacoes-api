@@ -38,7 +38,7 @@ public class AddPermissoesUsuario
         
         if (originalPermissions != usuario.Permissoes)
         {
-            _uow.Usuarios.Update(usuario);
+            _uow.Usuarios.Atualizar(usuario);
             await _uow.CommitAsync();
         }
         

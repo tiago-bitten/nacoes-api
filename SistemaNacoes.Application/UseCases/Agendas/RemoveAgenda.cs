@@ -24,7 +24,7 @@ namespace SistemaNacoes.Application.UseCases.Agendas
             
             agenda.Remover();
             
-            _uow.Agendas.Update(agenda);
+            _uow.Agendas.Atualizar(agenda);
             await _uow.CommitAsync();
 
             var respostaBase = new RespostaBase<dynamic>(

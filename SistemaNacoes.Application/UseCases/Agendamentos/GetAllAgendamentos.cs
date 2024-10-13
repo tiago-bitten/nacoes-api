@@ -22,7 +22,7 @@ public class GetAllAgendamentos
     public async Task<RespostaBase<List<CriarAgendamentoResponse>>> ExecuteAsync(QueryParametro queryParametro)
     {
         var query = _uow.Agendamentos
-            .GetAll(GetIncludes())
+            .RecuperarTodos(GetIncludes())
             .Where(GetCondicao());
         
         var totalAgendamentos = await query.CountAsync();

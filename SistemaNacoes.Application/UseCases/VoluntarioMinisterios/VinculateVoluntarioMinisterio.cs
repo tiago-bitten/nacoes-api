@@ -33,7 +33,7 @@ public class VinculateVoluntarioMinisterio
         var ministerio = await _ministerioService.RecuperaGaranteExisteAsync(dto.MinisterioId);
 
         var existingVoluntarioMinisterio = await _uow.VoluntarioMinisterios
-            .FindAsync(x => !x.Removido 
+            .BuscarAsync(x => !x.Removido 
                             && x.VoluntarioId == voluntario.Id
                             && x.MinisterioId == ministerio.Id);
         
@@ -41,7 +41,7 @@ public class VinculateVoluntarioMinisterio
             throw new Exception(MensagemErroConstant.VoluntarioJaPossueMinisterio);
 
         var voluntarioMinisterio = new VoluntarioMinisterio(voluntario, ministerio);
-        await _uow.VoluntarioMinisterios.AddAsync(voluntarioMinisterio);
+        await _uow.VoluntarioMinisterios.AdicionarAsync(voluntarioMinisterio);
 
         await _uow.CommitAsync();
 

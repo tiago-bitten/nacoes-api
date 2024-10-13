@@ -22,14 +22,14 @@ public class CreateMinisterio
     public async Task<RespostaBase<GetMinisterioDto>> ExecuteAsync(CreateMinisterioDto dto)
     {
         var existsMinisterio = await _uow.Ministerios
-            .FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
+            .BuscarAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
         
         if (existsMinisterio != null)
             throw new Exception(MensagemErroConstant.MinisterioJaExiste);
         
         var ministerio = _mapper.Map<Ministerio>(dto);
         
-        await _uow.Ministerios.AddAsync(ministerio);
+        await _uow.Ministerios.AdicionarAsync(ministerio);
         await _uow.CommitAsync();
         
         var ministerioDto = _mapper.Map<GetMinisterioDto>(ministerio);

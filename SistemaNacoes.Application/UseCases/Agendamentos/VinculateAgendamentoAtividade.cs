@@ -33,7 +33,7 @@ public class VinculateAgendamentoAtividade
         
         var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);
         
-        await _uow.AgendamentoAtividades.AddAsync(agendamentoAtividade);
+        await _uow.AgendamentoAtividades.AdicionarAsync(agendamentoAtividade);
         await _uow.CommitAsync();
         
         var respostaBase = new RespostaBase<dynamic>(

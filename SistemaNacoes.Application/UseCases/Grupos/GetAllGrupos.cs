@@ -24,7 +24,7 @@ public class GetAllGrupos
         var includes = GetIncludes();
         
         var query = _uow.Grupos
-            .GetAll(includes)
+            .RecuperarTodos(includes)
             .Where(GetCondicao());
         
         var totalGrupos = await query.CountAsync(x => !x.Removido);

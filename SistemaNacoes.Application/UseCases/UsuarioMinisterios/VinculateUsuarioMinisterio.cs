@@ -25,7 +25,7 @@ public class VinculateUsuarioMinisterio
         var ministerio = await _ministerioService.RecuperaGaranteExisteAsync(dto.MinisterioId);
         
         var existsUsuarioMinisterio = await _uow.UsuarioMinisterios
-            .FindAsync(x => x.UsuarioId == usuario.Id 
+            .BuscarAsync(x => x.UsuarioId == usuario.Id 
                             && x.MinisterioId == ministerio.Id
                             && !x.Removido);
 
@@ -34,7 +34,7 @@ public class VinculateUsuarioMinisterio
 
         var usuarioMinisterio = new UsuarioMinisterio(usuario, ministerio);
         
-        await _uow.UsuarioMinisterios.AddAsync(usuarioMinisterio);
+        await _uow.UsuarioMinisterios.AdicionarAsync(usuarioMinisterio);
         await _uow.CommitAsync();
         
         var respostaBase = new RespostaBase<dynamic>(

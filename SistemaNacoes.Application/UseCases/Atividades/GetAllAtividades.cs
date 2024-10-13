@@ -22,7 +22,7 @@ public class GetAllAtividades
     public async Task<RespostaBase<List<GetAtividadeDto>>> ExecuteAsync(QueryParametro queryParametro)
     {
         var query = _uow.Atividades
-            .GetAll()
+            .RecuperarTodos()
             .Where(GetCondicao());
         
         var totalAtividades = await query.CountAsync();

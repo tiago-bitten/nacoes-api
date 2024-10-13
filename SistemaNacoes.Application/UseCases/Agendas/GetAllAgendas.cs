@@ -22,7 +22,7 @@ public class GetAllAgendas
     public async Task<RespostaBase<List<GetAgendaDto>>> ExecuteAsync(int mes, int ano)
     {
         var query = _uow.Agendas
-            .GetAll()
+            .RecuperarTodos()
             .WhereNotRemovido(GetCondicao(mes, ano));
 
         var totalAgendas = await query.CountAsync();

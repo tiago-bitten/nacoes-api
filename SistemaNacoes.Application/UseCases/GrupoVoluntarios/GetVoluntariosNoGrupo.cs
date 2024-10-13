@@ -33,7 +33,7 @@ public class GetVoluntariosNoGrupo
         var grupo = await _grupoService.RecuperaGaranteExisteAsync(grupoId, includes: grupoIncludes);
 
         var query = _uow.GrupoVoluntarios
-            .GetAll(grupoVolutariosIncludes)
+            .RecuperarTodos(grupoVolutariosIncludes)
             .Where(GetCondicao(grupo.Id))
             .Select(x => x.Voluntario)
             .OrderBy(x => x.Nome);

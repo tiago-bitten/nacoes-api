@@ -41,7 +41,7 @@ public class VinculateVoluntarioGrupo
         
         var grupoVoluntario = new GrupoVoluntario(grupo, voluntario);
         
-        await _uow.GrupoVoluntarios.AddAsync(grupoVoluntario);
+        await _uow.GrupoVoluntarios.AdicionarAsync(grupoVoluntario);
         await _uow.CommitAsync();
         
         var respostaBase = new RespostaBase<dynamic>(

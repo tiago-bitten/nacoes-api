@@ -20,7 +20,7 @@ public class CreateUsuario
 
     public async Task<RespostaBase<GetUsuarioDto>> ExecuteAsync(CreateUsuarioDto dto)
     {
-        var existsUsuario = await _uow.Usuarios.FindAsync(x => x.Email == dto.Email || x.Cpf == dto.Cpf);
+        var existsUsuario = await _uow.Usuarios.BuscarAsync(x => x.Email == dto.Email || x.Cpf == dto.Cpf);
         
         if (existsUsuario != null)
             throw new Exception(MensagemErroConstant.UsuarioJaCadastrado);
@@ -33,7 +33,7 @@ public class CreateUsuario
             usuario.Permissoes |= permissao;
         }
         
-        await _uow.Usuarios.AddAsync(usuario);
+        await _uow.Usuarios.AdicionarAsync(usuario);
         await _uow.CommitAsync();
         
         var usuarioDto = _mapper.Map<GetUsuarioDto>(usuario);

@@ -35,14 +35,14 @@ public class CreateVoluntario
         
         if (!string.IsNullOrEmpty(dto.Cpf))
         {
-            var existsByCpf = await _uow.Voluntarios.FindAsync(x => x.Cpf == dto.Cpf);
+            var existsByCpf = await _uow.Voluntarios.BuscarAsync(x => x.Cpf == dto.Cpf);
             if (existsByCpf != null)
                 throw new Exception("CPF já cadastrado");
         }
 
         var voluntario = _mapper.Map<Voluntario>(dto);
         
-        await _uow.Voluntarios.AddAsync(voluntario);
+        await _uow.Voluntarios.AdicionarAsync(voluntario);
         await _uow.CommitAsync();
         
         await _registroCriacaoService.LogAsync("voluntarios", voluntario.Id);

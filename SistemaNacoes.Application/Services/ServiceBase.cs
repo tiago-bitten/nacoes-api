@@ -17,7 +17,7 @@ public class ServiceBase<T> : IServiceBase<T> where T : EntidadeBase
 
     public async Task<bool> ExisteAsync(int id)
     {
-        return await Repository.AnyAsync(x => x.Id == id);
+        return await Repository.AlgumAsync(x => x.Id == id);
     }
 
     public async Task GaranteExisteAsync(int id)
@@ -32,12 +32,12 @@ public class ServiceBase<T> : IServiceBase<T> where T : EntidadeBase
     {
         await GaranteExisteAsync(id);
 
-        return await Repository.GetByIdAsync(id, includes);
+        return await Repository.RecuperarPorIdAsync(id, includes);
     }
 
     public void Remover(T entity)
     {
         entity.Remover();
-        Repository.Update(entity);
+        Repository.Atualizar(entity);
     }
 }

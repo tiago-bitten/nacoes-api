@@ -27,7 +27,7 @@ public class GetUsuarioMinisterios
         var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
         
         var query = _uow.UsuarioMinisterios
-            .GetAll("Ministerio", "Usuario")
+            .RecuperarTodos("Ministerio", "Usuario")
             .WhereNotRemovido(GetCondicao(usuarioLogado.Id));
         
         var totalUsuarioMinisterios = await query.CountAsync();

@@ -4,14 +4,14 @@ namespace SistemaNacoes.Domain.Interfaces.Repositorios
 {
     public interface IRepositoryBase<T>
     {
-        Task AddAsync(T entity);
-        Task AddRangeAsync(IEnumerable<T> entities);
-        void Update(T entity);
-        void Delete(T entity);
-        Task<T?> GetByIdAsync(int id, params string[]? includes);
-        IQueryable<T> GetAll(params string[]? includes);
-        Task<T?> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes);
-        IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params string[]? includes);
-        Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
+        Task AdicionarAsync(T entity);
+        Task AdicionarVariosAsync(IEnumerable<T> entities);
+        void Atualizar(T entity);
+        void RemoverPermanente(T entity);
+        Task<T?> RecuperarPorIdAsync(int id, params string[]? includes);
+        IQueryable<T> RecuperarTodos(params string[]? includes);
+        Task<T?> BuscarAsync(Expression<Func<T, bool>> predicate, params string[]? includes);
+        IQueryable<T> BuscarTodos(Expression<Func<T, bool>> predicate, params string[]? includes);
+        Task<bool> AlgumAsync(Expression<Func<T, bool>> predicate);
     }
 }

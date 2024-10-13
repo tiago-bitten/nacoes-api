@@ -15,7 +15,7 @@ public class AgendamentoAtividadeService : ServiceBase<AgendamentoAtividade>, IA
     
     public async Task<bool> ExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
     {
-        return await Repository.AnyAsync(x => x.AgendamentoId == agendamentoId 
+        return await Repository.AlgumAsync(x => x.AgendamentoId == agendamentoId 
                                                               && x.AtividadeId == atividadeId);
     }
 

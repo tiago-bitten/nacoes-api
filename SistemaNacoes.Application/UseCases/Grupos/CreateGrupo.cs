@@ -33,14 +33,14 @@ public class CreateGrupo
             throw new Exception(MensagemErroConstant.SemPermissaoParaCriarGrupo);
         
         var existsGrupo = await _uow.Grupos
-            .FindAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
+            .BuscarAsync(x => x.Nome.ToLower() == dto.Nome.ToLower() && !x.Removido);
         
         if (existsGrupo != null)
             throw new Exception(MensagemErroConstant.GrupoJaExiste);
         
         var grupo = _mapper.Map<Grupo>(dto);
         
-        await _uow.Grupos.AddAsync(grupo);
+        await _uow.Grupos.AdicionarAsync(grupo);
         
         if (dto.VoluntarioIds != null && dto.VoluntarioIds.Any())
             foreach (var voluntarioId in dto.VoluntarioIds)
@@ -56,7 +56,7 @@ public class CreateGrupo
                 }
                 
                 var grupoVoluntario = new GrupoVoluntario(grupo, voluntario);
-                await _uow.GrupoVoluntarios.AddAsync(grupoVoluntario);
+                await _uow.GrupoVoluntarios.AdicionarAsync(grupoVoluntario);
             }
         
         await _uow.CommitAsync();

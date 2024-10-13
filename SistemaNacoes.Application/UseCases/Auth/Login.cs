@@ -24,7 +24,7 @@ public class Login
 
     public async Task<RespostaBase<GetAuthTokenDto>> ExecuteAsync(LoginDto dto)
     {
-        var usuario = await _uow.Usuarios.FindAsync(x => x.Email.ToUpper() == dto.Email.ToUpper());
+        var usuario = await _uow.Usuarios.BuscarAsync(x => x.Email.ToUpper() == dto.Email.ToUpper());
         
         if (usuario == null)
         {

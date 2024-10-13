@@ -1,13 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SistemaNacoes.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore.Storage;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Infra.Contexts;
+using System;
+using System.Threading.Tasks;
+using SistemaNacoes.Domain.Interfaces;
 
 namespace SistemaNacoes.Infra.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly NacoesDbContext _context;
+        private IDbContextTransaction? _transaction;
 
         public UnitOfWork(
             NacoesDbContext context,
@@ -53,6 +57,52 @@ namespace SistemaNacoes.Infra.Data
             RegistroAlteracoes = registroAlteracaoRepository;
         }
 
+        public async Task IniciarTransacaoAsync()
+        {
+            if (_transaction != null)
+            {
+                throw new InvalidOperationException("Já existe uma transação aberta.");
+            }
+
+            _transaction = await _context.Database.BeginTransactionAsync();
+        }
+
+        public async Task CommitTransacaoAsync()
+        {
+            if (_transaction == null)
+            {
+                throw new InvalidOperationException("Nenhuma transação foi iniciada para commit.");
+            }
+
+            try
+            {
+                await _transaction.CommitAsync();
+            }
+            finally
+            {
+                await _transaction.DisposeAsync();
+                _transaction = null;
+            }
+        }
+
+        public async Task RollbackTransacaoAsync()
+        {
+            if (_transaction == null)
+            {
+                throw new InvalidOperationException("Nenhuma transação foi iniciada para rollback.");
+            }
+
+            try
+            {
+                await _transaction.RollbackAsync();
+            }
+            finally
+            {
+                await _transaction.DisposeAsync();
+                _transaction = null;
+            }
+        }
+
         public async Task<bool> CommitAsync()
         {
             return await _context.SaveChangesAsync() > 0;
@@ -73,8 +123,19 @@ namespace SistemaNacoes.Infra.Data
                     case EntityState.Deleted:
                         entry.Reload();
                         break;
+                    case EntityState.Detached:
+                    case EntityState.Unchanged:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
+            _transaction?.Dispose();
         }
 
         public IVoluntarioRepository Voluntarios { get; }

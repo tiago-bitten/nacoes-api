@@ -19,52 +19,52 @@ namespace SistemaNacoes.Infra.Repositorios
             DbSet = context.Set<T>();
         }
 
-        public async Task AddAsync(T entity)
+        public async Task AdicionarAsync(T entity)
         {
             await DbSet.AddAsync(entity);
         }
 
-        public async Task AddRangeAsync(IEnumerable<T> entities)
+        public async Task AdicionarVariosAsync(IEnumerable<T> entities)
         {
             await DbSet.AddRangeAsync(entities);
         }
 
-        public void Update(T entity)
+        public void Atualizar(T entity)
         {
             DbSet.Update(entity);
         }
 
-        public void Delete(T entity)
+        public void RemoverPermanente(T entity)
         {
             DbSet.Remove(entity);
         }
 
-        public async Task<T?> GetByIdAsync(int id, params string[]? includes)
+        public async Task<T?> RecuperarPorIdAsync(int id, params string[]? includes)
         {
-            return await FindAsync(x => x.Id == id, includes);
+            return await BuscarAsync(x => x.Id == id, includes);
 
         }
 
-        public IQueryable<T> GetAll(params string[]? includes)
+        public IQueryable<T> RecuperarTodos(params string[]? includes)
         {
             return DbSet.BaseQuery(includes);
         }
 
-        public async Task<T?> FindAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
+        public async Task<T?> BuscarAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
         {
             return await DbSet
                 .BaseQuery(includes)
                 .FirstOrDefaultAsync(predicate);
         }
 
-        public IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params string[]? includes)
+        public IQueryable<T> BuscarTodos(Expression<Func<T, bool>> predicate, params string[]? includes)
         {
             return DbSet
                 .BaseQuery(includes)
                 .Where(predicate);
         }
 
-        public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate)
+        public async Task<bool> AlgumAsync(Expression<Func<T, bool>> predicate)
         {
             return await DbSet
                 .BaseQuery()

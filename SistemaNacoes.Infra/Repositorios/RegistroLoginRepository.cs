@@ -14,7 +14,7 @@ public class RegistroLoginRepository : IRegistroLoginRepository
     
     public async Task AddAsync(RegistroLogin entity)
     {
-        await _repository.AddAsync(entity);
+        await _repository.AdicionarAsync(entity);
     }
 
     // Não utilizar este método
@@ -25,6 +25,6 @@ public class RegistroLoginRepository : IRegistroLoginRepository
 
     public IQueryable<RegistroLogin> GetAll()
     {
-        return _repository.GetAll();
+        return _repository.RecuperarTodos();
     }
 }
