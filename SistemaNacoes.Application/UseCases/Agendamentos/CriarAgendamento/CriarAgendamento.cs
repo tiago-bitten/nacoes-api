@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaNacoes.Application.Dtos.Agendamentos;
-using SistemaNacoes.Application.Responses;
-using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
@@ -9,11 +8,9 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento;
 
-public class CriarAgendamento : ICriarAgendamentoUseCase
+public class CriarAgendamento : UseCaseBase<Agendamento, IAgendamentoService>, ICriarAgendamentoUseCase
 {
     #region ctor
-    private readonly IUnitOfWork _uow;
-    private readonly IMapper _mapper;
     private readonly IVoluntarioMinisterioService _voluntarioMinisterioService;
     private readonly IAgendaService _agendaService;
     private readonly IAtividadeService _atividadeService;
@@ -24,10 +21,18 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
     private readonly IAgendamentoAtividadeService _agendamentoAtividadeService;
     private readonly IPermissoesService _permissoesService;
     
-    public CriarAgendamento(IUnitOfWork uow, IMapper mapper, IAtividadeService atividadeService, IAgendaService agendaService, IVoluntarioMinisterioService voluntarioMinisterioService, IDataIndisponivelService dataIndisponivelService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService, IAgendamentoService agendamentoService, IAgendamentoAtividadeService agendamentoAtividadeService, IPermissoesService permissoesService)
+    public CriarAgendamento(IUnitOfWork uow,
+        IMapper mapper,
+        IAtividadeService atividadeService,
+        IAgendaService agendaService,
+        IVoluntarioMinisterioService voluntarioMinisterioService,
+        IDataIndisponivelService dataIndisponivelService,
+        IRegistroCriacaoService registroCriacaoService,
+        IAmbienteUsuarioService ambienteUsuarioService,
+        IAgendamentoService agendamentoService,
+        IAgendamentoAtividadeService agendamentoAtividadeService,
+        IPermissoesService permissoesService) : base(uow, mapper)
     {
-        _uow = uow;
-        _mapper = mapper;
         _atividadeService = atividadeService;
         _agendaService = agendaService;
         _voluntarioMinisterioService = voluntarioMinisterioService;
@@ -54,10 +59,10 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
         await _agendamentoService.GaranteNaoExisteVoluntarioAgendadoAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
         await _dataIndisponivelService.GaranteExisteDataDisponivelAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
         
-        var agendamento = _mapper.Map<Agendamento>(dto);
+        var agendamento = Mapper.Map<Agendamento>(dto);
         
-        await _uow.IniciarTransacaoAsync();
-        await _agendamentoService.AdicionarAsync(agendamento);
+        await Uow.IniciarTransacaoAsync();
+        await Service.AdicionarAsync(agendamento);
         
         // TODO: passar para AgendamentoAtividadeService
         #region adicionando atividades no agendamento
@@ -69,18 +74,18 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
                 await _atividadeService.EnsureExistsAtividadeNoMinisterioAsync(atividade.Id, voluntarioMinisterio.MinisterioId);
                 
                 var agendamentoAtividade = new AgendamentoAtividade(agendamento, atividade);
-                await _uow.AgendamentoAtividades.AdicionarAsync(agendamentoAtividade);
+                //await _uow.AgendamentoAtividades.AdicionarAsync(agendamentoAtividade);
             }
         #endregion
-        await _uow.CommitTransacaoAsync();
+        await Uow.CommitTransacaoAsync();
 
-        await _uow.IniciarTransacaoAsync();
+        await Uow.IniciarTransacaoAsync();
         await _registroCriacaoService.LogAsync("agendamentos", agendamento.Id);
         await _registroCriacaoService.LogRangeAsync("agendamentos_atividades", agendamento.AgendamentoAtividades.Select(x => x.Id));
-        await _uow.CommitTransacaoAsync();
+        await Uow.CommitTransacaoAsync();
         
-        var agendamentoResponse = _mapper.Map<CriarAgendamentoResponse>(agendamento);
+        var agendamentoResponse = Mapper.Map<CriarAgendamentoResponse>(agendamento);
 
-        return agendamentoResponse;
+        return new CriarAgendamentoResponse();
     }
 }

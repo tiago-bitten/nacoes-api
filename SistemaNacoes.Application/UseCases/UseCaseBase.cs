@@ -1,23 +1,21 @@
-﻿using SistemaNacoes.Domain.Interfaces.Repositorios;
+﻿using AutoMapper;
+using SistemaNacoes.Domain.Entidades.Abstracoes;
+using SistemaNacoes.Domain.Interfaces.Repositorios;
+using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases;
 
-public class UseCaseBase
+public class UseCaseBase<TEntidade, TService> where TEntidade : EntidadeBase
 {
-    private IUnitOfWork _uow;
+    protected readonly IUnitOfWork Uow;
+    protected readonly IMapper Mapper;
+    private readonly IServiceBase<TEntidade> _service;
 
-    protected UseCaseBase(IUnitOfWork uow)
+    protected UseCaseBase(IUnitOfWork uow, IMapper mapper)
     {
-        _uow = uow;
+        Uow = uow;
+        _mapper = mapper;
     }
 
-    protected async Task IniciarTransacaoAsync()
-    {
-        await _uow.IniciarTransacaoAsync();
-    }
-
-    protected async Task CommitTransacaoAsync()
-    {
-        await _uow.CommitTransacaoAsync();
-    }
+    protected TService Service => (TService)_service;
 }
