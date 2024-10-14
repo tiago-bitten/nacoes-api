@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.Dtos.Ministerios;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 

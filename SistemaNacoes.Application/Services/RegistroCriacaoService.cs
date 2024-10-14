@@ -17,26 +17,24 @@ public class RegistroCriacaoService : IRegistroCriacaoService
 
     public async Task LogAsync(string tabela, int itemId)
     {
-        var usuario = await _ambienteUsuarioService.GetUsuarioAsync();
-        var ip = _ambienteUsuarioService.GetUsuarioIp();
-        var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
+        var usuario = await _ambienteUsuarioService.RecuperaUsuarioAsync();
+        var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
+        var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
         
         var registroCriacao = new RegistroCriacao(tabela, itemId, usuario.Id, ip, userAgent);
 
         await _uow.RegistroCriacoes.AddAsync(registroCriacao);
-        await _uow.CommitAsync();
     }
     
     public async Task LogRangeAsync(string tabela, IEnumerable<int> itemIds)
     {
-        var usuario = await _ambienteUsuarioService.GetUsuarioAsync();
-        var ip = _ambienteUsuarioService.GetUsuarioIp();
-        var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
+        var usuario = await _ambienteUsuarioService.RecuperaUsuarioAsync();
+        var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
+        var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
         
         var registroCriacoes = itemIds
             .Select(itemId => new RegistroCriacao(tabela, itemId, usuario.Id, ip, userAgent));
 
         await _uow.RegistroCriacoes.AddRangeAsync(registroCriacoes);
-        await _uow.CommitAsync();
     }
 }

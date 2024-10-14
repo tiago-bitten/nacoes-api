@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using SistemaNacoes.Application.Dtos.Voluntarios;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;

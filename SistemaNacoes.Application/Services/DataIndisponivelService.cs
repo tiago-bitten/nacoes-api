@@ -44,9 +44,9 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel>, IDataIndis
 
     public async Task GaranteExisteDataDisponivelAsync(int agendaId, int voluntarioId)
     {
-        var exists = await ExisteDataDisponivelAsync(agendaId, voluntarioId);
+        var existe = await ExisteDataDisponivelAsync(agendaId, voluntarioId);
 
-        if (!exists)
+        if (!existe)
             throw new NacoesAppException(MensagemErroConstant.DataIndisponivel);
     }
 }

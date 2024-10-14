@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -21,13 +22,12 @@ public class DeleteAgendamentoAtividade
     
     public async Task<RespostaBase<dynamic>> ExecuteAsync(int agendamentoId, int atividadeId)
     {
-        var agendamentoAtividade = await _agendamentoAtividadeService.GetAndEnsureExistsAsync(agendamentoId, atividadeId);
+        var agendamentoAtividade = await _agendamentoAtividadeService.RecuperaGaranteExisteAsync(agendamentoId);
         
-        if (agendamentoAtividade.Removido)
-            throw new Exception(MensagemErroConstant.AgendamentoAtividadeJaRemovido);
+        agendamentoAtividade.GaranteExiste();
         
-        _agendamentoAtividadeService
-        await _uow.CommitAsync();
+        await _agendamentoAtividadeService.
+        await _uow.AgendamentoAtividades;
         
         var respostaBase = new RespostaBase<dynamic>(
             RespostaBaseMensagem.DeleteAgendamentoAtividade);

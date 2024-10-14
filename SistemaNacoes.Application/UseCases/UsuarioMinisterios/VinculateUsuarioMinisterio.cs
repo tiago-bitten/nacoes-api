@@ -1,5 +1,6 @@
 ﻿using SistemaNacoes.Application.Dtos.UsuarioMinisterios;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;

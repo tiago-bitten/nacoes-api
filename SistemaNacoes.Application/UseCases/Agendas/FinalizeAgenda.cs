@@ -1,5 +1,6 @@
 ﻿using SistemaNacoes.Application.Dtos.Agendas;
 using SistemaNacoes.Application.Responses;
+using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
@@ -24,7 +25,7 @@ public class FinalizeAgenda
         if (agenda.Finalizado)
             throw new Exception(MensagemErroConstant.AgendaJaFinalizada);
 
-        agenda.Finalizar();
+        agenda.Concluir();
         _uow.Agendas.Atualizar(agenda);
         await _uow.CommitAsync();
 

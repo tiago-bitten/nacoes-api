@@ -6,6 +6,7 @@ using SistemaNacoes.Application.Profiles;
 using SistemaNacoes.Application.Services;
 using SistemaNacoes.Application.UseCases.Agendamentos;
 using SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento;
+using SistemaNacoes.Application.UseCases.Agendamentos.RemoverAgendamento;
 using SistemaNacoes.Application.UseCases.Agendas;
 using SistemaNacoes.Application.UseCases.Atividades;
 using SistemaNacoes.Application.UseCases.Auth;

@@ -1,4 +1,4 @@
-﻿namespace SistemaNacoes.Application.Responses;
+﻿namespace SistemaNacoes.Domain.Enterprise;
 
 public static class MensagemErroConstant
 {

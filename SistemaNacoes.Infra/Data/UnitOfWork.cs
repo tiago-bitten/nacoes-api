@@ -57,6 +57,7 @@ public class UnitOfWork : IUnitOfWork
     }
     #endregion
 
+    #region IniciarTransacaoAsync
     public async Task IniciarTransacaoAsync()
     {
         if (_transaction != null)
@@ -66,7 +67,9 @@ public class UnitOfWork : IUnitOfWork
 
         _transaction = await _context.Database.BeginTransactionAsync();
     }
+    #endregion
 
+    #region CommitTransacaoAsync
     public async Task CommitTransacaoAsync()
     {
         if (_transaction == null)
@@ -89,7 +92,9 @@ public class UnitOfWork : IUnitOfWork
             _transaction = null;
         }
     }
+    #endregion
 
+    #region RollbackTransacaoAsync
     public async Task RollbackTransacaoAsync()
     {
         if (_transaction == null)
@@ -107,41 +112,15 @@ public class UnitOfWork : IUnitOfWork
             _transaction = null;
         }
     }
+    #endregion
 
-    private async Task<bool> CommitAsync()
-    {
-        return await _context.SaveChangesAsync() > 0;
-    }
-
-    private void RollBack()
-    {
-        foreach (var entry in _context.ChangeTracker.Entries())
-        {
-            switch (entry.State)
-            {
-                case EntityState.Modified:
-                    entry.State = EntityState.Unchanged;
-                    break;
-                case EntityState.Added:
-                    entry.State = EntityState.Detached;
-                    break;
-                case EntityState.Deleted:
-                    entry.Reload();
-                    break;
-                case EntityState.Detached:
-                case EntityState.Unchanged:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-    }
-
+    #region Dispose
     public void Dispose()
     {
         _context.Dispose();
         _transaction?.Dispose();
     }
+    #endregion
 
     public IVoluntarioRepository Voluntarios { get; }
     public IGrupoRepository Grupos { get; }

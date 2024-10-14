@@ -4,6 +4,7 @@ using SistemaNacoes.Application.Dtos.Agendamentos;
 using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Application.UseCases.Agendamentos;
 using SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento;
+using SistemaNacoes.Application.UseCases.Agendamentos.RemoverAgendamento;
 
 namespace SistemaNacoes.API.Controllers;
 

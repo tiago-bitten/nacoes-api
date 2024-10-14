@@ -61,3 +61,5 @@ D:\C#\nacoes-api\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.dll
 D:\C#\nacoes-api\SistemaNacoes.Infra\obj\Debug\net7.0\refint\SistemaNacoes.Infra.dll
 D:\C#\nacoes-api\SistemaNacoes.Infra\obj\Debug\net7.0\SistemaNacoes.Infra.pdb
 D:\C#\nacoes-api\SistemaNacoes.Infra\obj\Debug\net7.0\ref\SistemaNacoes.Infra.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\bin\Debug\net7.0\SistemaNacoes.Shared.dll
+C:\Users\teste\Documents\CSHARP\projetos\SistemaNacoes\SistemaNacoes.Infra\bin\Debug\net7.0\SistemaNacoes.Shared.pdb

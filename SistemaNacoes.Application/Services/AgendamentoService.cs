@@ -16,15 +16,14 @@ public class AgendamentoService : ServiceBase<Agendamento>, IAgendamentoService
     public async Task<bool> ExisteVoluntarioAgendadoAsync(int agendaId, int voluntarioId)
     {
         return await Repository.AlgumAsync(x => x.AgendaId == agendaId
-                                               && x.VoluntarioId == voluntarioId
-                                               && !x.Removido);
+                                               && x.VoluntarioId == voluntarioId);
     }
 
     public async Task GaranteNaoExisteVoluntarioAgendadoAsync(int agendaId, int voluntarioId)
     {
-        var exists = await ExisteVoluntarioAgendadoAsync(agendaId, voluntarioId);
+        var existe = await ExisteVoluntarioAgendadoAsync(agendaId, voluntarioId);
 
-        if (exists)
+        if (existe)
             throw new NacoesAppException(MensagemErroConstant.AgendamentoJaExiste);
     }
 }

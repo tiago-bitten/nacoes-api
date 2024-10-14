@@ -1,4 +1,5 @@
-﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+﻿using SistemaNacoes.Domain.Enterprise;
+using SistemaNacoes.Domain.Entidades.Abstracoes;
 
 namespace SistemaNacoes.Domain.Entidades;
 
@@ -16,8 +17,13 @@ public sealed class AgendamentoAtividade : EntidadeBase
     
     public int AgendamentoId { get; set; }
     public int AtividadeId { get; set; }
-    public bool Removido { get; set; } = false;
     
     public Agendamento Agendamento { get; set; }
     public Atividade Atividade { get; set; }
+    
+    public void GaranteExiste() 
+    {
+        if (Removido)
+            throw new NacoesAppException(MensagemErroConstant.AgendamentoAtividadeJaRemovido);
+    }
 }

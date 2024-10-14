@@ -13,7 +13,8 @@
           "Microsoft.EntityFrameworkCore.Analyzers": "7.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.0",
-          "SistemaNacoes.Domain": "1.0.0"
+          "SistemaNacoes.Domain": "1.0.0",
+          "SistemaNacoes.Shared": "1.0.0"
         },
         "runtime": {
           "SistemaNacoes.Infra.dll": {}
@@ -184,6 +185,15 @@
         "runtime": {
           "SistemaNacoes.Domain.dll": {}
         }
+      },
+      "SistemaNacoes.Shared/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.0",
+          "SistemaNacoes.Domain": "1.0.0"
+        },
+        "runtime": {
+          "SistemaNacoes.Shared.dll": {}
+        }
       }
     }
   },
@@ -306,6 +316,11 @@
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
     },
     "SistemaNacoes.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SistemaNacoes.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

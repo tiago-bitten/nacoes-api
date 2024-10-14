@@ -49,13 +49,15 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
         
         var agenda = await _agendaService.RecuperaGaranteExisteAsync(dto.AgendaId);
 
-        agenda.VerificaGaranteDisponibilidade();
+        agenda.ValidarStatus();
         
         await _agendamentoService.GaranteNaoExisteVoluntarioAgendadoAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
         await _dataIndisponivelService.GaranteExisteDataDisponivelAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
         
         var agendamento = _mapper.Map<Agendamento>(dto);
-        await _uow.Agendamentos.AdicionarAsync(agendamento);
+        
+        await _uow.IniciarTransacaoAsync();
+        await _agendamentoService.AdicionarAsync(agendamento);
         
         // TODO: passar para AgendamentoAtividadeService
         #region adicionando atividades no agendamento
@@ -70,11 +72,12 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
                 await _uow.AgendamentoAtividades.AdicionarAsync(agendamentoAtividade);
             }
         #endregion
+        await _uow.CommitTransacaoAsync();
 
-        await _uow.CommitAsync();
-        
+        await _uow.IniciarTransacaoAsync();
         await _registroCriacaoService.LogAsync("agendamentos", agendamento.Id);
         await _registroCriacaoService.LogRangeAsync("agendamentos_atividades", agendamento.AgendamentoAtividades.Select(x => x.Id));
+        await _uow.CommitTransacaoAsync();
         
         var agendamentoResponse = _mapper.Map<CriarAgendamentoResponse>(agendamento);
 

@@ -19,26 +19,24 @@ public class RegistroLoginService : IRegistroLoginService
     public async Task LoginAttemptAsync(RegistroLogin registroLogin)
     {
         await _uow.RegistroLogins.AddAsync(registroLogin);
-        await _uow.CommitAsync();
     }
 
     public async Task LogSuccessLoginAsync(int usuarioId)
     {
-        var ip = _ambienteUsuarioService.GetUsuarioIp();
-        var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
+        var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
+        var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
         var registroLogin = new RegistroLogin(usuarioId, ip, userAgent);
         await LoginAttemptAsync(registroLogin);
     }
 
     public async Task LogFailedLoginAsync(int? usuarioId, EMotivoLoginAcessoNegado motivo)
     {
-        var ip = _ambienteUsuarioService.GetUsuarioIp();
-        var userAgent = _ambienteUsuarioService.GetUsuarioUserAgent();
+        var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
+        var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
         
         var registroLogin = new RegistroLogin();
         
-        // TODO: revisar imp de 'UsuarioId', talvez esteja redundante, pois já está nullable
-        registroLogin.UsuarioId = usuarioId ?? null;
+        registroLogin.UsuarioId = usuarioId;
         registroLogin.Ip = ip;
         registroLogin.UserAgent = userAgent;
         registroLogin.Motivo = motivo;
