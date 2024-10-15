@@ -6,7 +6,7 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
-public class DataIndisponivelService : ServiceBase<DataIndisponivel>, IDataIndisponivelService
+public class DataIndisponivelService : ServiceBase<DataIndisponivel, IDataIndisponivelRepository>, IDataIndisponivelService
 {
     #region ctor
     private readonly IAgendaService _agendaService;

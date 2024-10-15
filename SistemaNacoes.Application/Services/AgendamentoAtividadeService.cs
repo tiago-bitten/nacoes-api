@@ -6,7 +6,7 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
-public class AgendamentoAtividadeService : ServiceBase<AgendamentoAtividade>, IAgendamentoAtividadeService
+public class AgendamentoAtividadeService : ServiceBase<AgendamentoAtividade, IAgendamentoAtividadeRepository>, IAgendamentoAtividadeService
 {
     public AgendamentoAtividadeService(IAgendamentoAtividadeRepository repository)
         : base(repository)
