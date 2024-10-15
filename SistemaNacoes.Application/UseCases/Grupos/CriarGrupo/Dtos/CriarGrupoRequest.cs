@@ -1,8 +1,9 @@
 ﻿using System.Text.Json.Serialization;
+using SistemaNacoes.Application.Dtos;
 
-namespace SistemaNacoes.Application.Dtos.Grupos;
+namespace SistemaNacoes.Application.UseCases.Grupos.CriarGrupo.Dtos;
 
-public class CreateGrupoDto
+public class CriarGrupoRequest : Request
 {
     [JsonPropertyName("Nome")]
     public string Nome { get; set; }

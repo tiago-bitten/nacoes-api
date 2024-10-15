@@ -5,9 +5,9 @@ using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class RegistroCriacaoConfig : EntidadeBaseConfig<RegistroCriacao>
+public class RegistroCriacaoConfig : EntidadeBaseConfig<HistoricoEntidade>
 {
-    public override void Configure(EntityTypeBuilder<RegistroCriacao> builder)
+    public override void Configure(EntityTypeBuilder<HistoricoEntidade> builder)
     {
         base.Configure(builder);
 

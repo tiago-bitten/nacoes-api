@@ -16,9 +16,9 @@ public class VinculateVoluntarioGrupo
     private readonly IVoluntarioService _voluntarioService;
     private readonly IServiceBase<Grupo> _grupoService;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
-    private readonly IRegistroCriacaoService _registroCriacaoService;
+    private readonly IHistoricoEntidadeService _registroCriacaoService;
 
-    public VinculateVoluntarioGrupo(IUnitOfWork uow, IVoluntarioService voluntarioService, IServiceBase<Grupo> grupoService, IRegistroCriacaoService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService)
+    public VinculateVoluntarioGrupo(IUnitOfWork uow, IVoluntarioService voluntarioService, IServiceBase<Grupo> grupoService, IHistoricoEntidadeService registroCriacaoService, IAmbienteUsuarioService ambienteUsuarioService)
     {
         _uow = uow;
         _voluntarioService = voluntarioService;

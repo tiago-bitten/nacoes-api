@@ -13,7 +13,7 @@ namespace SistemaNacoes.Domain.Entidades
 
         public List<UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
         public List<RegistroLogin> RegistroLogins { get; set; } = new();
-        public List<RegistroCriacao> RegistroCriacoes { get; set; } = new();
+        public List<HistoricoEntidade> RegistroCriacoes { get; set; } = new();
         public List<RegistroAlteracao> RegistroAlteracoes { get; set; } = new();
     }
 }

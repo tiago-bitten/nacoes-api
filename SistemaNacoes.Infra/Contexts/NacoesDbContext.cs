@@ -28,7 +28,7 @@ public class NacoesDbContext : DbContext
     public DbSet<GrupoVoluntario> GrupoVoluntarios { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<RegistroLogin> RegistroLogins { get; set; }
-    public DbSet<RegistroCriacao> RegistroCriacoes { get; set; }
+    public DbSet<HistoricoEntidade> RegistroCriacoes { get; set; }
     public DbSet<RegistroAlteracao> RegistroAlteracoes { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)

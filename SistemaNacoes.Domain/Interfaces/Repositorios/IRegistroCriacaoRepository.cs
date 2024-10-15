@@ -2,6 +2,6 @@
 
 namespace SistemaNacoes.Domain.Interfaces.Repositorios;
 
-public interface IRegistroCriacaoRepository : IRegistroRepository<RegistroCriacao>
+public interface IRegistroCriacaoRepository : IRegistroRepository<HistoricoEntidade>
 {
 }

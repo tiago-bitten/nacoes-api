@@ -29,8 +29,9 @@ public class Login
         
         if (usuario == null)
         {
+            await _uow.IniciarTransacaoAsync();
             await _registroLoginService.LogFailedLoginAsync(null, EMotivoLoginAcessoNegado.UsuarioNaoEncontrado);
-            await _uow.CommitAsync();
+            await _uow.CommitTransacaoAsync();
             throw new Exception(MensagemErroConstant.LoginInvalido);
         }
 
@@ -38,17 +39,19 @@ public class Login
 
         if (senhaInvalida)
         {
+            await _uow.IniciarTransacaoAsync();
             await _registroLoginService.LogFailedLoginAsync(usuario.Id, EMotivoLoginAcessoNegado.SenhaIncorreta);
-            await _uow.CommitAsync();
+            await _uow.CommitTransacaoAsync();
             throw new Exception(MensagemErroConstant.LoginInvalido);
         }
     
+        await _uow.IniciarTransacaoAsync();
         await _registroLoginService.LogSuccessLoginAsync(usuario.Id);
     
         var accessToken = _tokenService.GenerateAccessToken(usuario);
         var refreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);
 
-        await _uow.CommitAsync();
+        await _uow.CommitTransacaoAsync();
         
         var authTokens = (
             AccessToken: accessToken,

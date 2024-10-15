@@ -37,10 +37,10 @@ public class RefreshToken
         if (refreshToken is null || refreshToken.Revogado || refreshToken.DataExpiracao < DateTime.UtcNow || refreshToken.Principal != usuario.Email)
             throw new Exception(MensagemErroConstant.RefreshTokenNaoEncontrado);
         
+        await _uow.IniciarTransacaoAsync();
         var newRefreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);
         var newAccessToken = _tokenService.GenerateAccessToken(usuario);
-
-        await _uow.CommitAsync();
+        await _uow.CommitTransacaoAsync();
 
         var authToken = (
             AccessToken: newAccessToken,

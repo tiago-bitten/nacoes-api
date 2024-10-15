@@ -15,13 +15,15 @@ public class AbrirAgenda : IAbrirAgendaUseCase
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private readonly IPermissoesService _permissoesService;
+    private readonly IHistoricoEntidadeService _historicoService;
 
-    public AbrirAgenda(IAgendaService service, IUnitOfWork uow, IPermissoesService permissoesService, IMapper mapper)
+    public AbrirAgenda(IAgendaService service, IUnitOfWork uow, IPermissoesService permissoesService, IMapper mapper, IHistoricoEntidadeService historicoService)
     {
         _service = service;
         _uow = uow;
         _permissoesService = permissoesService;
         _mapper = mapper;
+        _historicoService = historicoService;
     }
     #endregion
 
@@ -38,6 +40,10 @@ public class AbrirAgenda : IAbrirAgendaUseCase
         
         await _uow.IniciarTransacaoAsync();
         await _service.AdicionarAsync(agenda);
+        await _uow.CommitTransacaoAsync();
+        
+        await _uow.IniciarTransacaoAsync();
+        await _historicoService.RegistrarAsync("agendas", agenda.Id, "Abriu agenda.");
         await _uow.CommitTransacaoAsync();
         
         var result = _mapper.Map<AbrirAgendaResult>(agenda);

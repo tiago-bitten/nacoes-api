@@ -18,7 +18,7 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
     private readonly IAgendaService _agendaService;
     private readonly IAtividadeService _atividadeService;
     private readonly IDataIndisponivelService _dataIndisponivelService;
-    private readonly IRegistroCriacaoService _registroCriacaoService;
+    private readonly IHistoricoEntidadeService _registroCriacaoService;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     private readonly IAgendamentoAtividadeService _agendamentoAtividadeService;
     private readonly IPermissoesService _permissoesService;
@@ -29,7 +29,7 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
         IAgendaService agendaService,
         IVoluntarioMinisterioService voluntarioMinisterioService,
         IDataIndisponivelService dataIndisponivelService,
-        IRegistroCriacaoService registroCriacaoService,
+        IHistoricoEntidadeService registroCriacaoService,
         IAmbienteUsuarioService ambienteUsuarioService,
         IAgendamentoService agendamentoService,
         IAgendamentoAtividadeService agendamentoAtividadeService,
@@ -70,8 +70,7 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
         await _uow.CommitTransacaoAsync();
 
         await _uow.IniciarTransacaoAsync();
-        await _registroCriacaoService.LogAsync("agendamentos", agendamento.Id);
-        await _registroCriacaoService.LogRangeAsync("agendamentos_atividades", agendamento.AgendamentoAtividades.Select(x => x.Id));
+        await _registroCriacaoService.RegistrarAsync("agendamentos", agendamento.Id, "Agendamento criado");
         await _uow.CommitTransacaoAsync();
         
         var agendamentoResponse = _mapper.Map<CriarAgendamentoResult>(agendamento);

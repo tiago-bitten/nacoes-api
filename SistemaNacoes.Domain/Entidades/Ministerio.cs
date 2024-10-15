@@ -9,7 +9,6 @@ namespace SistemaNacoes.Domain.Entidades
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public string Cor { get; set; }
-        public bool Removido { get; set; } = false;
 
         public List<Atividade> Atividades { get; set; } = new();
         public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();

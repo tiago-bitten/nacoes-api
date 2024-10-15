@@ -7,11 +7,13 @@ public class RemoverAgenda : IRemoverAgendaUseCase
 {
     private readonly IAgendaService _service;
     private readonly IUnitOfWork _uow;
-
-    public RemoverAgenda(IAgendaService service, IUnitOfWork uow)
+    private readonly IHistoricoEntidadeService _historicoService;
+    
+    public RemoverAgenda(IAgendaService service, IUnitOfWork uow, IHistoricoEntidadeService historicoService)
     {
         _service = service;
         _uow = uow;
+        _historicoService = historicoService;
     }
 
     public async Task ExecutarAsync(int id)
@@ -20,6 +22,10 @@ public class RemoverAgenda : IRemoverAgendaUseCase
         
         await _uow.IniciarTransacaoAsync();
         _service.Remover(agenda);
+        await _uow.CommitTransacaoAsync();
+        
+        await _uow.IniciarTransacaoAsync();
+        await _historicoService.RegistrarAsync("agendas", agenda.Id, "Removeu agenda.");
         await _uow.CommitTransacaoAsync();
     }
 }

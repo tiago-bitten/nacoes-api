@@ -5,24 +5,24 @@ namespace SistemaNacoes.Infra.Repositorios;
 
 public class RegistroCriacaoRepository : IRegistroCriacaoRepository
 {
-    private readonly IRepositoryBase<RegistroCriacao> _repositoryBase;
+    private readonly IRepositoryBase<HistoricoEntidade> _repositoryBase;
 
-    public RegistroCriacaoRepository(IRepositoryBase<RegistroCriacao> repositoryBase)
+    public RegistroCriacaoRepository(IRepositoryBase<HistoricoEntidade> repositoryBase)
     {
         _repositoryBase = repositoryBase;
     }
 
-    public async Task AddAsync(RegistroCriacao registro)
+    public async Task AddAsync(HistoricoEntidade registro)
     {
         await _repositoryBase.AdicionarAsync(registro);
     }
 
-    public IQueryable<RegistroCriacao> GetAll()
+    public IQueryable<HistoricoEntidade> GetAll()
     {
         return _repositoryBase.RecuperarTodos();
     }
 
-    public async Task AddRangeAsync(IEnumerable<RegistroCriacao> registros)
+    public async Task AddRangeAsync(IEnumerable<HistoricoEntidade> registros)
     {
         await _repositoryBase.AdicionarVariosAsync(registros);
     }

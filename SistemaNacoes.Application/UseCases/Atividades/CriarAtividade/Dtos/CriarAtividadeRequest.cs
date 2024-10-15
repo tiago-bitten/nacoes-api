@@ -5,8 +5,11 @@ namespace SistemaNacoes.Application.UseCases.Atividades.CriarAtividade.Dtos;
 
 public class CriarAtividadeRequest : Request
 {
-    [JsonPropertyName("AtividadeId")]
+    [JsonPropertyName("Nome")]
     public string Nome { get; set; }
+    
+    [JsonPropertyName("MaximoVoluntarios")]
+    public int MaximoVoluntarios { get; set; }
     
     [JsonPropertyName("MinisterioId")]
     public int MinisterioId { get; set; }

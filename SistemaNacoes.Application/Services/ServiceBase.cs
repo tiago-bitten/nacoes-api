@@ -23,7 +23,7 @@ public class ServiceBase<T> : IServiceBase<T> where T : EntidadeBase
     
     #region AdicionarVariosAsync
 
-    public async Task AdicionarVariosAsync(IEnumerable<T> entidades)
+    public async Task AdicionarVariosAsync(List<T> entidades)
     {
         await Repository.AdicionarVariosAsync(entidades);
     }
@@ -60,6 +60,24 @@ public class ServiceBase<T> : IServiceBase<T> where T : EntidadeBase
         await GaranteExisteAsync(id);
 
         return await Repository.RecuperarPorIdAsync(id, includes);
+    }
+    #endregion
+    
+    #region RecuperaGaranteExisteVariosAsync
+    public async Task<List<T>> RecuperaGaranteExisteVariosAsync(List<int> ids, params string[]? includes)
+    {
+        var entidades = new List<T>();
+        
+        foreach (var id in ids)
+        {
+            var entidade = await RecuperaGaranteExisteAsync(id, includes);
+            entidades.Add(entidade);
+        }
+        
+        if (entidades.Count != ids.Count())
+            throw new NacoesAppException($"{typeof(T)} {MensagemErroConstant.NaoEncontrado}");
+        
+        return entidades;
     }
     #endregion
 }

@@ -98,7 +98,7 @@ builder.Services.AddScoped<IRegistroLoginRepository, RegistroLoginRepository>();
 builder.Services.AddScoped<IRegistroLoginService, RegistroLoginService>();
 builder.Services.AddScoped<IRegistroCriacaoRepository, RegistroCriacaoRepository>();
 builder.Services.AddScoped<IRegistroAlteracaoRepository, RegistroAlteracaoRepository>();
-builder.Services.AddScoped<IRegistroCriacaoService, RegistroCriacaoService>();
+builder.Services.AddScoped<IHistoricoEntidadeService, HistoricoEntidadeService>();
 builder.Services.AddScoped<IAtividadeService, AtividadeService>();
 #endregion
 

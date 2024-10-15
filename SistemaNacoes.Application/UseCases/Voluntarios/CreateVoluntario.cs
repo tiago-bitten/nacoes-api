@@ -15,11 +15,11 @@ public class CreateVoluntario
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
-    private readonly IRegistroCriacaoService _registroCriacaoService;
+    private readonly IHistoricoEntidadeService _registroCriacaoService;
 
     public CreateVoluntario(
         IUnitOfWork uow,
-        IMapper mapper, IAmbienteUsuarioService ambienteUsuarioService, IRegistroCriacaoService registroCriacaoService)
+        IMapper mapper, IAmbienteUsuarioService ambienteUsuarioService, IHistoricoEntidadeService registroCriacaoService)
     {
         _uow = uow;
         _mapper = mapper;
@@ -46,7 +46,7 @@ public class CreateVoluntario
         await _uow.Voluntarios.AdicionarAsync(voluntario);
         await _uow.CommitAsync();
         
-        await _registroCriacaoService.LogAsync("voluntarios", voluntario.Id);
+        await _registroCriacaoService.RegistrarAsync("voluntarios", voluntario.Id);
         
         var voluntarioDto = _mapper.Map<GetVoluntarioDto>(voluntario);
 
