@@ -1,9 +1,9 @@
 ﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 
-namespace SistemaNacoes.Domain.Interfaces
+namespace SistemaNacoes.Domain.Interfaces.Repositorios
 {
     public interface IUsuarioMinisterioRepository : IRepositoryBase<UsuarioMinisterio>
     {
+        Task<bool> ExisteUsuarioMinisterioAsync(int usuarioId, int ministerioId);
     }
 }
