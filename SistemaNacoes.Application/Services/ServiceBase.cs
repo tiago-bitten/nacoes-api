@@ -36,6 +36,12 @@ public class ServiceBase<TEntidade, TRepositorio> : IServiceBase<TEntidade>
         entidade.Remover();
         Repository.Atualizar(entidade);
     }
+
+    public IQueryable<TEntidade> RecuperarTodos(params string[]? includes)
+    {
+        return Repository.RecuperarTodos(includes);
+    }
+
     #endregion
 
     #region ExisteAsync
