@@ -7,7 +7,7 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
-public class AtividadeService : ServiceBase<Atividade>, IAtividadeService
+public class AtividadeService : ServiceBase<Atividade, IAtividadeRepository>, IAtividadeService
 {
     public AtividadeService(IAtividadeRepository repository)
         : base(repository)

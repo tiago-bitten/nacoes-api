@@ -5,7 +5,7 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
-public class MinisterioService : ServiceBase<Ministerio>, IMinisterioService
+public class MinisterioService : ServiceBase<Ministerio, IMinisterioRepository>, IMinisterioService
 {
     public MinisterioService(IMinisterioRepository repository)
         : base(repository)

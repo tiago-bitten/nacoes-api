@@ -1,23 +1,24 @@
-﻿using SistemaNacoes.Domain.Entidades;
+﻿using SistemaNacoes.Domain.Enterprise;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
-public class VoluntarioService : ServiceBase<Voluntario>, IVoluntarioService
+public class VoluntarioService : ServiceBase<Voluntario, IVoluntarioRepository>, IVoluntarioService
 {
     public VoluntarioService(IVoluntarioRepository repository)
         : base(repository)
     {
     }
 
-    public async Task<Voluntario> GetByChaveAcessoAsync(Guid chaveAcesso)
+    public async Task<Voluntario> RecuperarPorChaveAcessoAsync(Guid chaveAcesso, params string[]? includes)
     {
-        var exists = await Repository.BuscarAsync(x => x.ChaveAcesso == chaveAcesso);
+        var existe = await Repository.RecuperarPorChaveAcessoAsync(chaveAcesso, includes);
         
-        if (exists == null)
-            throw new Exception("Forneça uma chave de acesso válida");
-        
-        return exists;
+        if (existe is null)
+            throw new NacoesAppException("Forneça uma chave de acesso válida");
+
+        return existe;
     }
 }

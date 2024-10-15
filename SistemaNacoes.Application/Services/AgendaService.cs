@@ -4,7 +4,7 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
-public class AgendaService : ServiceBase<Agenda>, IAgendaService
+public class AgendaService : ServiceBase<Agenda, IAgendaRepository>, IAgendaService
 {
     public AgendaService(IAgendaRepository repository)
         : base(repository)
