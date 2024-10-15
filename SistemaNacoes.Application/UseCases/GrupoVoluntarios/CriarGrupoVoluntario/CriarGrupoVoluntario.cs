@@ -35,13 +35,9 @@ public class CriarGrupoVoluntario : ICriarGrupoVoluntarioUseCase
         var grupo = await _grupoService.RecuperaGaranteExisteAsync(request.GrupoId);
         var voluntarios = await _voluntarioService.RecuperaGaranteExisteVariosAsync(request.VoluntarioIds);
         
-        var grupoVoluntarios = new List<GrupoVoluntario>();
-        
-        foreach (var voluntario in voluntarios)
-        {
-            var grupoVoluntario = new GrupoVoluntario(grupo, voluntario);
-            grupoVoluntarios.Add(grupoVoluntario);
-        }
+        var grupoVoluntarios = voluntarios
+            .Select(voluntario => new GrupoVoluntario(grupo, voluntario))
+            .ToList();
 
         await _uow.IniciarTransacaoAsync();
         await _service.AdicionarVariosAsync(grupoVoluntarios);
