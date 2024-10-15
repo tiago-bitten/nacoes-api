@@ -12,16 +12,16 @@ public class AgendamentoAtividadeService : ServiceBase<AgendamentoAtividade>, IA
         : base(repository)
     {
     }
-    
-    public async Task<bool> ExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
+
+    public async Task<bool> ExisteAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
     {
         return await Repository.AlgumAsync(x => x.AgendamentoId == agendamentoId 
                                                               && x.AtividadeId == atividadeId);
     }
 
-    public async Task EnsureNotExistsAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
+    public async Task GaranteNaoExisteAtividadeNoAgendamentoAsync(int agendamentoId, int atividadeId)
     {
-        var exists = await ExistsAtividadeNoAgendamentoAsync(agendamentoId, atividadeId);
+        var exists = await ExisteAtividadeNoAgendamentoAsync(agendamentoId, atividadeId);
 
         if (exists)
             throw new NacoesAppException(MensagemErroConstant.AtividadeJaVinculadaAoAgendamento);

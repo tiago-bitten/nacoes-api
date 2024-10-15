@@ -15,7 +15,7 @@ public class ServiceBase<T> : IServiceBase<T> where T : EntidadeBase
     }
     
     #region AdicionarAsync
-    public async Task AdicionarAsync(T entidade)
+    public virtual async Task AdicionarAsync(T entidade)
     {
         await Repository.AdicionarAsync(entidade);
     }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.Dtos.Agendamentos;
+using SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento.Dtos;
 using SistemaNacoes.Domain.Entidades;
 
 namespace SistemaNacoes.Application.Profiles;
@@ -10,7 +11,7 @@ public class AgendamentoProfile : Profile
     {
         CreateMap<CriarAgendamentoRequest, Agendamento>();
 
-        CreateMap<Agendamento, CriarAgendamentoResponse>()
+        CreateMap<Agendamento, CriarAgendamentoResult>()
             .ForMember(dest => dest.Atividades, opt => opt.MapFrom(src => src.AgendamentoAtividades.Select(x => x.Atividade)));
     }
 }

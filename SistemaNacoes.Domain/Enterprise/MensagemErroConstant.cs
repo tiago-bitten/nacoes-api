@@ -14,8 +14,8 @@ public static class MensagemErroConstant
     public const string AtividadeJaVinculadaAoAgendamento = "Atividade já vinculada ao agendamento";
     
     // AgendamentoAtividades
-    public const string AgendamentoAtividadeNaoEncontrado = "AgendamentoAtividade não encontrado";
-    public const string AgendamentoAtividadeJaRemovido = "AgendamentoAtividade já removida";
+    public const string AgendamentoAtividadeNaoEncontrado = "AgendamentoAtividades não encontrado";
+    public const string AgendamentoAtividadeJaRemovido = "AgendamentoAtividades já removida";
     
     // VoluntariosMinisterios
     public const string VoluntarioMinisterioNaoEncontrado = "Voluntário vinculado ao ministério não encontrado";

@@ -1,25 +1,25 @@
-﻿using SistemaNacoes.Application.Responses;
-using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
+﻿using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Agendamentos.RemoverAgendamento;
 
-public class RemoverAgendamento : UseCaseBase, IRemoverAgendamentoUseCase
+public class RemoverAgendamento : IRemoverAgendamentoUseCase
 {
-    private readonly IAgendamentoService _agendamentoService;
+    private readonly IAgendamentoService _service;
+    private readonly IUnitOfWork _uow;
 
-    public RemoverAgendamento(IUnitOfWork uow, IAgendamentoService agendamentoService) : base(uow)
+    public RemoverAgendamento(IUnitOfWork uow, IAgendamentoService agendamentoService)
     {
-        _agendamentoService = agendamentoService;
+        _uow = uow;
+        _service = agendamentoService;
     }
 
     public async Task ExecutarAsync(int id)
     {
-        var agendamento = await _agendamentoService.RecuperaGaranteExisteAsync(id);
+        var agendamento = await _service.RecuperaGaranteExisteAsync(id);
 
-        await IniciarTransacaoAsync();
-        _agendamentoService.Remover(agendamento);
-        await CommitTransacaoAsync();
+        await _uow.IniciarTransacaoAsync();
+        _service.Remover(agendamento);
+        await _uow.CommitTransacaoAsync();
     }
 }

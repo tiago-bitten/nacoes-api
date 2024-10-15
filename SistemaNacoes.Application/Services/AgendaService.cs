@@ -10,4 +10,10 @@ public class AgendaService : ServiceBase<Agenda>, IAgendaService
         : base(repository)
     {
     }
+
+    public void Concluir(Agenda agenda)
+    {
+        agenda.Concluir();
+        Repository.Atualizar(agenda);
+    }
 }

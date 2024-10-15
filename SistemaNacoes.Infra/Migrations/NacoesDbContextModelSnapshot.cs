@@ -103,7 +103,7 @@ namespace SistemaNacoes.Infra.Migrations
                     b.ToTable("agendamentos", (string)null);
                 });
 
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividade", b =>
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividades", b =>
                 {
                     b.Property<int>("AgendamentoId")
                         .HasColumnType("INT")
@@ -761,7 +761,7 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Navigation("Voluntario");
                 });
 
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividade", b =>
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividades", b =>
                 {
                     b.HasOne("SistemaNacoes.Domain.Entidades.Agendamento", "Agendamento")
                         .WithMany("AgendamentoAtividades")

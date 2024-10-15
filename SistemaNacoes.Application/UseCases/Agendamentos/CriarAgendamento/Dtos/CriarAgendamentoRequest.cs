@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
+using SistemaNacoes.Application.Dtos;
 
-namespace SistemaNacoes.Application.Dtos.Agendamentos;
+namespace SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento.Dtos;
 
 public class CriarAgendamentoRequest : Request
 {
@@ -9,7 +10,4 @@ public class CriarAgendamentoRequest : Request
     
     [JsonPropertyName("AgendaId")]
     public int AgendaId { get; set; }
-    
-    [JsonPropertyName("AtividadeIds")]
-    public List<int>? AtividadeIds { get; set; }
 }

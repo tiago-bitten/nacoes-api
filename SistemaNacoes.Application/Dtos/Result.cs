@@ -1,6 +1,6 @@
 ﻿namespace SistemaNacoes.Application.Dtos;
 
-public abstract class Response
+public abstract class Result
 {
     
 }
