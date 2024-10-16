@@ -12,8 +12,13 @@ public class UsuarioRepository : RepositoryBase<Usuario>, IUsuarioRepository
     {
     }
 
-    public async Task<bool> ExisteUsuarioCriadoAsync(string email, string? cpf)
+    public async Task<Usuario?> RecuperarPorCpfAsync(string cpf)
     {
-        return await AlgumAsync(x => x.Email == email || (!string.IsNullOrEmpty(cpf) && x.Cpf == cpf));
+        return await BuscarAsync(x => x.Cpf == cpf);
+    }
+
+    public async Task<Usuario?> RecuperarPorEmailAsync(string email)
+    {
+        return await BuscarAsync(x => x.Email.ToUpper() == email.ToUpper());
     }
 }

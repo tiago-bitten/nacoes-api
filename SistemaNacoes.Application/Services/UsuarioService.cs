@@ -13,9 +13,26 @@ public class UsuarioService : ServiceBase<Usuario, IUsuarioRepository>, IUsuario
 
     public async Task GaranteNaoExisteUsuarioCriadoAsync(string email, string? cpf)
     {
-        var existe = await Repository.ExisteUsuarioCriadoAsync(email, cpf);
-        
-        if (existe)
-            throw new NacoesAppException("Usuário com ")
+        var existentes = new List<string>();
+
+        var existePorEmail = await Repository.RecuperarPorEmailAsync(email);
+        var existePorCpf = cpf != null ? await Repository.RecuperarPorCpfAsync(cpf) : null;
+
+        if (existePorEmail != null)
+        {
+            existentes.Add($"o E-mail {email}");
+        }
+
+        if (existePorCpf != null)
+        {
+            existentes.Add($"o CPF {cpf}");
+        }
+
+        if (existentes.Any())
+        {
+            var mensagem = string.Join(" e ", existentes);
+            throw new NacoesAppException($"Já existe um usuário com {mensagem} registrado.");
+        }
+
     }
 }
