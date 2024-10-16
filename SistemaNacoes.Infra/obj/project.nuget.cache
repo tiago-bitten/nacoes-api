@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "QRchrf/rZ8usUXHqdrr90kiZnSK/gezkZVJYwKWTdSGCbfuPkYYOdeTE5YDaI+Ibwp7KMls5ZNXN5X5oA6JUUQ==",
+  "dgSpecHash": "ArQL/W3vIl6t/hnu18Mk1kzDvXrV8u1i9CtwSjKLjnjI/wrf7m8C9V1D70ICOEnaLohuNZjMEcXQx5asEm6hDw==",
   "success": true,
   "projectFilePath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\teste\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.0\\microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.0\\microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.0\\microsoft.entityframeworkcore.analyzers.7.0.0.nupkg.sha512",
