@@ -18,7 +18,7 @@ public class GetPermissoesUsuario
     
     public async Task<RespostaBase<List<GetPermissaoDto>>> ExecuteAsync()
     {
-        var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
+        var usuarioLogado = await _ambienteUsuarioService.RecuperaUsuarioAsync();
         var allPermissoes = _getAllPermissoes.Execute().Conteudo;
 
         var permissoes = allPermissoes.Select(x => new GetPermissaoDto

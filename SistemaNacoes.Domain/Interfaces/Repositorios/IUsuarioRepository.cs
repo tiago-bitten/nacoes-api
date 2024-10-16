@@ -1,9 +1,9 @@
 ﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 
-namespace SistemaNacoes.Domain.Interfaces
+namespace SistemaNacoes.Domain.Interfaces.Repositorios
 {
     public interface IUsuarioRepository : IRepositoryBase<Usuario>
     {
+        Task<bool> ExisteUsuarioCriadoAsync(string email, string? cpf);
     }
 }

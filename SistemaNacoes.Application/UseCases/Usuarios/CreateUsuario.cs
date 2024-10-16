@@ -35,7 +35,7 @@ public class CreateUsuario
         }
         
         await _uow.Usuarios.AdicionarAsync(usuario);
-        await _uow.CommitAsync();
+        await _uow.CommitTransacaoAsync();
         
         var usuarioDto = _mapper.Map<GetUsuarioDto>(usuario);
         

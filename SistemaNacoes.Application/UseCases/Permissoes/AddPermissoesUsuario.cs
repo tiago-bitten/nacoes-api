@@ -5,6 +5,7 @@ using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
+using SistemaNacoes.Shared.Extensions;
 
 namespace SistemaNacoes.Application.UseCases.Permissoes;
 
@@ -23,9 +24,9 @@ public class AddPermissoesUsuario
 
     public async Task<RespostaBase<dynamic>> ExecuteAsync(AddPermissoesUsuarioDto dto)
     {
-        var usuarioLogado = await _ambienteUsuarioService.GetUsuarioAsync();
+        var usuarioLogado = await _ambienteUsuarioService.RecuperaUsuarioAsync();
         
-        if (!usuarioLogado.HasPermission(EPermissoes.UPDATE_USUARIO))
+        if (!usuarioLogado.PossuiPermissao(EPermissoes.UPDATE_USUARIO))
             throw new Exception(MensagemErroConstant.SemPermissaoParaAlterarUsuario);
         
         var usuario = await _usuarioService.RecuperaGaranteExisteAsync(dto.UsuarioId);
@@ -39,8 +40,9 @@ public class AddPermissoesUsuario
         
         if (originalPermissions != usuario.Permissoes)
         {
+            await _uow.IniciarTransacaoAsync();
             _uow.Usuarios.Atualizar(usuario);
-            await _uow.CommitAsync();
+            await _uow.CommitTransacaoAsync();
         }
         
         var respostaBase = new RespostaBase<dynamic>(

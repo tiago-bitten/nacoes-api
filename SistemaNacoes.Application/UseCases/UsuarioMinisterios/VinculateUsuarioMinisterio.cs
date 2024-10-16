@@ -36,7 +36,7 @@ public class VinculateUsuarioMinisterio
         var usuarioMinisterio = new UsuarioMinisterio(usuario, ministerio);
         
         await _uow.UsuarioMinisterios.AdicionarAsync(usuarioMinisterio);
-        await _uow.CommitAsync();
+        await _uow.CommitTransacaoAsync();
         
         var respostaBase = new RespostaBase<dynamic>(
             RespostaBaseMensagem.VinculateUsuarioMinisterio);

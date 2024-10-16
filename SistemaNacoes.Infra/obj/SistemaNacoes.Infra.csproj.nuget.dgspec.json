@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {}
+    "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
+    "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
         "projectName": "SistemaNacoes.Domain",
-        "projectPath": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
-        "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Domain\\obj\\",
+        "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj",
+        "packagesPath": "C:\\Users\\teste\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\teste\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -39,11 +39,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -79,24 +74,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {
+    "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj",
+        "projectUniqueName": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj",
         "projectName": "SistemaNacoes.Infra",
-        "projectPath": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj",
-        "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Infra\\obj\\",
+        "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj",
+        "packagesPath": "C:\\Users\\teste\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\teste\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -112,11 +107,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
-                "projectPath": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj"
+              "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
+                "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj"
               },
-              "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj": {
-                "projectPath": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj"
+              "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj": {
+                "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj"
               }
             }
           }
@@ -125,11 +120,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -187,24 +177,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj": {
+    "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj",
         "projectName": "SistemaNacoes.Shared",
-        "projectPath": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj",
-        "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Shared\\obj\\",
+        "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Shared\\SistemaNacoes.Shared.csproj",
+        "packagesPath": "C:\\Users\\teste\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\teste\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -220,8 +210,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
-                "projectPath": "C:\\Users\\tiago\\Documents\\MEUS\\nacoes-api\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj"
+              "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj": {
+                "projectPath": "C:\\Users\\teste\\Documents\\CSHARP\\projetos\\SistemaNacoes\\SistemaNacoes.Domain\\SistemaNacoes.Domain.csproj"
               }
             }
           }
@@ -230,11 +220,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -276,7 +261,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }
