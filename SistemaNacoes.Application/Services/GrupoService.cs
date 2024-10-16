@@ -5,7 +5,7 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
-public class GrupoService : ServiceBase<Grupo>, IGrupoService
+public class GrupoService : ServiceBase<Grupo, IGrupoRepository>, IGrupoService
 {
     public GrupoService(IGrupoRepository repository) : base(repository)
     {

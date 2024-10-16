@@ -4,5 +4,5 @@ namespace SistemaNacoes.Domain.Interfaces.Services;
 
 public interface IVoluntarioService : IServiceBase<Voluntario>
 {
-    Task<Voluntario> GetByChaveAcessoAsync(Guid chaveAcesso);
+    Task<Voluntario> RecuperarPorChaveAcessoAsync(Guid chaveAcesso, params string[]? includes);
 }

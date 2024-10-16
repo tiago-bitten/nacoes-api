@@ -12,4 +12,9 @@ public class VoluntarioRepository : RepositoryBase<Voluntario>, IVoluntarioRepos
         : base(context)
     {
     }
+
+    public async Task<Voluntario?> RecuperarPorChaveAcessoAsync(Guid chaveAcesso, params string[]? includes)
+    {
+        return await BuscarAsync(x => x.ChaveAcesso == chaveAcesso, includes);
+    }
 }
