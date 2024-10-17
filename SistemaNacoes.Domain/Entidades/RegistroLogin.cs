@@ -3,18 +3,12 @@ using SistemaNacoes.Domain.Enums;
 
 namespace SistemaNacoes.Domain.Entidades;
 
-public sealed class RegistroLogin : Registro
+public sealed class RegistroLogin : EntidadeBase
 {
-    public RegistroLogin()
-    {
-    }
-    
-    public RegistroLogin(int? usuarioId, string ip, string userAgent) 
-        : base(usuarioId, ip, userAgent)
-    {
-        Sucesso = true;
-    }
-    
+    public int? UsuarioId { get; set; }    
+    public string Ip { get; set; }
+    public string UserAgent { get; set; }
+    public DateTime DataAcesso { get; set; } = DateTime.Now;
     public bool Sucesso { get; set; }
     public EMotivoLoginAcessoNegado? Motivo { get; set; }
 

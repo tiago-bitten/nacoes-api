@@ -25,7 +25,14 @@ public class RegistroLoginService : IRegistroLoginService
     {
         var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
         var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
-        var registroLogin = new RegistroLogin(usuarioId, ip, userAgent);
+        var registroLogin = new RegistroLogin
+        {
+            Sucesso = true,
+            UsuarioId = usuarioId,
+            Ip = ip,
+            UserAgent = userAgent
+
+        };
         await LoginAttemptAsync(registroLogin);
     }
 
