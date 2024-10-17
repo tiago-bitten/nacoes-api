@@ -19,4 +19,7 @@ public class CriarUsuarioRequest : Request
     
     [JsonPropertyName("DataNascimento")]
     public DateTime? DataNascimento { get; set; }
+    
+    [JsonPropertyName("PerfilAcessoId")]
+    public int PerfilAcessoId { get; set; }
 }
