@@ -37,5 +37,7 @@ public class CriarUsuario : ICriarUsuarioUseCase
         var usuario = _mapper.Map<Usuario>(request);
 
         usuario.SenhaHash = SenhaHelper.ProvisionarSenha(); // Data de hoje
+        
+        
     }
 }

@@ -37,26 +37,14 @@ public class UsuarioConfig : EntidadeBaseConfig<Usuario>
             .HasColumnType("VARCHAR(900)")
             .HasColumnName("senha_hash")
             .IsRequired();
-        
-        builder.Property(x => x.Permissoes)
-            .HasColumnType("BIGINT")
-            .HasColumnName("permissoes")
-            .IsRequired();
-
-        builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("removido")
-            .HasDefaultValue(false)
-            .IsRequired();
 
         builder.HasMany(x => x.UsuariosMinisterios)
             .WithOne(x => x.Usuario)
             .HasForeignKey(x => x.UsuarioId)
             .OnDelete(DeleteBehavior.SetNull);
-        
-        builder.HasMany(x => x.RegistroLogins)
-            .WithOne(x => x.Usuario)
-            .HasForeignKey(x => x.UsuarioId)
-            .OnDelete(DeleteBehavior.SetNull);
+
+        builder.HasOne(x => x.PerfilAcesso)
+            .WithMany(x => x.Usuarios)
+            .HasForeignKey(x => x.PerfilAcessoId);
     }
 }

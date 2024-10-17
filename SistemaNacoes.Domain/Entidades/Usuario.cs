@@ -8,12 +8,11 @@ namespace SistemaNacoes.Domain.Entidades
         public Usuario() {}
         
         public string SenhaHash { get; set; }
-        public EPermissoes Permissoes { get; set; }
-        public bool Removido { get; set; } = false;
+        public int PerfilAcessoId { get; set; }
 
+        public PerfilAcesso PerfilAcesso { get; set; }
         public List<UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
         public List<RegistroLogin> RegistroLogins { get; set; } = new();
-        public List<HistoricoEntidade> RegistroCriacoes { get; set; } = new();
-        public List<RegistroAlteracao> RegistroAlteracoes { get; set; } = new();
+        public List<HistoricoEntidade> Historicos { get; set; } = new();
     }
 }
