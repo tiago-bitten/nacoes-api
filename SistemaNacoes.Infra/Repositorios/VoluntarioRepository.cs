@@ -18,4 +18,9 @@ public class VoluntarioRepository : RepositoryBase<Voluntario>, IVoluntarioRepos
     {
         return await BuscarAsync(x => x.ChaveAcesso == chaveAcesso, includes);
     }
+
+    public Task<Voluntario?> RecuperarPorCpfAsync(string cpf)
+    {
+        return BuscarAsync(x => x.Cpf == cpf);
+    }
 }

@@ -1,6 +1,5 @@
 ﻿using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -21,5 +20,16 @@ public class VoluntarioService : ServiceBase<Voluntario, IVoluntarioRepository>,
             throw new NacoesAppException("Forneça uma chave de acesso válida");
 
         return existe;
+    }
+
+    public async Task GaranteNaoExisteCadastradoAsync(string? cpf)
+    {
+        if (string.IsNullOrEmpty(cpf))
+            return;
+        
+        var existe = await Repository.RecuperarPorCpfAsync(cpf);
+            
+        if (existe is not null)
+            throw new NacoesAppException("Voluntário com cpf já cadastrado.");
     }
 }
