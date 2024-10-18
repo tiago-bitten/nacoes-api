@@ -7,6 +7,6 @@ public static class  PermissoesExtensions
 {
     public static bool PossuiPermissao(this Usuario usuario, EPermissoes permissao)
     {
-        return (usuario.Permissoes & permissao) == permissao;
+        return (usuario.PerfilAcesso.Permissoes & permissao) == permissao;
     }
 }

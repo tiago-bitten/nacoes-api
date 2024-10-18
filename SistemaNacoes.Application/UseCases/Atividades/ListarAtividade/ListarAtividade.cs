@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Application.UseCases.Atividades.ListarAtividade.Dtos;
+using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Paginacao;
 
@@ -21,6 +22,8 @@ public class ListarAtividade : IListarAtividadeUseCase
     
     public async Task<PaginadoResult<ListarAtividadeResult>> ExecutarAsync(ListarAtividadeParams param)
     {
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.GET_ATIVIDADE, "Você não tem permissão para visualizar atividades.");
+        
         var atividadesPaginadas = await _service
             .RecuperarTodos("Ministerio")
             .Select(x => new ListarAtividadeResult

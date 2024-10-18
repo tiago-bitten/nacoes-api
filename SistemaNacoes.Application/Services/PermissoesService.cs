@@ -101,7 +101,7 @@ public class PermissoesService : IPermissoesService
 
     public async Task VerificaGarantePermissaoAsync(EPermissoes permissao, string mensagemErro = "Você não possui permissão")
     {
-        var usuario = await _ambienteService.RecuperaUsuarioAsync();
+        var usuario = await _ambienteService.RecuperaUsuarioAsync("PerfilAcesso");
         
         if (!usuario.PossuiPermissao(permissao))
             throw new NacoesAppException(mensagemErro);
