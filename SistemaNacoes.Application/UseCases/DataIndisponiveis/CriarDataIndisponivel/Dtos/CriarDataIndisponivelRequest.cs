@@ -6,7 +6,7 @@ namespace SistemaNacoes.Application.UseCases.DataIndisponiveis.CriarDataIndispon
 public class CriarDataIndisponivelRequest : Request
 {
     [JsonPropertyName("VoluntarioChaveAcesso")]
-    public string VoluntarioChaveAcesso { private get; set; }
+    public string VoluntarioChaveAcesso { get; set; }
     
     [JsonPropertyName("DataInicio")]
     public DateTime DataInicio { get; set; }
@@ -16,18 +16,4 @@ public class CriarDataIndisponivelRequest : Request
     
     [JsonPropertyName("Motivo")]
     public string? Motivo { get; set; }
-    
-    [JsonIgnore]
-    public Guid VoluntarioChaveAcessoGuid
-    {
-        get
-        {
-            if (Guid.TryParse(VoluntarioChaveAcesso, out var guid))
-            {
-                return guid;
-            }
-
-            throw new InvalidOperationException($"'{VoluntarioChaveAcesso}' não é um Guid válido.");
-        }
-    }
 }

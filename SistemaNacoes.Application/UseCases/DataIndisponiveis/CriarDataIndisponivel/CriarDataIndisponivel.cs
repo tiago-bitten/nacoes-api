@@ -4,6 +4,7 @@ using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
+using SistemaNacoes.Shared.Helpers;
 
 namespace SistemaNacoes.Application.UseCases.DataIndisponiveis.CriarDataIndisponivel;
 
@@ -35,7 +36,7 @@ public class CriarDataIndisponivel : ICriarDataIndisponivelUseCase
         if (_ambienteService.Autenticado())
             await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_DATA_INDISPONIVEL, "Você não tem permissão para criar uma data indisponível");
         
-        var volutario = await _voluntarioService.RecuperarPorChaveAcessoAsync(request.VoluntarioChaveAcessoGuid);
+        var volutario = await _voluntarioService.RecuperarPorChaveAcessoAsync(GuidHelper.Converter(request.VoluntarioChaveAcesso));
         
         var dataIndisponivel = _mapper.Map<DataIndisponivel>(request);
         
