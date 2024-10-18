@@ -7,7 +7,6 @@ namespace SistemaNacoes.Application.UseCases.DataIndisponiveis.RemoverDataIndisp
 public class RemoverDataIndisponivel : IRemoverDataIndisponivelUseCase
 {
     #region Ctor
-
     private readonly IDataIndisponivelService _service;
     private readonly IUnitOfWork _uow;
     private readonly IAmbienteUsuarioService _ambienteService;

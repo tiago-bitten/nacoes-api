@@ -9,6 +9,12 @@ public interface ICommandUseCaseBase<TResult, TRequest>
     Task<TResult> ExecutarAsync(TRequest request);
 }
 
+public interface ICommandUseCaseBase<TRequest>
+    where TRequest : Request
+{
+    Task ExecutarAsync(TRequest request);
+}
+
 public interface ICommandUseCaseBase
 {
     Task ExecutarAsync(int id);

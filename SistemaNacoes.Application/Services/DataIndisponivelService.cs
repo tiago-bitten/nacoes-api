@@ -54,4 +54,12 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel, IDataIndisp
             throw new NacoesAppException(MensagemErroConstant.DataIndisponivel);
     }
     #endregion
+
+    #region Suspender
+    public void Suspender(DataIndisponivel dataIndisponivel)
+    {
+        dataIndisponivel.Suspender();
+        Repository.Atualizar(dataIndisponivel);
+    }
+    #endregion
 }
