@@ -2,13 +2,14 @@
 using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces;
+using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
 public class DataIndisponivelService : ServiceBase<DataIndisponivel, IDataIndisponivelRepository>, IDataIndisponivelService
 {
-    #region ctor
+    #region Ctor
     private readonly IAgendaService _agendaService;
     private readonly IVoluntarioService _voluntarioService;
     
@@ -20,6 +21,7 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel, IDataIndisp
     }
     #endregion
 
+    #region ExisteDataDisponivelAsync
     public async Task<bool> ExisteDataDisponivelAsync(int agendaId, int voluntarioId)
     {
         var agenda = await _agendaService.RecuperaGaranteExisteAsync(agendaId);
@@ -41,7 +43,9 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel, IDataIndisp
         
         return true;
     }
+    #endregion
 
+    #region GaranteExisteDataDisponivelAsync
     public async Task GaranteExisteDataDisponivelAsync(int agendaId, int voluntarioId)
     {
         var existe = await ExisteDataDisponivelAsync(agendaId, voluntarioId);
@@ -49,4 +53,5 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel, IDataIndisp
         if (!existe)
             throw new NacoesAppException(MensagemErroConstant.DataIndisponivel);
     }
+    #endregion
 }

@@ -11,5 +11,5 @@ public interface IAmbienteUsuarioService
     List<string>? RecuperaUsuarioRoles();
     string? RecuperaUsuarioNome();
     string? RecuperaUsuarioEmail();
-    bool VerificaUsuarioAutenticado();
+    bool Autenticado();
 }

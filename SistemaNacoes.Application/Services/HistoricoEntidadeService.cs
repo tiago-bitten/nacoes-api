@@ -21,7 +21,7 @@ public class HistoricoEntidadeService : IHistoricoEntidadeService
         var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
         var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
         
-        var registroCriacao = new HistoricoEntidade(tabela, itemId, usuario.Id, ip, userAgent);
+        var registroCriacao = new HistoricoEntidade(tabela, itemId, usuario.Id, ip, userAgent, descricao);
 
         await _uow.RegistroCriacoes.AddAsync(registroCriacao);
     }
@@ -33,7 +33,7 @@ public class HistoricoEntidadeService : IHistoricoEntidadeService
         var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
         
         var registroCriacoes = itemIds
-            .Select(itemId => new HistoricoEntidade(tabela, itemId, usuario.Id, ip, userAgent));
+            .Select(itemId => new HistoricoEntidade(tabela, itemId, usuario.Id, ip, userAgent, descricao));
 
         await _uow.RegistroCriacoes.AddRangeAsync(registroCriacoes);
     }

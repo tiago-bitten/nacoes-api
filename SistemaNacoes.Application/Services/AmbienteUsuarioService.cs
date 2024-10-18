@@ -60,7 +60,7 @@ public class AmbienteUsuarioService : IAmbienteUsuarioService
         return _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email);
     }
 
-    public bool VerificaUsuarioAutenticado()
+    public bool Autenticado()
     {
         return _httpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated ?? false;
     }

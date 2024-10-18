@@ -1,9 +1,7 @@
 ﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 
-namespace SistemaNacoes.Domain.Interfaces
+namespace SistemaNacoes.Domain.Interfaces.Repositorios;
+
+public interface IDataIndisponivelRepository : IRepositoryBase<DataIndisponivel>
 {
-    public interface IDataIndisponivelRepository : IRepositoryBase<DataIndisponivel>
-    {
-    }
 }

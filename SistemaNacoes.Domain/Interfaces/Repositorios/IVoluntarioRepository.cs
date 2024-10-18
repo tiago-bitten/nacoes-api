@@ -1,10 +1,8 @@
 ﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 
-namespace SistemaNacoes.Domain.Interfaces
+namespace SistemaNacoes.Domain.Interfaces.Repositorios;
+
+public interface IVoluntarioRepository : IRepositoryBase<Voluntario>
 {
-    public interface IVoluntarioRepository : IRepositoryBase<Voluntario>
-    {
-        Task<Voluntario?> RecuperarPorChaveAcessoAsync(Guid chaveAcesso, params string[]? includes);
-    }
+    Task<Voluntario?> RecuperarPorChaveAcessoAsync(Guid chaveAcesso, params string[]? includes);
 }
