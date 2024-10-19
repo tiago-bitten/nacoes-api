@@ -12,14 +12,18 @@ namespace SistemaNacoes.Application.Services;
 
 public class JsonWebTokenService : ITokenService
 {
+    #region Ctor
     private readonly IUnitOfWork _uow;
     private readonly IConfiguration _configuration;
+    private readonly IRefreshTokenRepository _refreshTokenRepository;
 
-    public JsonWebTokenService(IUnitOfWork uow, IConfiguration configuration)
+    public JsonWebTokenService(IUnitOfWork uow, IConfiguration configuration, IRefreshTokenRepository refreshTokenRepository)
     {
         _uow = uow;
         _configuration = configuration;
+        _refreshTokenRepository = refreshTokenRepository;
     }
+    #endregion
 
     public string GenerateAccessToken(Usuario usuario)
     {
@@ -46,8 +50,8 @@ public class JsonWebTokenService : ITokenService
 
     public async Task<RefreshToken> GenerateRefreshTokenAsync(string principal)
     {
-        var existingTokens = await _uow.RefreshTokens
-            .FindAsync(x => x.Principal == principal && !x.Revogado);
+        var existingTokens = await _refreshTokenRepository
+            .BuscarAsync(x => x.Principal == principal && !x.Invalido);
 
         foreach (var token in existingTokens)
         {
@@ -65,7 +69,7 @@ public class JsonWebTokenService : ITokenService
 
         var refreshToken = new RefreshToken(newToken, principal, dataExpiracao);
 
-        await _uow.RefreshTokens.AddAsync(refreshToken);
+        await _refreshTokenRepository.AdicionarAsync(refreshToken);
 
         return refreshToken;
     }
@@ -74,12 +78,13 @@ public class JsonWebTokenService : ITokenService
 
     public async Task RevogarRefreshTokenAsync(string token)
     {
-        var refreshToken = await _uow.RefreshTokens.GetByTokenAsync(token);
+        var refreshToken = await _refreshTokenRepository.RecuperarPorTokenAsync(token);
         
         if (refreshToken is null)
             throw new InvalidOperationException("Refresh token not found.");
         
-        _uow.RefreshTokens.Revogar(refreshToken);
+        refreshToken.Revogar();
+        _refreshTokenRepository.Atualizar(refreshToken);
     }
 
     public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)

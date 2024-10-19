@@ -5,8 +5,8 @@ namespace SistemaNacoes.Domain.Interfaces.Repositorios;
 
 public interface IRefreshTokenRepository
 {
-    Task AddAsync(RefreshToken refreshToken);
-    Task<RefreshToken?> GetByTokenAsync(string token);
-    Task<List<RefreshToken>> FindAsync(Expression<Func<RefreshToken, bool>> predicate);
-    void Revogar(RefreshToken refreshToken);
+    Task AdicionarAsync(RefreshToken refreshToken);
+    Task<RefreshToken?> RecuperarPorTokenAsync(string token);
+    Task<List<RefreshToken>> BuscarAsync(Expression<Func<RefreshToken, bool>> predicate);
+    void Atualizar(RefreshToken refreshToken);
 }

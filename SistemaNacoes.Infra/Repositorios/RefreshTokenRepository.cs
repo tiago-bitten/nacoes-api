@@ -17,24 +17,23 @@ public class RefreshTokenRepository : IRefreshTokenRepository
         _dbSet = context.Set<RefreshToken>();
     }
     
-    public async Task AddAsync(RefreshToken refreshToken)
+    public async Task AdicionarAsync(RefreshToken refreshToken)
     {
         await _dbSet.AddAsync(refreshToken);
     }
 
-    public async Task<RefreshToken?> GetByTokenAsync(string token)
+    public async Task<RefreshToken?> RecuperarPorTokenAsync(string token)
     {
         return await _dbSet.FirstOrDefaultAsync(rt => rt.Token == token);
     }
     
-    public async Task<List<RefreshToken>> FindAsync(Expression<Func<RefreshToken, bool>> predicate)
+    public async Task<List<RefreshToken>> BuscarAsync(Expression<Func<RefreshToken, bool>> predicate)
     {
         return await _dbSet.Where(predicate).ToListAsync();
     }
 
-    public void Revogar(RefreshToken refreshToken)
+    public void Atualizar(RefreshToken refreshToken)
     {
-        refreshToken.Revogado = true;
         _dbSet.Update(refreshToken);
     }
 }

@@ -4,10 +4,11 @@ using SistemaNacoes.Application.UseCases.Auth.RefreshToken.Dtos;
 using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
+using SistemaNacoes.Shared.Extensions;
 
 namespace SistemaNacoes.Application.UseCases.Auth.RefreshToken;
 
-public class RefreshToken : IRefreshTokenUseCase
+public class RefreshTokens : IRefreshTokenUseCase
 {
     #region Ctor
     private readonly ITokenService _tokenService;
@@ -16,7 +17,7 @@ public class RefreshToken : IRefreshTokenUseCase
     private readonly IUsuarioService _usuarioService;
     private readonly IRefreshTokenRepository _refreshTokenRepository;
 
-    public RefreshToken(ITokenService tokenService, IMapper mapper, IUsuarioService usuarioService, IUnitOfWork uow, IRefreshTokenRepository refreshTokenRepository)
+    public RefreshTokens(ITokenService tokenService, IMapper mapper, IUsuarioService usuarioService, IUnitOfWork uow, IRefreshTokenRepository refreshTokenRepository)
     {
         _tokenService = tokenService;
         _mapper = mapper;
@@ -30,13 +31,13 @@ public class RefreshToken : IRefreshTokenUseCase
     {
         var principal = _tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
 
-        var usuarioId = int.Parse(principal.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0");
-        var usuario = await _usuarioService.RecuperaGaranteExisteAsync(usuarioId);
+        var usuarioId = principal.RecuperarNameIdentifier();
+        var usuario = await _usuarioService.RecuperaGaranteExisteAsync(usuarioId, "PerfilAcesso");
         
-        var refreshToken = await _refreshTokenRepository.GetByTokenAsync(request.RefreshToken);
+        var refreshToken = await _refreshTokenRepository.RecuperarPorTokenAsync(request.RefreshToken);
         
-        if (refreshToken is null || refreshToken.Revogado || refreshToken.DataExpiracao < DateTime.UtcNow || refreshToken.Principal != usuario.Email)
-            throw new Exception(MensagemErroConstant.RefreshTokenNaoEncontrado);
+        if (refreshToken is null || refreshToken.Invalido || refreshToken.Principal != usuario.Email)
+            throw new NacoesAppException(MensagemErroConstant.RefreshTokenNaoEncontrado);
         
         await _uow.IniciarTransacaoAsync();
         var newRefreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);
