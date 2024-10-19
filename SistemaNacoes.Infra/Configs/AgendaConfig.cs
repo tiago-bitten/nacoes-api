@@ -36,10 +36,9 @@ public class AgendaConfig : EntidadeBaseConfig<Agenda>
             .HasDefaultValue(true)
             .IsRequired();
         
-        builder.Property(x => x.Finalizado)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("finalizado")
-            .HasDefaultValue(false)
+        builder.Property(x => x.Status)
+            .HasColumnType("INT")
+            .HasColumnName("status")
             .IsRequired();
 
         builder.HasMany(x => x.Agendamentos)

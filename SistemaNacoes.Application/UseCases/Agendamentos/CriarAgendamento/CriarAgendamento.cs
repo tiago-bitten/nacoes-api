@@ -10,7 +10,6 @@ namespace SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento;
 public class CriarAgendamento : ICriarAgendamentoUseCase
 {
     #region ctor
-
     private readonly IAgendamentoService _service;
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _uow;
@@ -54,7 +53,7 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
         await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_AGENDAMENTO, "Você não possui permissão para criar agendamentos");
         
         var voluntarioMinisterio =
-            await _voluntarioMinisterioService.RecuperaGaranteExisteAsync(dto.VoluntarioMinisterioId);
+            await _voluntarioMinisterioService.RecuperaGaranteExisteAsync(dto.VoluntarioMinisterioId, "Voluntario", "Ministerio");
 
         var agenda = await _agendaService.RecuperaGaranteExisteAsync(dto.AgendaId);
 
@@ -62,8 +61,8 @@ public class CriarAgendamento : ICriarAgendamentoUseCase
         
         await _service.GaranteNaoExisteVoluntarioAgendadoAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
         await _dataIndisponivelService.GaranteExisteDataDisponivelAsync(agenda.Id, voluntarioMinisterio.VoluntarioId);
-        
-        var agendamento = _mapper.Map<Agendamento>(dto);
+
+        var agendamento = new Agendamento(voluntarioMinisterio.Voluntario, voluntarioMinisterio.Ministerio, agenda);
         
         await _uow.IniciarTransacaoAsync();
         await _service.AdicionarAsync(agendamento);

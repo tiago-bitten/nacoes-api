@@ -16,7 +16,7 @@ public class RegistroLoginService : IRegistroLoginService
         _ambienteUsuarioService = ambienteUsuarioService;
     }
 
-    public async Task LoginAttemptAsync(RegistroLogin registroLogin)
+    public async Task LoginAttemptAsync(HistoricoLogin registroLogin)
     {
         await _uow.RegistroLogins.AddAsync(registroLogin);
     }
@@ -25,7 +25,7 @@ public class RegistroLoginService : IRegistroLoginService
     {
         var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
         var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
-        var registroLogin = new RegistroLogin
+        var registroLogin = new HistoricoLogin
         {
             Sucesso = true,
             UsuarioId = usuarioId,
@@ -41,7 +41,7 @@ public class RegistroLoginService : IRegistroLoginService
         var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
         var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
         
-        var registroLogin = new RegistroLogin();
+        var registroLogin = new HistoricoLogin();
         
         registroLogin.UsuarioId = usuarioId;
         registroLogin.Ip = ip;

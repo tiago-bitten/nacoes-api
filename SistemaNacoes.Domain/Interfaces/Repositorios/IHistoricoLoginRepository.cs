@@ -2,6 +2,6 @@
 
 namespace SistemaNacoes.Domain.Interfaces.Repositorios;
 
-public interface IRegistroLoginRepository : IRegistroRepository<RegistroLogin>
+public interface IHistoricoLoginRepository : IRepositoryBase<HistoricoLogin>
 {
 }

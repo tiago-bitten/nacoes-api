@@ -27,9 +27,8 @@ public class NacoesDbContext : DbContext
     public DbSet<SituacaoAgendamento> SituacaoAgendamentos { get; set; }
     public DbSet<GrupoVoluntario> GrupoVoluntarios { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
-    public DbSet<RegistroLogin> RegistroLogins { get; set; }
-    public DbSet<HistoricoEntidade> RegistroCriacoes { get; set; }
-    public DbSet<RegistroAlteracao> RegistroAlteracoes { get; set; }
+    public DbSet<HistoricoLogin> HistoricoLogins { get; set; }
+    public DbSet<HistoricoEntidade> HistoricoEntidades { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -46,12 +45,10 @@ public class NacoesDbContext : DbContext
         modelBuilder.ApplyConfiguration(new EscalaConfig());
         modelBuilder.ApplyConfiguration(new EscalaItemConfig());
         modelBuilder.ApplyConfiguration(new AgendamentoAtividadeConfig());
-        modelBuilder.ApplyConfiguration(new SituacaoAgendamentoConfig());
         modelBuilder.ApplyConfiguration(new GrupoVoluntarioConfig());
         modelBuilder.ApplyConfiguration(new RefreshTokenConfig());
-        modelBuilder.ApplyConfiguration(new RegistroLoginConfig());
-        modelBuilder.ApplyConfiguration(new RegistroCriacaoConfig());
-        modelBuilder.ApplyConfiguration(new RegistroAlteracaoConfig());
+        modelBuilder.ApplyConfiguration(new HistoricoLoginConfig());
+        modelBuilder.ApplyConfiguration(new HistoricoEntidadeConfig());
         
         base.OnModelCreating(modelBuilder);
     }

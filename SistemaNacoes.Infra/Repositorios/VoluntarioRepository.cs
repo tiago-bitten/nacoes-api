@@ -1,7 +1,5 @@
-﻿using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Infra.Contexts;
 
@@ -23,4 +21,21 @@ public class VoluntarioRepository : RepositoryBase<Voluntario>, IVoluntarioRepos
     {
         return BuscarAsync(x => x.Cpf == cpf);
     }
+
+    public IQueryable<Voluntario> RecuperarParaAgendar(int agendaId, int ministerioId)
+    {
+        return (from v in Context.Voluntarios
+                join vm in Context.VoluntarioMinisterios on v.Id equals vm.VoluntarioId
+                join m in Context.Ministerios on vm.MinisterioId equals m.Id
+                join a in Context.Agendamentos on v.Id equals a.VoluntarioId into agendamentos
+                from a in agendamentos.DefaultIfEmpty()
+                where !v.Removido
+                      && !vm.Removido
+                      && !m.Removido
+                      && vm.MinisterioId == ministerioId
+                      && (a.AgendaId != agendaId || a.Removido)
+                select v)
+            .Distinct();
+    }
+
 }

@@ -5,7 +5,7 @@ namespace SistemaNacoes.Domain.Interfaces.Services;
 
 public interface IRegistroLoginService
 {
-    Task LoginAttemptAsync(RegistroLogin registroLogin);    
+    Task LoginAttemptAsync(HistoricoLogin registroLogin);    
     Task LogSuccessLoginAsync(int usuarioId);
     Task LogFailedLoginAsync(int? usuarioId, EMotivoLoginAcessoNegado motivo);
 }

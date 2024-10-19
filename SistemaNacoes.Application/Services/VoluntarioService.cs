@@ -1,5 +1,7 @@
-﻿using SistemaNacoes.Domain.Enterprise;
+﻿using SistemaNacoes.Application.UseCases.Voluntarios.RecuperarVoluntarioParaAgendar.Dtos;
+using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -12,6 +14,7 @@ public class VoluntarioService : ServiceBase<Voluntario, IVoluntarioRepository>,
     {
     }
 
+    #region RecuperarPorChaveAcessoAsync
     public async Task<Voluntario> RecuperarPorChaveAcessoAsync(Guid chaveAcesso, params string[]? includes)
     {
         var existe = await Repository.RecuperarPorChaveAcessoAsync(chaveAcesso, includes);
@@ -21,7 +24,9 @@ public class VoluntarioService : ServiceBase<Voluntario, IVoluntarioRepository>,
 
         return existe;
     }
+    #endregion
 
+    #region GaranteNaoExisteCadastradoAsync
     public async Task GaranteNaoExisteCadastradoAsync(string? cpf)
     {
         if (string.IsNullOrEmpty(cpf))
@@ -31,5 +36,17 @@ public class VoluntarioService : ServiceBase<Voluntario, IVoluntarioRepository>,
             
         if (existe is not null)
             throw new NacoesAppException("Voluntário com cpf já cadastrado.");
+    }
+    #endregion
+
+    #region RecuperarParaAgendar
+    public IQueryable<Voluntario> RecuperarParaAgendar(int agendaId, int ministerioId)
+    {
+        return Repository.RecuperarParaAgendar(agendaId, ministerioId);
+    }
+    #endregion
+    
+    public async Task<List<EMotivoIndisponibilidadeAgendamento>> RecuperarMotivosIndisponibilidadeAsync(int voluntarioId, int agendaId)
+    {
     }
 }

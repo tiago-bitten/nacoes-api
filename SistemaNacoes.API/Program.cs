@@ -94,58 +94,13 @@ builder.Services.AddScoped<IAgendamentoAtividadeService, AgendamentoAtividadeSer
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<ITokenService, JsonWebTokenService>();
 builder.Services.AddScoped<IAmbienteUsuarioService, AmbienteUsuarioService>();
-builder.Services.AddScoped<IRegistroLoginRepository, RegistroLoginRepository>();
+builder.Services.AddScoped<IHistoricoLoginRepository, HistoricoLoginRepository>();
 builder.Services.AddScoped<IRegistroLoginService, RegistroLoginService>();
-builder.Services.AddScoped<IRegistroCriacaoRepository, RegistroCriacaoRepository>();
-builder.Services.AddScoped<IRegistroAlteracaoRepository, RegistroAlteracaoRepository>();
+builder.Services.AddScoped<IHistoricoEntidadeRepository, RegistroCriacaoRepository>();
 builder.Services.AddScoped<IHistoricoEntidadeService, HistoricoEntidadeService>();
 builder.Services.AddScoped<IAtividadeService, AtividadeService>();
 #endregion
 
-#region usecases
-builder.Services.AddScoped<CreateVoluntario>();
-builder.Services.AddScoped<CreateMinisterio>();
-builder.Services.AddScoped<CreateDataIndisponivel>();
-builder.Services.AddScoped<CreateAtividade>();
-builder.Services.AddScoped<GetAllVoluntarios>();
-builder.Services.AddScoped<CriarAgendamento>();
-builder.Services.AddScoped<GetAllVoluntarioMinisterios>();
-builder.Services.AddScoped<GetAllMinisterios>();
-builder.Services.AddScoped<GetAllAtividades>();
-builder.Services.AddScoped<GetAllAgendas>();
-builder.Services.AddScoped<GetAllDataIndisponiveis>();
-builder.Services.AddScoped<GetAllAgendamentos>();
-builder.Services.AddScoped<VinculateVoluntarioMinisterio>();
-builder.Services.AddScoped<OpenAgenda>();
-builder.Services.AddScoped<RemoveAgenda>();
-builder.Services.AddScoped<FinalizeAgenda>();
-builder.Services.AddScoped<RemoverAgendamento>();
-builder.Services.AddScoped<DeleteVoluntario>();
-builder.Services.AddScoped<DeleteAtividade>();
-builder.Services.AddScoped<SuspendDataIndisponivel>();
-builder.Services.AddScoped<DeleteMinisterio>();
-builder.Services.AddScoped<CreateGrupo>();
-builder.Services.AddScoped<GetAllGrupos>();
-builder.Services.AddScoped<DeleteGrupo>();
-builder.Services.AddScoped<DesvinculateVoluntarioMinisterio>();
-builder.Services.AddScoped<DeleteMinisterio>();
-builder.Services.AddScoped<VinculateVoluntarioGrupo>();
-builder.Services.AddScoped<VinculateAgendamentoAtividade>();
-builder.Services.AddScoped<DeleteAgendamentoAtividade>();
-builder.Services.AddScoped<GetVoluntariosParaAgendar>();
-builder.Services.AddScoped<GetVoluntariosNoGrupo>();
-builder.Services.AddScoped<RefreshToken_old>();
-builder.Services.AddScoped<CreateUsuario>();
-builder.Services.AddScoped<GetAllUsuarios>();
-builder.Services.AddScoped<Login>();
-builder.Services.AddScoped<GetAllPermissoes>();
-builder.Services.AddScoped<RemovePermissoesUsuario>();
-builder.Services.AddScoped<GetPermissoesUsuario>();
-builder.Services.AddScoped<AddPermissoesUsuario>();
-builder.Services.AddScoped<VinculateUsuarioMinisterio>();
-builder.Services.AddScoped<GetAllUsuarioMinisterios>();
-builder.Services.AddScoped<GetUsuarioMinisterios>();
-#endregion
 
 #region automapper profiles
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));

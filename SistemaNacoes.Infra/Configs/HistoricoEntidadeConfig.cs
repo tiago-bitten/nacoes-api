@@ -5,7 +5,7 @@ using SistemaNacoes.Infra.Configs.Abstracoes;
 
 namespace SistemaNacoes.Infra.Configs;
 
-public class RegistroCriacaoConfig : EntidadeBaseConfig<HistoricoEntidade>
+public class HistoricoEntidadeConfig : EntidadeBaseConfig<HistoricoEntidade>
 {
     public override void Configure(EntityTypeBuilder<HistoricoEntidade> builder)
     {
@@ -41,7 +41,7 @@ public class RegistroCriacaoConfig : EntidadeBaseConfig<HistoricoEntidade>
             .IsRequired();
 
         builder.HasOne(x => x.Usuario)
-            .WithMany(x => x.RegistroCriacoes)
+            .WithMany(x => x.Historicos)
             .HasForeignKey(x => x.UsuarioId)
             .OnDelete(DeleteBehavior.SetNull);
     }

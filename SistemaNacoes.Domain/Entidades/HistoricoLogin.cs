@@ -3,7 +3,7 @@ using SistemaNacoes.Domain.Enums;
 
 namespace SistemaNacoes.Domain.Entidades;
 
-public sealed class RegistroLogin : EntidadeBase
+public sealed class HistoricoLogin : EntidadeBase
 {
     public int? UsuarioId { get; set; }    
     public string Ip { get; set; }

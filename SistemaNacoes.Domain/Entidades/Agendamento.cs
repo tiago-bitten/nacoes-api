@@ -18,7 +18,6 @@ namespace SistemaNacoes.Domain.Entidades
         public int VoluntarioId { get; set; }
         public int MinisterioId { get; set; }
         public int AgendaId { get; set; }
-        public bool Removido { get; set; } = false;
 
         public Voluntario Voluntario { get; set; }
         public Ministerio Ministerio { get; set; }
