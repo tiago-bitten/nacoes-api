@@ -134,7 +134,7 @@ builder.Services.AddScoped<VinculateAgendamentoAtividade>();
 builder.Services.AddScoped<DeleteAgendamentoAtividade>();
 builder.Services.AddScoped<GetVoluntariosParaAgendar>();
 builder.Services.AddScoped<GetVoluntariosNoGrupo>();
-builder.Services.AddScoped<RefreshToken>();
+builder.Services.AddScoped<RefreshToken_old>();
 builder.Services.AddScoped<CreateUsuario>();
 builder.Services.AddScoped<GetAllUsuarios>();
 builder.Services.AddScoped<Login>();

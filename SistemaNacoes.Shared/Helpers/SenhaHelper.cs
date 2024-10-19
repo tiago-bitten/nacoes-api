@@ -2,7 +2,8 @@
 
 public static class SenhaHelper
 {
-    public static string ProvisionarSenha()
+    #region ProvisionarSenha
+    public static string Provisionar()
     {
         var diaHoje = DateTime.Now.Day;
         var mesHoje = DateTime.Now.Month;
@@ -10,10 +11,12 @@ public static class SenhaHelper
         
         var senha = $"{diaHoje}{mesHoje}{anoHoje}";
         
-        return EncriptarSenha(senha);
+        return Encriptar(senha);
     }
+    #endregion
     
-    public static string EncriptarSenha(string senha)
+    #region EncriptarSenha
+    public static string Encriptar(string senha)
     {
         var bcryptSalt = BCrypt.Net.BCrypt.GenerateSalt();
         var customSalt = "emili_alves";
@@ -21,5 +24,11 @@ public static class SenhaHelper
         var salt = bcryptSalt + customSalt;
         
         return BCrypt.Net.BCrypt.HashPassword(senha, salt);
+    }
+    #endregion
+
+    public static bool Verificar(string senha, string senhaEncriptada)
+    {
+        return BCrypt.Net.BCrypt.Verify(senha, senhaEncriptada);
     }
 }

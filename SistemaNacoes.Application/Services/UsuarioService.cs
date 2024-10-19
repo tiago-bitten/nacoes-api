@@ -11,10 +11,11 @@ public class UsuarioService : ServiceBase<Usuario, IUsuarioRepository>, IUsuario
     {
     }
 
+    #region GaranteNaoExisteUsuarioCriadoAsync
     public async Task GaranteNaoExisteUsuarioCriadoAsync(string email, string? cpf)
     {
-        var existePorEmail = await Repository.RecuperarPorEmail(email);
-        var existePorCpf = !string.IsNullOrEmpty(cpf) ? await Repository.RecuperarPorCpf(cpf) : null;
+        var existePorEmail = await Repository.RecuperarPorEmailAsync(email);
+        var existePorCpf = !string.IsNullOrEmpty(cpf) ? await Repository.RecuperarPorCpfAsync(cpf) : null;
 
         var existentes = new List<string>();
 
@@ -36,4 +37,13 @@ public class UsuarioService : ServiceBase<Usuario, IUsuarioRepository>, IUsuario
             throw new NacoesAppException($"Já existe um usuário cadastrado com {msg}.");
         }
     }
+    #endregion
+    
+    #region RecuperarPorEmailAsync
+
+    public Task<Usuario?> RecuperarPorEmailAsync(string email)
+    {
+        return Repository.RecuperarPorEmailAsync(email);
+    }
+    #endregion
 }

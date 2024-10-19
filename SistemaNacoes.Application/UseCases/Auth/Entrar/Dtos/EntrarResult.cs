@@ -1,12 +1,13 @@
 ﻿using System.Text.Json.Serialization;
+using SistemaNacoes.Application.Dtos;
 
-namespace SistemaNacoes.Application.Dtos.Auth;
+namespace SistemaNacoes.Application.UseCases.Auth.Entrar.Dtos;
 
-public class RefreshAuthTokenDto
+public class EntrarResult : Result
 {
     [JsonPropertyName("AccessToken")]
     public string AccessToken { get; set; }
     
-    [JsonPropertyName("RefreshToken_old")]
+    [JsonPropertyName("RefreshToken")]
     public string RefreshToken { get; set; }
 }

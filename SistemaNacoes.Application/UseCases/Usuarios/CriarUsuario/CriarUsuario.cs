@@ -39,7 +39,7 @@ public class CriarUsuario : ICriarUsuarioUseCase
         
         var usuario = _mapper.Map<Usuario>(request);
 
-        usuario.SenhaHash = SenhaHelper.ProvisionarSenha(); // Data de hoje
+        usuario.SenhaHash = SenhaHelper.Provisionar(); // Data de hoje
         usuario.PerfilAcesso = perfilAcesso;
 
         await _uow.IniciarTransacaoAsync();

@@ -15,4 +15,6 @@ public class RefreshToken : EntidadeBase
     public string Principal { get; set; }
     public bool Revogado { get; set; } = false;
     public DateTime DataExpiracao { get; set; }
+    
+    public bool Valido => Revogado || DataExpiracao < DateTime.UtcNow;
 }

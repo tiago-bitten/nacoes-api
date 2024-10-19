@@ -7,7 +7,7 @@ public class GetAuthTokenDto
     [JsonPropertyName("AccessToken")]
     public string AccessToken { get; set; }
     
-    [JsonPropertyName("RefreshToken")]
+    [JsonPropertyName("RefreshToken_old")]
     public string RefreshToken { get; set; }
     
     [JsonPropertyName("ExpiresIn")]

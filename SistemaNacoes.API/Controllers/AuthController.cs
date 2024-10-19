@@ -8,12 +8,12 @@ namespace SistemaNacoes.API.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly RefreshToken _refreshToken;
+    private readonly RefreshToken_old _refreshTokenOld;
     private readonly Login _login;
 
-    public AuthController(RefreshToken refreshToken, Login login)
+    public AuthController(RefreshToken_old refreshTokenOld, Login login)
     {
-        _refreshToken = refreshToken;
+        _refreshTokenOld = refreshTokenOld;
         _login = login;
     }
     
@@ -25,10 +25,10 @@ public class AuthController : ControllerBase
         return Ok(result);
     }
     
-    [HttpPost("RefreshToken")]
+    [HttpPost("RefreshToken_old")]
     public async Task<IActionResult> RefreshToken([FromBody] RefreshAuthTokenDto dto)
     {
-        var result = await _refreshToken.ExecuteAsync(dto);
+        var result = await _refreshTokenOld.ExecuteAsync(dto);
         
         return Ok(result);
     }

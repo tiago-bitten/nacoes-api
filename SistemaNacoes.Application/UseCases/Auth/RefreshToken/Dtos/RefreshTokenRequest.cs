@@ -1,8 +1,9 @@
 ﻿using System.Text.Json.Serialization;
+using SistemaNacoes.Application.Dtos;
 
-namespace SistemaNacoes.Application.Dtos.Auth;
+namespace SistemaNacoes.Application.UseCases.Auth.RefreshToken.Dtos;
 
-public class RefreshAuthTokenDto
+public class RefreshTokenRequest : Request
 {
     [JsonPropertyName("AccessToken")]
     public string AccessToken { get; set; }

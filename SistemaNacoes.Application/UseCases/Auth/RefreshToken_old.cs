@@ -10,14 +10,14 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.Auth;
 
-public class RefreshToken
+public class RefreshToken_old
 {
     private readonly IUnitOfWork _uow;
     private readonly ITokenService _tokenService;
     private readonly IServiceBase<Usuario> _usuarioService;
     private readonly IMapper _mapper;
     
-    public RefreshToken(ITokenService tokenService, IServiceBase<Usuario> usuarioService, IUnitOfWork uow, IMapper mapper)
+    public RefreshToken_old(ITokenService tokenService, IServiceBase<Usuario> usuarioService, IUnitOfWork uow, IMapper mapper)
     {
         _tokenService = tokenService;
         _usuarioService = usuarioService;

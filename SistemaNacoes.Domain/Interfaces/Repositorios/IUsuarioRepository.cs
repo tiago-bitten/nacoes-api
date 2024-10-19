@@ -4,7 +4,7 @@ namespace SistemaNacoes.Domain.Interfaces.Repositorios
 {
     public interface IUsuarioRepository : IRepositoryBase<Usuario>
     {
-        Task<Usuario?> RecuperarPorEmail(string email);
-        Task<Usuario?> RecuperarPorCpf(string cpf);
+        Task<Usuario?> RecuperarPorEmailAsync(string email);
+        Task<Usuario?> RecuperarPorCpfAsync(string cpf);
     }
 }
