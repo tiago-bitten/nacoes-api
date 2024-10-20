@@ -1,4 +1,5 @@
-﻿using SistemaNacoes.Domain.Entidades;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Infra.Contexts;
@@ -10,5 +11,10 @@ public class DataIndisponivelRepository : RepositoryBase<DataIndisponivel>, IDat
     public DataIndisponivelRepository(NacoesDbContext context)
         : base(context)
     {
+    }
+
+    public Task<List<DataIndisponivel>> RecuperarPorVoluntarioAsync(int voluntarioId)
+    {
+        return BuscarTodos(x => x.VoluntarioId == voluntarioId).ToListAsync();
     }
 }

@@ -45,9 +45,10 @@ public class RecuperarVoluntarioParaAgendar : IRecuperarVoluntarioParaAgendarUse
 
         foreach (var voluntario in voluntariosParaAgendar.Dados)
         {
-            var dataDisponivel = await _dataIndisponivelService.ExisteDataDisponivelAsync(agenda.Id, voluntario.VoluntarioId);
+            var datas = await _dataIndisponivelService.RecuperarPorVoluntarioAsync(voluntario.VoluntarioId);
+            var disponivelPorData = _dataIndisponivelService.ExisteDataDisponivel(agenda.DataInicio, agenda.DataFinal, datas);
             
-            if (!dataDisponivel)
+            if (!disponivelPorData)
                 voluntario.MotivoIndisponibilidades.Add(EMotivoIndisponibilidadeAgendamento.DataIndisponivel);
         }
 

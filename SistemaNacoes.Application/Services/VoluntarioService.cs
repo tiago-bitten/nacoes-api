@@ -45,8 +45,4 @@ public class VoluntarioService : ServiceBase<Voluntario, IVoluntarioRepository>,
         return Repository.RecuperarParaAgendar(agendaId, ministerioId);
     }
     #endregion
-    
-    public async Task<List<EMotivoIndisponibilidadeAgendamento>> RecuperarMotivosIndisponibilidadeAsync(int voluntarioId, int agendaId)
-    {
-    }
 }

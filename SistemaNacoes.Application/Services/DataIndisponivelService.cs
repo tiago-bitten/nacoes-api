@@ -1,7 +1,6 @@
-﻿using SistemaNacoes.Application.Responses;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -22,22 +21,17 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel, IDataIndisp
     #endregion
 
     #region ExisteDataDisponivelAsync
-    public async Task<bool> ExisteDataDisponivelAsync(int agendaId, int voluntarioId)
+    public bool ExisteDataDisponivel(DateTime dataInicial, DateTime dataFinal, List<DataIndisponivel> datasIndisponiveis)
     {
-        var agenda = await _agendaService.RecuperaGaranteExisteAsync(agendaId);
-        var voluntario = await _voluntarioService.RecuperaGaranteExisteAsync(voluntarioId, "DataIndisponiveis");
-        
-        var datasIndisponiveis = voluntario.GetDataIndisponiveis();
-        
         if (!datasIndisponiveis.Any())
             return true;
         
         foreach (var dataIndisponivel in datasIndisponiveis)
         {
-            if (agenda.DataInicio >= dataIndisponivel.DataInicio && agenda.DataInicio <= dataIndisponivel.DataFinal)
+            if (dataInicial >= dataIndisponivel.DataInicio && dataInicial <= dataIndisponivel.DataFinal && !dataIndisponivel.Suspenso)
                 return false;
             
-            if (agenda.DataFinal >= dataIndisponivel.DataInicio && agenda.DataFinal <= dataIndisponivel.DataFinal)
+            if (dataFinal >= dataIndisponivel.DataInicio && dataFinal <= dataIndisponivel.DataFinal && !dataIndisponivel.Suspenso)
                 return false;
         }
         
@@ -46,9 +40,9 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel, IDataIndisp
     #endregion
 
     #region GaranteExisteDataDisponivelAsync
-    public async Task GaranteExisteDataDisponivelAsync(int agendaId, int voluntarioId)
+    public void GaranteExisteDataDisponivel(DateTime dataInicial, DateTime dataFinal, List<DataIndisponivel> datasIndisponiveis)
     {
-        var existe = await ExisteDataDisponivelAsync(agendaId, voluntarioId);
+        var existe = ExisteDataDisponivel(dataInicial, dataFinal, datasIndisponiveis);
 
         if (!existe)
             throw new NacoesAppException(MensagemErroConstant.DataIndisponivel);
@@ -60,6 +54,13 @@ public class DataIndisponivelService : ServiceBase<DataIndisponivel, IDataIndisp
     {
         dataIndisponivel.Suspender();
         Repository.Atualizar(dataIndisponivel);
+    }
+    #endregion
+    
+    #region RecuperarPorVoluntarioAsync
+    public Task<List<DataIndisponivel>> RecuperarPorVoluntarioAsync(int voluntarioId)
+    {
+        return Repository.RecuperarPorVoluntarioAsync(voluntarioId);
     }
     #endregion
 }

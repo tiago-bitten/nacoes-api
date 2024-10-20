@@ -35,7 +35,8 @@ public class VoluntarioRepository : RepositoryBase<Voluntario>, IVoluntarioRepos
                       && vm.MinisterioId == ministerioId
                       && (a.AgendaId != agendaId || a.Removido)
                 select v)
-            .Distinct();
+            .Distinct()
+            .Include("DataIndisponiveis");
     }
 
 }

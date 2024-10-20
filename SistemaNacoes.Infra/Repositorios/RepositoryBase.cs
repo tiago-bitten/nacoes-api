@@ -39,9 +39,9 @@ namespace SistemaNacoes.Infra.Repositorios
             DbSet.Remove(entity);
         }
 
-        public async Task<T?> RecuperarPorIdAsync(int id, params string[]? includes)
+        public Task<T?> RecuperarPorIdAsync(int id, params string[]? includes)
         {
-            return await BuscarAsync(x => x.Id == id, includes);
+            return BuscarAsync(x => x.Id == id, includes);
 
         }
 
@@ -50,9 +50,9 @@ namespace SistemaNacoes.Infra.Repositorios
             return DbSet.BaseQuery(includes);
         }
 
-        public async Task<T?> BuscarAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
+        public Task<T?> BuscarAsync(Expression<Func<T, bool>> predicate, params string[]? includes)
         {
-            return await DbSet
+            return DbSet
                 .BaseQuery(includes)
                 .FirstOrDefaultAsync(predicate);
         }
@@ -64,9 +64,9 @@ namespace SistemaNacoes.Infra.Repositorios
                 .Where(predicate);
         }
 
-        public async Task<bool> AlgumAsync(Expression<Func<T, bool>> predicate)
+        public Task<bool> AlgumAsync(Expression<Func<T, bool>> predicate)
         {
-            return await DbSet
+            return DbSet
                 .BaseQuery()
                 .AnyAsync(predicate);
         }
