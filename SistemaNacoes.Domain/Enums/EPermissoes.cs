@@ -73,4 +73,10 @@ public enum EPermissoes : long
     
     // Escala
     CREATE_ESCALA = 1L << 44, // 17592186044416(2^44)
+    
+    // Perfil Acesso
+    CREATE_PERFIL_ACESSO = 1L << 45, // 35184372088832(2^45)
+    DELETE_PERFIL_ACESSO = 1L << 46, // 70368744177664(2^46)
+    GET_PERFIL_ACESSO = 1L << 47, // 140737488355328(2^47)
+    UPDATE_PERFIL_ACESSO = 1L << 48, // 281474976710656(2^48)
 }

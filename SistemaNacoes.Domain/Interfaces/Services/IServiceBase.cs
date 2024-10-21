@@ -12,5 +12,6 @@ public interface IServiceBase<T> where T : EntidadeBase
     Task<T> RecuperaGaranteExisteAsync(int id, params string[]? includes);
     Task<List<T>> RecuperaGaranteExisteVariosAsync(List<int> ids, params string[]? includes);
     void Remover(T entity);
+    void Atualizar(T entity);
     IQueryable<T> RecuperarTodos(params string[]? includes);
 }

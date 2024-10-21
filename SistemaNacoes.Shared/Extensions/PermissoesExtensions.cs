@@ -9,4 +9,12 @@ public static class  PermissoesExtensions
     {
         return (usuario.PerfilAcesso.Permissoes & permissao) == permissao;
     }
+    
+    public static void AdicionarPermissao(this PerfilAcesso perfilAcesso, params EPermissoes[] permissoes)
+    {
+        foreach (var permissao in permissoes)
+        {
+            perfilAcesso.Permissoes |= permissao;
+        }
+    }
 }

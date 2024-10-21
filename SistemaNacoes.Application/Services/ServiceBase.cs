@@ -37,6 +37,11 @@ public class ServiceBase<TEntidade, TRepositorio> : IServiceBase<TEntidade>
         Repository.Atualizar(entidade);
     }
 
+    public void Atualizar(TEntidade entity)
+    {
+        Repository.Atualizar(entity);
+    }
+
     public IQueryable<TEntidade> RecuperarTodos(params string[]? includes)
     {
         return Repository.RecuperarTodos(includes);
