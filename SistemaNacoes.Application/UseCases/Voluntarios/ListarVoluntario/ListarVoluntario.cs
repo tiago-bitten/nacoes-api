@@ -1,8 +1,9 @@
-﻿using SistemaNacoes.Domain.Enums;
+﻿using SistemaNacoes.Application.UseCases.Voluntarios.ListarVoluntario.Dtos;
+using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Paginacao;
 
-namespace SistemaNacoes.Application.UseCases.Voluntarios.ListarVoluntario.Dtos;
+namespace SistemaNacoes.Application.UseCases.Voluntarios.ListarVoluntario;
 
 public class ListarVoluntario : IListarVoluntarioUseCase
 {

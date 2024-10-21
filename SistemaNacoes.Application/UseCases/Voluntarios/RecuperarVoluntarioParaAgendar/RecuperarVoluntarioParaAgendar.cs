@@ -36,22 +36,23 @@ public class RecuperarVoluntarioParaAgendar : IRecuperarVoluntarioParaAgendarUse
 
         var voluntariosParaAgendar = await _service
             .RecuperarParaAgendar(agenda.Id, ministerio.Id)
-            .Select(x => new RecuperarVoluntarioParaAgendarResult
-            {
-                VoluntarioId = x.Id,
-                Nome = x.Nome
-            })
             .PaginarAsync(param.Pagina, param.Tamanho);
 
+        var result = new List<RecuperarVoluntarioParaAgendarResult>();
+        
         foreach (var voluntario in voluntariosParaAgendar.Dados)
         {
-            var datas = await _dataIndisponivelService.RecuperarPorVoluntarioAsync(voluntario.VoluntarioId);
+            result.Add(RecuperarVoluntarioParaAgendarResult.Criar(voluntario));
+
+            var datas = voluntario.DataIndisponiveis;
             var disponivelPorData = _dataIndisponivelService.ExisteDataDisponivel(agenda.DataInicio, agenda.DataFinal, datas);
             
             if (!disponivelPorData)
-                voluntario.MotivoIndisponibilidades.Add(EMotivoIndisponibilidadeAgendamento.DataIndisponivel);
+                result.Last().MotivoIndisponibilidades.Add(EMotivoIndisponibilidadeAgendamento.DataIndisponivel);
         }
 
-        return voluntariosParaAgendar;
+        var resultPaginado = result.ConverterDadosPaginacao(voluntariosParaAgendar);
+
+        return resultPaginado;
     }
 }

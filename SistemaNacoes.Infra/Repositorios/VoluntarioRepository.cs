@@ -36,7 +36,8 @@ public class VoluntarioRepository : RepositoryBase<Voluntario>, IVoluntarioRepos
                       && (a.AgendaId != agendaId || a.Removido)
                 select v)
             .Distinct()
-            .Include("DataIndisponiveis");
+            .Include(x => x.DataIndisponiveis.Where(y => 
+                !y.Removido && !y.Suspenso
+                && y.DataFinal.Date >= DateTime.Now.Date));
     }
-
 }
