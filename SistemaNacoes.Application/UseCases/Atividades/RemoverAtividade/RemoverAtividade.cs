@@ -6,6 +6,7 @@ namespace SistemaNacoes.Application.UseCases.Atividades.RemoverAtividade;
 
 public class RemoverAtividade : IRemoverAtividadeUseCase
 {
+    #region Ctor
     private readonly IAtividadeService _service;
     private readonly IUnitOfWork _uow;
     private readonly IHistoricoEntidadeService _historicoService;
@@ -18,10 +19,11 @@ public class RemoverAtividade : IRemoverAtividadeUseCase
         _historicoService = historicoService;
         _permissoesService = permissoesService;
     }
-
+    #endregion
+    
     public async Task ExecutarAsync(int id)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.DELETE_ATIVIDADE, "Você não possui permissão para remover atividades");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.RemoverAtividade, "Você não possui permissão para remover atividades");
         
         var atividade = await _service.RecuperaGaranteExisteAsync(id);
         

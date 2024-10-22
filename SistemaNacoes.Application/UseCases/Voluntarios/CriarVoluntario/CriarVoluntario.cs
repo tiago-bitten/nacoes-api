@@ -28,7 +28,7 @@ public class CriarVoluntario : ICriarVoluntarioUseCase
     
     public async Task<CriarVoluntarioResult> ExecutarAsync(CriarVoluntarioRequest request)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_VOLUNTARIO, "Você não tem permissão para criar um voluntário");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CriarVoluntario, "Você não tem permissão para criar um voluntário");
 
         await _service.GaranteNaoExisteCadastradoAsync(request.Cpf);
         

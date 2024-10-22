@@ -28,7 +28,7 @@ public class CriarGrupo: ICriarGrupoUseCase
 
     public async Task<CriarGrupoResult> ExecutarAsync(CriarGrupoRequest request)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_GRUPO, "Você não tem permissão para criar um grupo.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CriarGrupo, "Você não tem permissão para criar um grupo.");
         
         var grupo = _mapper.Map<Grupo>(request);
 

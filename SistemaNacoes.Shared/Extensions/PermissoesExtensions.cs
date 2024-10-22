@@ -17,4 +17,12 @@ public static class  PermissoesExtensions
             perfilAcesso.Permissoes |= permissao;
         }
     }
+    
+    public static void RemoverPermissao(this PerfilAcesso perfilAcesso, params EPermissoes[] permissoes)
+    {
+        foreach (var permissao in permissoes)
+        {
+            perfilAcesso.Permissoes &= ~permissao;
+        }
+    }
 }

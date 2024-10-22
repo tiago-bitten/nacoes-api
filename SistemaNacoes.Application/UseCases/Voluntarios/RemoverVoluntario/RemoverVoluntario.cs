@@ -24,7 +24,7 @@ public class RemoverVoluntario : IRemoverVoluntarioUseCase
     
     public async Task ExecutarAsync(int id)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.DELETE_VOLUNTARIO,
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.RemoverVoluntario,
             "Você não tem permissão para remover voluntários.");
 
         var voluntario = await _service.RecuperaGaranteExisteAsync(id);

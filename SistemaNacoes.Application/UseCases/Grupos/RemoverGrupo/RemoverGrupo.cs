@@ -21,7 +21,7 @@ public class RemoverGrupo : IRemoverGrupoUseCase
 
     public async Task ExecutarAsync(int id)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.DELETE_GRUPO, "Você não tem permissão para remover um grupo.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.RemoverGrupo, "Você não tem permissão para remover um grupo.");
         
         var grupo = await _service.RecuperaGaranteExisteAsync(id);
         

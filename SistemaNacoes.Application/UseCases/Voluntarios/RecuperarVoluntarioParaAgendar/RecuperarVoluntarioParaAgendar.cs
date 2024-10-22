@@ -29,7 +29,7 @@ public class RecuperarVoluntarioParaAgendar : IRecuperarVoluntarioParaAgendarUse
 
     public async Task<PaginadoResult<RecuperarVoluntarioParaAgendarResult>> ExecutarAsync(RecuperarVoluntarioParaAgendarParam param)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.GET_VOLUNTARIO, "Você não tem permissão para visualizar voluntários.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.VisualizarVoluntario, "Você não tem permissão para visualizar voluntários.");
 
         var agenda = await _agendaService.RecuperaGaranteExisteAsync(param.AgendarId);
         var ministerio = await _ministerioService.RecuperaGaranteExisteAsync(param.MinisterioId);

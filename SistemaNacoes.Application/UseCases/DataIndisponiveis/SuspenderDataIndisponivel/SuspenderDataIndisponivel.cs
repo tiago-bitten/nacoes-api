@@ -28,7 +28,7 @@ public class SuspenderDataIndisponivel : ISuspenderDataIndisponivelUseCase
     public async Task ExecutarAsync(SuspenderDataIndisponivelRequest request)
     {
         if (_ambienteService.Autenticado())
-            await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.SUSPEND_DATA_INDISPONIVEL, "Você não tem permissão para suspender uma data indisponível");
+            await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.SuspenderDataIndisponivel, "Você não tem permissão para suspender uma data indisponível");
         
         var dataIndisponivel = await _service.RecuperaGaranteExisteAsync(request.DataIndisponivelId);
         

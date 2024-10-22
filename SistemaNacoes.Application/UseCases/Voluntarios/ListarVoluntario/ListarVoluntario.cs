@@ -22,7 +22,7 @@ public class ListarVoluntario : IListarVoluntarioUseCase
     
     public async Task<PaginadoResult<ListarVoluntarioResult>> ExecutarAsync(ListarVoluntarioParam param)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.GET_VOLUNTARIO, "Você não tem permissão para visualizar voluntários.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.VisualizarVoluntario, "Você não tem permissão para visualizar voluntários.");
 
         var voluntariosPaginados = await _service
             .RecuperarTodos()

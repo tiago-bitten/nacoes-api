@@ -21,7 +21,7 @@ public class RemoverMinisterio : IRemoverMinisterioUseCase
 
     public async Task ExecutarAsync(int id)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.DELETE_MINISTERIO, "Você não possui permissão para remover ministérios");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.RemoverMinisterio, "Você não possui permissão para remover ministérios");
 
         var ministerio = await _service.RecuperaGaranteExisteAsync(id);
         

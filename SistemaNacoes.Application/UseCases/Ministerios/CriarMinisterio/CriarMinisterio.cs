@@ -26,7 +26,7 @@ public class CriarMinisterio : ICriarMinisterioUseCase
 
     public async Task<CriarMinisterioResult> ExecutarAsync(CriarMinisterioRequest request)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_MINISTERIO, "Você não possui permissão para criar ministérios");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CriarMinisterio, "Você não possui permissão para criar ministérios");
         
         var ministerio = _mapper.Map<Ministerio>(request);
         

@@ -22,7 +22,7 @@ public class ListarAtividade : IListarAtividadeUseCase
     
     public async Task<PaginadoResult<ListarAtividadeResult>> ExecutarAsync(ListarAtividadeParams param)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.GET_ATIVIDADE, "Você não tem permissão para visualizar atividades.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.VisualizarAtividade, "Você não tem permissão para visualizar atividades.");
         
         var atividadesPaginadas = await _service
             .RecuperarTodos("Ministerio")

@@ -26,7 +26,7 @@ public class GetPermissoesUsuario
             Identificador = x.Identificador,
             Nome = x.Nome,
             NomeFormatado = x.NomeFormatado,
-            PossuiPermissao = usuarioLogado.Permissoes.HasFlag((EPermissoes)x.Identificador)
+            PossuiPermissao = usuarioLogado.PerfilAcesso.Permissoes.HasFlag((EPermissoes)x.Identificador)
         }).ToList();
 
         var totalPermissoes = permissoes.Count;

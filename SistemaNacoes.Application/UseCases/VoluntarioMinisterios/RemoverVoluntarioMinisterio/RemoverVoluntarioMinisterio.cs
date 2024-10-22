@@ -23,7 +23,7 @@ public class RemoverVoluntarioMinisterio : IRemoverVoluntarioMinisterioUseCase
 
     public async Task ExecutarAsync(int id)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.DELETE_VOLUNTARIO_MINISTERIO, "Você não tem permissão para desvincular o voluntário ao ministério.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.RemoverVoluntarioMinisterio, "Você não tem permissão para desvincular o voluntário ao ministério.");
         
         var voluntarioMinisterio = await _service.RecuperaGaranteExisteAsync(id);
         

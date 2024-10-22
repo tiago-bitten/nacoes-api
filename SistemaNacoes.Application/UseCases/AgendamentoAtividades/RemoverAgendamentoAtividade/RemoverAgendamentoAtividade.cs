@@ -21,7 +21,7 @@ public class RemoverAgendamentoAtividade : IRemoverAgendamentoAtividadeUseCase
 
     public async Task ExecutarAsync(int id)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.DELETE_AGENDAMENTO_ATIVIDADE, "Você não possui permissão para remover atividades do agendamento.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.RemoverAgendamentoAtividade, "Você não possui permissão para remover atividades do agendamento.");
 
         var agendamentoAtividade = await _service.RecuperaGaranteExisteAsync(id);
         

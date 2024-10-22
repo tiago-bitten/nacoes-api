@@ -29,7 +29,7 @@ public class AbrirAgenda : IAbrirAgendaUseCase
 
     public async Task<AbrirAgendaResult> ExecutarAsync(AbrirAgendaRequest request)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.OPEN_AGENDA, "Você não tem permissão para abrir uma agenda.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.AbrirAgenda, "Você não tem permissão para abrir uma agenda.");
         
         var dataFinal = request.DataInicio.AddMinutes(request.Duracao);
         

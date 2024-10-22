@@ -32,7 +32,7 @@ public class CriarUsuarioMinisterio : ICriarUsuarioMinisterioUseCase
 
     public async Task<CriarUsuarioMinisterioResult> ExecutarAsync(CriarUsuarioMinisterioRequest request)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_USUARIO_MINISTERIO, "Você não tem permissão para vincular um usuário em um ministério.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CriarUsuarioMinisterio, "Você não tem permissão para vincular um usuário em um ministério.");
         
         var usuario = await _usuarioService.RecuperaGaranteExisteAsync(request.UsuarioId);
         var ministerio = await _ministerioService.RecuperaGaranteExisteAsync(request.MinisterioId);

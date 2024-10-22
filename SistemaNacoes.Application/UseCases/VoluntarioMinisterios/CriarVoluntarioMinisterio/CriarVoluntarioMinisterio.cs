@@ -32,7 +32,7 @@ public class CriarVoluntarioMinisterio : ICriarVoluntarioMinisterioUseCase
     
     public async Task<CriarVoluntarioMinisterioResult> ExecutarAsync(CriarVoluntarioMinisterioRequest request)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_VOLUNTARIO_MINISTERIO, "Você não tem permissão para vincular.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CriarVoluntarioMinisterio, "Você não tem permissão para vincular.");
         
         var voluntario = await _voluntarioService.RecuperaGaranteExisteAsync(request.VoluntarioId);
         var ministerios = await _ministerioService.RecuperaGaranteExisteVariosAsync(request.MinisteriosId);

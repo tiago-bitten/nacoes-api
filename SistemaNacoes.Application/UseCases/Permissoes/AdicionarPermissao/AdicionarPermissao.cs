@@ -25,7 +25,7 @@ public class AdicionarPermissao : IAdicionarPermissaoUseCase
 
     public async Task ExecutarAsync(AdicionarPermissaoRequest request)
     {
-        await _service.VerificaGarantePermissaoAsync(EPermissoes.UPDATE_PERFIL_ACESSO,
+        await _service.VerificaGarantePermissaoAsync(EPermissoes.AtualizarPerfilAcesso,
             "Você não possui permissão para alterar um perfil de acesso.");
 
         var perfilAcesso = await _perfilAcessoService.RecuperaGaranteExisteAsync(request.PerfilAcessoId);

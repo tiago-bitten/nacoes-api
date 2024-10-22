@@ -5,8 +5,11 @@ namespace SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento.Dtos;
 
 public class CriarAgendamentoRequest : Request
 {
-    [JsonPropertyName("VoluntarioMinisterioId")]
-    public int VoluntarioMinisterioId { get; set; }
+    [JsonPropertyName("VoluntarioId")]
+    public int VoluntarioId { get; set; }
+    
+    [JsonPropertyName("MinisterioId")]
+    public int MinisterioId { get; set; }
     
     [JsonPropertyName("AgendaId")]
     public int AgendaId { get; set; }

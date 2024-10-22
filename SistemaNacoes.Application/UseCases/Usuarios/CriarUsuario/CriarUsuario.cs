@@ -31,7 +31,7 @@ public class CriarUsuario : ICriarUsuarioUseCase
 
     public async Task<CriarUsuarioResult> ExecutarAsync(CriarUsuarioRequest request)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_USUARIO,
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CriarUsuario,
             "Você não possui permissão para criar usuários.");
 
         await _service.GaranteNaoExisteUsuarioCriadoAsync(request.Email, request.Cpf);

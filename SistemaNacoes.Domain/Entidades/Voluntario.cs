@@ -7,7 +7,6 @@ public sealed class Voluntario : Pessoa
     public Voluntario() {}
         
     public Guid ChaveAcesso { get; set; } = Guid.NewGuid();
-    public bool Removido { get; set; } = false;
 
     public List<GrupoVoluntario> GrupoVoluntarios { get; set; } = new();
 

@@ -34,7 +34,7 @@ public class CriarDataIndisponivel : ICriarDataIndisponivelUseCase
     public async Task<CriarDataIndisponivelResult> ExecutarAsync(CriarDataIndisponivelRequest request)
     {
         if (_ambienteService.Autenticado())
-            await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_DATA_INDISPONIVEL, "Você não tem permissão para criar uma data indisponível");
+            await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CriarDataIndisponivel, "Você não tem permissão para criar uma data indisponível");
         
         var volutario = await _voluntarioService.RecuperarPorChaveAcessoAsync(GuidHelper.Converter(request.VoluntarioChaveAcesso));
         

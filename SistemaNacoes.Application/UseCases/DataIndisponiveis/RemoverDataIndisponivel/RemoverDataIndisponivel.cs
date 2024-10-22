@@ -27,7 +27,7 @@ public class RemoverDataIndisponivel : IRemoverDataIndisponivelUseCase
     public async Task ExecutarAsync(int id)
     {
         if (_ambienteService.Autenticado())
-            await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.DELETE_DATA_INDISPONIVEL, "Você não tem permissão para remover uma data indisponível");
+            await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.RemoverDataIndisponivel, "Você não tem permissão para remover uma data indisponível");
         
         var dataIndisponivel = await _service.RecuperaGaranteExisteAsync(id);
 

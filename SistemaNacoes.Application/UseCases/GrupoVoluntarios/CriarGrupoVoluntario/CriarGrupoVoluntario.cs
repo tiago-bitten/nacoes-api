@@ -30,7 +30,7 @@ public class CriarGrupoVoluntario : ICriarGrupoVoluntarioUseCase
 
     public async Task<CriarGrupoVoluntarioResult> ExecutarAsync(CriarGrupoVoluntarioRequest request)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_GRUPO_VOLUNTARIO, "Você não tem permissão para criar um grupo de voluntários.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CriarVoluntarioGrupo, "Você não tem permissão para criar um grupo de voluntários.");
         
         var grupo = await _grupoService.RecuperaGaranteExisteAsync(request.GrupoId);
         var voluntarios = await _voluntarioService.RecuperaGaranteExisteVariosAsync(request.VoluntarioIds);

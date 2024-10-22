@@ -28,7 +28,7 @@ public class CriarAtividade : ICriarAtividadeUseCase
 
     public async Task<CriarAtividadeResult> ExecutarAsync(CriarAtividadeRequest request)
     {
-        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CREATE_ATIVIDADE, "Você não tem permissão para criar uma atividade.");
+        await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.CriarAtividade, "Você não tem permissão para criar uma atividade.");
         
         var ministerio = await _ministerioService.RecuperaGaranteExisteAsync(request.MinisterioId);
         
