@@ -6,13 +6,15 @@ namespace SistemaNacoes.Application.Services;
 
 public class HistoricoEntidadeService : IHistoricoEntidadeService
 {
+    private readonly IHistoricoEntidadeRepository _repository;
     private readonly IUnitOfWork _uow;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
     
-    public HistoricoEntidadeService(IUnitOfWork uow, IAmbienteUsuarioService ambienteUsuarioService)
+    public HistoricoEntidadeService(IUnitOfWork uow, IAmbienteUsuarioService ambienteUsuarioService, IHistoricoEntidadeRepository repository)
     {
         _uow = uow;
         _ambienteUsuarioService = ambienteUsuarioService;
+        _repository = repository;
     }
 
     public async Task RegistrarAsync(string tabela, int itemId, string descricao)
@@ -23,7 +25,7 @@ public class HistoricoEntidadeService : IHistoricoEntidadeService
         
         var registroCriacao = new HistoricoEntidade(tabela, itemId, usuario.Id, ip, userAgent, descricao);
 
-        await _uow.RegistroCriacoes.AddAsync(registroCriacao);
+        await _repository.AdicionarAsync(registroCriacao);
     }
     
     public async Task RegistrarVariosAsync(string tabela, IEnumerable<int> itemIds, string descricao)
@@ -35,6 +37,6 @@ public class HistoricoEntidadeService : IHistoricoEntidadeService
         var registroCriacoes = itemIds
             .Select(itemId => new HistoricoEntidade(tabela, itemId, usuario.Id, ip, userAgent, descricao));
 
-        await _uow.RegistroCriacoes.AddRangeAsync(registroCriacoes);
+        await _repository.AdicionarVariosAsync(registroCriacoes);
     }
 }

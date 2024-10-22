@@ -96,7 +96,7 @@ builder.Services.AddScoped<ITokenService, JsonWebTokenService>();
 builder.Services.AddScoped<IAmbienteUsuarioService, AmbienteUsuarioService>();
 builder.Services.AddScoped<IHistoricoLoginRepository, HistoricoLoginRepository>();
 builder.Services.AddScoped<IRegistroLoginService, RegistroLoginService>();
-builder.Services.AddScoped<IHistoricoEntidadeRepository, RegistroCriacaoRepository>();
+builder.Services.AddScoped<IHistoricoEntidadeRepository, HistoricoEntidadeRepository>();
 builder.Services.AddScoped<IHistoricoEntidadeService, HistoricoEntidadeService>();
 builder.Services.AddScoped<IAtividadeService, AtividadeService>();
 #endregion

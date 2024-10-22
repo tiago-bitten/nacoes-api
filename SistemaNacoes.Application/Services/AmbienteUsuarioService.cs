@@ -2,15 +2,16 @@
 using Microsoft.AspNetCore.Http;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Interfaces.Services;
+using SistemaNacoes.Shared.Extensions;
 
 namespace SistemaNacoes.Application.Services;
 
 public class AmbienteUsuarioService : IAmbienteUsuarioService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly IServiceBase<Usuario> _usuarioService;
+    private readonly IUsuarioService _usuarioService;
     
-    public AmbienteUsuarioService(IHttpContextAccessor httpContextAccessor, IServiceBase<Usuario> usuarioService)
+    public AmbienteUsuarioService(IHttpContextAccessor httpContextAccessor, IUsuarioService usuarioService)
     {
         _httpContextAccessor = httpContextAccessor;
         _usuarioService = usuarioService;
@@ -36,9 +37,9 @@ public class AmbienteUsuarioService : IAmbienteUsuarioService
     public int RecuperaUsuarioId()
     {
         var principal = _httpContextAccessor.HttpContext?.User;
-        var usuarioId = principal?.FindFirstValue(ClaimTypes.NameIdentifier);
+        var usuarioId = principal?.RecuperarNameIdentifier();
 
-        return int.Parse(usuarioId ?? "0");
+        return usuarioId ?? 0;
     }
 
     public List<string>? RecuperaUsuarioRoles()
