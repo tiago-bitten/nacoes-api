@@ -14,10 +14,10 @@ public class Entrar : IEntrarUseCase
     private readonly ITokenService _tokenService;
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
-    private readonly IRegistroLoginService _historicoLogin;
+    private readonly IHistoricoLoginService _historicoLogin;
     private readonly IUsuarioService _usuarioService;
     
-    public Entrar(ITokenService tokenService, IUsuarioService usuarioService, IUnitOfWork uow, IMapper mapper, IRegistroLoginService historicoLogin)
+    public Entrar(ITokenService tokenService, IUsuarioService usuarioService, IUnitOfWork uow, IMapper mapper, IHistoricoLoginService historicoLogin)
     {
         _tokenService = tokenService;
         _usuarioService = usuarioService;
@@ -34,7 +34,7 @@ public class Entrar : IEntrarUseCase
         if (usuario == null)
         {
             await _uow.IniciarTransacaoAsync();
-            await _historicoLogin.LogFailedLoginAsync(null, EMotivoLoginAcessoNegado.UsuarioNaoEncontrado);
+            await _historicoLogin.NegadoAsync(null, EMotivoLoginAcessoNegado.UsuarioNaoEncontrado);
             await _uow.CommitTransacaoAsync();
             throw new NacoesAppException(MensagemErroConstant.LoginInvalido);
         }
@@ -44,13 +44,13 @@ public class Entrar : IEntrarUseCase
         if (senhaInvalida)
         {
             await _uow.IniciarTransacaoAsync();
-            await _historicoLogin.LogFailedLoginAsync(usuario.Id, EMotivoLoginAcessoNegado.SenhaIncorreta);
+            await _historicoLogin.NegadoAsync(usuario.Id, EMotivoLoginAcessoNegado.SenhaIncorreta);
             await _uow.CommitTransacaoAsync();
             throw new NacoesAppException(MensagemErroConstant.LoginInvalido);
         }
     
         await _uow.IniciarTransacaoAsync();
-        await _historicoLogin.LogSuccessLoginAsync(usuario.Id);
+        await _historicoLogin.SucessoAsync(usuario.Id);
     
         var accessToken = _tokenService.GenerateAccessToken(usuario);
         var refreshToken = await _tokenService.GenerateRefreshTokenAsync(usuario.Email);

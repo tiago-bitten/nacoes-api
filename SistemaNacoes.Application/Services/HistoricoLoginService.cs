@@ -5,23 +5,29 @@ using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;
 
-public class RegistroLoginService : IRegistroLoginService
+public class HistoricoLoginService : IHistoricoLoginService
 {
+    #region Ctor
     private readonly IUnitOfWork _uow;
     private readonly IAmbienteUsuarioService _ambienteUsuarioService;
+    private readonly IHistoricoLoginRepository _repository;
 
-    public RegistroLoginService(IUnitOfWork uow, IAmbienteUsuarioService ambienteUsuarioService)
+    public HistoricoLoginService(IUnitOfWork uow,
+                                 IAmbienteUsuarioService ambienteUsuarioService,
+                                 IHistoricoLoginRepository repository)
     {
         _uow = uow;
         _ambienteUsuarioService = ambienteUsuarioService;
+        _repository = repository;
     }
+    #endregion
 
-    public async Task LoginAttemptAsync(HistoricoLogin registroLogin)
+    public async Task RealizarTentativaAsync(HistoricoLogin registroLogin)
     {
-        await _uow.RegistroLogins.AddAsync(registroLogin);
+        await _repository.AdicionarAsync(registroLogin);
     }
 
-    public async Task LogSuccessLoginAsync(int usuarioId)
+    public async Task SucessoAsync(int usuarioId)
     {
         var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
         var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
@@ -33,10 +39,10 @@ public class RegistroLoginService : IRegistroLoginService
             UserAgent = userAgent
 
         };
-        await LoginAttemptAsync(registroLogin);
+        await RealizarTentativaAsync(registroLogin);
     }
 
-    public async Task LogFailedLoginAsync(int? usuarioId, EMotivoLoginAcessoNegado motivo)
+    public async Task NegadoAsync(int? usuarioId, EMotivoLoginAcessoNegado motivo)
     {
         var ip = _ambienteUsuarioService.RecuperaUsuarioIp();
         var userAgent = _ambienteUsuarioService.RecuperaUsuarioUserAgent();
@@ -49,6 +55,6 @@ public class RegistroLoginService : IRegistroLoginService
         registroLogin.Motivo = motivo;
         registroLogin.Sucesso = false;
         
-        await LoginAttemptAsync(registroLogin);
+        await RealizarTentativaAsync(registroLogin);
     }
 }

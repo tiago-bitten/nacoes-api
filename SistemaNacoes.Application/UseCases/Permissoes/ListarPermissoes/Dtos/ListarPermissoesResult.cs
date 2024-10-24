@@ -13,7 +13,7 @@ public class ListarPermissoesResult : Result
     [JsonPropertyName("Enum")]
     public string Enum { get; set; }
     
-    [JsonPropertyName("NomeFormatado")]
+    [JsonPropertyName("Descricao")]
     public string Descricao { get; set; }
 
     public static ListarPermissoesResult Adicionar(EPermissoes permissao)
