@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Infra.Configs.Abstracoes;
+using SistemaNacoes.Shared.Extensions;
 
 namespace SistemaNacoes.Infra.Configs;
 
@@ -15,6 +16,7 @@ public class PerfilAcessoConfig : EntidadeBaseConfig<PerfilAcesso>
             .IsRequired();
         
         builder.Property(x => x.Permissoes)
+            .HasEnumConversion()
             .IsRequired();
 
         builder.HasMany(x => x.Usuarios)

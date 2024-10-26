@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Entidades.Abstracoes;
-using SistemaNacoes.Domain.Enums;
+using SistemaNacoes.Shared.Extensions;
 using SistemaNacoes.Infra.Configs.Abstracoes;
 using SistemaNacoes.Shared.Helpers;
 
@@ -28,10 +27,8 @@ public class HistoricoLoginConfig : EntidadeBaseConfig<HistoricoLogin>
             .IsRequired();
 
         builder.Property(x => x.Motivo)
-            .HasConversion(x =>
-                x.ToString(), x => (EMotivoLoginAcessoNegado)Enum.Parse(typeof(EMotivoLoginAcessoNegado),
-                x));
-        
+            .HasEnumConversion();
+            
         builder.Property(x => x.DataAcesso)
             .IsRequired();
 

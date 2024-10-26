@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Infra.Configs.Abstracoes;
+using SistemaNacoes.Shared.Extensions;
 using SistemaNacoes.Shared.Helpers;
 
 namespace SistemaNacoes.Infra.Configs;
@@ -26,10 +27,11 @@ public class AgendaConfig : EntidadeBaseConfig<Agenda>
             .IsRequired();
 
         builder.Property(x => x.Removido)
-            .HasDefaultValue(true)
+            .HasDefaultValue(false)
             .IsRequired();
         
         builder.Property(x => x.Status)
+            .HasEnumConversion()
             .IsRequired();
 
         builder.HasMany(x => x.Agendamentos)
