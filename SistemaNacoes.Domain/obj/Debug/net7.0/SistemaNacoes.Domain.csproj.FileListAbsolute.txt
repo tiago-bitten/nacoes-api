@@ -57,3 +57,15 @@ D:\C#\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.dll
 D:\C#\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\refint\SistemaNacoes.Domain.dll
 D:\C#\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.pdb
 D:\C#\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\ref\SistemaNacoes.Domain.dll
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.deps.json
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.dll
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\bin\Debug\net7.0\SistemaNacoes.Domain.pdb
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.AssemblyInfoInputs.cache
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.AssemblyInfo.cs
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.csproj.CoreCompileInputs.cache
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.sourcelink.json
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.dll
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\refint\SistemaNacoes.Domain.dll
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\SistemaNacoes.Domain.pdb
+C:\Dev\Backend\nacoes-api\SistemaNacoes.Domain\obj\Debug\net7.0\ref\SistemaNacoes.Domain.dll

@@ -369,15 +369,22 @@
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.IdentityModel.Tokens": "7.0.0",
           "SistemaNacoes.Domain": "1.0.0",
+          "SistemaNacoes.Shared": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "7.0.0"
         },
         "runtime": {
-          "SistemaNacoes.Application.dll": {}
+          "SistemaNacoes.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "SistemaNacoes.Domain/1.0.0": {
         "runtime": {
-          "SistemaNacoes.Domain.dll": {}
+          "SistemaNacoes.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "SistemaNacoes.Infra/1.0.0": {
@@ -387,10 +394,28 @@
           "Microsoft.EntityFrameworkCore.Analyzers": "7.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.0",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.0",
+          "SistemaNacoes.Domain": "1.0.0",
+          "SistemaNacoes.Shared": "1.0.0"
+        },
+        "runtime": {
+          "SistemaNacoes.Infra.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SistemaNacoes.Shared/1.0.0": {
+        "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
+          "Microsoft.EntityFrameworkCore": "7.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.0",
           "SistemaNacoes.Domain": "1.0.0"
         },
         "runtime": {
-          "SistemaNacoes.Infra.dll": {}
+          "SistemaNacoes.Shared.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -706,6 +731,11 @@
       "sha512": ""
     },
     "SistemaNacoes.Infra/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SistemaNacoes.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
