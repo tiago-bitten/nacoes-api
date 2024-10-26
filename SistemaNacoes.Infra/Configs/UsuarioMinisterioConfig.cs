@@ -12,13 +12,9 @@ public class UsuarioMinisterioConfig : EntidadeBaseConfig<UsuarioMinisterio>
         base.Configure(builder);   
         
         builder.Property(x => x.UsuarioId)
-            .HasColumnType("INT")
-            .HasColumnName("usuario_id")
             .IsRequired();
 
         builder.Property(x => x.MinisterioId)
-            .HasColumnType("INT")
-            .HasColumnName("ministerio_id")
             .IsRequired();
 
         builder.HasOne(x => x.Usuario)

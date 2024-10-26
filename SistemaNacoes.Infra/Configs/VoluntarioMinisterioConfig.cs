@@ -12,13 +12,9 @@ public class VoluntarioMinisterioConfig : EntidadeBaseConfig<VoluntarioMinisteri
         base.Configure(builder);
         
         builder.Property(x => x.VoluntarioId)
-            .HasColumnType("INT")
-            .HasColumnName("voluntario_id")
             .IsRequired();
 
         builder.Property(x => x.MinisterioId)
-            .HasColumnType("INT")
-            .HasColumnName("ministerio_id")
             .IsRequired();
 
         builder.HasOne(x => x.Voluntario)

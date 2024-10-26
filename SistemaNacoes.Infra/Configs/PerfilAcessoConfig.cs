@@ -11,7 +11,7 @@ public class PerfilAcessoConfig : EntidadeBaseConfig<PerfilAcesso>
         base.Configure(builder);
 
         builder.Property(x => x.Nome)
-            .HasMaxLength(100)
+            .HasMaxLength(30)
             .IsRequired();
         
         builder.Property(x => x.Permissoes)

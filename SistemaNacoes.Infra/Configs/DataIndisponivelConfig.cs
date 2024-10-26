@@ -12,27 +12,17 @@ public class DataIndisponivelConfig : EntidadeBaseConfig<DataIndisponivel>
         base.Configure(builder);
         
         builder.Property(x => x.DataInicio)
-            .HasColumnType("TIMESTAMP")
-            .HasColumnName("data_inicio")
             .IsRequired();
         
         builder.Property(x => x.DataFinal)
-            .HasColumnType("TIMESTAMP")
-            .HasColumnName("data_final")
             .IsRequired();
 
-        builder.Property(x => x.Motivo)
-            .HasColumnType("VARCHAR(255)")
-            .HasColumnName("motivo");
+        builder.Property(x => x.Motivo);
 
         builder.Property(x => x.VoluntarioId)
-            .HasColumnType("INT")
-            .HasColumnName("voluntario_id")
             .IsRequired();
         
         builder.Property(x => x.Suspenso)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("suspenso")
             .HasDefaultValue(false)
             .IsRequired();
         

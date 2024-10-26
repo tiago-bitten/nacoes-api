@@ -13,13 +13,9 @@ public class AgendamentoAtividadeConfig : EntidadeBaseConfig<AgendamentoAtividad
         base.Configure(builder);
         
         builder.Property(x => x.AgendamentoId)
-            .HasColumnType("INT")
-            .HasColumnName("agendamento_id")
             .IsRequired();
         
         builder.Property(x => x.AtividadeId)
-            .HasColumnType("INT")
-            .HasColumnName("atividade_id")
             .IsRequired();
         
         builder.HasOne(x => x.Agendamento)

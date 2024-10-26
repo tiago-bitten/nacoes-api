@@ -9,21 +9,13 @@ public class EscalaItemConfig : EntidadeBaseConfig<EscalaItem>
 {
     public override void Configure(EntityTypeBuilder<EscalaItem> builder)
     {
-        builder.ToTable("escalas_itens");
-        
         builder.Property(x => x.EscalaId)
-            .HasColumnType("INT")
-            .HasColumnName("escala_id")
             .IsRequired();
         
         builder.Property(x => x.VoluntarioId)
-            .HasColumnType("INT")
-            .HasColumnName("voluntario_id")
             .IsRequired();
         
         builder.Property(x => x.AtividadeId)
-            .HasColumnType("INT")
-            .HasColumnName("atividade_id")
             .IsRequired();
         
         builder.HasOne(x => x.Escala)

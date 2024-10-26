@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Infra.Configs.Abstracoes;
+using SistemaNacoes.Shared.Helpers;
 
 namespace SistemaNacoes.Infra.Configs;
 
@@ -12,33 +13,23 @@ public class AgendaConfig : EntidadeBaseConfig<Agenda>
         base.Configure(builder);
 
         builder.Property(x => x.Titulo)
-            .HasColumnType("VARCHAR(150)")
-            .HasColumnName("titulo")
+            .HasMaxLength(ConfigHelper.VarcharPadrao)
             .IsRequired();
 
         builder.Property(x => x.Descricao)
-            .HasColumnType("VARCHAR(150)")
-            .HasColumnName("descricao");
-        
+            .HasMaxLength(ConfigHelper.VarcharPadrao);
+            
         builder.Property(x => x.DataInicio)
-            .HasColumnType("TIMESTAMP")
-            .HasColumnName("data_inicio")
             .IsRequired();
 
         builder.Property(x => x.DataFinal)
-            .HasColumnType("TIMESTAMP")
-            .HasColumnName("data_final")
             .IsRequired();
 
         builder.Property(x => x.Removido)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("ativo")
             .HasDefaultValue(true)
             .IsRequired();
         
         builder.Property(x => x.Status)
-            .HasColumnType("INT")
-            .HasColumnName("status")
             .IsRequired();
 
         builder.HasMany(x => x.Agendamentos)

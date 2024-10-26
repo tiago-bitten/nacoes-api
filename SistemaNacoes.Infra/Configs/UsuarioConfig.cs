@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Infra.Configs.Abstracoes;
+using SistemaNacoes.Shared.Helpers;
 
 namespace SistemaNacoes.Infra.Configs;
 
@@ -12,30 +13,23 @@ public class UsuarioConfig : EntidadeBaseConfig<Usuario>
         base.Configure(builder);
 
         builder.Property(x => x.Nome)
-            .HasColumnName("VARCHAR(150)")
-            .HasColumnName("nome")
+            .HasMaxLength(ConfigHelper.VarcharPadrao)
             .IsRequired();
 
         builder.Property(x => x.Cpf)
-            .HasColumnType("VARCHAR(11)")
-            .HasColumnName("cpf");
-        
-        builder.Property(x => x.Celular)
-            .HasColumnType("VARCHAR(15)")
-            .HasColumnName("celular");
+            .HasMaxLength(11);
 
-        builder.Property(x => x.DataNascimento)
-            .HasColumnType("DATE")
-            .HasColumnName("data_nascimento");
+        builder.Property(x => x.Celular)
+            .HasMaxLength(15);
+
+        builder.Property(x => x.DataNascimento);
 
         builder.Property(x => x.Email)
-            .HasColumnType("VARCHAR(150)")
-            .HasColumnName("email")
+            .HasMaxLength(ConfigHelper.VarcharPadrao)
             .IsRequired();
 
         builder.Property(x => x.SenhaHash)
-            .HasColumnType("VARCHAR(900)")
-            .HasColumnName("senha_hash")
+            .HasMaxLength(900)
             .IsRequired();
 
         builder.HasMany(x => x.UsuariosMinisterios)

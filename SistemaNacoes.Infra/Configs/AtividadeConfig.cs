@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Infra.Configs.Abstracoes;
+using SistemaNacoes.Shared.Helpers;
 
 namespace SistemaNacoes.Infra.Configs;
 
@@ -12,18 +13,13 @@ public class AtividadeConfig : EntidadeBaseConfig<Atividade>
         base.Configure(builder);
         
         builder.Property(x => x.Nome)
-            .HasColumnType("VARCHAR(150)")
-            .HasColumnName("nome")
+            .HasMaxLength(ConfigHelper.VarcharPadrao)
             .IsRequired();
 
         builder.Property(x => x.MaximoVoluntarios)
-            .HasColumnType("INT")
-            .HasColumnName("maximo_voluntarios")
             .IsRequired();
 
         builder.Property(x => x.MinisterioId)
-            .HasColumnType("INT")
-            .HasColumnName("ministerio_id")
             .IsRequired();
 
         builder.HasOne(x => x.Ministerio)

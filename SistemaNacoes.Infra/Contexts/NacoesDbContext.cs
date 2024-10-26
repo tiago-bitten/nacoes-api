@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Infra.Configs;
+using SistemaNacoes.Shared.Extensions;
 
 namespace SistemaNacoes.Infra.Contexts;
 
@@ -49,6 +50,8 @@ public class NacoesDbContext : DbContext
         modelBuilder.ApplyConfiguration(new RefreshTokenConfig());
         modelBuilder.ApplyConfiguration(new HistoricoLoginConfig());
         modelBuilder.ApplyConfiguration(new HistoricoEntidadeConfig());
+        
+        modelBuilder.AplicarNomenclaturaNacoes();
         
         base.OnModelCreating(modelBuilder);
     }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Infra.Configs.Abstracoes;
+using SistemaNacoes.Shared.Helpers;
 
 namespace SistemaNacoes.Infra.Configs;
 
@@ -12,17 +13,14 @@ public class MinisterioConfig : EntidadeBaseConfig<Ministerio>
         base.Configure(builder);
         
         builder.Property(x => x.Nome)
-            .HasColumnType("VARCHAR(150)")
-            .HasColumnName("nome")
+            .HasMaxLength(ConfigHelper.VarcharPadrao)
             .IsRequired();
-        
-        builder.Property(x => x.Descricao)
-            .HasColumnType("VARCHAR(255)")
-            .HasColumnName("descricao");
 
+        builder.Property(x => x.Descricao)
+            .HasMaxLength(ConfigHelper.VarcharPadrao);
+            
         builder.Property(x => x.Cor)
-            .HasColumnType("VARCHAR(7)")
-            .HasColumnName("cor")
+            .HasMaxLength(7)
             .IsRequired();
 
         builder.HasMany(x => x.Atividades)

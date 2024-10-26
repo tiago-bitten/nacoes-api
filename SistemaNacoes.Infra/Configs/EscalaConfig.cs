@@ -12,23 +12,15 @@ public class EscalaConfig : EntidadeBaseConfig<Escala>
         base.Configure(builder);
         
         builder.Property(x => x.QuantidadeVoluntarios)
-            .HasColumnType("INT")
-            .HasColumnName("quantidade_voluntarios")
             .IsRequired();
 
         builder.Property(x => x.AgendaId)
-            .HasColumnType("INT")
-            .HasColumnName("agenda_id")
             .IsRequired();
         
         builder.Property(x => x.MinisterioId)
-            .HasColumnType("INT")
-            .HasColumnName("ministerio_id")
             .IsRequired();
 
         builder.Property(x => x.Usada)
-            .HasColumnType("BOOLEAN")
-            .HasColumnName("usada")
             .HasDefaultValue(false)
             .IsRequired();
 

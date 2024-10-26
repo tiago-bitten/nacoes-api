@@ -315,6 +315,7 @@
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
           "Microsoft.EntityFrameworkCore": "7.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.0",
           "SistemaNacoes.Domain": "1.0.0"
         },
         "compile": {

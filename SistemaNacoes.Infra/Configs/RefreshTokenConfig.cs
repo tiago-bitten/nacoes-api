@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Infra.Configs.Abstracoes;
+using SistemaNacoes.Shared.Helpers;
 
 namespace SistemaNacoes.Infra.Configs;
 
@@ -12,18 +13,14 @@ public class RefreshTokenConfig : EntidadeBaseConfig<RefreshToken>
         base.Configure(builder);
         
         builder.Property(x => x.Token)
-            .HasColumnType("text")
-            .HasColumnName("token")
+            .HasMaxLength(ConfigHelper.VarcharPadrao)
             .IsRequired();
 
         builder.Property(x => x.Principal)
-            .HasColumnType("VARCHAR(150)")
-            .HasColumnName("principal")
+            .HasMaxLength(ConfigHelper.VarcharPadrao)
             .IsRequired();
 
         builder.Property(x => x.DataExpiracao)
-            .HasColumnType("TIMESTAMP WITH TIME ZONE")
-            .HasColumnName("data_expiracao")
             .IsRequired();
     }
 }

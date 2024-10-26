@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Infra.Configs.Abstracoes;
+using SistemaNacoes.Shared.Helpers;
 
 namespace SistemaNacoes.Infra.Configs;
 
@@ -12,32 +13,22 @@ public class HistoricoEntidadeConfig : EntidadeBaseConfig<HistoricoEntidade>
         base.Configure(builder);
 
         builder.Property(x => x.Tabela)
-            .HasColumnType("TEXT")
-            .HasColumnName("tabela")
             .IsRequired();
 
         builder.Property(x => x.ItemId)
-            .HasColumnType("INT")
-            .HasColumnName("item_id")
             .IsRequired();
-        
-        builder.Property(x => x.UsuarioId)
-            .HasColumnType("INT")
-            .HasColumnName("usuario_id");
+
+        builder.Property(x => x.UsuarioId);
 
         builder.Property(x => x.Ip)
-            .HasColumnType("VARCHAR(150)")
-            .HasColumnName("ip")
+            .HasMaxLength(ConfigHelper.VarcharPadrao)
             .IsRequired();
 
         builder.Property(x => x.UserAgent)
-            .HasColumnType("VARCHAR(500)")
-            .HasColumnName("user_agent")
+            .HasMaxLength(300)
             .IsRequired();
 
         builder.Property(x => x.Data)
-            .HasColumnType("TIMESTAMP WITH TIME ZONE")
-            .HasColumnName("data")
             .IsRequired();
 
         builder.HasOne(x => x.Usuario)
