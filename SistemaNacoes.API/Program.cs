@@ -82,7 +82,6 @@ builder.Services.AddScoped<IVoluntarioMinisterioRepository, VoluntarioMinisterio
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAgendamentoAtividadeRepository, AgendamentoAtividadeRepository>();
 builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
-builder.Services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<>));
 builder.Services.AddScoped<IVoluntarioService, VoluntarioService>();
 builder.Services.AddScoped<IVoluntarioMinisterioService, VoluntarioMinisterioService>();
 builder.Services.AddScoped<IAgendaService, AgendaService>();
@@ -110,7 +109,6 @@ builder.Services.AddAutoMapper(typeof(AgendaProfile));
 builder.Services.AddAutoMapper(typeof(DataIndisponivelProfile));
 builder.Services.AddAutoMapper(typeof(AtividadeProfile));
 builder.Services.AddAutoMapper(typeof(AgendamentoProfile));
-builder.Services.AddAutoMapper(typeof(SituacaoAgendamentoProfile));
 builder.Services.AddAutoMapper(typeof(GrupoProfile));
 builder.Services.AddAutoMapper(typeof(AuthTokenProfile));
 builder.Services.AddAutoMapper(typeof(UsuarioProfile));
