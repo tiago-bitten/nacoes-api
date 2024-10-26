@@ -15,6 +15,24 @@
     <ProjectReference Include="..\SistemaNacoes.Shared\SistemaNacoes.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\Agendamentos\" />
+    <Folder Include="Dtos\Agendas\" />
+    <Folder Include="Dtos\Atividades\" />
+    <Folder Include="Dtos\Auth\" />
+    <Folder Include="Dtos\DataIndisponiveis\" />
+    <Folder Include="Dtos\Grupos\" />
+    <Folder Include="Dtos\GrupoVoluntarios\" />
+    <Folder Include="Dtos\Ministerios\" />
+    <Folder Include="Dtos\Outros\" />
+    <Folder Include="Dtos\Permissoes\" />
+    <Folder Include="Dtos\SituacaoAgendamentos\" />
+    <Folder Include="Dtos\UsuarioMinisterios\" />
+    <Folder Include="Dtos\Usuarios\" />
+    <Folder Include="Dtos\VoluntarioMinisterios\" />
+    <Folder Include="Dtos\Voluntarios\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

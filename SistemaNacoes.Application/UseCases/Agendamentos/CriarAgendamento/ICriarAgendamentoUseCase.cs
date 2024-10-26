@@ -1,5 +1,4 @@
-﻿using SistemaNacoes.Application.Dtos.Agendamentos;
-using SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento.Dtos;
+﻿using SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento.Dtos;
 
 namespace SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento;
 
