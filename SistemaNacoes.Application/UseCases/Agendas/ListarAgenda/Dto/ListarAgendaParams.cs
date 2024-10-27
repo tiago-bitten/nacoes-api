@@ -1,6 +1,6 @@
 ﻿using SistemaNacoes.Application.Dtos;
 
-namespace SistemaNacoes.Application.UseCases.Agendas.ListarAgenda;
+namespace SistemaNacoes.Application.UseCases.Agendas.ListarAgenda.Dto;
 
 public class ListarAgendaParams : Param
 {

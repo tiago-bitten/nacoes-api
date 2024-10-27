@@ -1,6 +1,8 @@
-﻿namespace SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio.Dtos;
+﻿using SistemaNacoes.Application.Dtos;
 
-public class ListarVoluntarioMinisterioParam
+namespace SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio.Dtos;
+
+public class ListarVoluntarioMinisterioParam : Param
 {
     
 }

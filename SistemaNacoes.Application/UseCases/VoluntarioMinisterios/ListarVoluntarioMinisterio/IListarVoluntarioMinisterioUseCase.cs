@@ -1,6 +1,8 @@
-﻿namespace SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio;
+﻿using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio.Dtos;
 
-public interface IListarVoluntarioMinisterioUseCase
+namespace SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio;
+
+public interface IListarVoluntarioMinisterioUseCase : IListarUseCaseBase<ListarVoluntarioMinisterioResult, ListarVoluntarioMinisterioParam>
 {
     
 }
