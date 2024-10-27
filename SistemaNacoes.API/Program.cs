@@ -66,41 +66,6 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddHttpContextAccessor();
 #endregion
 
-#region repositorios/services
-builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
-builder.Services.AddScoped<IAgendaRepository, AgendaRepository>();
-builder.Services.AddScoped<IAtividadeRepository, AtividadeRepository>();
-builder.Services.AddScoped<IDataIndisponivelRepository, DataIndisponivelRepository>();
-builder.Services.AddScoped<IEscalaItemRepository, EscalaItemRepository>();
-builder.Services.AddScoped<IEscalaRepository, EscalaRepository>();
-builder.Services.AddScoped<IGrupoRepository, GrupoRepository>();
-builder.Services.AddScoped<IMinisterioRepository, MinisterioRepository>();
-builder.Services.AddScoped<IUsuarioMinisterioRepository, UsuarioMinisterioRepository>();
-builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-builder.Services.AddScoped<IVoluntarioRepository, VoluntarioRepository>();
-builder.Services.AddScoped<IVoluntarioMinisterioRepository, VoluntarioMinisterioRepository>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IAgendamentoAtividadeRepository, AgendamentoAtividadeRepository>();
-builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
-builder.Services.AddScoped<IVoluntarioService, VoluntarioService>();
-builder.Services.AddScoped<IVoluntarioMinisterioService, VoluntarioMinisterioService>();
-builder.Services.AddScoped<IAgendaService, AgendaService>();
-builder.Services.AddScoped<ISituacaoAgendamentoRepository, SituacaoAgendamentoRepository>();
-builder.Services.AddScoped<IDataIndisponivelService, DataIndisponivelService>();
-builder.Services.AddScoped<IMinisterioService, MinisterioService>();
-builder.Services.AddScoped<IGrupoVoluntarioRepository, GrupoVoluntarioRepository>();
-builder.Services.AddScoped<IAgendamentoAtividadeService, AgendamentoAtividadeService>();
-builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
-builder.Services.AddScoped<ITokenService, JsonWebTokenService>();
-builder.Services.AddScoped<IAmbienteUsuarioService, AmbienteUsuarioService>();
-builder.Services.AddScoped<IHistoricoLoginRepository, HistoricoLoginRepository>();
-builder.Services.AddScoped<IHistoricoLoginService, HistoricoLoginService>();
-builder.Services.AddScoped<IHistoricoEntidadeRepository, HistoricoEntidadeRepository>();
-builder.Services.AddScoped<IHistoricoEntidadeService, HistoricoEntidadeService>();
-builder.Services.AddScoped<IAtividadeService, AtividadeService>();
-#endregion
-
-
 #region automapper profiles
 builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
 builder.Services.AddAutoMapper(typeof(MinisterioProfile));

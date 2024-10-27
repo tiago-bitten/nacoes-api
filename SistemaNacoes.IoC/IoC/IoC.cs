@@ -1,5 +1,39 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SistemaNacoes.Application.Services;
+using SistemaNacoes.Application.UseCases.AgendamentoAtividade.CriarAgendamentoAtividade;
+using SistemaNacoes.Application.UseCases.AgendamentoAtividades.CriarAgendamentoAtividade;
+using SistemaNacoes.Application.UseCases.AgendamentoAtividades.RemoverAgendamentoAtividade;
+using SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento;
+using SistemaNacoes.Application.UseCases.Agendamentos.RemoverAgendamento;
+using SistemaNacoes.Application.UseCases.Agendas.AbrirAgenda;
+using SistemaNacoes.Application.UseCases.Agendas.ConcluirAgenda;
+using SistemaNacoes.Application.UseCases.Agendas.ListarAgenda;
+using SistemaNacoes.Application.UseCases.Agendas.RemoverAgenda;
+using SistemaNacoes.Application.UseCases.Atividades.CriarAtividade;
+using SistemaNacoes.Application.UseCases.Atividades.ListarAtividade;
+using SistemaNacoes.Application.UseCases.Atividades.RemoverAtividade;
+using SistemaNacoes.Application.UseCases.Auth.Entrar;
+using SistemaNacoes.Application.UseCases.Auth.RefreshToken;
+using SistemaNacoes.Application.UseCases.DataIndisponiveis.CriarDataIndisponivel;
+using SistemaNacoes.Application.UseCases.DataIndisponiveis.RemoverDataIndisponivel;
+using SistemaNacoes.Application.UseCases.DataIndisponiveis.SuspenderDataIndisponivel;
+using SistemaNacoes.Application.UseCases.Grupos.CriarGrupo;
+using SistemaNacoes.Application.UseCases.Grupos.RemoverGrupo;
+using SistemaNacoes.Application.UseCases.GrupoVoluntarios.CriarGrupoVoluntario;
+using SistemaNacoes.Application.UseCases.Ministerios.CriarMinisterio;
+using SistemaNacoes.Application.UseCases.Ministerios.RemoverMinisterio;
+using SistemaNacoes.Application.UseCases.Permissoes.AdicionarPermissao;
+using SistemaNacoes.Application.UseCases.Permissoes.ListarPermissoes;
+using SistemaNacoes.Application.UseCases.Permissoes.RemoverPermissao;
+using SistemaNacoes.Application.UseCases.UsuarioMinisterios.CriarUsuarioMinisterio;
+using SistemaNacoes.Application.UseCases.Usuarios.CriarUsuario;
+using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.CriarVoluntarioMinisterio;
+using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio;
+using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.RemoverVoluntarioMinisterio;
+using SistemaNacoes.Application.UseCases.Voluntarios.CriarVoluntario;
+using SistemaNacoes.Application.UseCases.Voluntarios.ListarVoluntario;
+using SistemaNacoes.Application.UseCases.Voluntarios.RecuperarVoluntarioParaAgendar;
+using SistemaNacoes.Application.UseCases.Voluntarios.RemoverVoluntario;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
@@ -9,6 +43,7 @@ namespace SistemaNacoes.IoC.IoC;
 
 public static class IoC
 {
+    #region Repositories
     public static IServiceCollection AdicionarRepositories(this IServiceCollection services)
     {
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
@@ -34,7 +69,9 @@ public static class IoC
 
         return services;
     }
+    #endregion
 
+    #region Services
     public static IServiceCollection AdicionarServices(this IServiceCollection services)
     {
         services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<,>));
@@ -60,4 +97,88 @@ public static class IoC
 
         return services;
     }
+    #endregion
+    
+    #region UseCases
+
+    public static IServiceCollection AdicionarUseCases(this IServiceCollection services)
+    {
+        #region AgendamentoAtividade
+        services.AddScoped<ICriarAgendamentoAtividadeUseCase, CriarAgendamentoAtividade>();
+        services.AddScoped<IRemoverAgendamentoAtividadeUseCase, RemoverAgendamentoAtividade>();
+        #endregion
+        
+        #region Agendamento
+        services.AddScoped<ICriarAgendamentoUseCase, CriarAgendamento>();
+        services.AddScoped<IRemoverAgendamentoUseCase, RemoverAgendamento>();
+        #endregion
+        
+        #region Agenda
+        services.AddScoped<IAbrirAgendaUseCase, AbrirAgenda>();
+        services.AddScoped<IConcluirAgendaUseCase, ConcluirAgenda>();
+        services.AddScoped<IListarAgendaUseCase, ListarAgenda>();
+        services.AddScoped<IRemoverAgendaUseCase, RemoverAgenda>();
+        #endregion
+        
+        #region Atividade
+        services.AddScoped<ICriarAtividadeUseCase, CriarAtividade>();
+        services.AddScoped<IRemoverAtividadeUseCase, RemoverAtividade>();
+        services.AddScoped<IListarAtividadeUseCase, ListarAtividade>();
+        #endregion
+        
+        #region Auth
+        services.AddScoped<IEntrarUseCase, Entrar>();
+        services.AddScoped<IRefreshTokenUseCase, RefreshTokens>();
+        #endregion
+        
+        #region DataIndisponivel
+        services.AddScoped<ICriarDataIndisponivelUseCase, CriarDataIndisponivel>();
+        services.AddScoped<IRemoverDataIndisponivelUseCase, RemoverDataIndisponivel>();
+        services.AddScoped<ISuspenderDataIndisponivelUseCase, SuspenderDataIndisponivel>();
+        #endregion
+        
+        #region Grupo
+        services.AddScoped<ICriarGrupoUseCase, CriarGrupo>();
+        services.AddScoped<IRemoverGrupoUseCase, RemoverGrupo>();
+        #endregion
+        
+        #region GrupoVoluntario
+        services.AddScoped<ICriarGrupoVoluntarioUseCase, CriarGrupoVoluntario>();
+        #endregion
+        
+        #region Ministerio
+        services.AddScoped<ICriarMinisterioUseCase, CriarMinisterio>();
+        services.AddScoped<IRemoverMinisterioUseCase, RemoverMinisterio>();
+        #endregion
+        
+        #region Permissoes
+        services.AddScoped<IAdicionarPermissaoUseCase, AdicionarPermissao>();
+        services.AddScoped<IListarPermissoesUseCase, ListarPermissoes>();
+        services.AddScoped<IRemoverPermissaoUseCase, RemoverPermissao>();
+        #endregion
+        
+        #region UsuarioMinisterio
+        services.AddScoped<ICriarUsuarioMinisterioUseCase, CriarUsuarioMinisterio>();
+        #endregion
+        
+        #region Usuario
+        services.AddScoped<ICriarUsuarioUseCase, CriarUsuario>();
+        #endregion
+        
+        #region VoluntarioMinisterio
+        services.AddScoped<ICriarVoluntarioMinisterioUseCase, CriarVoluntarioMinisterio>();
+        services.AddScoped<IListarVoluntarioMinisterioUseCase, null >();
+        services.AddScoped<IRemoverVoluntarioMinisterioUseCase, RemoverVoluntarioMinisterio>();
+        #endregion
+        
+        #region Volutnario
+        services.AddScoped<ICriarVoluntarioUseCase, CriarVoluntario>();
+        services.AddScoped<IListarVoluntarioUseCase, ListarVoluntario>();
+        services.AddScoped<IRemoverVoluntarioUseCase, RemoverVoluntario>();
+        services.AddScoped<IRecuperarVoluntarioParaAgendarUseCase, RecuperarVoluntarioParaAgendar>();
+        #endregion
+
+        return services;
+    }
+    #endregion
 }
