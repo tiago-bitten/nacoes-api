@@ -25,6 +25,7 @@ using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Infra.Contexts;
 using SistemaNacoes.Infra.Data;
 using SistemaNacoes.Infra.Repositorios;
+using SistemaNacoes.IoC.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,22 +63,11 @@ builder.Services.AddAuthentication(options =>
     });
 #endregion
 
-#region http context
 builder.Services.AddHttpContextAccessor();
-#endregion
-
-#region automapper profiles
-builder.Services.AddAutoMapper(typeof(VoluntarioProfile));
-builder.Services.AddAutoMapper(typeof(MinisterioProfile));
-builder.Services.AddAutoMapper(typeof(VoluntarioMinisterioProfile));
-builder.Services.AddAutoMapper(typeof(AgendaProfile));
-builder.Services.AddAutoMapper(typeof(DataIndisponivelProfile));
-builder.Services.AddAutoMapper(typeof(AtividadeProfile));
-builder.Services.AddAutoMapper(typeof(AgendamentoProfile));
-builder.Services.AddAutoMapper(typeof(GrupoProfile));
-builder.Services.AddAutoMapper(typeof(AuthTokenProfile));
-builder.Services.AddAutoMapper(typeof(UsuarioProfile));
-#endregion
+builder.Services.AdicionarRepositories();
+builder.Services.AdicionarServices();
+builder.Services.AdicionarUseCases();
+builder.Services.AdicionarProfiles();
 
 var app = builder.Build();
 

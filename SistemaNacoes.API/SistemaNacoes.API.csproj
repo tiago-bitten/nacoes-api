@@ -19,6 +19,7 @@
     <ItemGroup>
       <ProjectReference Include="..\SistemaNacoes.Application\SistemaNacoes.Application.csproj" />
       <ProjectReference Include="..\SistemaNacoes.Infra\SistemaNacoes.Infra.csproj" />
+      <ProjectReference Include="..\SistemaNacoes.IoC\SistemaNacoes.IoC.csproj" />
     </ItemGroup>
 
 </Project>

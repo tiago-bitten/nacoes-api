@@ -743,6 +743,22 @@
           "bin/placeholder/SistemaNacoes.Infra.dll": {}
         }
       },
+      "SistemaNacoes.IoC/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "SistemaNacoes.Application": "1.0.0",
+          "SistemaNacoes.Domain": "1.0.0",
+          "SistemaNacoes.Infra": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SistemaNacoes.IoC.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SistemaNacoes.IoC.dll": {}
+        }
+      },
       "SistemaNacoes.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -2039,6 +2055,11 @@
       "path": "../SistemaNacoes.Infra/SistemaNacoes.Infra.csproj",
       "msbuildProject": "../SistemaNacoes.Infra/SistemaNacoes.Infra.csproj"
     },
+    "SistemaNacoes.IoC/1.0.0": {
+      "type": "project",
+      "path": "../SistemaNacoes.IoC/SistemaNacoes.IoC.csproj",
+      "msbuildProject": "../SistemaNacoes.IoC/SistemaNacoes.IoC.csproj"
+    },
     "SistemaNacoes.Shared/1.0.0": {
       "type": "project",
       "path": "../SistemaNacoes.Shared/SistemaNacoes.Shared.csproj",
@@ -2052,6 +2073,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 7.0.0",
       "SistemaNacoes.Application >= 1.0.0",
       "SistemaNacoes.Infra >= 1.0.0",
+      "SistemaNacoes.IoC >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -2088,6 +2110,9 @@
             },
             "C:\\Dev\\Backend\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj": {
               "projectPath": "C:\\Dev\\Backend\\nacoes-api\\SistemaNacoes.Infra\\SistemaNacoes.Infra.csproj"
+            },
+            "C:\\Dev\\Backend\\nacoes-api\\SistemaNacoes.IoC\\SistemaNacoes.IoC.csproj": {
+              "projectPath": "C:\\Dev\\Backend\\nacoes-api\\SistemaNacoes.IoC\\SistemaNacoes.IoC.csproj"
             }
           }
         }

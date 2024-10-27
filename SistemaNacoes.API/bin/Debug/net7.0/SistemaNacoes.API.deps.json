@@ -13,6 +13,7 @@
           "Microsoft.EntityFrameworkCore.Design": "7.0.0",
           "SistemaNacoes.Application": "1.0.0",
           "SistemaNacoes.Infra": "1.0.0",
+          "SistemaNacoes.IoC": "1.0.0",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -404,6 +405,20 @@
           }
         }
       },
+      "SistemaNacoes.IoC/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
+          "SistemaNacoes.Application": "1.0.0",
+          "SistemaNacoes.Domain": "1.0.0",
+          "SistemaNacoes.Infra": "1.0.0"
+        },
+        "runtime": {
+          "SistemaNacoes.IoC.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "SistemaNacoes.Shared/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
@@ -731,6 +746,11 @@
       "sha512": ""
     },
     "SistemaNacoes.Infra/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SistemaNacoes.IoC/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

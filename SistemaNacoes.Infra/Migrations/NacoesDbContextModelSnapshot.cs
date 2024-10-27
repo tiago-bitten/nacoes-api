@@ -26,584 +26,571 @@ namespace SistemaNacoes.Infra.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
-                        .HasDefaultValue(true)
-                        .HasColumnName("ativo");
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
 
                     b.Property<DateTime>("DataFinal")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("data_final");
 
                     b.Property<DateTime>("DataInicio")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("data_inicio");
 
                     b.Property<string>("Descricao")
-                        .HasColumnType("VARCHAR(150)")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("descricao");
 
-                    b.Property<bool>("Finalizado")
+                    b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
-                        .HasColumnName("finalizado");
+                        .HasColumnName("removido");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("titulo");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_agendas");
 
-                    b.ToTable("agendas", (string)null);
+                    b.ToTable("agendas");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Agendamento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AgendaId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("agenda_id");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
                     b.Property<int>("MinisterioId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("ministerio_id");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
                     b.Property<int>("VoluntarioId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("voluntario_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_agendamentos");
 
-                    b.HasIndex("AgendaId");
+                    b.HasIndex("AgendaId")
+                        .HasDatabaseName("ix_agendamentos_agenda_id");
 
-                    b.HasIndex("MinisterioId");
+                    b.HasIndex("MinisterioId")
+                        .HasDatabaseName("ix_agendamentos_ministerio_id");
 
-                    b.HasIndex("VoluntarioId");
+                    b.HasIndex("VoluntarioId")
+                        .HasDatabaseName("ix_agendamentos_voluntario_id");
 
-                    b.ToTable("agendamentos", (string)null);
+                    b.ToTable("agendamentos");
                 });
 
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividades", b =>
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividade", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
                     b.Property<int>("AgendamentoId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("agendamento_id");
 
                     b.Property<int>("AtividadeId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("atividade_id");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
-                    b.HasKey("AgendamentoId", "AtividadeId");
+                    b.HasKey("Id")
+                        .HasName("pk_agendamento_atividades");
 
-                    b.HasIndex("AtividadeId");
+                    b.HasIndex("AgendamentoId")
+                        .HasDatabaseName("ix_agendamento_atividades_agendamento_id");
 
-                    b.ToTable("agendamentos_atividades", (string)null);
+                    b.HasIndex("AtividadeId")
+                        .HasDatabaseName("ix_agendamento_atividades_atividade_id");
+
+                    b.ToTable("agendamento_atividades");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Atividade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
                     b.Property<int>("MaximoVoluntarios")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("maximo_voluntarios");
 
                     b.Property<int>("MinisterioId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("ministerio_id");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("nome");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_atividades");
 
-                    b.HasIndex("MinisterioId");
+                    b.HasIndex("MinisterioId")
+                        .HasDatabaseName("ix_atividades_ministerio_id");
 
-                    b.ToTable("atividades", (string)null);
+                    b.ToTable("atividades");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.DataIndisponivel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
                     b.Property<DateTime>("DataFinal")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("data_final");
 
                     b.Property<DateTime>("DataInicio")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("data_inicio");
 
                     b.Property<string>("Motivo")
-                        .HasColumnType("VARCHAR(255)")
+                        .HasColumnType("text")
                         .HasColumnName("motivo");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
                     b.Property<bool>("Suspenso")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("suspenso");
 
                     b.Property<int>("VoluntarioId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("voluntario_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_data_indisponiveis");
 
-                    b.HasIndex("VoluntarioId");
+                    b.HasIndex("VoluntarioId")
+                        .HasDatabaseName("ix_data_indisponiveis_voluntario_id");
 
-                    b.ToTable("datas_indisponiveis", (string)null);
+                    b.ToTable("data_indisponiveis");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Escala", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AgendaId")
-                        .HasColumnType("INT")
-                        .HasColumnName("agend_id");
+                        .HasColumnType("integer")
+                        .HasColumnName("agenda_id");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
 
                     b.Property<int>("MinisterioId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("ministerio_id");
 
                     b.Property<int>("QuantidadeVoluntarios")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("quantidade_voluntarios");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
                     b.Property<bool>("Usada")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("usada");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_escalas");
 
-                    b.HasIndex("AgendaId");
+                    b.HasIndex("AgendaId")
+                        .HasDatabaseName("ix_escalas_agenda_id");
 
-                    b.HasIndex("MinisterioId");
+                    b.HasIndex("MinisterioId")
+                        .HasDatabaseName("ix_escalas_ministerio_id");
 
-                    b.ToTable("escalas", (string)null);
+                    b.ToTable("escalas");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.EscalaItem", b =>
                 {
-                    b.Property<int>("EscalaId")
-                        .HasColumnType("INT")
-                        .HasColumnName("escala_id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
 
-                    b.Property<int>("VoluntarioId")
-                        .HasColumnType("INT")
-                        .HasColumnName("voluntario_id");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AtividadeId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("atividade_id");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
+                    b.Property<int>("EscalaId")
+                        .HasColumnType("integer")
+                        .HasColumnName("escala_id");
+
                     b.Property<bool>("Removido")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
-                        .HasDefaultValue(false)
+                        .HasColumnType("boolean")
                         .HasColumnName("removido");
 
-                    b.HasKey("EscalaId", "VoluntarioId", "AtividadeId");
+                    b.Property<int>("VoluntarioId")
+                        .HasColumnType("integer")
+                        .HasColumnName("voluntario_id");
 
-                    b.HasIndex("AtividadeId");
+                    b.HasKey("Id")
+                        .HasName("pk_escala_itens");
 
-                    b.HasIndex("VoluntarioId");
+                    b.HasIndex("AtividadeId")
+                        .HasDatabaseName("ix_escala_itens_atividade_id");
 
-                    b.ToTable("escalas_itens", (string)null);
+                    b.HasIndex("EscalaId")
+                        .HasDatabaseName("ix_escala_itens_escala_id");
+
+                    b.HasIndex("VoluntarioId")
+                        .HasDatabaseName("ix_escala_itens_voluntario_id");
+
+                    b.ToTable("escala_itens");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Grupo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
                     b.Property<int?>("MinisterioPreferencialId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("ministerio_preferencial_id");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("nome");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_grupos");
 
-                    b.HasIndex("MinisterioPreferencialId");
+                    b.HasIndex("MinisterioPreferencialId")
+                        .HasDatabaseName("ix_grupos_ministerio_preferencial_id");
 
-                    b.ToTable("grupos", (string)null);
+                    b.ToTable("grupos");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.GrupoVoluntario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
                     b.Property<int>("GrupoId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("grupo_id");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
                     b.Property<int>("VoluntarioId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("voluntario_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_grupo_voluntarios");
 
-                    b.HasIndex("GrupoId");
+                    b.HasIndex("GrupoId")
+                        .HasDatabaseName("ix_grupo_voluntarios_grupo_id");
 
-                    b.HasIndex("VoluntarioId");
+                    b.HasIndex("VoluntarioId")
+                        .HasDatabaseName("ix_grupo_voluntarios_voluntario_id");
 
-                    b.ToTable("grupos_voluntarios", (string)null);
+                    b.ToTable("grupo_voluntarios");
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.HistoricoEntidade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("descricao");
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("ip");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("integer")
+                        .HasColumnName("item_id");
+
+                    b.Property<bool>("Removido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("removido");
+
+                    b.Property<string>("Tabela")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("tabela");
+
+                    b.Property<string>("UserAgent")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)")
+                        .HasColumnName("user_agent");
+
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("integer")
+                        .HasColumnName("usuario_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_historico_entidades");
+
+                    b.HasIndex("UsuarioId")
+                        .HasDatabaseName("ix_historico_entidades_usuario_id");
+
+                    b.ToTable("historico_entidades");
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.HistoricoLogin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataAcesso")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_acesso");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("ip");
+
+                    b.Property<string>("Motivo")
+                        .HasColumnType("text")
+                        .HasColumnName("motivo");
+
+                    b.Property<bool>("Removido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("removido");
+
+                    b.Property<bool>("Sucesso")
+                        .HasColumnType("boolean")
+                        .HasColumnName("sucesso");
+
+                    b.Property<string>("UserAgent")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("user_agent");
+
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("integer")
+                        .HasColumnName("usuario_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_historico_logins");
+
+                    b.HasIndex("UsuarioId")
+                        .HasDatabaseName("ix_historico_logins_usuario_id");
+
+                    b.ToTable("historico_logins");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Ministerio", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Cor")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(7)")
+                        .HasMaxLength(7)
+                        .HasColumnType("character varying(7)")
                         .HasColumnName("cor");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(255)")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("descricao");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("nome");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_ministerios");
 
-                    b.ToTable("ministerios", (string)null);
+                    b.ToTable("ministerios");
                 });
 
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RefreshToken", b =>
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.PerfilAcesso", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DataExpiracao")
-                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
-                        .HasColumnName("data_expiracao");
-
-                    b.Property<string>("Principal")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
-                        .HasColumnName("principal");
-
-                    b.Property<bool>("Revogado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
-                        .HasDefaultValue(false)
-                        .HasColumnName("revogado");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("token");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("refresh_tokens", (string)null);
-                });
-
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroAlteracao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("DadosAntigos")
-                        .IsRequired()
-                        .HasColumnType("JSONB")
-                        .HasColumnName("dados_antigos");
-
-                    b.Property<string>("DadosNovos")
-                        .IsRequired()
-                        .HasColumnType("JSONB")
-                        .HasColumnName("dados_novos");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
-                        .HasColumnName("data");
-
-                    b.Property<string>("Ip")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
-                        .HasColumnName("ip");
-
-                    b.Property<int?>("ItemId")
-                        .IsRequired()
-                        .HasColumnType("INT")
-                        .HasColumnName("item_id");
-
-                    b.Property<string>("Tabela")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("tabela");
-
-                    b.Property<string>("UserAgent")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(500)")
-                        .HasColumnName("user_agent");
-
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("INT")
-                        .HasColumnName("usuario_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("registros_alteracoes", (string)null);
-                });
-
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroCriacao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
-                        .HasColumnName("data");
-
-                    b.Property<string>("Ip")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
-                        .HasColumnName("ip");
-
-                    b.Property<int?>("ItemId")
-                        .IsRequired()
-                        .HasColumnType("INT")
-                        .HasColumnName("item_id");
-
-                    b.Property<string>("Tabela")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("tabela");
-
-                    b.Property<string>("UserAgent")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(500)")
-                        .HasColumnName("user_agent");
-
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("INT")
-                        .HasColumnName("usuario_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("registros_criacoes", (string)null);
-                });
-
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroLogin", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
-                        .HasColumnName("data");
-
-                    b.Property<string>("Ip")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
-                        .HasColumnName("ip");
-
-                    b.Property<string>("Motivo")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("motivo");
-
-                    b.Property<bool>("Sucesso")
-                        .HasColumnType("BOOLEAN")
-                        .HasColumnName("sucesso");
-
-                    b.Property<string>("UserAgent")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(500)")
-                        .HasColumnName("user_agent");
-
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("INT")
-                        .HasColumnName("usuario_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("registros_logins", (string)null);
-                });
-
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.SituacaoAgendamento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AgendamentoId")
-                        .HasColumnType("INT")
-                        .HasColumnName("agendamento_id");
-
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
-                        .HasDefaultValue(true)
-                        .HasColumnName("ativo");
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("VARCHAR(250)")
-                        .HasColumnName("descricao");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AgendamentoId")
-                        .IsUnique();
-
-                    b.ToTable("situacoes_agendamentos", (string)null);
-                });
-
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Celular")
-                        .HasColumnType("VARCHAR(15)")
-                        .HasColumnName("celular");
-
-                    b.Property<string>("Cpf")
-                        .HasColumnType("VARCHAR(11)")
-                        .HasColumnName("cpf");
-
-                    b.Property<DateTime?>("DataNascimento")
-                        .HasColumnType("DATE")
-                        .HasColumnName("data_nascimento");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
-                        .HasColumnName("email");
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -611,127 +598,298 @@ namespace SistemaNacoes.Infra.Migrations
                         .HasColumnName("nome");
 
                     b.Property<long>("Permissoes")
-                        .HasColumnType("BIGINT")
+                        .HasColumnType("bigint")
                         .HasColumnName("permissoes");
 
                     b.Property<bool>("Removido")
+                        .HasColumnType("boolean")
+                        .HasColumnName("removido");
+
+                    b.HasKey("Id")
+                        .HasName("pk_perfil_acessos");
+
+                    b.ToTable("perfil_acessos");
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
+                    b.Property<DateTime>("DataExpiracao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_expiracao");
+
+                    b.Property<string>("Principal")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("principal");
+
+                    b.Property<bool>("Removido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("removido");
+
+                    b.Property<bool>("Revogado")
+                        .HasColumnType("boolean")
+                        .HasColumnName("revogado");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("token");
+
+                    b.HasKey("Id")
+                        .HasName("pk_refresh_tokens");
+
+                    b.ToTable("refresh_tokens");
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.SituacaoAgendamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AgendamentoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("agendamento_id");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("boolean")
+                        .HasColumnName("ativo");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("text")
+                        .HasColumnName("descricao");
+
+                    b.Property<bool>("Removido")
+                        .HasColumnType("boolean")
+                        .HasColumnName("removido");
+
+                    b.HasKey("Id")
+                        .HasName("pk_situacao_agendamentos");
+
+                    b.HasIndex("AgendamentoId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_situacao_agendamentos_agendamento_id");
+
+                    b.ToTable("situacao_agendamentos");
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Celular")
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)")
+                        .HasColumnName("celular");
+
+                    b.Property<string>("Cpf")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
+                        .HasColumnName("cpf");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
+                    b.Property<DateTime?>("DataNascimento")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_nascimento");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("email");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("nome");
+
+                    b.Property<int>("PerfilAcessoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("perfil_acesso_id");
+
+                    b.Property<bool>("Removido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
                     b.Property<string>("SenhaHash")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(900)")
+                        .HasMaxLength(900)
+                        .HasColumnType("character varying(900)")
                         .HasColumnName("senha_hash");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_usuarios");
 
-                    b.ToTable("usuarios", (string)null);
+                    b.HasIndex("PerfilAcessoId")
+                        .HasDatabaseName("ix_usuarios_perfil_acesso_id");
+
+                    b.ToTable("usuarios");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.UsuarioMinisterio", b =>
                 {
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("INT")
-                        .HasColumnName("usuario_id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
 
                     b.Property<int>("MinisterioId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("ministerio_id");
 
-                    b.Property<bool>("Ativo")
+                    b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
-                        .HasDefaultValue(true)
-                        .HasColumnName("ativo");
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("removido");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("integer");
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("integer")
+                        .HasColumnName("usuario_id");
 
-                    b.HasKey("UsuarioId", "MinisterioId");
+                    b.HasKey("Id")
+                        .HasName("pk_usuario_ministerios");
 
-                    b.HasIndex("MinisterioId");
+                    b.HasIndex("MinisterioId")
+                        .HasDatabaseName("ix_usuario_ministerios_ministerio_id");
 
-                    b.ToTable("usuarios_ministerios", (string)null);
+                    b.HasIndex("UsuarioId")
+                        .HasDatabaseName("ix_usuario_ministerios_usuario_id");
+
+                    b.ToTable("usuario_ministerios");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Voluntario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Celular")
-                        .HasColumnType("VARCHAR(15)")
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)")
                         .HasColumnName("celular");
 
                     b.Property<Guid>("ChaveAcesso")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("UUID")
+                        .HasColumnType("uuid")
                         .HasColumnName("chave_acesso");
 
                     b.Property<string>("Cpf")
-                        .HasColumnType("VARCHAR(150)")
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("cpf");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
                     b.Property<DateTime?>("DataNascimento")
-                        .HasColumnType("DATE")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("data_nascimento");
 
                     b.Property<string>("Email")
-                        .HasColumnType("VARCHAR(150)")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("email");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("VARCHAR(150)")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("nome");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_voluntarios");
 
-                    b.ToTable("voluntarios", (string)null);
+                    b.ToTable("voluntarios");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.VoluntarioMinisterio", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_criacao");
+
                     b.Property<int>("MinisterioId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("ministerio_id");
 
                     b.Property<bool>("Removido")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BOOLEAN")
+                        .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("removido");
 
                     b.Property<int>("VoluntarioId")
-                        .HasColumnType("INT")
+                        .HasColumnType("integer")
                         .HasColumnName("voluntario_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_voluntario_ministerios");
 
-                    b.HasIndex("MinisterioId");
+                    b.HasIndex("MinisterioId")
+                        .HasDatabaseName("ix_voluntario_ministerios_ministerio_id");
 
-                    b.HasIndex("VoluntarioId");
+                    b.HasIndex("VoluntarioId")
+                        .HasDatabaseName("ix_voluntario_ministerios_voluntario_id");
 
-                    b.ToTable("voluntarios_ministerios", (string)null);
+                    b.ToTable("voluntario_ministerios");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Agendamento", b =>
@@ -740,19 +898,22 @@ namespace SistemaNacoes.Infra.Migrations
                         .WithMany("Agendamentos")
                         .HasForeignKey("AgendaId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_agendamentos_agendas");
 
                     b.HasOne("SistemaNacoes.Domain.Entidades.Ministerio", "Ministerio")
                         .WithMany("Agendamentos")
                         .HasForeignKey("MinisterioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_agendamentos_ministerios");
 
                     b.HasOne("SistemaNacoes.Domain.Entidades.Voluntario", "Voluntario")
                         .WithMany("Agendamentos")
                         .HasForeignKey("VoluntarioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_agendamentos_voluntarios");
 
                     b.Navigation("Agenda");
 
@@ -761,19 +922,21 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Navigation("Voluntario");
                 });
 
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividades", b =>
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.AgendamentoAtividade", b =>
                 {
                     b.HasOne("SistemaNacoes.Domain.Entidades.Agendamento", "Agendamento")
                         .WithMany("AgendamentoAtividades")
                         .HasForeignKey("AgendamentoId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_agendamento_atividades_agendamentos");
 
                     b.HasOne("SistemaNacoes.Domain.Entidades.Atividade", "Atividade")
                         .WithMany("AgendamentoAtividades")
                         .HasForeignKey("AtividadeId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_agendamento_atividades_atividades");
 
                     b.Navigation("Agendamento");
 
@@ -786,7 +949,8 @@ namespace SistemaNacoes.Infra.Migrations
                         .WithMany("Atividades")
                         .HasForeignKey("MinisterioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_atividades_ministerios");
 
                     b.Navigation("Ministerio");
                 });
@@ -794,10 +958,11 @@ namespace SistemaNacoes.Infra.Migrations
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.DataIndisponivel", b =>
                 {
                     b.HasOne("SistemaNacoes.Domain.Entidades.Voluntario", "Voluntario")
-                        .WithMany("DatasIndisponiveis")
+                        .WithMany("DataIndisponiveis")
                         .HasForeignKey("VoluntarioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_data_indisponiveis_voluntarios");
 
                     b.Navigation("Voluntario");
                 });
@@ -808,13 +973,15 @@ namespace SistemaNacoes.Infra.Migrations
                         .WithMany("Escalas")
                         .HasForeignKey("AgendaId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_escalas_agendas");
 
                     b.HasOne("SistemaNacoes.Domain.Entidades.Ministerio", "Ministerio")
                         .WithMany("Escalas")
                         .HasForeignKey("MinisterioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_escalas_ministerios");
 
                     b.Navigation("Agenda");
 
@@ -827,19 +994,22 @@ namespace SistemaNacoes.Infra.Migrations
                         .WithMany("EscalaItens")
                         .HasForeignKey("AtividadeId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_escala_itens_atividades");
 
                     b.HasOne("SistemaNacoes.Domain.Entidades.Escala", "Escala")
                         .WithMany("EscalaItens")
                         .HasForeignKey("EscalaId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_escala_itens_escalas");
 
                     b.HasOne("SistemaNacoes.Domain.Entidades.Voluntario", "Voluntario")
                         .WithMany("EscalaItens")
                         .HasForeignKey("VoluntarioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_escala_itens_voluntarios");
 
                     b.Navigation("Atividade");
 
@@ -853,7 +1023,8 @@ namespace SistemaNacoes.Infra.Migrations
                     b.HasOne("SistemaNacoes.Domain.Entidades.Ministerio", "MinisterioPreferencial")
                         .WithMany("Grupos")
                         .HasForeignKey("MinisterioPreferencialId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("fk_grupos_ministerios");
 
                     b.Navigation("MinisterioPreferencial");
                 });
@@ -864,45 +1035,39 @@ namespace SistemaNacoes.Infra.Migrations
                         .WithMany("GrupoVoluntarios")
                         .HasForeignKey("GrupoId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_grupo_voluntarios_grupos");
 
                     b.HasOne("SistemaNacoes.Domain.Entidades.Voluntario", "Voluntario")
                         .WithMany("GrupoVoluntarios")
                         .HasForeignKey("VoluntarioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_grupo_voluntarios_voluntarios");
 
                     b.Navigation("Grupo");
 
                     b.Navigation("Voluntario");
                 });
 
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroAlteracao", b =>
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.HistoricoEntidade", b =>
                 {
                     b.HasOne("SistemaNacoes.Domain.Entidades.Usuario", "Usuario")
-                        .WithMany("RegistroAlteracoes")
+                        .WithMany("Historicos")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("fk_historico_entidades_usuarios");
 
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroCriacao", b =>
-                {
-                    b.HasOne("SistemaNacoes.Domain.Entidades.Usuario", "Usuario")
-                        .WithMany("RegistroCriacoes")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.RegistroLogin", b =>
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.HistoricoLogin", b =>
                 {
                     b.HasOne("SistemaNacoes.Domain.Entidades.Usuario", "Usuario")
                         .WithMany("RegistroLogins")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("fk_historico_logins_usuarios");
 
                     b.Navigation("Usuario");
                 });
@@ -913,9 +1078,22 @@ namespace SistemaNacoes.Infra.Migrations
                         .WithOne("SituacaoAgendamento")
                         .HasForeignKey("SistemaNacoes.Domain.Entidades.SituacaoAgendamento", "AgendamentoId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_situacao_agendamentos_agendamentos");
 
                     b.Navigation("Agendamento");
+                });
+
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Usuario", b =>
+                {
+                    b.HasOne("SistemaNacoes.Domain.Entidades.PerfilAcesso", "PerfilAcesso")
+                        .WithMany("Usuarios")
+                        .HasForeignKey("PerfilAcessoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_usuarios_perfil_acessos");
+
+                    b.Navigation("PerfilAcesso");
                 });
 
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.UsuarioMinisterio", b =>
@@ -924,13 +1102,15 @@ namespace SistemaNacoes.Infra.Migrations
                         .WithMany("UsuariosMinisterios")
                         .HasForeignKey("MinisterioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_usuario_ministerios_ministerios");
 
                     b.HasOne("SistemaNacoes.Domain.Entidades.Usuario", "Usuario")
                         .WithMany("UsuariosMinisterios")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_usuario_ministerios_usuarios");
 
                     b.Navigation("Ministerio");
 
@@ -943,13 +1123,15 @@ namespace SistemaNacoes.Infra.Migrations
                         .WithMany("VoluntarioMinisterios")
                         .HasForeignKey("MinisterioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_voluntario_ministerios_ministerios");
 
                     b.HasOne("SistemaNacoes.Domain.Entidades.Voluntario", "Voluntario")
                         .WithMany("VoluntarioMinisterios")
                         .HasForeignKey("VoluntarioId")
                         .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_voluntario_ministerios_voluntarios");
 
                     b.Navigation("Ministerio");
 
@@ -1003,11 +1185,14 @@ namespace SistemaNacoes.Infra.Migrations
                     b.Navigation("VoluntarioMinisterios");
                 });
 
+            modelBuilder.Entity("SistemaNacoes.Domain.Entidades.PerfilAcesso", b =>
+                {
+                    b.Navigation("Usuarios");
+                });
+
             modelBuilder.Entity("SistemaNacoes.Domain.Entidades.Usuario", b =>
                 {
-                    b.Navigation("RegistroAlteracoes");
-
-                    b.Navigation("RegistroCriacoes");
+                    b.Navigation("Historicos");
 
                     b.Navigation("RegistroLogins");
 
@@ -1018,7 +1203,7 @@ namespace SistemaNacoes.Infra.Migrations
                 {
                     b.Navigation("Agendamentos");
 
-                    b.Navigation("DatasIndisponiveis");
+                    b.Navigation("DataIndisponiveis");
 
                     b.Navigation("EscalaItens");
 

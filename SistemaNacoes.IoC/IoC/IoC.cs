@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SistemaNacoes.Application.Profiles;
 using SistemaNacoes.Application.Services;
 using SistemaNacoes.Application.UseCases.AgendamentoAtividade.CriarAgendamentoAtividade;
 using SistemaNacoes.Application.UseCases.AgendamentoAtividades.CriarAgendamentoAtividade;
@@ -37,6 +38,7 @@ using SistemaNacoes.Application.UseCases.Voluntarios.RemoverVoluntario;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
+using SistemaNacoes.Infra.Data;
 using SistemaNacoes.Infra.Repositorios;
 
 namespace SistemaNacoes.IoC.IoC;
@@ -47,6 +49,7 @@ public static class IoC
     public static IServiceCollection AdicionarRepositories(this IServiceCollection services)
     {
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
         services.AddScoped<IAgendamentoAtividadeRepository, AgendamentoAtividadeRepository>();
@@ -74,8 +77,6 @@ public static class IoC
     #region Services
     public static IServiceCollection AdicionarServices(this IServiceCollection services)
     {
-        services.AddScoped(typeof(IServiceBase<>), typeof(ServiceBase<,>));
-
         services.AddScoped<IAgendamentoAtividadeService, AgendamentoAtividadeService>();
         services.AddScoped<IAgendamentoService, AgendamentoService>();
         services.AddScoped<IAgendaService, AgendaService>();
@@ -107,7 +108,7 @@ public static class IoC
         services.AddScoped<ICriarAgendamentoAtividadeUseCase, CriarAgendamentoAtividade>();
         services.AddScoped<IRemoverAgendamentoAtividadeUseCase, RemoverAgendamentoAtividade>();
         #endregion
-        
+
         #region Agendamento
         services.AddScoped<ICriarAgendamentoUseCase, CriarAgendamento>();
         services.AddScoped<IRemoverAgendamentoUseCase, RemoverAgendamento>();
@@ -180,5 +181,25 @@ public static class IoC
 
         return services;
     }
+    #endregion
+    
+    #region Profiles
+
+    public static IServiceCollection AdicionarProfiles(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(VoluntarioProfile));
+        services.AddAutoMapper(typeof(MinisterioProfile));
+        services.AddAutoMapper(typeof(VoluntarioMinisterioProfile));
+        services.AddAutoMapper(typeof(AgendaProfile));
+        services.AddAutoMapper(typeof(DataIndisponivelProfile));
+        services.AddAutoMapper(typeof(AtividadeProfile));
+        services.AddAutoMapper(typeof(AgendamentoProfile));
+        services.AddAutoMapper(typeof(GrupoProfile));
+        services.AddAutoMapper(typeof(AuthTokenProfile));
+        services.AddAutoMapper(typeof(UsuarioProfile));
+
+        return services;
+    }
+    
     #endregion
 }
