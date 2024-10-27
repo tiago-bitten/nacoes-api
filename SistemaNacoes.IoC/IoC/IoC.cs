@@ -167,7 +167,7 @@ public static class IoC
         
         #region VoluntarioMinisterio
         services.AddScoped<ICriarVoluntarioMinisterioUseCase, CriarVoluntarioMinisterio>();
-        services.AddScoped<IListarVoluntarioMinisterioUseCase, null >();
+        services.AddScoped<IListarVoluntarioMinisterioUseCase, ListarVoluntarioMinisterio>();
         services.AddScoped<IRemoverVoluntarioMinisterioUseCase, RemoverVoluntarioMinisterio>();
         #endregion
         

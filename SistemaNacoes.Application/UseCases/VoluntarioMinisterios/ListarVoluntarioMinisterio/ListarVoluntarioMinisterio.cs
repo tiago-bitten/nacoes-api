@@ -1,4 +1,5 @@
-﻿using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio.Dtos;
+﻿using SistemaNacoes.Application.Dtos;
+using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio.Dtos;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Paginacao;
@@ -22,7 +23,15 @@ public class ListarVoluntarioMinisterio : IListarVoluntarioMinisterioUseCase
     {
         await _permissoesService.VerificaGarantePermissaoAsync(EPermissoes.VisualizarVoluntarioMinisterio,
             "Você não tem permissão para visualizar voluntários.");
-        
-        var voluntarioMinisteriosPaginados 
+
+        var voluntarioMinisteriosPaginados = await _service
+            .RecuperarTodos()
+            .Select(x => new ListarVoluntarioMinisterioResult
+            {
+                VoluntarioMinisterioId = x.Id
+            })
+            .PaginarAsync(param.Pagina, param.Tamanho);
+
+        return voluntarioMinisteriosPaginados;
     }
 }
