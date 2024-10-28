@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.UseCases.Agendas.ListarAgenda.Dto;
+using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Extensions;
 using SistemaNacoes.Shared.Paginacao;

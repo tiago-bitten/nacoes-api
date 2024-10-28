@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Infra.Configs.Abstracoes;
 using SistemaNacoes.Shared.Extensions;
 using SistemaNacoes.Shared.Helpers;

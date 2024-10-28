@@ -8,7 +8,7 @@ namespace SistemaNacoes.Domain.Entidades
         {
         }
         
-        public Agendamento(Voluntario voluntario, Ministerio ministerio, Agenda agenda)
+        public Agendamento(Voluntario voluntario, Ministerio ministerio, Agenda.Agenda agenda)
         {
             Voluntario = voluntario;
             Ministerio = ministerio;
@@ -21,7 +21,7 @@ namespace SistemaNacoes.Domain.Entidades
 
         public Voluntario Voluntario { get; set; }
         public Ministerio Ministerio { get; set; }
-        public Agenda Agenda { get; set; }
+        public Agenda.Agenda Agenda { get; set; }
         public List<AgendamentoAtividade> AgendamentoAtividades { get; set; } = new();
         public SituacaoAgendamento SituacaoAgendamento { get; set; }
     }

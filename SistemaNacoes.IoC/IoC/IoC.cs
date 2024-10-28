@@ -35,6 +35,7 @@ using SistemaNacoes.Application.UseCases.Voluntarios.CriarVoluntario;
 using SistemaNacoes.Application.UseCases.Voluntarios.ListarVoluntario;
 using SistemaNacoes.Application.UseCases.Voluntarios.RecuperarVoluntarioParaAgendar;
 using SistemaNacoes.Application.UseCases.Voluntarios.RemoverVoluntario;
+using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
@@ -184,7 +185,6 @@ public static class IoC
     #endregion
     
     #region Profiles
-
     public static IServiceCollection AdicionarProfiles(this IServiceCollection services)
     {
         services.AddAutoMapper(typeof(VoluntarioProfile));
@@ -200,6 +200,5 @@ public static class IoC
 
         return services;
     }
-    
     #endregion
 }

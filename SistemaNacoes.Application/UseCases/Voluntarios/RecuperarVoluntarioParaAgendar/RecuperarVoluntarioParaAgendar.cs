@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.UseCases.Voluntarios.RecuperarVoluntarioParaAgendar.Dtos;
+using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Paginacao;

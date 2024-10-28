@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Application.Dtos;
+using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 

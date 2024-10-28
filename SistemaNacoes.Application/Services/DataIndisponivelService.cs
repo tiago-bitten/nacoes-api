@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 

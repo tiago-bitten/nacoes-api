@@ -2,7 +2,7 @@
 using SistemaNacoes.Domain.Entidades.Abstracoes;
 using SistemaNacoes.Domain.Enums;
 
-namespace SistemaNacoes.Domain.Entidades
+namespace SistemaNacoes.Domain.Entidades.Agenda
 {
     public sealed class Agenda : EntidadeBase
     {
