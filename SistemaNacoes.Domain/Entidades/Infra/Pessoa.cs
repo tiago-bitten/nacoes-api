@@ -1,4 +1,6 @@
-﻿namespace SistemaNacoes.Domain.Entidades.Abstracoes;
+﻿using SistemaNacoes.Domain.Entidades.Infra;
+
+namespace SistemaNacoes.Domain.Entidades.Abstracoes;
 
 public abstract class Pessoa : EntidadeBase
 {

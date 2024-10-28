@@ -1,7 +1,4 @@
-﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
-
-namespace SistemaNacoes.Domain.Interfaces.Services;
+﻿namespace SistemaNacoes.Domain.Entidades.Infra;
 
 public interface IServiceBase<T> where T : EntidadeBase
 {

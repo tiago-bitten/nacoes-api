@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades.Abstracoes;
+using SistemaNacoes.Domain.Entidades.Infra;
 
 namespace SistemaNacoes.Infra.Configs.Abstracoes;
 

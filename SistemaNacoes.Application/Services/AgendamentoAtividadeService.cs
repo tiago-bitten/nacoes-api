@@ -1,6 +1,7 @@
 ﻿using SistemaNacoes.Application.Responses;
 using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 

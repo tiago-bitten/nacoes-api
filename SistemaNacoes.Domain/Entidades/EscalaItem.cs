@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+using SistemaNacoes.Domain.Entidades.Infra;
 
 namespace SistemaNacoes.Domain.Entidades
 {

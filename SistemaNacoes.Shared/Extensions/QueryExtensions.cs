@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Entidades.Abstracoes;
+using SistemaNacoes.Domain.Entidades.Infra;
 
 namespace SistemaNacoes.Shared.Extensions
 {

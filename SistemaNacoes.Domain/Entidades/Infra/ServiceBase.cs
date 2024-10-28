@@ -1,9 +1,8 @@
-﻿using SistemaNacoes.Domain.Interfaces.Repositorios;
+﻿using SistemaNacoes.Domain.Enterprise;
+using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
-using SistemaNacoes.Domain.Enterprise;
-using SistemaNacoes.Domain.Entidades.Abstracoes;
 
-namespace SistemaNacoes.Application.Services;
+namespace SistemaNacoes.Domain.Entidades.Infra;
 
 public class ServiceBase<TEntidade, TRepositorio> : IServiceBase<TEntidade>
     where TEntidade : EntidadeBase

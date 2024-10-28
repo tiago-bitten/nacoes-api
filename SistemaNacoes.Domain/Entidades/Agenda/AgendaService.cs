@@ -1,9 +1,6 @@
-﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Entidades.Agenda;
-using SistemaNacoes.Domain.Interfaces;
-using SistemaNacoes.Domain.Interfaces.Services;
+﻿using SistemaNacoes.Domain.Entidades.Infra;
 
-namespace SistemaNacoes.Application.Services;
+namespace SistemaNacoes.Domain.Entidades.Agenda;
 
 public class AgendaService : ServiceBase<Agenda, IAgendaRepository>, IAgendaService
 {

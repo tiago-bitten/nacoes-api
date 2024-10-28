@@ -1,6 +1,6 @@
 ﻿using SistemaNacoes.Domain.Enterprise;
 
-namespace SistemaNacoes.Domain.Entidades.Abstracoes;
+namespace SistemaNacoes.Domain.Entidades.Infra;
 
 public abstract class EntidadeBase
 {

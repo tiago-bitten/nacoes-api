@@ -1,4 +1,5 @@
-﻿using SistemaNacoes.Domain.Interfaces.Services;
+﻿using SistemaNacoes.Domain.Entidades.Infra;
+using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Domain.Entidades.Agenda;
 

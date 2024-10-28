@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
+using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Enums;
 
 namespace SistemaNacoes.Domain.Entidades;
