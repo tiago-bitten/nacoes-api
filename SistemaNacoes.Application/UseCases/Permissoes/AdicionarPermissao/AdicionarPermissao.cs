@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Application.UseCases.Permissoes.AdicionarPermissao.Dtos;
+using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;

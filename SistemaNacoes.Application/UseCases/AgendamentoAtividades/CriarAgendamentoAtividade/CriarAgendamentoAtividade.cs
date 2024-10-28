@@ -2,6 +2,7 @@
 using SistemaNacoes.Application.UseCases.AgendamentoAtividades.CriarAgendamentoAtividade.Dtos;
 using SistemaNacoes.Domain.Entidades.Agendamento;
 using SistemaNacoes.Domain.Entidades.AgendamentoAtividade;
+using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 

@@ -1,4 +1,4 @@
-﻿namespace SistemaNacoes.Domain.Interfaces.Services;
+﻿namespace SistemaNacoes.Domain.Entidades.HistoricoEntidade;
 
 public interface IHistoricoEntidadeService
 {

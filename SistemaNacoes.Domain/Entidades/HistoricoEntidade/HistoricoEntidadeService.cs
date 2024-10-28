@@ -1,8 +1,7 @@
-﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
+﻿using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
-namespace SistemaNacoes.Application.Services;
+namespace SistemaNacoes.Domain.Entidades.HistoricoEntidade;
 
 public class HistoricoEntidadeService : IHistoricoEntidadeService
 {

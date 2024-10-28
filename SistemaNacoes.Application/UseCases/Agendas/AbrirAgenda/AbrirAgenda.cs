@@ -3,6 +3,7 @@ using SistemaNacoes.Application.UseCases.Agendas.AbrirAgenda.Dtos;
 using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.Agenda;
+using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
