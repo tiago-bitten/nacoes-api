@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.UseCases.DataIndisponiveis.CriarDataIndisponivel.Dtos;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.DataIndisponivel;
 
 namespace SistemaNacoes.Application.Profiles;
 
