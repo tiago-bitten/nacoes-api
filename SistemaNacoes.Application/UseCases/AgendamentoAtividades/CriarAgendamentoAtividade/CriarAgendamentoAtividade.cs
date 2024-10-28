@@ -1,6 +1,7 @@
 ﻿using SistemaNacoes.Application.UseCases.AgendamentoAtividade.CriarAgendamentoAtividade;
 using SistemaNacoes.Application.UseCases.AgendamentoAtividades.CriarAgendamentoAtividade.Dtos;
 using SistemaNacoes.Domain.Entidades.Agendamento;
+using SistemaNacoes.Domain.Entidades.AgendamentoAtividade;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
@@ -27,7 +28,7 @@ public class CriarAgendamentoAtividade : ICriarAgendamentoAtividadeUseCase
     {
         var agendamento = await _agendamentoService.RecuperaGaranteExisteAsync(request.AgendamentoId);
 
-        var agendamentoAtividades = new List<Domain.Entidades.AgendamentoAtividade>();
+        var agendamentoAtividades = new List<Domain.Entidades.AgendamentoAtividade.AgendamentoAtividade>();
         
         await _uow.IniciarTransacaoAsync();
         foreach (var atividadeId in request.AtividadeIds)
@@ -36,7 +37,7 @@ public class CriarAgendamentoAtividade : ICriarAgendamentoAtividadeUseCase
             
             await _service.GaranteNaoExisteAtividadeNoAgendamentoAsync(agendamento.Id, atividade.Id);
 
-            var agendamentoAtividade = new Domain.Entidades.AgendamentoAtividade(agendamento, atividade);
+            var agendamentoAtividade = new Domain.Entidades.AgendamentoAtividade.AgendamentoAtividade(agendamento, atividade);
             agendamentoAtividades.Add(agendamentoAtividade);
         }
         await _service.AdicionarVariosAsync(agendamentoAtividades);

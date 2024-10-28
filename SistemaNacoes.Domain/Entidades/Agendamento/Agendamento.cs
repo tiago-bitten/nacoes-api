@@ -22,7 +22,7 @@ namespace SistemaNacoes.Domain.Entidades.Agendamento
         public Voluntario Voluntario { get; set; }
         public Ministerio Ministerio { get; set; }
         public Agenda.Agenda Agenda { get; set; }
-        public List<AgendamentoAtividade> AgendamentoAtividades { get; set; } = new();
+        public List<AgendamentoAtividade.AgendamentoAtividade> AgendamentoAtividades { get; set; } = new();
         public SituacaoAgendamento SituacaoAgendamento { get; set; }
     }
 }

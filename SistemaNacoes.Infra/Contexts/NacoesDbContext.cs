@@ -2,6 +2,7 @@
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Entidades.Agendamento;
+using SistemaNacoes.Domain.Entidades.AgendamentoAtividade;
 using SistemaNacoes.Infra.Configs;
 using SistemaNacoes.Shared.Extensions;
 

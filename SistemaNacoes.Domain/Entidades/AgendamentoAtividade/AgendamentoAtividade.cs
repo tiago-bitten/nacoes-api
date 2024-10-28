@@ -1,8 +1,7 @@
 ﻿using SistemaNacoes.Domain.Enterprise;
-using SistemaNacoes.Domain.Entidades.Abstracoes;
 using SistemaNacoes.Domain.Entidades.Infra;
 
-namespace SistemaNacoes.Domain.Entidades;
+namespace SistemaNacoes.Domain.Entidades.AgendamentoAtividade;
 
 public sealed class AgendamentoAtividade : EntidadeBase
 {
