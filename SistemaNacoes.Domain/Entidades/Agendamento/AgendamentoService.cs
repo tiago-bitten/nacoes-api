@@ -1,11 +1,7 @@
-﻿using SistemaNacoes.Application.Responses;
-using SistemaNacoes.Domain.Enterprise;
-using SistemaNacoes.Domain.Entidades;
+﻿using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades.Infra;
-using SistemaNacoes.Domain.Interfaces;
-using SistemaNacoes.Domain.Interfaces.Services;
 
-namespace SistemaNacoes.Application.Services;
+namespace SistemaNacoes.Domain.Entidades.Agendamento;
 
 public class AgendamentoService : ServiceBase<Agendamento, IAgendamentoRepository>, IAgendamentoService
 {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.UseCases.Agendamentos.CriarAgendamento.Dtos;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Agendamento;
 
 namespace SistemaNacoes.Application.Profiles;
 

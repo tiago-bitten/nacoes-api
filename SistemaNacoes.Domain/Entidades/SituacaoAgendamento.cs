@@ -9,7 +9,7 @@ public sealed class SituacaoAgendamento : EntidadeBase
     {
     }
     
-    public SituacaoAgendamento(Agendamento agendamento)
+    public SituacaoAgendamento(Agendamento.Agendamento agendamento)
     {
         Agendamento = agendamento;
     }
@@ -18,5 +18,5 @@ public sealed class SituacaoAgendamento : EntidadeBase
     public string? Descricao { get; set; }
     public int AgendamentoId { get; set; }
     
-    public Agendamento Agendamento { get; set; }
+    public Agendamento.Agendamento Agendamento { get; set; }
 }

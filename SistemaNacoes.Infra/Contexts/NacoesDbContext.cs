@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.Agenda;
+using SistemaNacoes.Domain.Entidades.Agendamento;
 using SistemaNacoes.Infra.Configs;
 using SistemaNacoes.Shared.Extensions;
 

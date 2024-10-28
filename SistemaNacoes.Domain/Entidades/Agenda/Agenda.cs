@@ -1,5 +1,4 @@
 ﻿using SistemaNacoes.Domain.Enterprise;
-using SistemaNacoes.Domain.Entidades.Abstracoes;
 using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Enums;
 
@@ -13,7 +12,7 @@ namespace SistemaNacoes.Domain.Entidades.Agenda
         public DateTime DataFinal { get; set; }
         public EAgendaStatus Status { get; private set; } = EAgendaStatus.Aberto;
 
-        public List<Agendamento> Agendamentos { get; set; } = new();
+        public List<Agendamento.Agendamento> Agendamentos { get; set; } = new();
         public List<Escala> Escalas { get; set; } = new();
 
         public void Concluir()
