@@ -9,14 +9,14 @@ public sealed class AgendamentoAtividade : EntidadeBase
     public int AtividadeId { get; set; }
     
     public Agendamento.Agendamento Agendamento { get; set; }
-    public Atividade Atividade { get; set; }
+    public Atividade.Atividade Atividade { get; set; }
     
     
     public AgendamentoAtividade()
     {
     }
     
-    public AgendamentoAtividade(Agendamento.Agendamento agendamento, Atividade atividade)
+    public AgendamentoAtividade(Agendamento.Agendamento agendamento, Atividade.Atividade atividade)
     {
         Agendamento = agendamento;
         Atividade = atividade;

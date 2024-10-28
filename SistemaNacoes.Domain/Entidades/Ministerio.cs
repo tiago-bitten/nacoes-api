@@ -11,7 +11,7 @@ namespace SistemaNacoes.Domain.Entidades
         public string Descricao { get; set; }
         public string Cor { get; set; }
 
-        public List<Atividade> Atividades { get; set; } = new();
+        public List<Atividade.Atividade> Atividades { get; set; } = new();
         public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
         public List<UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
         public List<Agendamento.Agendamento> Agendamentos { get; set; } = new();

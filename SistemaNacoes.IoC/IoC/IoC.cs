@@ -38,6 +38,7 @@ using SistemaNacoes.Application.UseCases.Voluntarios.RemoverVoluntario;
 using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Entidades.Agendamento;
 using SistemaNacoes.Domain.Entidades.AgendamentoAtividade;
+using SistemaNacoes.Domain.Entidades.Atividade;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;

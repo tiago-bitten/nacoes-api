@@ -21,7 +21,7 @@ namespace SistemaNacoes.Domain.Entidades
         }
 
         public Escala Escala { get; set; }
-        public Atividade Atividade { get; set; }
+        public Atividade.Atividade Atividade { get; set; }
         public Voluntario Voluntario { get; set; }
     }
 }
