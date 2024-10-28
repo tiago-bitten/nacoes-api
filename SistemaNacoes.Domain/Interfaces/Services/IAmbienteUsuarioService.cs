@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Usuario;
 
 namespace SistemaNacoes.Domain.Interfaces.Services;
 

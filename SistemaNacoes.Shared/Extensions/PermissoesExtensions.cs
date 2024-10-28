@@ -1,5 +1,6 @@
 ﻿using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.PerfilAcesso;
+using SistemaNacoes.Domain.Entidades.Usuario;
 using SistemaNacoes.Domain.Enums;
 
 namespace SistemaNacoes.Shared.Extensions;

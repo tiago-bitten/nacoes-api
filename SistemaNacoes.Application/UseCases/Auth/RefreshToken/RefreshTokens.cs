@@ -4,6 +4,7 @@ using SistemaNacoes.Application.UseCases.Auth.RefreshToken.Dtos;
 using SistemaNacoes.Domain.Enterprise;
 using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Entidades.RefreshToken;
+using SistemaNacoes.Domain.Entidades.Usuario;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Extensions;

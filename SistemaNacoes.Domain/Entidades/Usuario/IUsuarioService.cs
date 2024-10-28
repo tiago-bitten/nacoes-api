@@ -1,7 +1,6 @@
-﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Entidades.Infra;
+﻿using SistemaNacoes.Domain.Entidades.Infra;
 
-namespace SistemaNacoes.Domain.Interfaces.Services;
+namespace SistemaNacoes.Domain.Entidades.Usuario;
 
 public interface IUsuarioService : IServiceBase<Usuario>
 {

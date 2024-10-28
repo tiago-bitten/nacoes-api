@@ -12,7 +12,7 @@ public sealed class HistoricoEntidade : EntidadeBase
     public string UserAgent { get; set; }
     public string Descricao { get; set; }
     
-    public Usuario? Usuario { get; set; }
+    public Usuario.Usuario? Usuario { get; set; }
     
     public HistoricoEntidade()
     {

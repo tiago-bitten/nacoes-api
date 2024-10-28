@@ -12,5 +12,5 @@ public sealed class HistoricoLogin : EntidadeBase
     public bool Sucesso { get; set; }
     public EMotivoLoginAcessoNegado? Motivo { get; set; }
 
-    public Usuario? Usuario { get; set; }
+    public Usuario.Usuario? Usuario { get; set; }
 }

@@ -23,6 +23,5 @@ namespace SistemaNacoes.Domain.Entidades.Agendamento
         public Ministerio.Ministerio Ministerio { get; set; }
         public Agenda.Agenda Agenda { get; set; }
         public List<AgendamentoAtividade.AgendamentoAtividade> AgendamentoAtividades { get; set; } = new();
-        public SituacaoAgendamento SituacaoAgendamento { get; set; }
     }
 }

@@ -8,5 +8,5 @@ public class PerfilAcesso : EntidadeBase
     public string Nome { get; set; }
     public EPermissoes Permissoes { get; set; } = EPermissoes.Nenhuma;
 
-    public List<Usuario> Usuarios { get; set; } = new();
+    public List<Usuario.Usuario> Usuarios { get; set; } = new();
 }

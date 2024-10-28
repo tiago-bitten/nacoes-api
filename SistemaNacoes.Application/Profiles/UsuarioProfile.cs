@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.UseCases.Usuarios.CriarUsuario.Dtos;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Usuario;
 
 namespace SistemaNacoes.Application.Profiles;
 

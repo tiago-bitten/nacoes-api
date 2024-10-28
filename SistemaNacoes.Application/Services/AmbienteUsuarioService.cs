@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Usuario;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Extensions;
 
