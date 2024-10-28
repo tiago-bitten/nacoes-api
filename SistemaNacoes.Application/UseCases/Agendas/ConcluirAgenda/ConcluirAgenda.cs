@@ -1,6 +1,7 @@
 ﻿using SistemaNacoes.Application.Dtos;
 using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
+using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 

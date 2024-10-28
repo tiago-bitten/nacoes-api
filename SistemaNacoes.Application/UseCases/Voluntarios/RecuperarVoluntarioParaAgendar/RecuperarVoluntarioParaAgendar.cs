@@ -3,6 +3,7 @@ using SistemaNacoes.Application.UseCases.Voluntarios.RecuperarVoluntarioParaAgen
 using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Entidades.DataIndisponivel;
 using SistemaNacoes.Domain.Entidades.Ministerio;
+using SistemaNacoes.Domain.Entidades.Voluntario;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Paginacao;

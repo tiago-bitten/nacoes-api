@@ -2,7 +2,9 @@
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.CriarVoluntarioMinisterio.Dtos;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
+using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Entidades.Ministerio;
+using SistemaNacoes.Domain.Entidades.Voluntario;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;

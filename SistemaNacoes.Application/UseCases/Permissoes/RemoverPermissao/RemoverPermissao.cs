@@ -1,5 +1,6 @@
 ﻿using SistemaNacoes.Application.UseCases.Permissoes.RemoverPermissao.Dtos;
 using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
+using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Entidades.PerfilAcesso;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;

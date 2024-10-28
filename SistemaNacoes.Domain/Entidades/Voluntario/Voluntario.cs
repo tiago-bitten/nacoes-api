@@ -1,6 +1,6 @@
 ﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
 
-namespace SistemaNacoes.Domain.Entidades;
+namespace SistemaNacoes.Domain.Entidades.Voluntario;
 
 public sealed class Voluntario : Pessoa
 {

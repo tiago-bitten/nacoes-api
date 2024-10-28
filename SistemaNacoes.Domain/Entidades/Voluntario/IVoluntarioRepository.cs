@@ -1,6 +1,6 @@
-﻿using SistemaNacoes.Domain.Entidades;
+﻿using SistemaNacoes.Domain.Interfaces.Repositorios;
 
-namespace SistemaNacoes.Domain.Interfaces.Repositorios;
+namespace SistemaNacoes.Domain.Entidades.Voluntario;
 
 public interface IVoluntarioRepository : IRepositoryBase<Voluntario>
 {

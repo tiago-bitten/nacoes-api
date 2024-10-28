@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.UseCases.Voluntarios.CriarVoluntario.Dtos;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Voluntario;
 
 namespace SistemaNacoes.Application.Profiles;
 

@@ -21,6 +21,6 @@ namespace SistemaNacoes.Domain.Entidades.EscalaItem
 
         public Escala.Escala Escala { get; set; }
         public Atividade.Atividade Atividade { get; set; }
-        public Voluntario Voluntario { get; set; }
+        public Voluntario.Voluntario Voluntario { get; set; }
     }
 }

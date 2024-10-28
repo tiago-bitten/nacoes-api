@@ -10,18 +10,18 @@ public sealed class DataIndisponivel : EntidadeBase
     public bool Suspenso { get; private set; } = false;
     public int VoluntarioId { get; set; }
 
-    public Voluntario Voluntario { get; set; }
+    public Voluntario.Voluntario Voluntario { get; set; }
         
     #region Ctor
     public DataIndisponivel() {}
-    public DataIndisponivel(Voluntario voluntario, DateTime dataInicio, DateTime dataFinal)
+    public DataIndisponivel(Voluntario.Voluntario voluntario, DateTime dataInicio, DateTime dataFinal)
     {
         Voluntario = voluntario;
         DataInicio = dataInicio;
         DataFinal = dataFinal;
     }
         
-    public DataIndisponivel(Voluntario voluntario, DateTime dataInicio, DateTime dataFinal, string motivo)
+    public DataIndisponivel(Voluntario.Voluntario voluntario, DateTime dataInicio, DateTime dataFinal, string motivo)
     {
         Voluntario = voluntario;
         DataInicio = dataInicio;

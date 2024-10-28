@@ -6,7 +6,7 @@ namespace SistemaNacoes.Domain.Entidades
     public sealed class VoluntarioMinisterio : EntidadeBase
     {
         public VoluntarioMinisterio() {}
-        public VoluntarioMinisterio(Voluntario voluntario, Ministerio.Ministerio ministerio)
+        public VoluntarioMinisterio(Voluntario.Voluntario voluntario, Ministerio.Ministerio ministerio)
         {
             Voluntario = voluntario;
             Ministerio = ministerio;
@@ -16,7 +16,7 @@ namespace SistemaNacoes.Domain.Entidades
         public int MinisterioId { get; set; }
         public bool Removido { get; set; } = false;
 
-        public Voluntario Voluntario { get; set; }
+        public Voluntario.Voluntario Voluntario { get; set; }
         public Ministerio.Ministerio Ministerio { get; set; }
     }
 }

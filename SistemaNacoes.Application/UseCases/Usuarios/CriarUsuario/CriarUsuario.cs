@@ -2,6 +2,7 @@
 using SistemaNacoes.Application.UseCases.Usuarios.CriarUsuario.Dtos;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
+using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Entidades.PerfilAcesso;
 using SistemaNacoes.Domain.Entidades.Usuario;
 using SistemaNacoes.Domain.Enums;

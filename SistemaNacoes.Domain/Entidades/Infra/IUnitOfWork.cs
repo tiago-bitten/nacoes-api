@@ -1,4 +1,4 @@
-﻿namespace SistemaNacoes.Domain.Interfaces.Repositorios
+﻿namespace SistemaNacoes.Domain.Entidades.Infra
 {
     public interface IUnitOfWork : IDisposable
     {

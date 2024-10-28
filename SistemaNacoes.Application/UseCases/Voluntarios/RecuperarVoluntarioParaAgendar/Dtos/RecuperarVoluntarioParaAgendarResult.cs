@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using SistemaNacoes.Application.Dtos;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Voluntario;
 using SistemaNacoes.Domain.Enums;
 
 namespace SistemaNacoes.Application.UseCases.Voluntarios.RecuperarVoluntarioParaAgendar.Dtos;
