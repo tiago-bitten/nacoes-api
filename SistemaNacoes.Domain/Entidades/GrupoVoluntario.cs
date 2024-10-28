@@ -9,7 +9,7 @@ public sealed class GrupoVoluntario : EntidadeBase
     {
     }
 
-    public GrupoVoluntario(Grupo grupo, Voluntario voluntario)
+    public GrupoVoluntario(Grupo.Grupo grupo, Voluntario voluntario)
     {
         Grupo = grupo;
         Voluntario = voluntario;
@@ -19,6 +19,6 @@ public sealed class GrupoVoluntario : EntidadeBase
     public int VoluntarioId { get; set; }
     public bool Removido { get; set; } = false;
     
-    public Grupo Grupo { get; set; }
+    public Grupo.Grupo Grupo { get; set; }
     public Voluntario Voluntario { get; set; }
 }

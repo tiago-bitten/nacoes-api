@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Grupo;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Infra.Contexts;
 

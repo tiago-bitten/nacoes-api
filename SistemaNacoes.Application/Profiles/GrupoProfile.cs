@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.UseCases.Grupos.CriarGrupo.Dtos;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Grupo;
 
 namespace SistemaNacoes.Application.Profiles;
 

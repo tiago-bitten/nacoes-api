@@ -42,6 +42,7 @@ using SistemaNacoes.Domain.Entidades.Atividade;
 using SistemaNacoes.Domain.Entidades.DataIndisponivel;
 using SistemaNacoes.Domain.Entidades.Escala;
 using SistemaNacoes.Domain.Entidades.EscalaItem;
+using SistemaNacoes.Domain.Entidades.Grupo;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
