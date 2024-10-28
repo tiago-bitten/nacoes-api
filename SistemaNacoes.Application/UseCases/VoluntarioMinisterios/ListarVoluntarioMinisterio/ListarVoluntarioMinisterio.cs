@@ -1,5 +1,6 @@
 ﻿using SistemaNacoes.Application.Dtos;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio.Dtos;
+using SistemaNacoes.Domain.Entidades.VoluntarioMinisterio;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Paginacao;

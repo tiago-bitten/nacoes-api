@@ -16,6 +16,7 @@ using SistemaNacoes.Domain.Entidades.RefreshToken;
 using SistemaNacoes.Domain.Entidades.Usuario;
 using SistemaNacoes.Domain.Entidades.UsuarioMinisterio;
 using SistemaNacoes.Domain.Entidades.Voluntario;
+using SistemaNacoes.Domain.Entidades.VoluntarioMinisterio;
 using SistemaNacoes.Infra.Configs;
 using SistemaNacoes.Shared.Extensions;
 

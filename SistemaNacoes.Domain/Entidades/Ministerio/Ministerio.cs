@@ -11,7 +11,7 @@ namespace SistemaNacoes.Domain.Entidades.Ministerio
         public string Cor { get; set; }
 
         public List<Atividade.Atividade> Atividades { get; set; } = new();
-        public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
+        public List<VoluntarioMinisterio.VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
         public List<UsuarioMinisterio.UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
         public List<Agendamento.Agendamento> Agendamentos { get; set; } = new();
         public List<Escala.Escala> Escalas { get; set; } = new();
