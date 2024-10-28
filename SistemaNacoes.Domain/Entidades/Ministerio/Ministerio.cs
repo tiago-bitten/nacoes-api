@@ -12,7 +12,7 @@ namespace SistemaNacoes.Domain.Entidades.Ministerio
 
         public List<Atividade.Atividade> Atividades { get; set; } = new();
         public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
-        public List<UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
+        public List<UsuarioMinisterio.UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
         public List<Agendamento.Agendamento> Agendamentos { get; set; } = new();
         public List<Escala.Escala> Escalas { get; set; } = new();
         public List<Grupo.Grupo> Grupos { get; set; } = new();
