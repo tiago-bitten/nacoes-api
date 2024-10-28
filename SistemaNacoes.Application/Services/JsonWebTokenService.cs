@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Infra;
+using SistemaNacoes.Domain.Entidades.RefreshToken;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 

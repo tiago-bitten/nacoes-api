@@ -1,12 +1,11 @@
 ﻿using System.Security.Claims;
-using SistemaNacoes.Domain.Entidades;
 
-namespace SistemaNacoes.Domain.Interfaces.Services;
+namespace SistemaNacoes.Domain.Entidades.Infra;
 
 public interface ITokenService
 {
     string GenerateAccessToken(Usuario usuario);
-    Task<RefreshToken> GenerateRefreshTokenAsync(string principal);
+    Task<RefreshToken.RefreshToken> GenerateRefreshTokenAsync(string principal);
     Task RevogarRefreshTokenAsync(string token);
     ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
 }

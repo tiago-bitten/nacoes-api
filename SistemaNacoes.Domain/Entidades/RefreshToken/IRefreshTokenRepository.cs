@@ -1,7 +1,6 @@
 ﻿using System.Linq.Expressions;
-using SistemaNacoes.Domain.Entidades;
 
-namespace SistemaNacoes.Domain.Interfaces.Repositorios;
+namespace SistemaNacoes.Domain.Entidades.RefreshToken;
 
 public interface IRefreshTokenRepository
 {
