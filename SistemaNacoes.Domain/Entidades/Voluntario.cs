@@ -13,5 +13,5 @@ public sealed class Voluntario : Pessoa
     public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
     public List<Agendamento.Agendamento> Agendamentos { get; set; } = new();
     public List<DataIndisponivel.DataIndisponivel> DataIndisponiveis { get; set; } = new();
-    public List<EscalaItem> EscalaItens { get; set; } = new();
+    public List<EscalaItem.EscalaItem> EscalaItens { get; set; } = new();
 }

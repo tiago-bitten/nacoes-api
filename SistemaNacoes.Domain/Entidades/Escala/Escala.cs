@@ -20,6 +20,6 @@ namespace SistemaNacoes.Domain.Entidades.Escala
 
         public Agenda.Agenda Agenda { get; set; }
         public Ministerio Ministerio { get; set; }
-        public List<EscalaItem> EscalaItens { get; set; } = new();
+        public List<EscalaItem.EscalaItem> EscalaItens { get; set; } = new();
     }
 }

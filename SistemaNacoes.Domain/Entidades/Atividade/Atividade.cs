@@ -17,7 +17,7 @@ namespace SistemaNacoes.Domain.Entidades.Atividade
         public int MinisterioId { get; set; }
 
         public Ministerio Ministerio { get; set; }
-        public List<EscalaItem> EscalaItens { get; set; } = new();
+        public List<EscalaItem.EscalaItem> EscalaItens { get; set; } = new();
         public List<AgendamentoAtividade.AgendamentoAtividade> AgendamentoAtividades { get; set; } = new();
     }
 }
