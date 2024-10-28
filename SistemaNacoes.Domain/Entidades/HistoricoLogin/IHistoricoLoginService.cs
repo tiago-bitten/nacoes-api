@@ -1,7 +1,6 @@
-﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Enums;
+﻿using SistemaNacoes.Domain.Enums;
 
-namespace SistemaNacoes.Domain.Interfaces.Services;
+namespace SistemaNacoes.Domain.Entidades.HistoricoLogin;
 
 public interface IHistoricoLoginService
 {

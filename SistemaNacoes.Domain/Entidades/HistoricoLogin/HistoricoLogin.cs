@@ -1,8 +1,7 @@
-﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
-using SistemaNacoes.Domain.Entidades.Infra;
+﻿using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Enums;
 
-namespace SistemaNacoes.Domain.Entidades;
+namespace SistemaNacoes.Domain.Entidades.HistoricoLogin;
 
 public sealed class HistoricoLogin : EntidadeBase
 {

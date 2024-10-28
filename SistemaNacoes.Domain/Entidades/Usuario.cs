@@ -12,7 +12,7 @@ namespace SistemaNacoes.Domain.Entidades
 
         public PerfilAcesso PerfilAcesso { get; set; }
         public List<UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
-        public List<HistoricoLogin> RegistroLogins { get; set; } = new();
+        public List<HistoricoLogin.HistoricoLogin> RegistroLogins { get; set; } = new();
         public List<HistoricoEntidade.HistoricoEntidade> Historicos { get; set; } = new();
     }
 }

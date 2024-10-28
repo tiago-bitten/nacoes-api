@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.HistoricoLogin;
 using SistemaNacoes.Shared.Extensions;
 using SistemaNacoes.Infra.Configs.Abstracoes;
 using SistemaNacoes.Shared.Helpers;

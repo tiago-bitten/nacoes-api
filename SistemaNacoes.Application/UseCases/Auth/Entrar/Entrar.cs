@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.UseCases.Auth.Entrar.Dtos;
 using SistemaNacoes.Domain.Enterprise;
+using SistemaNacoes.Domain.Entidades.HistoricoLogin;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
