@@ -5,7 +5,6 @@ using SistemaNacoes.Domain.Entidades.HistoricoLogin;
 using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Entidades.Usuario;
 using SistemaNacoes.Domain.Enums;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Helpers;
 

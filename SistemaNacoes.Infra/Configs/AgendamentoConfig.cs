@@ -40,10 +40,5 @@ public class AgendamentoConfig : EntidadeBaseConfig<Agendamento>
             .WithOne(x => x.Agendamento)
             .HasForeignKey(x => x.AgendamentoId)
             .OnDelete(DeleteBehavior.SetNull);
-        
-        builder.HasOne(x => x.SituacaoAgendamento)
-            .WithOne(x => x.Agendamento)
-            .HasForeignKey<SituacaoAgendamento>(x => x.AgendamentoId)
-            .OnDelete(DeleteBehavior.SetNull);
     }
 }

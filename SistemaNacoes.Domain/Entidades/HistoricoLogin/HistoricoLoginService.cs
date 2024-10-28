@@ -2,7 +2,6 @@
 using SistemaNacoes.Domain.Entidades.HistoricoLogin;
 using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Enums;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;

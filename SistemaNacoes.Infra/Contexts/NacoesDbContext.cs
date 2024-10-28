@@ -42,7 +42,6 @@ public class NacoesDbContext : DbContext
     public DbSet<Escala> Escalas { get; set; }
     public DbSet<EscalaItem> EscalaItens { get; set; }
     public DbSet<AgendamentoAtividade> AgendamentoAtividades { get; set; }
-    public DbSet<SituacaoAgendamento> SituacaoAgendamentos { get; set; }
     public DbSet<GrupoVoluntario> GrupoVoluntarios { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<HistoricoLogin> HistoricoLogins { get; set; }

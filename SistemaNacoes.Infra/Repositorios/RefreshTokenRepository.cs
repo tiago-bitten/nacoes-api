@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.RefreshToken;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Infra.Contexts;
 
 namespace SistemaNacoes.Infra.Repositorios;

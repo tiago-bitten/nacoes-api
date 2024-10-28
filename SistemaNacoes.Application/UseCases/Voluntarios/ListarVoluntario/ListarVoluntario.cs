@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Application.UseCases.Voluntarios.ListarVoluntario.Dtos;
+using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Entidades.Voluntario;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Services;

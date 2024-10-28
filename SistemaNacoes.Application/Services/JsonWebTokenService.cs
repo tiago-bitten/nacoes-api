@@ -8,7 +8,6 @@ using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Entidades.RefreshToken;
 using SistemaNacoes.Domain.Entidades.Usuario;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.Services;

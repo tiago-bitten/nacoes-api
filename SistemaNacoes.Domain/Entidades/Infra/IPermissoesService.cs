@@ -1,6 +1,6 @@
 ﻿using SistemaNacoes.Domain.Enums;
 
-namespace SistemaNacoes.Domain.Interfaces.Services;
+namespace SistemaNacoes.Domain.Entidades.Infra;
 
 public interface IPermissoesService
 {

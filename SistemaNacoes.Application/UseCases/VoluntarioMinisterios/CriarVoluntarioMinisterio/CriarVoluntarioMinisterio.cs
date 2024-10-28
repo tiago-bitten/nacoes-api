@@ -7,7 +7,6 @@ using SistemaNacoes.Domain.Entidades.Ministerio;
 using SistemaNacoes.Domain.Entidades.Voluntario;
 using SistemaNacoes.Domain.Entidades.VoluntarioMinisterio;
 using SistemaNacoes.Domain.Enums;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Application.UseCases.VoluntarioMinisterios.CriarVoluntarioMinisterio;

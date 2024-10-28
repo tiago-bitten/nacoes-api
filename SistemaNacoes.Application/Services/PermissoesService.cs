@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Domain.Enterprise;
+using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Shared.Extensions;

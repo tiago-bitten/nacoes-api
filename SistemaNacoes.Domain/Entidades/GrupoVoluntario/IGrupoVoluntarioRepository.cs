@@ -1,4 +1,4 @@
-﻿using SistemaNacoes.Domain.Interfaces.Repositorios;
+﻿using SistemaNacoes.Domain.Entidades.Infra;
 
 namespace SistemaNacoes.Domain.Entidades.GrupoVoluntario;
 

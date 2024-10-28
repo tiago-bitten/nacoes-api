@@ -1,11 +1,8 @@
-﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Entidades.Usuario;
-
-namespace SistemaNacoes.Domain.Interfaces.Services;
+﻿namespace SistemaNacoes.Domain.Entidades.Infra;
 
 public interface IAmbienteUsuarioService
 {
-    Task<Usuario> RecuperaUsuarioAsync(params string[]? includes);
+    Task<Usuario.Usuario> RecuperaUsuarioAsync(params string[]? includes);
     string? RecuperaUsuarioIp();
     string? RecuperaUsuarioUserAgent();
     int RecuperaUsuarioId();

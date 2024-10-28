@@ -2,6 +2,7 @@
 using SistemaNacoes.Application.UseCases.Voluntarios.RecuperarVoluntarioParaAgendar.Dtos;
 using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Entidades.DataIndisponivel;
+using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Entidades.Ministerio;
 using SistemaNacoes.Domain.Entidades.Voluntario;
 using SistemaNacoes.Domain.Enums;

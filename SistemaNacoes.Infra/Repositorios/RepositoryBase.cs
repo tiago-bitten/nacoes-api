@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Entidades.Abstracoes;
 using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Interfaces;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Infra.Contexts;
 using SistemaNacoes.Shared.Extensions;
 

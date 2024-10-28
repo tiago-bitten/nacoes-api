@@ -1,5 +1,4 @@
 ﻿using SistemaNacoes.Domain.Enterprise;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
 namespace SistemaNacoes.Domain.Entidades.Infra;

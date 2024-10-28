@@ -55,7 +55,6 @@ using SistemaNacoes.Domain.Entidades.UsuarioMinisterio;
 using SistemaNacoes.Domain.Entidades.Voluntario;
 using SistemaNacoes.Domain.Entidades.VoluntarioMinisterio;
 using SistemaNacoes.Domain.Interfaces;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Infra.Data;
 using SistemaNacoes.Infra.Repositorios;

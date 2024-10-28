@@ -20,7 +20,6 @@ using SistemaNacoes.Application.UseCases.Usuarios;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios;
 using SistemaNacoes.Application.UseCases.Voluntarios;
 using SistemaNacoes.Domain.Interfaces;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 using SistemaNacoes.Infra.Contexts;
 using SistemaNacoes.Infra.Data;

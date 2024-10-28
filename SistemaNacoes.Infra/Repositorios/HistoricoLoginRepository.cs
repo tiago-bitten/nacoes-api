@@ -1,6 +1,5 @@
 ﻿using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.HistoricoLogin;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Infra.Contexts;
 
 namespace SistemaNacoes.Infra.Repositorios;
