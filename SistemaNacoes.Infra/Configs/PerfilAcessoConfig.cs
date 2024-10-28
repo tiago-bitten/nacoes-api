@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.PerfilAcesso;
 using SistemaNacoes.Infra.Configs.Abstracoes;
 using SistemaNacoes.Shared.Extensions;
 

@@ -1,4 +1,5 @@
 ﻿using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.PerfilAcesso;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Infra.Contexts;
 
