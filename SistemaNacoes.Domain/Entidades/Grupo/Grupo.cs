@@ -21,6 +21,6 @@ namespace SistemaNacoes.Domain.Entidades.Grupo
         public int? MinisterioPreferencialId { get; set; }
 
         public Ministerio? MinisterioPreferencial { get; set; }
-        public List<GrupoVoluntario> GrupoVoluntarios { get; set; } = new();
+        public List<GrupoVoluntario.GrupoVoluntario> GrupoVoluntarios { get; set; } = new();
     }
 }

@@ -8,6 +8,7 @@ using SistemaNacoes.Domain.Entidades.DataIndisponivel;
 using SistemaNacoes.Domain.Entidades.Escala;
 using SistemaNacoes.Domain.Entidades.EscalaItem;
 using SistemaNacoes.Domain.Entidades.Grupo;
+using SistemaNacoes.Domain.Entidades.GrupoVoluntario;
 using SistemaNacoes.Infra.Configs;
 using SistemaNacoes.Shared.Extensions;
 

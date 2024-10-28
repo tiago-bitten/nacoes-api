@@ -1,9 +1,8 @@
-﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Entidades.Infra;
+﻿using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;
 
-namespace SistemaNacoes.Application.Services;
+namespace SistemaNacoes.Domain.Entidades.GrupoVoluntario;
 
 public class GrupoVoluntarioService : ServiceBase<GrupoVoluntario, IGrupoVoluntarioRepository>, IGrupoVoluntarioService
 {

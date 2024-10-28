@@ -8,7 +8,7 @@ public sealed class Voluntario : Pessoa
         
     public Guid ChaveAcesso { get; set; } = Guid.NewGuid();
 
-    public List<GrupoVoluntario> GrupoVoluntarios { get; set; } = new();
+    public List<GrupoVoluntario.GrupoVoluntario> GrupoVoluntarios { get; set; } = new();
 
     public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
     public List<Agendamento.Agendamento> Agendamentos { get; set; } = new();
