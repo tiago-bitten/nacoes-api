@@ -1,7 +1,6 @@
-﻿using SistemaNacoes.Domain.Entidades.Abstracoes;
-using SistemaNacoes.Domain.Entidades.Infra;
+﻿using SistemaNacoes.Domain.Entidades.Infra;
 
-namespace SistemaNacoes.Domain.Entidades
+namespace SistemaNacoes.Domain.Entidades.Ministerio
 {
     public sealed class Ministerio : EntidadeBase
     {

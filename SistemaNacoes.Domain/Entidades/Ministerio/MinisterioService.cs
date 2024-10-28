@@ -1,10 +1,7 @@
-﻿using SistemaNacoes.Domain.Entidades;
-using SistemaNacoes.Domain.Entidades.Infra;
+﻿using SistemaNacoes.Domain.Entidades.Infra;
 using SistemaNacoes.Domain.Interfaces;
-using SistemaNacoes.Domain.Interfaces.Repositorios;
-using SistemaNacoes.Domain.Interfaces.Services;
 
-namespace SistemaNacoes.Application.Services;
+namespace SistemaNacoes.Domain.Entidades.Ministerio;
 
 public class MinisterioService : ServiceBase<Ministerio, IMinisterioRepository>, IMinisterioService
 {

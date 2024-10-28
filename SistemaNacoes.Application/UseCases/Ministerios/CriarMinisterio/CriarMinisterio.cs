@@ -2,6 +2,7 @@
 using SistemaNacoes.Application.UseCases.Ministerios.CriarMinisterio.Dtos;
 using SistemaNacoes.Domain.Entidades;
 using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
+using SistemaNacoes.Domain.Entidades.Ministerio;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;

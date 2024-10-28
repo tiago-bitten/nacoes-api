@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SistemaNacoes.Application.UseCases.Ministerios.CriarMinisterio.Dtos;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Ministerio;
 
 namespace SistemaNacoes.Application.Profiles;
 

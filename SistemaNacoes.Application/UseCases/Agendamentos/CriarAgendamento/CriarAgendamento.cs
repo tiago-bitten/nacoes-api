@@ -6,6 +6,7 @@ using SistemaNacoes.Domain.Entidades.Agenda;
 using SistemaNacoes.Domain.Entidades.Agendamento;
 using SistemaNacoes.Domain.Entidades.DataIndisponivel;
 using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
+using SistemaNacoes.Domain.Entidades.Ministerio;
 using SistemaNacoes.Domain.Enums;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;

@@ -7,7 +7,7 @@ namespace SistemaNacoes.Domain.Entidades
     {
         public UsuarioMinisterio() {}
         
-        public UsuarioMinisterio(Usuario usuario, Ministerio ministerio)
+        public UsuarioMinisterio(Usuario usuario, Ministerio.Ministerio ministerio)
         {
             Usuario = usuario;
             Ministerio = ministerio;
@@ -17,6 +17,6 @@ namespace SistemaNacoes.Domain.Entidades
         public int MinisterioId { get; set; }
 
         public Usuario Usuario { get; set; }
-        public Ministerio Ministerio { get; set; }
+        public Ministerio.Ministerio Ministerio { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace SistemaNacoes.Domain.Entidades.Escala
     public sealed class Escala : EntidadeBase
     {
         public Escala() {}
-        public Escala(int quantidadeVoluntarios, Agenda.Agenda agenda, Ministerio ministerio)
+        public Escala(int quantidadeVoluntarios, Agenda.Agenda agenda, Ministerio.Ministerio ministerio)
         {
             QuantidadeVoluntarios = quantidadeVoluntarios;
             Agenda = agenda;
@@ -19,7 +19,7 @@ namespace SistemaNacoes.Domain.Entidades.Escala
         public bool Removido { get; set; } = false;
 
         public Agenda.Agenda Agenda { get; set; }
-        public Ministerio Ministerio { get; set; }
+        public Ministerio.Ministerio Ministerio { get; set; }
         public List<EscalaItem.EscalaItem> EscalaItens { get; set; } = new();
     }
 }

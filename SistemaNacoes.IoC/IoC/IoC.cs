@@ -46,6 +46,7 @@ using SistemaNacoes.Domain.Entidades.Grupo;
 using SistemaNacoes.Domain.Entidades.GrupoVoluntario;
 using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
 using SistemaNacoes.Domain.Entidades.HistoricoLogin;
+using SistemaNacoes.Domain.Entidades.Ministerio;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Domain.Interfaces.Repositorios;
 using SistemaNacoes.Domain.Interfaces.Services;

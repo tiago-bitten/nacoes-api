@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using SistemaNacoes.Domain.Entidades;
+using SistemaNacoes.Domain.Entidades.Ministerio;
 using SistemaNacoes.Domain.Interfaces;
 using SistemaNacoes.Infra.Contexts;
 

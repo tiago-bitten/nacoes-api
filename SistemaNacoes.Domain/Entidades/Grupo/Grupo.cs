@@ -10,7 +10,7 @@ namespace SistemaNacoes.Domain.Entidades.Grupo
             Nome = nome;
         }
         
-        public Grupo(string nome, Ministerio ministerioPreferencial)
+        public Grupo(string nome, Ministerio.Ministerio ministerioPreferencial)
         {
             Nome = nome;
             MinisterioPreferencial = ministerioPreferencial;
@@ -20,7 +20,7 @@ namespace SistemaNacoes.Domain.Entidades.Grupo
         public bool Removido { get; set; } = false;
         public int? MinisterioPreferencialId { get; set; }
 
-        public Ministerio? MinisterioPreferencial { get; set; }
+        public Ministerio.Ministerio? MinisterioPreferencial { get; set; }
         public List<GrupoVoluntario.GrupoVoluntario> GrupoVoluntarios { get; set; } = new();
     }
 }

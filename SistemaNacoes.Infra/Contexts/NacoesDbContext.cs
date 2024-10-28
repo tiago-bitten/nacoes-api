@@ -11,6 +11,7 @@ using SistemaNacoes.Domain.Entidades.Grupo;
 using SistemaNacoes.Domain.Entidades.GrupoVoluntario;
 using SistemaNacoes.Domain.Entidades.HistoricoEntidade;
 using SistemaNacoes.Domain.Entidades.HistoricoLogin;
+using SistemaNacoes.Domain.Entidades.Ministerio;
 using SistemaNacoes.Infra.Configs;
 using SistemaNacoes.Shared.Extensions;
 
