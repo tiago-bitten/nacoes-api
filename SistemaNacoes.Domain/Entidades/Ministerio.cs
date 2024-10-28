@@ -15,7 +15,7 @@ namespace SistemaNacoes.Domain.Entidades
         public List<VoluntarioMinisterio> VoluntarioMinisterios { get; set; } = new();
         public List<UsuarioMinisterio> UsuariosMinisterios { get; set; } = new();
         public List<Agendamento.Agendamento> Agendamentos { get; set; } = new();
-        public List<Escala> Escalas { get; set; } = new();
+        public List<Escala.Escala> Escalas { get; set; } = new();
         public List<Grupo> Grupos { get; set; } = new();
     }
 }

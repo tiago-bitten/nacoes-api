@@ -20,7 +20,7 @@ namespace SistemaNacoes.Domain.Entidades
             VoluntarioId = voluntarioId;
         }
 
-        public Escala Escala { get; set; }
+        public Escala.Escala Escala { get; set; }
         public Atividade.Atividade Atividade { get; set; }
         public Voluntario Voluntario { get; set; }
     }

@@ -13,7 +13,7 @@ namespace SistemaNacoes.Domain.Entidades.Agenda
         public EAgendaStatus Status { get; private set; } = EAgendaStatus.Aberto;
 
         public List<Agendamento.Agendamento> Agendamentos { get; set; } = new();
-        public List<Escala> Escalas { get; set; } = new();
+        public List<Escala.Escala> Escalas { get; set; } = new();
 
         public void Concluir()
         {

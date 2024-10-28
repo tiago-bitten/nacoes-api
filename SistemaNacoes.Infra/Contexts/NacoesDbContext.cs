@@ -5,6 +5,7 @@ using SistemaNacoes.Domain.Entidades.Agendamento;
 using SistemaNacoes.Domain.Entidades.AgendamentoAtividade;
 using SistemaNacoes.Domain.Entidades.Atividade;
 using SistemaNacoes.Domain.Entidades.DataIndisponivel;
+using SistemaNacoes.Domain.Entidades.Escala;
 using SistemaNacoes.Infra.Configs;
 using SistemaNacoes.Shared.Extensions;
 
