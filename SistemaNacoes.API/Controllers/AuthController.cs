@@ -24,6 +24,7 @@ public class AuthController : ControllerBase
     #endregion
     
     #region Entrar
+    [HttpPost("Entrar")]
     public async Task<IActionResult> Entrar([FromBody] EntrarRequest request)
     {
         var result = await _entrar.ExecutarAsync(request);
@@ -32,7 +33,8 @@ public class AuthController : ControllerBase
     #endregion
     
     #region RefreshToken
-    public async Task<IActionResult> RefreshToken(RefreshTokenRequest request)
+    [HttpPut("RefreshToken")]
+    public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
     {
         var result = await _refreshToken.ExecutarAsync(request);
         return Ok();

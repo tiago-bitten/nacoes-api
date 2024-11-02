@@ -33,7 +33,6 @@ public class DataIndisponiveisController : ControllerBase
     #endregion
     
     #region Remover
-
     [HttpDelete("Remover/{id:int}")]
     public async Task<IActionResult> Remover(int id)
     {
