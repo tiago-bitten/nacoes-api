@@ -2,6 +2,7 @@
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.CriarVoluntarioMinisterio;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.CriarVoluntarioMinisterio.Dtos;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio;
+using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio.Dtos;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.RemoverVoluntarioMinisterio;
 
 namespace SistemaNacoes.API.Controllers;
@@ -28,12 +29,30 @@ public class VoluntarioMinisteriosController : ControllerBase
     #endregion
     
     #region Criar
-
     [HttpPost]
     [HttpPost("Criar")]
     public async Task<IActionResult> Criar([FromBody] CriarVoluntarioMinisterioRequest request)
     {
         var result = await _criar.ExecutarAsync(request);
+        return Ok();
+    }
+    #endregion
+    
+    #region Remover
+    [HttpDelete("Remover/{id}")]
+    public async Task<IActionResult> Remover(int id)
+    {
+        await _remover.ExecutarAsync(id);
+        return Ok();
+    }
+    #endregion
+    
+    #region Listar
+    [HttpGet]
+    [HttpGet("Listar")]
+    public async Task<IActionResult> Listar([FromQuery] ListarVoluntarioMinisterioParam param)
+    {
+        var result = await _listar.ExecutarAsync(param);
         return Ok();
     }
     #endregion
