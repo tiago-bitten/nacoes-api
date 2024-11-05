@@ -8,6 +8,6 @@ public class RefreshTokenRequest : Request
     [JsonPropertyName("AccessToken")]
     public string AccessToken { get; set; }
     
-    [JsonPropertyName("RefreshToken_old")]
+    [JsonPropertyName("RefreshToken")]
     public string RefreshToken { get; set; }
 }
