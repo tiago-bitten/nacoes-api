@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaNacoes.Domain\SistemaNacoes.Domain.csproj" />
+    <ProjectReference Include="..\SistemaNacoes.Shared\SistemaNacoes.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\Agendamentos\" />
+    <Folder Include="Dtos\Agendas\" />
+    <Folder Include="Dtos\Atividades\" />
+    <Folder Include="Dtos\Auth\" />
+    <Folder Include="Dtos\DataIndisponiveis\" />
+    <Folder Include="Dtos\Grupos\" />
+    <Folder Include="Dtos\GrupoVoluntarios\" />
+    <Folder Include="Dtos\Ministerios\" />
+    <Folder Include="Dtos\Outros\" />
+    <Folder Include="Dtos\Permissoes\" />
+    <Folder Include="Dtos\SituacaoAgendamentos\" />
+    <Folder Include="Dtos\UsuarioMinisterios\" />
+    <Folder Include="Dtos\Usuarios\" />
+    <Folder Include="Dtos\VoluntarioMinisterios\" />
+    <Folder Include="Dtos\Voluntarios\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
