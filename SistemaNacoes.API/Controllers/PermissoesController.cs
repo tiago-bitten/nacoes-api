@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SistemaNacoes.API.Controllers.Infra;
 using SistemaNacoes.Application.UseCases.Permissoes.AdicionarPermissao;
 using SistemaNacoes.Application.UseCases.Permissoes.AdicionarPermissao.Dtos;
 using SistemaNacoes.Application.UseCases.Permissoes.ListarPermissoes;
@@ -11,7 +12,7 @@ namespace SistemaNacoes.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PermissoesController : ControllerBase
+public class PermissoesController : ControllerNacoes
 {
     #region Ctor
     private readonly IAdicionarPermissaoUseCase _adicionar;
@@ -34,7 +35,7 @@ public class PermissoesController : ControllerBase
     public async Task<IActionResult> Adicionar([FromBody] AdicionarPermissaoRequest request)
     {
         await _adicionar.ExecutarAsync(request);
-        return Ok();
+        return RespostaSucesso("Permissão adicionada com sucesso.");
     }
     #endregion
     
@@ -43,7 +44,7 @@ public class PermissoesController : ControllerBase
     public async Task<IActionResult> Remover([FromBody] RemoverPermissaoRequest request)
     {
         await _remover.ExecutarAsync(request);
-        return Ok();
+        return RespostaSucesso("Permissão removida com sucesso.");
     }
     #endregion
     
@@ -53,7 +54,7 @@ public class PermissoesController : ControllerBase
     public async Task<IActionResult> Listar([FromQuery] ListarPermissoesParam param)
     {
         var result = await _listar.ExecutarAsync(param);
-        return Ok();
+        return RespostaPaginada(result, "Permissões listadas com sucesso.");
     }
     #endregion
 }

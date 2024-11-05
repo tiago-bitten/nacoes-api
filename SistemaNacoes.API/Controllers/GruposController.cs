@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaNacoes.API.Controllers.Infra;
 using SistemaNacoes.Application.UseCases.Grupos.CriarGrupo;
 using SistemaNacoes.Application.UseCases.Grupos.CriarGrupo.Dtos;
 using SistemaNacoes.Application.UseCases.Grupos.RemoverGrupo;
@@ -7,7 +8,7 @@ namespace SistemaNacoes.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class GruposController : ControllerBase
+public class GruposController : ControllerNacoes
 {
     #region Ctor
     private readonly ICriarGrupoUseCase _criar;
@@ -28,7 +29,7 @@ public class GruposController : ControllerBase
     public async Task<IActionResult> Criar([FromBody] CriarGrupoRequest request)
     {
         var result = await _criar.ExecutarAsync(request);
-        return Ok();
+        return RespostaSucesso(result, "Grupo criado com sucesso.");
     }
     #endregion
     
@@ -37,7 +38,7 @@ public class GruposController : ControllerBase
     public async Task<IActionResult> Remover(int id)
     {
         await _remover.ExecutarAsync(id);
-        return Ok();
+        return RespostaSucesso("Grupo removido com sucesso.");
     }
     #endregion
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaNacoes.API.Controllers.Infra;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.CriarVoluntarioMinisterio;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.CriarVoluntarioMinisterio.Dtos;
 using SistemaNacoes.Application.UseCases.VoluntarioMinisterios.ListarVoluntarioMinisterio;
@@ -9,7 +10,7 @@ namespace SistemaNacoes.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class VoluntarioMinisteriosController : ControllerBase
+public class VoluntarioMinisteriosController : ControllerNacoes
 {
     #region Ctor
     private readonly ICriarVoluntarioMinisterioUseCase _criar;
@@ -25,7 +26,6 @@ public class VoluntarioMinisteriosController : ControllerBase
         _remover = remover;
         _listar = listar;
     }
-
     #endregion
     
     #region Criar
@@ -34,16 +34,16 @@ public class VoluntarioMinisteriosController : ControllerBase
     public async Task<IActionResult> Criar([FromBody] CriarVoluntarioMinisterioRequest request)
     {
         var result = await _criar.ExecutarAsync(request);
-        return Ok();
+        return RespostaSucesso(result, "Voluntário vinculado ao ministério com sucesso.");
     }
     #endregion
     
     #region Remover
-    [HttpDelete("Remover/{id}")]
+    [HttpDelete("Remover/{id:int}")]
     public async Task<IActionResult> Remover(int id)
     {
         await _remover.ExecutarAsync(id);
-        return Ok();
+        return RespostaSucesso("Vínculo de voluntário com ministério removido com sucesso.");
     }
     #endregion
     
@@ -53,7 +53,7 @@ public class VoluntarioMinisteriosController : ControllerBase
     public async Task<IActionResult> Listar([FromQuery] ListarVoluntarioMinisterioParam param)
     {
         var result = await _listar.ExecutarAsync(param);
-        return Ok();
+        return RespostaPaginada(result, "Vínculos de voluntários com ministérios listados com sucesso.");
     }
     #endregion
 }

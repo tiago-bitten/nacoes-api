@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaNacoes.API.Controllers.Infra;
 using SistemaNacoes.Application.UseCases.Ministerios.CriarMinisterio;
 using SistemaNacoes.Application.UseCases.Ministerios.CriarMinisterio.Dtos;
 using SistemaNacoes.Application.UseCases.Ministerios.RemoverMinisterio;
@@ -7,7 +8,7 @@ namespace SistemaNacoes.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class MinisteriosController : ControllerBase
+public class MinisteriosController : ControllerNacoes
 {
     #region Ctor
     private readonly ICriarMinisterioUseCase _criar;
@@ -28,7 +29,7 @@ public class MinisteriosController : ControllerBase
     public async Task<IActionResult> Criar([FromBody] CriarMinisterioRequest request)
     {
         var result = await _criar.ExecutarAsync(request);
-        return Ok();
+        return RespostaSucesso(result, "Ministério criado com sucesso.");
     } 
     #endregion
     
@@ -37,7 +38,7 @@ public class MinisteriosController : ControllerBase
     public async Task<IActionResult> Remover(int id)
     {
         await _remover.ExecutarAsync(id);
-        return Ok();
+        return RespostaSucesso("Ministério removido com sucesso.");
     }
     #endregion
 }

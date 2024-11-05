@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaNacoes.API.Controllers.Infra;
 using SistemaNacoes.Application.UseCases.DataIndisponiveis.CriarDataIndisponivel;
 using SistemaNacoes.Application.UseCases.DataIndisponiveis.CriarDataIndisponivel.Dtos;
 using SistemaNacoes.Application.UseCases.DataIndisponiveis.RemoverDataIndisponivel;
@@ -7,7 +8,7 @@ namespace SistemaNacoes.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class DataIndisponiveisController : ControllerBase
+public class DataIndisponiveisController : ControllerNacoes
 {
     #region Ctor
     private readonly ICriarDataIndisponivelUseCase _criar;
@@ -28,7 +29,7 @@ public class DataIndisponiveisController : ControllerBase
     public async Task<IActionResult> Criar([FromBody] CriarDataIndisponivelRequest request)
     {
         var result = await _criar.ExecutarAsync(request);
-        return Ok();
+        return RespostaSucesso(result, "Data indisponível criada com sucesso.");
     }
     #endregion
     
@@ -37,7 +38,7 @@ public class DataIndisponiveisController : ControllerBase
     public async Task<IActionResult> Remover(int id)
     {
         await _remover.ExecutarAsync(id);
-        return Ok();
+        return RespostaSucesso("Data indisponível removida com sucesso.");
     }
     #endregion
 }

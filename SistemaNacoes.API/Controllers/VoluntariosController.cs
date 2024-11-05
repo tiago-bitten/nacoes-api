@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaNacoes.API.Controllers.Infra;
 using SistemaNacoes.Application.UseCases.Voluntarios.CriarVoluntario;
 using SistemaNacoes.Application.UseCases.Voluntarios.CriarVoluntario.Dtos;
 using SistemaNacoes.Application.UseCases.Voluntarios.ListarVoluntario;
@@ -9,7 +10,7 @@ namespace SistemaNacoes.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class VoluntariosController : ControllerBase
+public class VoluntariosController : ControllerNacoes
 {
     #region Ctor
     private readonly ICriarVoluntarioUseCase _criar;
@@ -33,7 +34,7 @@ public class VoluntariosController : ControllerBase
     public async Task<IActionResult> Criar([FromBody] CriarVoluntarioRequest request)
     {
         var result = await _criar.ExecutarAsync(request);
-        return Ok();
+        return RespostaSucesso(result, "Voluntário criado com sucesso.");
     }
     #endregion
     
@@ -42,7 +43,7 @@ public class VoluntariosController : ControllerBase
     public async Task<IActionResult> Remover(int id)
     {
         await _remover.ExecutarAsync(id);
-        return Ok();
+        return RespostaSucesso("Voluntário removido com sucesso.");
     }
     #endregion
     
@@ -52,7 +53,7 @@ public class VoluntariosController : ControllerBase
     public async Task<IActionResult> Listar([FromQuery] ListarVoluntarioParam param)
     {
         var result = await _listar.ExecutarAsync(param);
-        return Ok();
+        return RespostaPaginada(result, "Voluntários listados com sucesso.");
     }
     #endregion
 }
