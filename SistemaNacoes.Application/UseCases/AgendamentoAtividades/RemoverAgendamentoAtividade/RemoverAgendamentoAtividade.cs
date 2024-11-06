@@ -8,6 +8,7 @@ namespace SistemaNacoes.Application.UseCases.AgendamentoAtividades.RemoverAgenda
 
 public class RemoverAgendamentoAtividade : IRemoverAgendamentoAtividadeUseCase
 {
+    #region Ctor
     private readonly IAgendamentoAtividadeService _service;
     private readonly IUnitOfWork _uow;
     private readonly IHistoricoEntidadeService _historicoService;
@@ -20,6 +21,7 @@ public class RemoverAgendamentoAtividade : IRemoverAgendamentoAtividadeUseCase
         _historicoService = historicoService;
         _permissoesService = permissoesService;
     }
+    #endregion
 
     public async Task ExecutarAsync(int id)
     {

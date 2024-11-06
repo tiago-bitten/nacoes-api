@@ -12,6 +12,7 @@ namespace SistemaNacoes.Application.UseCases.Atividades.CriarAtividade;
 
 public class CriarAtividade : ICriarAtividadeUseCase
 {
+    #region Ctor
     private readonly IAtividadeService _service;
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
@@ -28,6 +29,7 @@ public class CriarAtividade : ICriarAtividadeUseCase
         _permissoesService = permissoesService;
         _historicoService = historicoService;
     }
+    #endregion
 
     public async Task<CriarAtividadeResult> ExecutarAsync(CriarAtividadeRequest request)
     {

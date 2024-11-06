@@ -9,6 +9,7 @@ namespace SistemaNacoes.Application.UseCases.Agendas.ListarAgenda;
 
 public class ListarAgenda : IListarAgendaUseCase
 {
+    #region Ctor
     private readonly IAgendaService _service;
     private readonly IMapper _mapper;
 
@@ -17,7 +18,8 @@ public class ListarAgenda : IListarAgendaUseCase
         _service = service;
         _mapper = mapper;
     }
-
+    #endregion
+    
     public async Task<PaginadoResult<ListarAgendaResult>> ExecutarAsync(ListarAgendaParams param)
     {
         var agendasPaginadas = await _service

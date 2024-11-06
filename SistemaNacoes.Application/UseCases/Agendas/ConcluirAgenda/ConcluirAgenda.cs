@@ -8,6 +8,7 @@ namespace SistemaNacoes.Application.UseCases.Agendas.ConcluirAgenda;
 
 public class ConcluirAgenda : IConcluirAgendaUseCase
 {
+    #region Ctor
     private readonly IAgendaService _service;
     private readonly IUnitOfWork _uow;
     private readonly IHistoricoEntidadeService _historicoService;
@@ -18,6 +19,7 @@ public class ConcluirAgenda : IConcluirAgendaUseCase
         _uow = uow;
         _historicoService = historicoService;
     }
+    #endregion
 
     public async Task ExecutarAsync(int id)
     {

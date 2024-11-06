@@ -10,6 +10,7 @@ namespace SistemaNacoes.Application.UseCases.AgendamentoAtividades.CriarAgendame
 
 public class CriarAgendamentoAtividade : ICriarAgendamentoAtividadeUseCase
 {
+    #region Ctor
     private readonly IUnitOfWork _uow;
     private readonly IAgendamentoAtividadeService _service;
     private readonly IAgendamentoService _agendamentoService;
@@ -24,6 +25,7 @@ public class CriarAgendamentoAtividade : ICriarAgendamentoAtividadeUseCase
         _agendamentoService = agendamentoService;
         _historicoService = historicoService;
     }
+    #endregion
 
     public async Task<CriarAgendamentoAtividadeResult> ExecutarAsync(CriarAgendamentoAtividadeRequest request)
     {
