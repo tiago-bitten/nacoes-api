@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  nacoes_postgre:
+    image: postgres:16
+    container_name: nacoes_postgre
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nacoes_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nacoes_net
+
+  nacoes_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nacoes_app
+    depends_on:
+      - nacoes_postgre
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Host=nacoes_postgre;Port=5432;Database=nacoes_db;Username=postgres;Password=postgres"
+    ports:
+      - "5000:80"
+    networks:
+      - nacoes_net
+
+volumes:
+  postgres_data:
+
+networks:
+  nacoes_net:
+    driver: bridge
